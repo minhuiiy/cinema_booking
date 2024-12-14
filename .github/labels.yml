@@ -5,3 +5,7 @@
 - name: dart
   color: "#02a2a2"
   description: Changes or features specific to the Dart programming language
+
+- name: other
+  color: "#ffffff"
+  description: No changes related to bug fixes and feature requests
