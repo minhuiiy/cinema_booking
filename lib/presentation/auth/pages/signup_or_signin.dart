@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_clean_architecture_template/common/widgets/appbar/app_bar.dart';
-import 'package:flutter_clean_architecture_template/common/widgets/button/basic_app_button.dart';
-import 'package:flutter_clean_architecture_template/common/helpers/is_dark_mode.dart';
-import 'package:flutter_clean_architecture_template/core/configs/assets/app_images.dart';
-import 'package:flutter_clean_architecture_template/core/configs/assets/app_vectors.dart';
-import 'package:flutter_clean_architecture_template/core/configs/theme/app_color.dart';
-import 'package:flutter_clean_architecture_template/presentation/auth/pages/signup.dart';
-import 'package:flutter_clean_architecture_template/presentation/auth/pages/singin.dart';
+import 'package:cinema_booking/common/widgets/appbar/app_bar.dart';
+import 'package:cinema_booking/common/widgets/button/basic_app_button.dart';
+import 'package:cinema_booking/common/helpers/is_dark_mode.dart';
+import 'package:cinema_booking/core/configs/assets/app_images.dart';
+import 'package:cinema_booking/core/configs/assets/app_vectors.dart';
+import 'package:cinema_booking/core/configs/theme/app_color.dart';
+import 'package:cinema_booking/presentation/auth/pages/signup.dart';
+import 'package:cinema_booking/presentation/auth/pages/singin.dart';
 
 class SignupOrSignin extends StatelessWidget {
   const SignupOrSignin({super.key});
@@ -45,9 +45,7 @@ class SignupOrSignin extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
-                    context.isDarkMode
-                        ? AppImages.logoDark
-                        : AppImages.logoLight,
+                    context.isDarkMode ? AppImages.logoDark : AppImages.logoLight,
                   ),
                   const SizedBox(
                     height: 50,
@@ -56,8 +54,7 @@ class SignupOrSignin extends StatelessWidget {
                     'Flutter Journey',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color:
-                          context.isDarkMode ? AppColors.white : AppColors.dark,
+                      color: context.isDarkMode ? AppColors.white : AppColors.dark,
                       fontSize: 29,
                     ),
                   ),
@@ -68,9 +65,7 @@ class SignupOrSignin extends StatelessWidget {
                     'Journey on the Road to Becoming a Flutter Master 🚀',
                     style: TextStyle(
                       fontWeight: FontWeight.w400,
-                      color: context.isDarkMode
-                          ? AppColors.greyTitle
-                          : AppColors.grey,
+                      color: context.isDarkMode ? AppColors.greyTitle : AppColors.grey,
                       fontSize: 19,
                     ),
                     textAlign: TextAlign.center,
@@ -106,9 +101,7 @@ class SignupOrSignin extends StatelessWidget {
                             "Sign In",
                             style: TextStyle(
                               fontWeight: FontWeight.w500,
-                              color: context.isDarkMode
-                                  ? AppColors.white
-                                  : AppColors.dark,
+                              color: context.isDarkMode ? AppColors.white : AppColors.dark,
                               fontSize: 21,
                             ),
                           ),

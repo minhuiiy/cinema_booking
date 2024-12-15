@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clean_architecture_template/common/widgets/appbar/app_bar.dart';
-import 'package:flutter_clean_architecture_template/common/widgets/button/basic_app_button.dart';
-import 'package:flutter_clean_architecture_template/core/configs/theme/app_color.dart';
-import 'package:flutter_clean_architecture_template/presentation/auth/pages/signup.dart';
+import 'package:cinema_booking/common/widgets/appbar/app_bar.dart';
+import 'package:cinema_booking/common/widgets/button/basic_app_button.dart';
+import 'package:cinema_booking/core/configs/theme/app_color.dart';
+import 'package:cinema_booking/presentation/auth/pages/signup.dart';
 
 class SigninPage extends StatelessWidget {
   SigninPage({super.key});

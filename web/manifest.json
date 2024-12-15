@@ -1,6 +1,6 @@
 {
-    "name": "flutter_clean_architecture_template",
-    "short_name": "flutter_clean_architecture_template",
+    "name": "cinema_booking",
+    "short_name": "cinema_booking",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.flutterCleanArchitectureTemplate</string>
+	<string>com.chunhthanhde.cinemaBooking</string>
 	<key>PROJECT_ID</key>
 	<string>find-f9360</string>
 	<key>STORAGE_BUCKET</key>

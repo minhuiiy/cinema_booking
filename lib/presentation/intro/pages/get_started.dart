@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clean_architecture_template/common/helpers/is_dark_mode.dart';
-import 'package:flutter_clean_architecture_template/common/widgets/button/basic_app_button.dart';
-import 'package:flutter_clean_architecture_template/core/configs/assets/app_images.dart';
-import 'package:flutter_clean_architecture_template/core/configs/theme/app_color.dart';
-import 'package:flutter_clean_architecture_template/presentation/choose_mode/pages/choose_mode.dart';
+import 'package:cinema_booking/common/helpers/is_dark_mode.dart';
+import 'package:cinema_booking/common/widgets/button/basic_app_button.dart';
+import 'package:cinema_booking/core/configs/assets/app_images.dart';
+import 'package:cinema_booking/core/configs/theme/app_color.dart';
+import 'package:cinema_booking/presentation/choose_mode/pages/choose_mode.dart';
 
 class GetStartedPage extends StatelessWidget {
   const GetStartedPage({super.key});
@@ -37,8 +37,7 @@ class GetStartedPage extends StatelessWidget {
           //
 
           Padding(
-            padding:
-                const EdgeInsets.symmetric(vertical: 50.0, horizontal: 40.0),
+            padding: const EdgeInsets.symmetric(vertical: 50.0, horizontal: 40.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -49,9 +48,7 @@ class GetStartedPage extends StatelessWidget {
                 Align(
                   alignment: Alignment.center,
                   child: Image.asset(
-                    context.isDarkMode
-                        ? AppImages.logoDark
-                        : AppImages.logoLight,
+                    context.isDarkMode ? AppImages.logoDark : AppImages.logoLight,
                   ),
                 ),
                 const Spacer(),
@@ -59,8 +56,7 @@ class GetStartedPage extends StatelessWidget {
                   'Flutter Journey',
                   style: TextStyle(
                     fontWeight: FontWeight.w900,
-                    color:
-                        context.isDarkMode ? AppColors.white : AppColors.dark,
+                    color: context.isDarkMode ? AppColors.white : AppColors.dark,
                     fontSize: 32,
                   ),
                 ),
@@ -73,9 +69,7 @@ class GetStartedPage extends StatelessWidget {
                   'and encourage learning by doing',
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
-                    color: context.isDarkMode
-                        ? AppColors.greyTitle
-                        : AppColors.dark,
+                    color: context.isDarkMode ? AppColors.greyTitle : AppColors.dark,
                     fontSize: 16,
                   ),
                   textAlign: TextAlign.center,
@@ -88,8 +82,7 @@ class GetStartedPage extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                            const ChooseModePage(),
+                        builder: (BuildContext context) => const ChooseModePage(),
                       ),
                     );
                   },

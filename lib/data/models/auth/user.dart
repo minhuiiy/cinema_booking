@@ -1,4 +1,4 @@
-import 'package:flutter_clean_architecture_template/domain/entities/auth/user.dart';
+import 'package:cinema_booking/domain/entities/auth/user.dart';
 
 class UserModel {
   String? email;

@@ -2,14 +2,14 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_clean_architecture_template/common/helpers/is_dark_mode.dart';
+import 'package:cinema_booking/common/helpers/is_dark_mode.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:flutter_clean_architecture_template/common/widgets/button/basic_app_button.dart';
-import 'package:flutter_clean_architecture_template/core/configs/assets/app_images.dart';
-import 'package:flutter_clean_architecture_template/core/configs/assets/app_vectors.dart';
-import 'package:flutter_clean_architecture_template/core/configs/theme/app_color.dart';
-import 'package:flutter_clean_architecture_template/presentation/auth/pages/signup_or_signin.dart';
-import 'package:flutter_clean_architecture_template/presentation/choose_mode/bloc/theme_cubit.dart';
+import 'package:cinema_booking/common/widgets/button/basic_app_button.dart';
+import 'package:cinema_booking/core/configs/assets/app_images.dart';
+import 'package:cinema_booking/core/configs/assets/app_vectors.dart';
+import 'package:cinema_booking/core/configs/theme/app_color.dart';
+import 'package:cinema_booking/presentation/auth/pages/signup_or_signin.dart';
+import 'package:cinema_booking/presentation/choose_mode/bloc/theme_cubit.dart';
 
 class ChooseModePage extends StatefulWidget {
   const ChooseModePage({super.key});
@@ -48,17 +48,14 @@ class _ChooseModePageState extends State<ChooseModePage> {
           //
 
           Padding(
-            padding:
-                const EdgeInsets.symmetric(vertical: 50.0, horizontal: 40.0),
+            padding: const EdgeInsets.symmetric(vertical: 50.0, horizontal: 40.0),
             child: Column(
               children: [
                 const SizedBox(height: 100),
                 Align(
                   alignment: Alignment.topCenter,
                   child: Image.asset(
-                    context.isDarkMode
-                        ? AppImages.logoDark
-                        : AppImages.logoLight,
+                    context.isDarkMode ? AppImages.logoDark : AppImages.logoLight,
                   ),
                 ),
                 const Spacer(),
@@ -66,8 +63,7 @@ class _ChooseModePageState extends State<ChooseModePage> {
                   'Choose Mode',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color:
-                        context.isDarkMode ? AppColors.white : AppColors.dark,
+                    color: context.isDarkMode ? AppColors.white : AppColors.dark,
                     fontSize: 28,
                   ),
                 ),
@@ -82,9 +78,7 @@ class _ChooseModePageState extends State<ChooseModePage> {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            context
-                                .read<ThemeCubit>()
-                                .updateTheme(ThemeMode.dark);
+                            context.read<ThemeCubit>().updateTheme(ThemeMode.dark);
                           },
                           child: ClipOval(
                             child: BackdropFilter(
@@ -113,9 +107,7 @@ class _ChooseModePageState extends State<ChooseModePage> {
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: 17,
-                            color: context.isDarkMode
-                                ? AppColors.grey
-                                : AppColors.darkGrey,
+                            color: context.isDarkMode ? AppColors.grey : AppColors.darkGrey,
                           ),
                         )
                       ],
@@ -124,9 +116,7 @@ class _ChooseModePageState extends State<ChooseModePage> {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            context
-                                .read<ThemeCubit>()
-                                .updateTheme(ThemeMode.light);
+                            context.read<ThemeCubit>().updateTheme(ThemeMode.light);
                           },
                           child: ClipOval(
                             child: BackdropFilter(
@@ -156,9 +146,7 @@ class _ChooseModePageState extends State<ChooseModePage> {
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: 17,
-                            color: context.isDarkMode
-                                ? AppColors.grey
-                                : AppColors.darkGrey,
+                            color: context.isDarkMode ? AppColors.grey : AppColors.darkGrey,
                           ),
                         )
                       ],
@@ -173,8 +161,7 @@ class _ChooseModePageState extends State<ChooseModePage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                            const SignupOrSignin(),
+                        builder: (BuildContext context) => const SignupOrSignin(),
                       ),
                     );
                   },

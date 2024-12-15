@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter_clean_architecture_template/core/usecase/usecase.dart';
-import 'package:flutter_clean_architecture_template/domain/repository/auth/auth.dart';
-import 'package:flutter_clean_architecture_template/service_locator.dart';
+import 'package:cinema_booking/core/usecase/usecase.dart';
+import 'package:cinema_booking/domain/repository/auth/auth.dart';
+import 'package:cinema_booking/service_locator.dart';
 
 class GetUserUseCase implements UseCase<Either, dynamic> {
   @override

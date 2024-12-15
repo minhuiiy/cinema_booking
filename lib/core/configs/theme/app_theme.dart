@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clean_architecture_template/core/configs/theme/app_color.dart';
+import 'package:cinema_booking/core/configs/theme/app_color.dart';
 
 class AppTheme {
   static final lightTheme = ThemeData(

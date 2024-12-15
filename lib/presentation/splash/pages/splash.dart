@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clean_architecture_template/common/helpers/is_dark_mode.dart';
-import 'package:flutter_clean_architecture_template/core/configs/assets/app_images.dart';
-import 'package:flutter_clean_architecture_template/presentation/intro/pages/get_started.dart';
+import 'package:cinema_booking/common/helpers/is_dark_mode.dart';
+import 'package:cinema_booking/core/configs/assets/app_images.dart';
+import 'package:cinema_booking/presentation/intro/pages/get_started.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});

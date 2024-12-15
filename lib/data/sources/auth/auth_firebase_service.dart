@@ -2,11 +2,11 @@
 import 'package:dartz/dartz.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:flutter/foundation.dart';
-// import 'package:flutter_clean_architecture_template/core/constants/app_urls.dart';
-import 'package:flutter_clean_architecture_template/data/models/auth/create_user_req.dart';
-import 'package:flutter_clean_architecture_template/data/models/auth/signin_user_req.dart';
-// import 'package:flutter_clean_architecture_template/data/models/auth/user.dart';
-// import 'package:flutter_clean_architecture_template/domain/entities/auth/user.dart';
+// import 'package:cinema_booking/core/constants/app_urls.dart';
+import 'package:cinema_booking/data/models/auth/create_user_req.dart';
+import 'package:cinema_booking/data/models/auth/signin_user_req.dart';
+// import 'package:cinema_booking/data/models/auth/user.dart';
+// import 'package:cinema_booking/domain/entities/auth/user.dart';
 
 abstract class AuthFirebaseService {
   Future<Either> signup(CreateUserReq createUserReq);

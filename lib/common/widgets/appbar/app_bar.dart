@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clean_architecture_template/common/helpers/is_dark_mode.dart';
-import 'package:flutter_clean_architecture_template/core/configs/theme/app_color.dart';
+import 'package:cinema_booking/common/helpers/is_dark_mode.dart';
+import 'package:cinema_booking/core/configs/theme/app_color.dart';
 
 class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget title;

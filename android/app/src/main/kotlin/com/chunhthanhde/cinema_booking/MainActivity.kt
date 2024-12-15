@@ -1,4 +1,4 @@
-package com.example.flutter_clean_architecture_template
+package com.chunhthanhde.cinema_booking
 
 import io.flutter.embedding.android.FlutterActivity
 
