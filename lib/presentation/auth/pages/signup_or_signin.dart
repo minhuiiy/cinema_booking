@@ -1,3 +1,9 @@
+/*
+ * @ Author: Chung Nguyen Thanh <chunhthanhde.dev@gmail.com>
+ * @ Created: 2024-10-15 10:16:59
+ * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
+ */
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:cinema_booking/common/widgets/appbar/app_bar.dart';
@@ -54,7 +60,7 @@ class SignupOrSignin extends StatelessWidget {
                     'Flutter Journey',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: context.isDarkMode ? AppColors.white : AppColors.dark,
+                      color: context.isDarkMode ? AppColors.white : AppColors.metalDark,
                       fontSize: 29,
                     ),
                   ),
@@ -101,7 +107,8 @@ class SignupOrSignin extends StatelessWidget {
                             "Sign In",
                             style: TextStyle(
                               fontWeight: FontWeight.w500,
-                              color: context.isDarkMode ? AppColors.white : AppColors.dark,
+                              color:
+                                  context.isDarkMode ? AppColors.white : AppColors.darkBackground,
                               fontSize: 21,
                             ),
                           ),

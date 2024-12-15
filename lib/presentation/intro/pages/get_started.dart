@@ -1,3 +1,9 @@
+/*
+ * @ Author: Chung Nguyen Thanh <chunhthanhde.dev@gmail.com>
+ * @ Created: 2024-10-15 10:16:59
+ * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
+ */
+
 import 'package:flutter/material.dart';
 import 'package:cinema_booking/common/helpers/is_dark_mode.dart';
 import 'package:cinema_booking/common/widgets/button/basic_app_button.dart';
@@ -56,7 +62,7 @@ class GetStartedPage extends StatelessWidget {
                   'Flutter Journey',
                   style: TextStyle(
                     fontWeight: FontWeight.w900,
-                    color: context.isDarkMode ? AppColors.white : AppColors.dark,
+                    color: context.isDarkMode ? AppColors.white : AppColors.darkBackground,
                     fontSize: 32,
                   ),
                 ),
@@ -69,7 +75,7 @@ class GetStartedPage extends StatelessWidget {
                   'and encourage learning by doing',
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
-                    color: context.isDarkMode ? AppColors.greyTitle : AppColors.dark,
+                    color: context.isDarkMode ? AppColors.greyTitle : AppColors.darkBackground,
                     fontSize: 16,
                   ),
                   textAlign: TextAlign.center,

@@ -1,3 +1,9 @@
+/*
+ * @ Author: Chung Nguyen Thanh <chunhthanhde.dev@gmail.com>
+ * @ Created: 2024-10-15 10:16:59
+ * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
+ */
+
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -63,7 +69,7 @@ class _ChooseModePageState extends State<ChooseModePage> {
                   'Choose Mode',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: context.isDarkMode ? AppColors.white : AppColors.dark,
+                    color: context.isDarkMode ? AppColors.white : AppColors.darkBackground,
                     fontSize: 28,
                   ),
                 ),
@@ -87,7 +93,7 @@ class _ChooseModePageState extends State<ChooseModePage> {
                                   decoration: BoxDecoration(
                                     color: context.isDarkMode
                                         ? AppColors.white.withOpacity(0.3)
-                                        : AppColors.dark.withOpacity(0.3),
+                                        : AppColors.darkBackground.withOpacity(0.3),
                                     shape: BoxShape.circle,
                                   ),
                                   height: 73,
@@ -107,7 +113,7 @@ class _ChooseModePageState extends State<ChooseModePage> {
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: 17,
-                            color: context.isDarkMode ? AppColors.grey : AppColors.darkGrey,
+                            color: context.isDarkMode ? AppColors.grey : AppColors.greyDark,
                           ),
                         )
                       ],
@@ -125,7 +131,7 @@ class _ChooseModePageState extends State<ChooseModePage> {
                                 decoration: BoxDecoration(
                                   color: context.isDarkMode
                                       ? AppColors.white.withOpacity(0.3)
-                                      : AppColors.dark.withOpacity(0.3),
+                                      : AppColors.darkBackground.withOpacity(0.3),
                                   shape: BoxShape.circle,
                                 ),
                                 height: 73,
@@ -146,7 +152,7 @@ class _ChooseModePageState extends State<ChooseModePage> {
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: 17,
-                            color: context.isDarkMode ? AppColors.grey : AppColors.darkGrey,
+                            color: context.isDarkMode ? AppColors.grey : AppColors.greyDark,
                           ),
                         )
                       ],

@@ -1,3 +1,9 @@
+/*
+ * @ Author: Chung Nguyen Thanh <chunhthanhde.dev@gmail.com>
+ * @ Created: 2024-10-15 10:16:59
+ * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
+ */
+
 import 'package:flutter/material.dart';
 import 'package:cinema_booking/common/helpers/is_dark_mode.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
@@ -38,13 +44,13 @@ class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {
                 decoration: BoxDecoration(
                   color: context.isDarkMode
                       ? AppColors.white.withOpacity(0.03)
-                      : AppColors.dark.withOpacity(0.04),
+                      : AppColors.darkBackground.withOpacity(0.04),
                   shape: BoxShape.circle,
                 ),
                 child: Icon(
                   Icons.arrow_back_ios_new,
                   size: 20,
-                  color: context.isDarkMode ? AppColors.white : AppColors.dark,
+                  color: context.isDarkMode ? AppColors.white : AppColors.metalDark,
                 ),
               ),
             ),
