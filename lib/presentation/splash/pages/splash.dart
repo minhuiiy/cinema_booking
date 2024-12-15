@@ -4,10 +4,12 @@
  * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
  */
 
-import 'package:flutter/material.dart';
-import 'package:cinema_booking/common/helpers/is_dark_mode.dart';
-import 'package:cinema_booking/core/configs/assets/app_images.dart';
+import 'dart:async';
+import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/presentation/intro/pages/get_started.dart';
+import 'package:cinema_booking/presentation/splash/widgets/footer_section.dart';
+import 'package:flutter/material.dart';
+import 'package:cinema_booking/core/configs/assets/app_images.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -17,32 +19,121 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
+  double _progress = 0;
+
   @override
   void initState() {
     super.initState();
     redirect();
   }
 
+  Future<void> redirect() async {
+    Timer.periodic(const Duration(milliseconds: 200), (timer) {
+      setState(() {
+        _progress += 0.1;
+        if (_progress >= 2 && mounted) {
+          timer.cancel();
+          // TODO: need change to Router
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (BuildContext context) => const GetStartedPage(),
+            ),
+          );
+        }
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Image.asset(
-          context.isDarkMode ? AppImages.logoDark : AppImages.logoLight,
+      body: Stack(
+        children: [
+          _backgroundGradient(),
+          _logoWidget(),
+          _decorativeLine(),
+          _appLogoWidget(),
+          _loadingBar(),
+          FooterSection(),
+        ],
+      ),
+    );
+  }
+
+  Widget _decorativeLine() {
+    return Align(
+      alignment: const Alignment(-0.8, -0.82),
+      child: Container(
+        width: 50,
+        height: 10,
+        decoration: BoxDecoration(
+          color: AppColors.defaultColor,
+          borderRadius: BorderRadius.circular(5),
         ),
       ),
     );
   }
 
-  Future<void> redirect() async {
-    await Future.delayed(const Duration(seconds: 2));
-    if (mounted) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (BuildContext context) => const GetStartedPage(),
+  Widget _backgroundGradient() {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: AppColors.splashColor,
         ),
-      );
-    }
+      ),
+    );
+  }
+
+  Widget _logoWidget() {
+    return Align(
+      alignment: const Alignment(0, -0.7),
+      child: Image.asset(
+        AppImages.logo,
+        fit: BoxFit.cover,
+      ),
+    );
+  }
+
+  Widget _appLogoWidget() {
+    return Align(
+      alignment: const Alignment(0, 0.3),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 25),
+        child: Image.asset(
+          AppImages.logoCT,
+          fit: BoxFit.cover,
+        ),
+      ),
+    );
+  }
+
+  Widget _loadingBar() {
+    return Align(
+      alignment: Alignment(0, 0.6),
+      child: Container(
+        width: MediaQuery.of(context).size.width * 0.6,
+        height: 10,
+        decoration: BoxDecoration(
+          color: Colors.grey[300],
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Stack(
+          children: [
+            AnimatedContainer(
+              duration: const Duration(milliseconds: 200),
+              width: MediaQuery.of(context).size.width * 0.3 * _progress,
+              height: 10,
+              decoration: BoxDecoration(
+                color: AppColors.defaultColor,
+                borderRadius: BorderRadius.circular(20),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

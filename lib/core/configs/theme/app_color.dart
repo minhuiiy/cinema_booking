@@ -32,7 +32,7 @@ class AppColors {
   static const greyTitle = Color(0xffDADADA);
 
   // Accent Colors
-  static const defaultColor = Color(0xffE81667);
+  static const defaultColor = Color(0xFFC012A0);
   static const defaultColorOpacity = Color(0x0DE81667);
   static const red = Color(0xffF93F3E);
   static const redDark = Color(0xffD05045);
@@ -62,4 +62,15 @@ class AppColors {
   static const seatSlotBooked = Color(0xffEBEBEB);
   static const seatSlotAvailable = Color(0xffFFFFFF);
   static const seatSlotBorder = Color(0xff707070);
+
+  // gradient splash
+  static const List<Color> splashColor = [
+    Color(0xFF210653), // #210653
+    Color(0xFF1C0452), // #1C0452
+    Color(0xFF280557), // #280557
+    Color(0xFF2A0557), // #2A0557
+    Color(0xFF2C0557), // #2C0557
+    Color(0xFF310559), // #310559
+    Color(0xFFC012A0), // #C012A0
+  ];
 }

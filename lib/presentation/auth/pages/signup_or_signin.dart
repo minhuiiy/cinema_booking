@@ -51,7 +51,7 @@ class SignupOrSignin extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
-                    context.isDarkMode ? AppImages.logoDark : AppImages.logoLight,
+                    context.isDarkMode ? AppImages.logo : AppImages.logo,
                   ),
                   const SizedBox(
                     height: 50,
