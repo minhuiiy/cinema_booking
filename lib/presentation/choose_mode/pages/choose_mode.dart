@@ -61,7 +61,7 @@ class _ChooseModePageState extends State<ChooseModePage> {
                 Align(
                   alignment: Alignment.topCenter,
                   child: Image.asset(
-                    context.isDarkMode ? AppImages.logoDark : AppImages.logoLight,
+                    context.isDarkMode ? AppImages.logo : AppImages.logo,
                   ),
                 ),
                 const Spacer(),

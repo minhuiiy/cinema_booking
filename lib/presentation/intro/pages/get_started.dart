@@ -54,10 +54,13 @@ class GetStartedPage extends StatelessWidget {
                 Align(
                   alignment: Alignment.center,
                   child: Image.asset(
-                    context.isDarkMode ? AppImages.logoDark : AppImages.logoLight,
+                    context.isDarkMode ? AppImages.logo : AppImages.logo,
                   ),
                 ),
-                const Spacer(),
+                // const Spacer(),
+                const SizedBox(
+                  height: 25,
+                ),
                 Text(
                   'Flutter Journey',
                   style: TextStyle(
@@ -80,20 +83,20 @@ class GetStartedPage extends StatelessWidget {
                   ),
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(
-                  height: 100,
-                ),
-                BasicAppButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (BuildContext context) => const ChooseModePage(),
-                      ),
-                    );
-                  },
-                  title: "Get Start",
-                ),
+                // const SizedBox(
+                //   height: 100,
+                // ),
+                // BasicAppButton(
+                //   onPressed: () {
+                //     Navigator.push(
+                //       context,
+                //       MaterialPageRoute(
+                //         builder: (BuildContext context) => const ChooseModePage(),
+                //       ),
+                //     );
+                //   },
+                //   title: "Get Start",
+                // ),
               ],
             ),
           ),
