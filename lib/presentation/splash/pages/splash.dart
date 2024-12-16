@@ -7,7 +7,7 @@
 import 'dart:async';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/presentation/intro/pages/get_started.dart';
-import 'package:cinema_booking/presentation/splash/widgets/footer_section.dart';
+import 'package:cinema_booking/common/widgets/footer/footer_section.dart';
 import 'package:flutter/material.dart';
 import 'package:cinema_booking/core/configs/assets/app_images.dart';
 
