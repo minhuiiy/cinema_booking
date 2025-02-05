@@ -4,6 +4,7 @@
  * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
  */
 
+import 'package:cinema_booking/simple_bloc_observer.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,14 +17,23 @@ import 'presentation/splash/pages/splash.dart';
 import 'service_locator.dart';
 
 Future<void> main() async {
+  // Ensure Flutter is initialized before running the app
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize HydratedBloc for state persistence
+  // - If running on the web, use the default web storage
+  // - If running on mobile/desktop, use the application documents directory
   HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory: kIsWeb
         ? HydratedStorageDirectory.web
         : HydratedStorageDirectory((await getApplicationDocumentsDirectory()).path),
   );
 
+  // Initialize app dependencies (e.g., get it, ...)
   await initializeDependencies();
+
+  // Custom log bloc observer
+  Bloc.observer = SimpleBlocObserver();
 
   runApp(const MyApp());
 }
