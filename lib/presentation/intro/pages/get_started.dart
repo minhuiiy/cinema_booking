@@ -30,19 +30,21 @@ class _GetStartedPageState extends State<GetStartedPage> {
 
   Future<void> redirect() async {
     Timer.periodic(const Duration(milliseconds: 200), (timer) {
-      setState(() {
-        _progress += 0.1;
-        if (_progress >= 2 && mounted) {
-          timer.cancel();
-          // TODO: need change to Router
-          // Navigator.pushReplacement(
-          //   context,
-          //   MaterialPageRoute(
-          //     builder: (BuildContext context) => const GetStartedPage(),
-          //   ),
-          // );
-        }
-      });
+      if (mounted) {
+        setState(() {
+          _progress += 0.1;
+          if (_progress >= 2 && mounted) {
+            timer.cancel();
+            // TODO: need change to Router
+            // Navigator.pushReplacement(
+            //   context,
+            //   MaterialPageRoute(
+            //     builder: (BuildContext context) => const GetStartedPage(),
+            //   ),
+            // );
+          }
+        });
+      }
     });
   }
 
@@ -94,7 +96,7 @@ class _GetStartedPageState extends State<GetStartedPage> {
             'connecting users with the best options effortlessly.',
             style: TextStyle(
               fontWeight: FontWeight.w500,
-              color: context.isDarkMode ? AppColors.greyTitle : AppColors.darkBackground,
+              color: context.isDarkMode ? AppColors.greyDark : AppColors.darkBackground,
               fontSize: 16,
             ),
             textAlign: TextAlign.center,
@@ -138,7 +140,7 @@ class _GetStartedPageState extends State<GetStartedPage> {
         width: MediaQuery.of(context).size.width * 0.6,
         height: 3,
         decoration: BoxDecoration(
-          color: AppColors.greyTitle,
+          color: AppColors.greyDark,
           borderRadius: BorderRadius.circular(10),
         ),
       ),
