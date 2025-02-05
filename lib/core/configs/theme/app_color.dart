@@ -11,19 +11,18 @@ class AppColors {
   static const primary = Color(0xffF9C931);
   static const defaultColor = Color(0xFFC012A0);
   static const lightBackground = Color(0xffF2F2F2);
-  static const darkBackground = Color(0xff0D0C0C);
+  static const darkBackground = Color(0xff0D1118);
   static const white = Color(0xffF6F6F6);
   static const black = Color(0xff000000);
   static const transparent = Color(0x00000000);
   static const grey = Color(0xffBEBEBE);
   static const greyLight = Color(0xff999999);
   static const greyDark = Color(0xff666666);
+  static const red = Color(0xffFF1D25);
+  static const blue = Color(0xff4267B2);
+  static const pink = Color(0xFFC012A0);
 
-  // widget Colors
-  static const googleButtonBackground = Color(0xffFFF1F0);
-  static const googleButtonBorder = Color(0xffF14336);
-  static const facebookButtonBackground = Color(0xffF5F9FF);
-  static const facebookButtonBorder = Color(0xff3164CE);
+  static const textLight = Color(0xffC6C6C6);
 
   // gradient splash
   static const List<Color> splashColor = [

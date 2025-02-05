@@ -9,8 +9,7 @@ import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:cinema_booking/common/bloc/authentication/authentication_bloc.dart';
 import 'package:cinema_booking/presentation/login/bloc/login_bloc.dart';
-import 'package:cinema_booking/presentation/login/widgets/button_login_facebook.dart';
-import 'package:cinema_booking/presentation/login/widgets/button_login_google.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -129,9 +128,9 @@ class _WidgetLoginFormState extends State<WidgetLoginForm> {
       height: 40,
       child: Row(
         children: <Widget>[
-          ButtonLoginGoogle(),
-          SizedBox(width: 20),
-          ButtonLoginFacebook(),
+          // ButtonLoginGoogle(),
+          // SizedBox(width: 20),
+          // ButtonLoginFacebook(),
         ],
       ),
     );

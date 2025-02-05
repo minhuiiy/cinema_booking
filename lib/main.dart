@@ -8,7 +8,8 @@ import 'package:cinema_booking/common/bloc/authentication/authentication_bloc.da
 import 'package:cinema_booking/common/bloc/theme/theme_cubit.dart';
 import 'package:cinema_booking/core/configs/theme/app_theme.dart';
 import 'package:cinema_booking/firebase_options.dart';
-import 'package:cinema_booking/presentation/login/pages/login2.dart';
+import 'package:cinema_booking/presentation/login/pages/login.dart';
+import 'package:cinema_booking/presentation/login/pages/signup.dart';
 
 import 'package:cinema_booking/presentation/splash/pages/splash.dart';
 import 'package:cinema_booking/service_locator.dart';
@@ -68,7 +69,8 @@ class MyApp extends StatelessWidget {
               if (state is Uninitialized) {
                 return SplashPage();
               } else if (state is Unauthenticated) {
-                return LoginScreen();
+                // return LoginScreen();
+                return SignUpScreen();
               } else if (state is Authenticated) {
                 return Center(child: Text('Login Success $state'));
               }

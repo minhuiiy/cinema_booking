@@ -16,7 +16,6 @@ class WidgetTopWelcome extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        WidgetSpacer(height: 41),
         SizedBox(
           width: 370,
           child: Image.asset(
@@ -24,16 +23,6 @@ class WidgetTopWelcome extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
-        WidgetSpacer(height: 20),
-        Text(
-          'Welcome Buddies',
-          style: AppFont.kTitleTextStyle,
-        ),
-        Text(
-          ' Login to book your seat, I said its your seat',
-          style: AppFont.kNormalTextStyleWhite,
-        ),
-        WidgetSpacer(height: 30),
       ],
     );
   }

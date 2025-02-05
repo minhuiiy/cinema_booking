@@ -13,7 +13,7 @@ class AppFont {
   // normal text bold
   static final kNormalBoldTextStyleWhite = TextStyle(
     fontFamily: 'Poppins',
-    color: Colors.white,
+    color: AppColors.textLight,
     fontWeight: FontWeight.bold,
     fontSize: 14,
   );
@@ -21,8 +21,8 @@ class AppFont {
   // normal text white
   static final kNormalTextStyleWhite = TextStyle(
     fontFamily: 'Poppins',
-    color: Colors.white,
-    fontSize: 14,
+    color: AppColors.textLight,
+    fontSize: 18,
   );
 
   // normal text dark grey
@@ -37,8 +37,8 @@ class AppFont {
   static final kMiniTitleTextStyleWhite = TextStyle(
     fontFamily: 'Poppins',
     fontWeight: FontWeight.w700,
-    color: Colors.white,
-    fontSize: 16,
+    color: AppColors.textLight,
+    fontSize: 22,
   );
 
   // mini title style primary
@@ -52,8 +52,8 @@ class AppFont {
   // title text white
   static final kTitleTextStyle = TextStyle(
     fontFamily: 'Poppins',
-    color: Colors.white,
+    color: AppColors.textLight,
     fontWeight: FontWeight.bold,
-    fontSize: 48,
+    fontSize: 30,
   );
 }

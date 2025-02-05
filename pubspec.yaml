@@ -18,6 +18,7 @@ dependencies:
   # for login function
   google_sign_in: ^6.2.2
   firebase_auth: ^5.4.1
+  scrollable_positioned_list: ^0.3.8
 
   # suitable with bloc
   # equatable for compares objects (with the same data are considered equal automatically)
