@@ -5,6 +5,7 @@
  */
 
 import 'package:cinema_booking/common/helpers/is_valid.dart';
+import 'package:cinema_booking/common/helpers/log_helpers.dart';
 import 'package:cinema_booking/data/models/auth/signin_user_req.dart';
 import 'package:cinema_booking/domain/usecase/auth/signin.dart';
 import 'package:cinema_booking/service_locator.dart';
@@ -26,6 +27,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     LoginSubmitEmailPasswordEvent event,
     Emitter<LoginState> emit,
   ) async {
+    LogHelper.logDebug(tag: "LoginBloc", message: 'start _onLoginSubmitEmailPasswordEvent');
     try {
       emit(LoginState.loading());
 
@@ -45,6 +47,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         },
       );
     } catch (e) {
+      LogHelper.logDebug(tag: "LoginBloc", message: 'error _onLoginSubmitEmailPasswordEvent: $e');
       emit(LoginState.failure());
     }
   }

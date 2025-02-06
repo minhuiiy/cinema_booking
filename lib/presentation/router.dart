@@ -5,7 +5,8 @@
  */
 
 // ignore_for_file: constant_identifier_names
-import 'package:cinema_booking/presentation/login/pages/signin.dart';
+import 'package:cinema_booking/presentation/login/pages/login.dart';
+import 'package:cinema_booking/presentation/login/pages/register.dart';
 import 'package:cinema_booking/presentation/splash/pages/splash.dart';
 import 'package:flutter/material.dart';
 
@@ -27,7 +28,7 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => LoginScreen());
 
       case REGISTER:
-      // return MaterialPageRoute(builder: (_) => RegisterScreen());
+        return MaterialPageRoute(builder: (_) => RegisterScreen());
 
       default:
         return MaterialPageRoute(

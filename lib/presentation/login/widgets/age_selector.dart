@@ -1,7 +1,11 @@
+import 'package:cinema_booking/core/configs/theme/app_color.dart';
+import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:flutter/material.dart';
 
 class AgeSelector extends StatefulWidget {
-  const AgeSelector({super.key});
+  final Function(int) onAgeSelected; // Callback function to send selected age
+
+  const AgeSelector({super.key, required this.onAgeSelected});
 
   @override
   State<AgeSelector> createState() => _AgeSelectorState();
@@ -19,7 +23,7 @@ class _AgeSelectorState extends State<AgeSelector> {
     super.initState();
     _pageController = PageController(
       viewportFraction: 0.2,
-      initialPage: selectedAge - minAge, // Set start page to 18
+      initialPage: selectedAge - minAge,
     );
   }
 
@@ -30,10 +34,19 @@ class _AgeSelectorState extends State<AgeSelector> {
       child: PageView.builder(
         controller: _pageController,
         scrollDirection: Axis.horizontal,
+        // physics: const BouncingScrollPhysics(),
         onPageChanged: (index) {
           setState(() {
             selectedAge = minAge + index;
           });
+
+          widget.onAgeSelected(selectedAge); // Notify parent about the new age
+
+          // _pageController.animateToPage(
+          //   index,
+          //   duration: const Duration(milliseconds: 400),
+          //   curve: Curves.easeOutExpo,
+          // );
         },
         itemCount: maxAge - minAge + 1,
         itemBuilder: (context, index) {
@@ -43,9 +56,9 @@ class _AgeSelectorState extends State<AgeSelector> {
           return Center(
             child: Text(
               "$age",
-              style: TextStyle(
+              style: AppFont.kMiniTitleTextStyleWhite.copyWith(
                 fontSize: isSelected ? 24 : 18, // Enlarge selected age
-                color: isSelected ? Colors.red : Colors.white70,
+                color: isSelected ? AppColors.red : AppColors.textLight,
                 fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
               ),
             ),

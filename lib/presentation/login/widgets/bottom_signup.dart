@@ -18,16 +18,14 @@ class WidgetBottomSignUp extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Flexible(
-            child: Text(
-              'Don\'t have an account ?',
-              style: AppFont.kNormalTextStyleWhite,
-            ),
+          Text(
+            'Don\'t have an account ?',
+            style: AppFont.kNormalTextStyleWhite,
           ),
           Flexible(
             child: GestureDetector(
               onTap: () {
-                Navigator.of(context).pushNamed(AppRouter.REGISTER);
+                Navigator.pushNamed(context, AppRouter.REGISTER);
               },
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 4),

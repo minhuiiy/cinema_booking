@@ -3,16 +3,22 @@ import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:cinema_booking/presentation/login/widgets/age_selector.dart';
 import 'package:flutter/material.dart';
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({super.key});
 
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class _RegisterScreenState extends State<RegisterScreen> {
   String selectedGender = 'Male';
-  int selectedAge = 25;
+  int selectedAge = 18; // Default selected age
+
+  void updateAge(int age) {
+    setState(() {
+      selectedAge = age;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +42,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           ],
         ),
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 40),
+          padding: const EdgeInsets.symmetric(horizontal: 30),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -167,19 +173,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ],
               ),
               const SizedBox(height: 30),
-              AgeSelector(),
+              AgeSelector(onAgeSelected: updateAge),
               Spacer(),
               Center(
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red,
+                    backgroundColor: AppColors.red,
                     minimumSize: const Size(double.infinity, 50),
                   ),
-                  child: const Text("Done"),
+                  child: Text("Done", style: AppFont.kNormalTextStyleWhite),
                 ),
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 35),
             ],
           ),
         ),
