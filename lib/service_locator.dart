@@ -15,9 +15,12 @@ import 'package:cinema_booking/domain/usecase/auth/login_google.dart';
 import 'package:cinema_booking/domain/usecase/auth/signin.dart';
 import 'package:cinema_booking/domain/usecase/auth/signup.dart';
 import 'package:cinema_booking/domain/usecase/authentication/is_signedIn.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get_it/get_it.dart';
 
 final sl = GetIt.instance;
+
+final firestore = FirebaseFirestore.instance;
 
 Future<void> initializeDependencies() async {
   // Authentication

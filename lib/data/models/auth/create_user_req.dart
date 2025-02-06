@@ -8,10 +8,14 @@ class CreateUserReq {
   final String email;
   final String fullName;
   final String password;
+  final int age;
+  final String gender;
 
   CreateUserReq({
     required this.email,
     required this.fullName,
     required this.password,
+    required this.age,
+    required this.gender,
   });
 }

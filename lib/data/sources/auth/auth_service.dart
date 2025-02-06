@@ -4,11 +4,13 @@
  * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
  */
 
+import 'package:cinema_booking/data/models/auth/create_user_req.dart';
+import 'package:cinema_booking/data/models/auth/signin_user_req.dart';
+import 'package:cinema_booking/service_locator.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:cinema_booking/data/models/auth/signin_user_req.dart';
-import 'package:cinema_booking/data/models/auth/create_user_req.dart';
 
 abstract class AuthService {
   Future<Either<String, String>> signup(CreateUserReq createUserReq);
@@ -43,10 +45,23 @@ class AuthServiceImpl extends AuthService {
   @override
   Future<Either<String, String>> signup(CreateUserReq createUserReq) async {
     try {
-      var data = await _firebaseAuth.createUserWithEmailAndPassword(
+      UserCredential userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
         email: createUserReq.email,
         password: createUserReq.password,
       );
+
+      String uid = userCredential.user!.uid;
+
+      // Save user data to Firestore
+      await firestore.collection('users').doc(uid).set({
+        'uid': uid,
+        'email': createUserReq.email,
+        'fullName': createUserReq.fullName,
+        'age': createUserReq.age,
+        'gender': createUserReq.gender,
+        'createdAt': FieldValue.serverTimestamp(), // Store account creation timestamp
+      });
+
       return const Right('Signup was Successful');
     } catch (e) {
       return Left('Error signing up');
