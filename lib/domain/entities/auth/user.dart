@@ -5,13 +5,17 @@
  */
 
 class UserEntity {
-  String? imageURL;
-  String? fullName;
-  String? email;
+  String email;
+  String password;
+  String fullName;
+  String gender;
+  int age;
 
   UserEntity({
-    this.imageURL,
-    this.fullName,
-    this.email,
+    required this.email,
+    required this.fullName,
+    required this.password,
+    required this.age,
+    required this.gender,
   });
 }
