@@ -15,7 +15,7 @@ class AppFont {
     fontFamily: 'Poppins',
     color: AppColors.textLight,
     fontWeight: FontWeight.bold,
-    fontSize: 14,
+    fontSize: 18,
   );
 
   // normal text white
@@ -53,6 +53,13 @@ class AppFont {
   static final kTitleTextStyle = TextStyle(
     fontFamily: 'Poppins',
     color: AppColors.textLight,
+    fontWeight: FontWeight.bold,
+    fontSize: 30,
+  );
+
+  static final kTitleTextStylePrimary = TextStyle(
+    fontFamily: 'Poppins',
+    color: AppColors.primary,
     fontWeight: FontWeight.bold,
     fontSize: 30,
   );
