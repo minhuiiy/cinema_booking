@@ -29,19 +29,21 @@ class _SplashPageState extends State<SplashPage> {
 
   Future<void> redirect() async {
     Timer.periodic(const Duration(milliseconds: 200), (timer) {
-      setState(() {
-        _progress += 0.1;
-        if (_progress >= 2 && mounted) {
-          timer.cancel();
-          // TODO: need change to Router
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => const GetStartedPage(),
-            ),
-          );
-        }
-      });
+      if (mounted) {
+        setState(() {
+          _progress += 0.1;
+          if (_progress >= 2 && mounted) {
+            timer.cancel();
+            // TODO: need change to Router
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => const GetStartedPage(),
+              ),
+            );
+          }
+        });
+      }
     });
   }
 

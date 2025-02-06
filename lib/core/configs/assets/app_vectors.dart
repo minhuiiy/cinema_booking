@@ -15,4 +15,8 @@ class AppVectors {
   static const String unionTop = '${basePath}union_top$format';
   static const String unionBottom = '${basePath}union_bottom$format';
   static const String unionHomeArtistTop = '${basePath}union_home_top$format';
+
+  // login screen
+  static const String iconFacebook = '${basePath}ic_facebook$format';
+  static const String iconGoogle = '${basePath}ic_google$format';
 }
