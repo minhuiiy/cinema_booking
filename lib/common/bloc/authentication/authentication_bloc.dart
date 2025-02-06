@@ -16,6 +16,9 @@ import 'package:google_sign_in/google_sign_in.dart';
 part "authentication_event.dart";
 part "authentication_state.dart";
 
+//
+// bloc to check if user is authenticated or not
+//
 class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();

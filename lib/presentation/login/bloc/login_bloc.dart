@@ -16,21 +16,30 @@ import 'package:equatable/equatable.dart';
 part 'login_event.dart';
 part 'login_state.dart';
 
+///
+/// Bloc that handles the user login process.
+///
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
+  /// Initializes the bloc with an empty state.
   LoginBloc() : super(LoginState.empty()) {
     on<LoginSubmitEmailPasswordEvent>(_onLoginSubmitEmailPasswordEvent);
     on<LoginEmailChanged>(_onLoginEmailChanged);
     on<LoginPasswordChanged>(_onLoginPasswordChanged);
   }
 
+  /// Handles the login submission event.
+  /// - Emits a loading state.
+  /// - Calls the `SigninUseCase` to authenticate the user.
+  /// - Emits a success or failure state based on the result.
   Future<void> _onLoginSubmitEmailPasswordEvent(
     LoginSubmitEmailPasswordEvent event,
     Emitter<LoginState> emit,
   ) async {
-    LogHelper.logDebug(tag: "LoginBloc", message: 'start _onLoginSubmitEmailPasswordEvent');
+    LogHelper.logDebug(tag: "LoginBloc", message: 'Start _onLoginSubmitEmailPasswordEvent');
     try {
-      emit(LoginState.loading());
+      emit(LoginState.loading()); // Emit loading state while processing login.
 
+      // Call authentication use case.
       var isSignedIn = await sl<SigninUseCase>().call(
         params: SigninUserReq(
           email: event.email,
@@ -38,6 +47,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         ),
       );
 
+      // Handle authentication result.
       isSignedIn.fold(
         (l) {
           emit(LoginState.failure());
@@ -47,24 +57,30 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         },
       );
     } catch (e) {
-      LogHelper.logDebug(tag: "LoginBloc", message: 'error _onLoginSubmitEmailPasswordEvent: $e');
-      emit(LoginState.failure());
+      LogHelper.logDebug(tag: "LoginBloc", message: 'Error _onLoginSubmitEmailPasswordEvent: $e');
+      emit(LoginState.failure()); // Emit failure state in case of an exception.
     }
   }
 
+  /// Handles changes in the email input field.
+  /// - Uses a debounce delay of **300ms** to prevent excessive state updates.
+  /// - Validates the email format and updates the state.
   Future<void> _onLoginEmailChanged(
     LoginEmailChanged event,
     Emitter<LoginState> emit,
   ) async {
-    await Future.delayed(Duration(milliseconds: 300));
+    await Future.delayed(const Duration(milliseconds: 300)); // Debounce input
     emit(state.update(isEmailValid: Validators.isValidEmail(event.email)));
   }
 
+  /// Handles changes in the password input field.
+  /// - Uses a debounce delay of **300ms** for better performance.
+  /// - Validates the password format and updates the state.
   Future<void> _onLoginPasswordChanged(
     LoginPasswordChanged event,
     Emitter<LoginState> emit,
   ) async {
-    await Future.delayed(Duration(milliseconds: 300)); // debounce
+    await Future.delayed(const Duration(milliseconds: 300)); // Debounce input
     emit(state.update(isPasswordValid: Validators.isValidPassword(event.password)));
   }
 }
