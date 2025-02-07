@@ -12,4 +12,6 @@ class AppImages {
   static const String chooseAuthBG = '${basePath}choose_auth_bg.png';
   static const String logo = '${basePath}logo.png';
   static const String logoCT = '${basePath}cinema_ticket_logo.png';
+
+  static String avatar = '${basePath}me.jpeg';
 }
