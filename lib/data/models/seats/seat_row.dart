@@ -1,27 +1,32 @@
-import 'package:cinema_booking/domain/entities/seat/seat_row.dart';
+/*
+ * @ Author: Chung Nguyen Thanh <chunhthanhde.dev@gmail.com>
+ * @ Created: 2024-12-22 08:30:45
+ * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
+ */
+
+import 'package:cinema_booking/domain/entities/seats/seat_row.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:equatable/equatable.dart';
 
 part 'seat_row.g.dart';
 
 @JsonSerializable()
-class SeatRowModel extends Equatable {
-  String id;
+class SeatRowModel {
+  String? id;
   @JsonKey(name: "row_id")
-  String rowId;
+  String? rowId;
   @JsonKey(name: "seat_id")
-  String seatId;
-  int count;
-  List<int> offs = [];
-  List<int> booked = [];
+  String? seatId;
+  int? count;
+  List<int>? offs = [];
+  List<int>? booked = [];
 
   SeatRowModel({
-    required this.id,
-    required this.rowId,
-    required this.seatId,
-    required this.count,
-    required this.offs,
-    required this.booked,
+    this.id,
+    this.rowId,
+    this.seatId,
+    this.count,
+    this.offs,
+    this.booked,
   });
 
   factory SeatRowModel.fromJson(Map<String, dynamic> json) => _$SeatRowModelFromJson(json);
@@ -121,21 +126,17 @@ class SeatRowModel extends Equatable {
       booked: [2, 3, 4, 5, 6, 7],
     )
   ];
-
-  @override
-  List<Object?> get props => [id];
 }
 
 extension SeatRowModelMapper on SeatRowModel {
-  /// Convert a SeatRowModel to SeatRowEntity
   SeatRowEntity toEntity() {
     return SeatRowEntity(
-      rowId: rowId,
-      count: count,
-      offs: List<int>.from(offs),
-      booked: List<int>.from(booked),
-      id: id,
-      seatId: seatId,
+      rowId: rowId ?? "",
+      count: count ?? 00,
+      offs: offs != null ? List<int>.from(offs!) : [],
+      booked: booked != null ? List<int>.from(booked!) : [],
+      id: id ?? "",
+      seatId: seatId ?? "",
     );
   }
 }

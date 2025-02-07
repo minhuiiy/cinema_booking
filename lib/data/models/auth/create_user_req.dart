@@ -7,9 +7,11 @@
 import 'package:cinema_booking/data/models/auth/user.dart';
 
 class CreateUserReq extends UserModel {
+  final String password;
+
   CreateUserReq({
     required super.email,
-    required super.password,
+    required this.password,
     required super.fullName,
     required super.gender,
     required super.age,

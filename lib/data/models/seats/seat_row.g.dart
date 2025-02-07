@@ -7,15 +7,15 @@ part of 'seat_row.dart';
 // **************************************************************************
 
 SeatRowModel _$SeatRowModelFromJson(Map<String, dynamic> json) => SeatRowModel(
-      id: json['id'] as String,
-      rowId: json['row_id'] as String,
-      seatId: json['seat_id'] as String,
-      count: (json['count'] as num).toInt(),
-      offs: (json['offs'] as List<dynamic>)
-          .map((e) => (e as num).toInt())
+      id: json['id'] as String?,
+      rowId: json['row_id'] as String?,
+      seatId: json['seat_id'] as String?,
+      count: (json['count'] as num?)?.toInt(),
+      offs: (json['offs'] as List<dynamic>?)
+          ?.map((e) => (e as num).toInt())
           .toList(),
-      booked: (json['booked'] as List<dynamic>)
-          .map((e) => (e as num).toInt())
+      booked: (json['booked'] as List<dynamic>?)
+          ?.map((e) => (e as num).toInt())
           .toList(),
     );
 

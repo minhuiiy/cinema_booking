@@ -6,7 +6,7 @@
 
 import 'package:cinema_booking/common/helpers/db_helper.dart';
 import 'package:cinema_booking/domain/usecase/auth/get_user.dart';
-import 'package:cinema_booking/domain/usecase/authentication/is_signedIn.dart';
+import 'package:cinema_booking/domain/usecase/authentication/is_signed_in.dart';
 import 'package:cinema_booking/service_locator.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
