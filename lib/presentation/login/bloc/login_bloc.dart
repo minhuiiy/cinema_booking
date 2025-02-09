@@ -57,7 +57,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         },
       );
     } catch (e) {
-      LogHelper.logDebug(tag: "LoginBloc", message: 'Error _onLoginSubmitEmailPasswordEvent: $e');
+      LogHelper.logError(tag: "LoginBloc", message: 'Error _onLoginSubmitEmailPasswordEvent: $e');
       emit(LoginState.failure()); // Emit failure state in case of an exception.
     }
   }

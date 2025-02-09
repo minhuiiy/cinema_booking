@@ -8,6 +8,8 @@ import 'package:cinema_booking/common/bloc/authentication/authentication_bloc.da
 import 'package:cinema_booking/common/bloc/theme/theme_cubit.dart';
 import 'package:cinema_booking/core/configs/theme/app_theme.dart';
 import 'package:cinema_booking/firebase_options.dart';
+import 'package:cinema_booking/presentation/home/bloc/home_bloc.dart';
+import 'package:cinema_booking/presentation/home/home_main.dart';
 import 'package:cinema_booking/presentation/login/pages/login.dart';
 import 'package:cinema_booking/presentation/router.dart';
 
@@ -57,6 +59,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (_) => ThemeCubit()),
         BlocProvider(create: (context) => AuthenticationBloc()..add(AppStarted())),
+        BlocProvider(create: (context) => HomeBloc()),
       ],
       child: BlocBuilder<ThemeCubit, ThemeMode>(
         builder: (context, mode) => MaterialApp(
@@ -73,7 +76,7 @@ class MyApp extends StatelessWidget {
               } else if (state is Unauthenticated) {
                 return LoginScreen();
               } else if (state is Authenticated) {
-                return Center(child: Text('Login Success $state'));
+                return HomeScreen();
               }
 
               return Center(child: Text('Unhandled State $state'));
