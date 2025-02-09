@@ -215,13 +215,16 @@
           <mxGeometry y="240" width="140" height="30" as="geometry" />
         </mxCell>
         <mxCell id="bmqXEZtZJGvoSASjeQCw-72" value="Genres" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="1240" y="1590" width="140" height="90" as="geometry" />
+          <mxGeometry x="1240" y="1590" width="140" height="120" as="geometry" />
         </mxCell>
         <mxCell id="bmqXEZtZJGvoSASjeQCw-73" value="id" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="bmqXEZtZJGvoSASjeQCw-72" vertex="1">
           <mxGeometry y="30" width="140" height="30" as="geometry" />
         </mxCell>
         <mxCell id="bmqXEZtZJGvoSASjeQCw-74" value="name" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="bmqXEZtZJGvoSASjeQCw-72" vertex="1">
           <mxGeometry y="60" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="MV2oM1wpW9a2QwI1sR8F-7" value="icon" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="bmqXEZtZJGvoSASjeQCw-72">
+          <mxGeometry y="90" width="140" height="30" as="geometry" />
         </mxCell>
         <mxCell id="ltAE28OYYRzjBBLUGXBg-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;shape=link;exitX=0.503;exitY=1.1;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="bmqXEZtZJGvoSASjeQCw-84" target="bmqXEZtZJGvoSASjeQCw-72" edge="1">
           <mxGeometry relative="1" as="geometry">
