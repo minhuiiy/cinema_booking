@@ -18,7 +18,7 @@ enum TypeOffer {
 
 @JsonSerializable()
 class MovieOfferModel {
-  int? id;
+  String? id;
   TypeOffer? type;
   String? title;
   String? content;

@@ -8,7 +8,7 @@ part of 'movie_offer.dart';
 
 MovieOfferModel _$MovieOfferModelFromJson(Map<String, dynamic> json) =>
     MovieOfferModel(
-      id: (json['id'] as num?)?.toInt(),
+      id: json['id'] as String?,
       type: $enumDecodeNullable(_$TypeOfferEnumMap, json['type']),
       title: json['title'] as String?,
       content: json['content'] as String?,

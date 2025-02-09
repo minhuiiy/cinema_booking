@@ -15,11 +15,13 @@ class GenresModel {
   String? name;
   @JsonKey(name: "list_movie")
   List<String>? listMovie;
+  String? icon;
 
   GenresModel({
     this.id,
     this.name,
     this.listMovie,
+    this.icon,
   });
 
   factory GenresModel.fromJson(Map<String, dynamic> json) => _$GenresModelFromJson(json);
@@ -28,7 +30,7 @@ class GenresModel {
 
   @override
   String toString() {
-    return 'genresy{id: $id, name: $name, icon: $listMovie}';
+    return 'Genres{id: $id, name: $name, icon: $icon, listMovie: $listMovie}';
   }
 }
 
@@ -38,6 +40,7 @@ extension GenresModelX on GenresModel {
       id: id ?? "",
       name: name ?? "",
       listMovie: listMovie ?? [],
+      icon: icon ?? "",
     );
   }
 }

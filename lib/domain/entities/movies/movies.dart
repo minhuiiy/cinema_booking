@@ -16,6 +16,7 @@ class MovieEntity extends Equatable {
   final int rate;
   final String votes;
   final int duration;
+  final List<String> tags;
 
   const MovieEntity({
     required this.id,
@@ -26,6 +27,7 @@ class MovieEntity extends Equatable {
     required this.rate,
     required this.votes,
     required this.duration,
+    required this.tags,
   });
 
   @override
@@ -43,6 +45,7 @@ extension MovieEntityX on MovieEntity {
     showModel.rate = rate;
     showModel.votes = votes;
     showModel.duration = duration;
+    showModel.tags = tags;
     return showModel;
   }
 }

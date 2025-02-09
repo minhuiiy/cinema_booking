@@ -14,7 +14,8 @@ MovieModel _$MovieModelFromJson(Map<String, dynamic> json) => MovieModel()
   ..releaseDate = (json['release_date'] as num?)?.toInt()
   ..rate = (json['rate'] as num?)?.toInt()
   ..votes = json['votes'] as String? ?? ''
-  ..duration = (json['duration'] as num?)?.toInt();
+  ..duration = (json['duration'] as num?)?.toInt()
+  ..tags = (json['tags'] as List<dynamic>?)?.map((e) => e as String).toList();
 
 Map<String, dynamic> _$MovieModelToJson(MovieModel instance) =>
     <String, dynamic>{
@@ -26,4 +27,5 @@ Map<String, dynamic> _$MovieModelToJson(MovieModel instance) =>
       'rate': instance.rate,
       'votes': instance.votes,
       'duration': instance.duration,
+      'tags': instance.tags,
     };

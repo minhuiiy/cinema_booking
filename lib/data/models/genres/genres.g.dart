@@ -12,6 +12,7 @@ GenresModel _$GenresModelFromJson(Map<String, dynamic> json) => GenresModel(
       listMovie: (json['list_movie'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
+      icon: json['icon'] as String?,
     );
 
 Map<String, dynamic> _$GenresModelToJson(GenresModel instance) =>
@@ -19,4 +20,5 @@ Map<String, dynamic> _$GenresModelToJson(GenresModel instance) =>
       'id': instance.id,
       'name': instance.name,
       'list_movie': instance.listMovie,
+      'icon': instance.icon,
     };

@@ -7,7 +7,7 @@
 import 'package:equatable/equatable.dart';
 
 class BannerEntity extends Equatable {
-  final int id;
+  final String id;
   final String url;
 
   const BannerEntity({

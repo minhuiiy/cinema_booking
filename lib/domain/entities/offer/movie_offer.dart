@@ -8,7 +8,7 @@ import 'package:cinema_booking/data/models/offer/movie_offer.dart';
 import 'package:equatable/equatable.dart';
 
 class MovieOfferEntity extends Equatable {
-  final int id;
+  final String id;
   final TypeOffer type;
   final String title;
   final String content;

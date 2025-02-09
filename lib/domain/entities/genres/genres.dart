@@ -9,19 +9,21 @@ import 'package:equatable/equatable.dart';
 class GenresEntity extends Equatable {
   final String id;
   final String name;
-  final List<String> listMovie;
+  final String icon;
+  final List<String>? listMovie;
 
   const GenresEntity({
     required this.id,
     required this.name,
-    required this.listMovie,
+    required this.icon,
+    this.listMovie,
   });
 
   @override
-  List<Object> get props => [id, name, listMovie];
+  List<Object> get props => [id, name, icon];
 
   @override
   String toString() {
-    return 'Genres{id: $id, name: $name, icon: $listMovie}';
+    return 'Genres{id: $id, name: $name, icon: $icon}';
   }
 }

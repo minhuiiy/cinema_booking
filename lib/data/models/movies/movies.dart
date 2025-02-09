@@ -24,6 +24,7 @@ class MovieModel {
   @JsonKey(defaultValue: "")
   String? votes;
   int? duration;
+  List<String>? tags;
 
   MovieModel();
 
@@ -43,6 +44,7 @@ extension MovieModelX on MovieModel {
       rate: rate ?? 0,
       votes: votes ?? "",
       duration: duration ?? 0,
+      tags: tags ?? [],
     );
   }
 }

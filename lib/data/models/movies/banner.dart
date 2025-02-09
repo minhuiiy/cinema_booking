@@ -11,7 +11,7 @@ part 'banner.g.dart';
 
 @JsonSerializable()
 class BannerModel {
-  int? id;
+  String? id;
   @JsonKey(name: 'image')
   String? url;
 
@@ -33,8 +33,8 @@ class BannerModel {
 extension BannerModelX on BannerModel {
   BannerEntity toEntity() {
     return BannerEntity(
-      id: id!,
-      url: url!,
+      id: id ?? "",
+      url: url ?? "",
     );
   }
 }

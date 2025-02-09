@@ -52,8 +52,8 @@ class CinemaModel {
       lng: 105.846958,
     ),
     CinemaModel(
-      id: 'Karpagam theatres - 4K',
-      name: 'Karpagam theatres - 4K',
+      id: 'Karpagam cinemas - 4K',
+      name: 'Karpagam cinemas - 4K',
       address: 'Coimbatore',
       rating: 5,
       distance: 4.4,
@@ -62,8 +62,8 @@ class CinemaModel {
       lng: 105.827874,
     ),
     CinemaModel(
-      id: 'KG theatres - 4K',
-      name: 'KG theatres - 4K',
+      id: 'KG cinemas - 4K',
+      name: 'KG cinemas - 4K',
       address: 'Coimbatore',
       rating: 4,
       distance: 2.1,
