@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cinema_booking/common/widgets/image/shimmer_image.dart';
+import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/presentation/home/home_banner/bloc/home_banner_bloc.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,7 @@ class _WidgetHomeBannerState extends State<WidgetHomeBanner> {
           return Column(
             children: [
               _buildCarouselSlider(state),
-              const SizedBox(height: 12),
+              WidgetSpacer(height: 10),
               _buildIndicators(state),
             ],
           );
@@ -34,31 +35,29 @@ class _WidgetHomeBannerState extends State<WidgetHomeBanner> {
     );
   }
 
-  /// 🎬 **Slider có khoảng cách giữa các banner**
   Widget _buildCarouselSlider(HomeBannerLoaded state) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 12), // Cách trên & dưới nhẹ
+      padding: const EdgeInsets.symmetric(vertical: 12),
       child: CarouselSlider.builder(
         itemCount: state.banners.length,
         itemBuilder: (context, index, realIndex) {
           return ClipRRect(
-            borderRadius: BorderRadius.circular(16), // Bo góc
+            borderRadius: BorderRadius.circular(16),
             child: Stack(
               children: [
                 ShimmerImage(
                   url: state.banners[index].url,
                   fit: BoxFit.cover,
                   width: double.infinity,
-                  height: 180, // Chiều cao chuẩn giống ảnh mẫu
+                  height: 180,
                 ),
-                // Overlay mờ phía dưới để cinematic hơn
                 Container(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       begin: Alignment.bottomCenter,
                       end: Alignment.topCenter,
                       colors: [
-                        Colors.black.withOpacity(0.5),
+                        AppColors.darkBackground.withValues(alpha: 0.50),
                         Colors.transparent,
                       ],
                     ),
@@ -69,9 +68,9 @@ class _WidgetHomeBannerState extends State<WidgetHomeBanner> {
           );
         },
         options: CarouselOptions(
-          height: 180, // Giống ảnh mẫu
-          viewportFraction: 0.80, // Giữ khoảng cách nhỏ giữa banner
-          enlargeCenterPage: true, // Hiệu ứng focus vào slide chính
+          height: 180,
+          viewportFraction: 0.85,
+          enlargeCenterPage: true,
           enableInfiniteScroll: true,
           autoPlay: true,
           autoPlayInterval: const Duration(seconds: 3),
@@ -87,19 +86,19 @@ class _WidgetHomeBannerState extends State<WidgetHomeBanner> {
     );
   }
 
-  /// 🎯 **Indicator giống ảnh mẫu**
   Widget _buildIndicators(HomeBannerLoaded state) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(state.banners.length, (index) {
         return AnimatedContainer(
           duration: const Duration(milliseconds: 300),
-          width: currentIndex == index ? 18 : 8, // Hình viên thuốc khi active
+          width: currentIndex == index ? 18 : 8,
           height: 8,
           margin: const EdgeInsets.symmetric(horizontal: 4),
           decoration: BoxDecoration(
-            color: currentIndex == index ? AppColors.white : AppColors.white.withOpacity(0.3),
-            borderRadius: BorderRadius.circular(4), // Bo góc thành viên thuốc
+            color:
+                currentIndex == index ? AppColors.white : AppColors.white.withValues(alpha: 0.30),
+            borderRadius: BorderRadius.circular(4),
           ),
         );
       }),

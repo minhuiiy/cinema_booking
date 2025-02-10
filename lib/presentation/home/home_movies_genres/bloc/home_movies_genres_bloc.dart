@@ -45,7 +45,7 @@ class HomeMoviesGenresBloc extends Bloc<HomeMoviesGenresEvent, HomeMoviesGenresS
 
     LogHelper.logDebug(
       tag: "_onDisplayMoviesByGenres",
-      message: "check data: " + homeResponse.genres.toString(),
+      message: "check data: ${homeResponse.genres}",
     );
     for (var data in homeResponse.movieByGenres) {
       final genres = homeResponse.genres.firstWhere(

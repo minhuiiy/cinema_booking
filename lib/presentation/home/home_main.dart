@@ -17,7 +17,6 @@ import 'package:cinema_booking/presentation/home/home_movies_genres/widget_home_
 import 'package:cinema_booking/presentation/home/recommended_movies/bloc/recommended_movies_bloc.dart';
 import 'package:cinema_booking/presentation/home/recommended_movies/widget_recommended_movies.dart';
 import 'package:cinema_booking/presentation/home/widgets/widget_home_toolbar.dart';
-import 'package:cinema_booking/presentation/home/widgets/widget_home_top_trending.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -43,7 +42,6 @@ class _HomeScreenState extends State<HomeScreen> {
     BlocProvider.of<HomeBloc>(context).add(LoadHome());
   }
 
-  /// **Bottom Navigation Bar**
   Widget _buildBottomNavigationBar() {
     return Container(
       decoration: BoxDecoration(
@@ -56,13 +54,13 @@ class _HomeScreenState extends State<HomeScreen> {
       child: BottomNavigationBar(
         backgroundColor: AppColors.darkBackground,
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.redAccent, // Màu đỏ khi chọn
-        unselectedItemColor: Colors.white60, // Màu xám khi chưa chọn
+        selectedItemColor: AppColors.red,
+        unselectedItemColor: AppColors.white.withValues(alpha: 0.6),
         showSelectedLabels: false,
         showUnselectedLabels: false,
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
-        elevation: 0, // Loại bỏ bóng
+        elevation: 0,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home, size: 28),
@@ -118,19 +116,6 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildContent(HomeState state) {
-    Movie movie = Movie(
-        imageUrl:
-            "https://designercomvn.s3.ap-southeast-1.amazonaws.com/wp-content/uploads/2017/07/26020212/poster-phim-hanh-dong.jpg",
-        progress: 0.5,
-        title: "chung");
-
-    List<Movie> movies = [
-      movie,
-      movie,
-      movie,
-      movie,
-    ];
-
     if (state is HomeLoaded) {
       LogHelper.logDebug(tag: "HomeScreen", message: "HomeLoaded");
       return Expanded(
@@ -143,17 +128,15 @@ class _HomeScreenState extends State<HomeScreen> {
             physics: BouncingScrollPhysics(),
             children: <Widget>[
               WidgetHomeBanner(),
-              WidgetSpacer(height: 30),
+              WidgetSpacer(height: 20),
               WidgetHomeGenres(),
-              WidgetSpacer(height: 30),
-              WidgetContinueWatching(movies: movies),
-              WidgetSpacer(height: 30),
+              WidgetSpacer(height: 20),
               WidgetRecommendedMovies(),
-              WidgetSpacer(height: 30),
+              WidgetSpacer(height: 20),
               // WidgetNearbyCine(),
-              WidgetSpacer(height: 30),
+              // WidgetSpacer(height: 30),
               WidgetHomeMoviesGenres(),
-              WidgetSpacer(height: 30),
+              WidgetSpacer(height: 20),
             ],
           ),
         ),

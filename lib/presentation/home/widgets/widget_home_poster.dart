@@ -13,7 +13,7 @@ import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:cinema_booking/domain/entities/movies/movies.dart';
 import 'package:flutter/material.dart';
 
-class WidgetHomePosters extends StatelessWidget {
+class WidgetHomePosters extends StatefulWidget {
   final List<ItemPosterVM> items;
   final String label;
   final String iconPath;
@@ -26,48 +26,109 @@ class WidgetHomePosters extends StatelessWidget {
   });
 
   @override
+  State<WidgetHomePosters> createState() => _WidgetHomePostersState();
+}
+
+class _WidgetHomePostersState extends State<WidgetHomePosters> {
+  String directionNow = "";
+  @override
   Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        _buildHeader(),
+        WidgetSpacer(height: 14),
+        _buildListPoster(),
+      ],
+    );
+  }
+
+  Widget _buildHeader() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Row(
-            children: <Widget>[
-              MySvgImage(
-                path: iconPath,
-                width: 20,
-                height: 20,
-                color: AppColors.black,
-              ),
-              WidgetSpacer(width: 6),
-              Expanded(
-                child: Text(label.toUpperCase(), style: AppFont.medium_black2_14),
-              ),
-              Expanded(
-                child:
-                    Text('View all', style: AppFont.medium_default_10, textAlign: TextAlign.right),
-              )
-            ],
+      padding: const EdgeInsets.only(left: 20),
+      child: Row(
+        children: [
+          MySvgImage(
+            path: widget.iconPath,
+            width: 20,
+            height: 20,
+            color: AppColors.black,
           ),
-          WidgetSpacer(height: 14),
-          _buildListPoster(),
+          WidgetSpacer(width: 6),
+          Text(widget.label, style: AppFont.medium_white_16),
+          Spacer(),
+          TextButton(
+            onPressed: () {},
+            child: Text("View All", style: AppFont.medium_white_12.copyWith(color: AppColors.red)),
+          )
         ],
       ),
     );
   }
 
   _buildListPoster() {
-    return WrapContentHozListView(
-      itemBuilder: (context, index) {
-        var item = items[index];
+    return Stack(
+      children: [
+        WrapContentHozListView(
+          list: widget.items,
+          itemBuilder: (context, index) {
+            var item = widget.items[index];
+            return WidgetItemPoster(item: item);
+          },
+          separatorBuilder: (context, index) {
+            return WidgetSpacer(width: 16);
+          },
+          onScrollDirectionChanged: (direction) {
+            if (directionNow != direction) {
+              setState(() {
+                directionNow = direction;
+              });
+            }
+          },
+        ),
 
-        return WidgetItemPoster(item: item);
-      },
-      separatorBuilder: (context, index) {
-        return WidgetSpacer(width: 14);
-      },
-      list: items,
+        // Left Dim Effect
+        if (directionNow == "right")
+          Positioned(
+            left: 0,
+            top: 0,
+            bottom: 0,
+            width: 50, // Adjust width as needed
+            child: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [
+                    Colors.black.withValues(alpha: 0.80), // Dark fade on the left
+                    Colors.transparent,
+                  ],
+                ),
+              ),
+            ),
+          ),
+
+        // Right Dim Effect
+        if (directionNow == "left")
+          Positioned(
+            right: 0,
+            top: 0,
+            bottom: 0,
+            width: 50, // Adjust width as needed
+            child: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.centerRight,
+                  end: Alignment.centerLeft,
+                  colors: [
+                    Colors.black.withValues(alpha: 0.80), // Dark fade on the right
+                    Colors.transparent,
+                  ],
+                ),
+              ),
+            ),
+          ),
+      ],
     );
   }
 }
@@ -84,25 +145,25 @@ class WidgetItemPoster extends StatelessWidget {
         openMovieDetails(item.movie, context);
       },
       child: SizedBox(
-        width: 93,
+        width: 180,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             ClipRRect(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(12),
               child: ShimmerImage(
                 url: item.photo,
-                width: 93,
-                height: 124,
+                width: 180,
+                height: 120,
                 fit: BoxFit.cover,
               ),
             ),
             WidgetSpacer(height: 4),
             Text(item.title,
-                style: AppFont.regular_black2_12, maxLines: 2, overflow: TextOverflow.ellipsis),
+                style: AppFont.regular_white_12, maxLines: 2, overflow: TextOverflow.ellipsis),
             WidgetSpacer(height: 2),
-            Text(item.subTitle, style: AppFont.regular_gray6_10),
+            Text(item.subTitle, style: AppFont.regular_white_10),
           ],
         ),
       ),

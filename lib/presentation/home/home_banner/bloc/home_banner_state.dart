@@ -18,7 +18,7 @@ class HomeBannerNotLoaded extends HomeBannerState {}
 class HomeBannerLoaded extends HomeBannerState {
   final List<BannerEntity> banners;
 
-  HomeBannerLoaded(this.banners);
+  const HomeBannerLoaded(this.banners);
 
   @override
   List<Object> get props => [banners];

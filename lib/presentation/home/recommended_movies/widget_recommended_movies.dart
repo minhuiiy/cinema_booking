@@ -24,6 +24,8 @@ class WidgetRecommendedMovies extends StatefulWidget {
 class _WidgetRecommendedMoviesState extends State<WidgetRecommendedMovies> {
   late List<ItemRecommendedSeatVM> items;
 
+  String directionNow = "";
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<RecommendedMoviesBloc, RecommendedMoviesState>(
@@ -31,16 +33,13 @@ class _WidgetRecommendedMoviesState extends State<WidgetRecommendedMovies> {
         if (state is RecommendedMoviesLoaded) {
           items = state.movies.map((movie) => ItemRecommendedSeatVM.fromShow(movie)).toList();
 
-          return Padding(
-            padding: const EdgeInsets.only(left: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text('Recommended Movies'.toUpperCase(), style: AppFont.medium_black2_14),
-                WidgetSpacer(height: 14),
-                _buildListRecommendedMovies(),
-              ],
-            ),
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              _buildHeader(),
+              WidgetSpacer(height: 5),
+              _buildListRecommendedMovies(),
+            ],
           );
         } else {
           return Container();
@@ -49,17 +48,85 @@ class _WidgetRecommendedMoviesState extends State<WidgetRecommendedMovies> {
     );
   }
 
-  _buildListRecommendedMovies() {
-    return WrapContentHozListView(
-      list: items,
-      itemBuilder: (context, index) {
-        var item = items[index];
+  Widget _buildHeader() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 20),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text('Recommended Movies', style: AppFont.medium_white_16),
+          TextButton(
+            onPressed: () {},
+            child: Text("View All", style: AppFont.medium_white_12.copyWith(color: AppColors.red)),
+          )
+        ],
+      ),
+    );
+  }
 
-        return _WidgetItemRecommendedSeat(item);
-      },
-      separatorBuilder: (context, index) {
-        return WidgetSpacer(width: 14);
-      },
+  _buildListRecommendedMovies() {
+    return Stack(
+      children: [
+        WrapContentHozListView(
+          list: items,
+          itemBuilder: (context, index) {
+            var item = items[index];
+            return _WidgetItemRecommendedSeat(item);
+          },
+          separatorBuilder: (context, index) {
+            return WidgetSpacer(width: 16);
+          },
+          onScrollDirectionChanged: (direction) {
+            if (directionNow != direction) {
+              setState(() {
+                directionNow = direction;
+              });
+            }
+          },
+        ),
+
+        // Left Dim Effect
+        if (directionNow == "right")
+          Positioned(
+            left: 0,
+            top: 0,
+            bottom: 0,
+            width: 50, // Adjust width as needed
+            child: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [
+                    AppColors.darkBackground, // Dark fade on the left
+                    Colors.transparent,
+                  ],
+                ),
+              ),
+            ),
+          ),
+
+        // Right Dim Effect
+        if (directionNow == "left")
+          Positioned(
+            right: 0,
+            top: 0,
+            bottom: 0,
+            width: 50, // Adjust width as needed
+            child: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.centerRight,
+                  end: Alignment.centerLeft,
+                  colors: [
+                    AppColors.darkBackground, // Dark fade on the right
+                    Colors.transparent,
+                  ],
+                ),
+              ),
+            ),
+          ),
+      ],
     );
   }
 }
@@ -76,37 +143,33 @@ class _WidgetItemRecommendedSeat extends StatelessWidget {
         openShowDetails(context);
       },
       child: SizedBox(
-        width: 93,
+        width: 180,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             ClipRRect(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(12),
               child: ShimmerImage(
                 url: item.photo,
-                width: 93,
-                height: 124,
+                width: 180,
+                height: 120,
                 fit: BoxFit.cover,
               ),
             ),
             WidgetSpacer(height: 4),
             Text(
               item.title,
-              style: AppFont.regular_black2_12,
+              style: AppFont.regular_white_12,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
             WidgetSpacer(height: 2),
             Row(
               children: <Widget>[
-                Icon(
-                  Icons.favorite,
-                  color: AppColors.defaultColor,
-                  size: 14,
-                ),
+                Icon(Icons.favorite, color: AppColors.red, size: 14),
                 WidgetSpacer(width: 6),
-                Text('${item.likePercent}%', style: AppFont.regular_gray6_10)
+                Text('${item.likePercent}%', style: AppFont.regular_white_10)
               ],
             ),
           ],

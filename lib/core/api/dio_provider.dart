@@ -25,14 +25,27 @@ class DioProvider {
 class HttpLogInterceptor extends InterceptorsWrapper {
   @override
   Future onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
-    LogHelper.logInfo(
-      tag: "HttpLogInterceptor",
-      message: "onRequest: ${options.uri}\n" // Log request URL.
-          "data=${options.data}\n" // Log request body (if any).
-          "method=${options.method}\n" // Log HTTP method (GET, POST, etc.).
-          "headers=${options.headers}\n" // Log request headers.
-          "queryParameters=${options.queryParameters}", // Log query parameters.
-    );
+    String logMessage = "onRequest: ${options.uri}";
+
+    if (options.data != null && options.data.toString().isNotEmpty) {
+      logMessage += "\ndata=${options.data}";
+    }
+    if (options.method.isNotEmpty) {
+      logMessage += "\nmethod=${options.method}";
+    }
+    if (options.headers.isNotEmpty) {
+      logMessage += "\nheaders=${options.headers}";
+    }
+    if (options.queryParameters.isNotEmpty) {
+      logMessage += "\nqueryParameters=${options.queryParameters}";
+    }
+
+    if (logMessage.isNotEmpty) {
+      LogHelper.logInfo(
+        tag: "HttpLogInterceptor",
+        message: logMessage,
+      );
+    }
 
     handler.next(options);
   }
