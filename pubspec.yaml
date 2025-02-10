@@ -43,6 +43,9 @@ dependencies:
   dio: ^5.8.0+1
   retrofit: ^4.4.2
 
+  #format date time and other formats
+  intl: ^0.20.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
