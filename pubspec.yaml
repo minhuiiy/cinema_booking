@@ -51,7 +51,7 @@ dev_dependencies:
 
   # for auto generate
   build_runner: ^2.4.13
-  retrofit_generator: ^9.1.7
+  retrofit_generator: ^9.1.9
 
 flutter:
   uses-material-design: true
