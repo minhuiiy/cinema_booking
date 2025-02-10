@@ -5,9 +5,10 @@
  */
 
 // ignore_for_file: constant_identifier_names
+import 'package:cinema_booking/presentation/home/home_main.dart';
 import 'package:cinema_booking/presentation/login/pages/login.dart';
 import 'package:cinema_booking/presentation/login/pages/register.dart';
-import 'package:cinema_booking/presentation/splash/pages/splash.dart';
+import 'package:cinema_booking/presentation/splash/splash.dart';
 import 'package:flutter/material.dart';
 
 class AppRouter {
@@ -19,7 +20,7 @@ class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case HOME:
-      // return MaterialPageRoute(builder: (_) => HomeScreen());
+        return MaterialPageRoute(builder: (_) => HomeScreen());
 
       case SPLASH:
         return MaterialPageRoute(builder: (_) => SplashPage());
