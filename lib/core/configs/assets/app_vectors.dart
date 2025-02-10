@@ -19,4 +19,7 @@ class AppVectors {
   // login screen
   static const String iconFacebook = '${basePath}ic_facebook$format';
   static const String iconGoogle = '${basePath}ic_google$format';
+
+  // home screen
+  static const String iconTicket = '${basePath}ic_ticket$format';
 }

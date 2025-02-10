@@ -1,0 +1,79 @@
+import 'package:cinema_booking/common/helpers/json_converter.dart';
+import 'package:cinema_booking/domain/entities/seats/seat_type.dart';
+import 'package:json_annotation/json_annotation.dart';
+
+part 'seat_type.g.dart';
+
+@JsonSerializable()
+class SeatTypesModel {
+  String? id;
+
+  @JsonKey(name: "name", defaultValue: "")
+  String? name;
+
+  @StringAsDoubleConverter()
+  double? price;
+
+  @JsonKey(name: "seat_type", defaultValue: TypeSeat.jack)
+  TypeSeat type;
+
+  SeatTypesModel(
+    this.name,
+    this.price,
+    this.type,
+  );
+
+  factory SeatTypesModel.fromJson(Map<String, dynamic> json) => _$SeatTypesModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SeatTypesModelToJson(this);
+
+  @override
+  String toString() {
+    return 'SeatType{name: $name}';
+  }
+
+  static final List<SeatTypesModel> SAMPLE_DATA = [
+    SeatTypesModel('King', 120.0, TypeSeat.king),
+    SeatTypesModel('Queen', 100.0, TypeSeat.queen),
+    SeatTypesModel('Jack', 80.0, TypeSeat.jack),
+  ];
+}
+
+enum TypeSeat {
+  @JsonValue("king")
+  king,
+  @JsonValue("queen")
+  queen,
+  @JsonValue("jack")
+  jack,
+}
+
+extension TypeSeatoText on TypeSeat {
+  String toText() {
+    switch (this) {
+      case TypeSeat.jack:
+        return "Jack";
+      case TypeSeat.queen:
+        return "Queen";
+      case TypeSeat.king:
+        return "King";
+    }
+  }
+}
+
+extension SeatTypesModelMapper on SeatTypesModel {
+  SeatTypeEntity toEntity() {
+    return SeatTypeEntity(
+      id: id ?? "",
+      name: name ?? "",
+      price: price ?? 0,
+      type: type,
+    );
+  }
+}
+
+extension SeatTypesModelListMapper on List<SeatTypesModel> {
+  List<SeatTypeEntity> toEntities() {
+    return map((model) => model.toEntity()).toList();
+  }
+}

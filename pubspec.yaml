@@ -27,13 +27,31 @@ dependencies:
   hydrated_bloc: ^10.0.0
   equatable: ^2.0.7
 
+  # for local database
   sqflite: 2.4.1
+
+  # support for create model
+  json_serializable: ^6.9.3
+  json_annotation: ^4.9.0
+
+  # for view image 
+  shimmer: ^3.0.0
+  carousel_slider: ^5.0.0
+
+  # I use dio, because i like dio's api implementation
+  # Retrofit It allows define API endpoints using annotations,
+  dio: ^5.8.0+1
+  retrofit: ^4.4.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^5.0.0
+
+  # for auto generate
+  build_runner: ^2.4.13
+  retrofit_generator: ^9.1.7
 
 flutter:
   uses-material-design: true

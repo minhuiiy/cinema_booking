@@ -4,18 +4,16 @@
  * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
  */
 
-class CreateUserReq {
-  final String email;
-  final String fullName;
+import 'package:cinema_booking/data/models/auth/user.dart';
+
+class CreateUserReq extends UserModel {
   final String password;
-  final int age;
-  final String gender;
 
   CreateUserReq({
-    required this.email,
-    required this.fullName,
+    required super.email,
     required this.password,
-    required this.age,
-    required this.gender,
+    required super.fullName,
+    required super.gender,
+    required super.age,
   });
 }

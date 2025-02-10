@@ -63,7 +63,7 @@ class _WidgetSignInFormState extends State<WidgetSignInForm> {
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
-              color: AppColors.black.withAlpha(70), // Dark mode card
+              color: AppColors.black.withValues(alpha: 0.70), // Dark mode card
             ),
             child: Form(
               child: Column(
@@ -101,7 +101,7 @@ class _WidgetSignInFormState extends State<WidgetSignInForm> {
       padding: const EdgeInsets.symmetric(horizontal: 15),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: AppColors.white.withAlpha(10), // Dark transparent input fields
+        color: AppColors.white.withValues(alpha: 0.10), // Dark transparent input fields
       ),
       child: Center(
         child: TextFormField(
