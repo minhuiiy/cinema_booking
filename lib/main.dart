@@ -13,7 +13,7 @@ import 'package:cinema_booking/presentation/home/home_main.dart';
 import 'package:cinema_booking/presentation/login/pages/login.dart';
 import 'package:cinema_booking/presentation/router.dart';
 
-import 'package:cinema_booking/presentation/splash/pages/splash.dart';
+import 'package:cinema_booking/presentation/splash/splash.dart';
 import 'package:cinema_booking/service_locator.dart';
 import 'package:cinema_booking/simple_bloc_observer.dart';
 import 'package:firebase_core/firebase_core.dart';
