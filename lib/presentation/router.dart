@@ -5,9 +5,11 @@
  */
 
 // ignore_for_file: constant_identifier_names
+import 'package:cinema_booking/domain/entities/response/home.dart';
 import 'package:cinema_booking/presentation/home/home_main.dart';
 import 'package:cinema_booking/presentation/login/pages/login.dart';
 import 'package:cinema_booking/presentation/login/pages/register.dart';
+import 'package:cinema_booking/presentation/movie/movie_detail_info.dart';
 import 'package:cinema_booking/presentation/splash/splash.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +18,7 @@ class AppRouter {
   static const String SPLASH = '/splash';
   static const String LOGIN = '/login';
   static const String REGISTER = '/register';
+  static const String MOVIE = '/movie';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -30,6 +33,10 @@ class AppRouter {
 
       case REGISTER:
         return MaterialPageRoute(builder: (_) => RegisterScreen());
+
+      case MOVIE:
+        var movieDetail = settings.arguments as MovieDetailEntity;
+        return MaterialPageRoute(builder: (_) => MovieInfoScreen(movie: movieDetail));
 
       default:
         return MaterialPageRoute(

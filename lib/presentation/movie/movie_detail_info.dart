@@ -1,5 +1,6 @@
 import 'package:cinema_booking/common/widgets/image/svg_image.dart';
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
+import 'package:cinema_booking/core/configs/assets/app_vectors.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:cinema_booking/domain/entities/cast/movie_cast.dart';
@@ -15,12 +16,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MovieInfoScreen extends StatelessWidget {
   final MovieDetailEntity movie;
-  final List<MovieCastEntity> casts;
 
   const MovieInfoScreen({
     super.key,
     required this.movie,
-    required this.casts,
   });
 
   @override
@@ -51,7 +50,7 @@ class MovieInfoScreen extends StatelessWidget {
                       WidgetSpacer(height: 14),
                       WidgetMovieReview(movie: movie),
                       WidgetSpacer(height: 14),
-                      WidgetMovieCasts(casts: casts),
+                      WidgetMovieCasts(casts: movie.casts),
                       WidgetSpacer(height: 70),
                     ],
                   ),
@@ -82,7 +81,7 @@ class MovieInfoScreen extends StatelessWidget {
               MySvgImage(
                 width: 18.25,
                 height: 16.1,
-                path: 'assets/ic_sofa.svg',
+                path: AppVectors.iconSofa,
               ),
               WidgetSpacer(width: 5),
               Text('Book seats', style: AppFont.medium_white_16),

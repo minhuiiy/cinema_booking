@@ -1,5 +1,6 @@
 import 'package:cinema_booking/common/widgets/image/svg_image.dart';
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
+import 'package:cinema_booking/core/configs/assets/app_vectors.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:cinema_booking/core/enum/offer_type.dart';
@@ -35,12 +36,12 @@ class WidgetOffers extends StatelessWidget {
                 Color iconBgColor;
                 switch (offer.type) {
                   case TypeOffer.green:
-                    iconPath = 'assets/ic_gift.svg';
+                    iconPath = AppVectors.iconGift;
                     textColor = AppColors.red2;
                     iconBgColor = AppColors.gift1;
                     break;
                   case TypeOffer.red:
-                    iconPath = 'assets/ic_gift_green.svg';
+                    iconPath = AppVectors.iconGiftGreen;
                     textColor = AppColors.green2;
                     iconBgColor = AppColors.gift2;
                     break;

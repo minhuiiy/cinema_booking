@@ -1,6 +1,7 @@
 import 'package:cinema_booking/common/helpers/formatter_helpers.dart';
 import 'package:cinema_booking/common/widgets/image/svg_image.dart';
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
+import 'package:cinema_booking/core/configs/assets/app_vectors.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:cinema_booking/domain/entities/response/home.dart';
@@ -125,7 +126,7 @@ class WidgetMovieDesc extends StatelessWidget {
           width: 10,
           height: 10,
           color: AppColors.gray1,
-          path: 'assets/ic_clock_line.svg',
+          path: AppVectors.iconClockLine,
         ),
         WidgetSpacer(width: 6),
         Text(textDuration, style: AppFont.regular_gray1_10),
@@ -133,7 +134,7 @@ class WidgetMovieDesc extends StatelessWidget {
         MySvgImage(
           width: 10,
           height: 10,
-          path: 'assets/ic_plays_line.svg',
+          path: AppVectors.iconPlayLine,
           color: AppColors.gray1,
         ),
         WidgetSpacer(width: 6),

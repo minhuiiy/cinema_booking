@@ -11,6 +11,7 @@ import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:cinema_booking/domain/entities/movies/movies.dart';
+import 'package:cinema_booking/presentation/router.dart';
 import 'package:flutter/material.dart';
 
 class WidgetHomePosters extends StatefulWidget {
@@ -171,7 +172,7 @@ class WidgetItemPoster extends StatelessWidget {
   }
 
   void openMovieDetails(MovieEntity movie, BuildContext context) {
-    // TODO:
+    Navigator.pushNamed(context, AppRouter.MOVIE, arguments: movie);
   }
 }
 

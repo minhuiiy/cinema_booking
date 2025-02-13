@@ -5,6 +5,7 @@
  */
 
 import 'package:cinema_booking/common/widgets/image/svg_image.dart';
+import 'package:cinema_booking/core/configs/assets/app_vectors.dart';
 import 'package:flutter/material.dart';
 
 class BasicBackButton extends StatelessWidget {
@@ -26,7 +27,7 @@ class BasicBackButton extends StatelessWidget {
         child: MySvgImage(
           width: 19,
           height: 16,
-          path: 'assets/ic_back.svg',
+          path: AppVectors.iconBack,
         ),
       ),
     );

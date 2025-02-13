@@ -4,6 +4,7 @@
  * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
  */
 
+import 'package:cinema_booking/core/configs/assets/app_vectors.dart';
 import 'package:cinema_booking/presentation/home/widgets/widget_home_poster.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +27,7 @@ class WidgetHomePlays extends StatelessWidget {
     return WidgetHomePosters(
       items: items,
       label: 'Plays',
-      iconPath: 'assets/ic_plays.svg',
+      iconPath: AppVectors.iconPlay,
     );
   }
 }

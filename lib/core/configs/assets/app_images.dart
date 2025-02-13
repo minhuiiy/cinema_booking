@@ -13,5 +13,7 @@ class AppImages {
   static const String logo = '${basePath}logo.png';
   static const String logoCT = '${basePath}cinema_ticket_logo.png';
 
-  static String avatar = '${basePath}me.jpeg';
+  static const String avatar = '${basePath}me.jpeg';
+  static const String boyAvatar = '${basePath}man.jpg';
+  static const String girlAvatar = '${basePath}girl.jpg';
 }

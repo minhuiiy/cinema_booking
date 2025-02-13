@@ -1,5 +1,6 @@
 import 'package:cinema_booking/common/bloc/authentication/authentication_bloc.dart';
 import 'package:cinema_booking/common/widgets/button/basic_app_button.dart';
+import 'package:cinema_booking/core/configs/assets/app_images.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:cinema_booking/presentation/login/bloc/register_bloc.dart';
@@ -202,8 +203,8 @@ class _SignupPageState extends State<SignupPage> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            _genderAvatar('Male', 'assets/images/man.jpg'),
-            _genderAvatar('Female', 'assets/images/girl.jpg'),
+            _genderAvatar('Male', AppImages.boyAvatar),
+            _genderAvatar('Female', AppImages.girlAvatar),
           ],
         ),
       ],

@@ -1,5 +1,6 @@
 import 'package:cinema_booking/common/widgets/button/basic_back_button.dart';
 import 'package:cinema_booking/common/widgets/image/svg_image.dart';
+import 'package:cinema_booking/core/configs/assets/app_vectors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -24,7 +25,7 @@ class WidgetMovieTrailer extends StatelessWidget {
                 child: MySvgImage(
                   width: 16.72,
                   height: 15.07,
-                  path: 'assets/ic_play.svg',
+                  path: AppVectors.iconPlay,
                 ),
               ),
             ),

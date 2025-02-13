@@ -12,6 +12,7 @@ import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:cinema_booking/domain/entities/movies/movies.dart';
 import 'package:cinema_booking/domain/entities/response/home.dart';
 import 'package:cinema_booking/presentation/home/recommended_movies/bloc/recommended_movies_bloc.dart';
+import 'package:cinema_booking/presentation/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -180,7 +181,7 @@ class _WidgetItemRecommendedSeat extends StatelessWidget {
   }
 
   void openShowDetails(BuildContext context) {
-    // TODO:
+    Navigator.pushNamed(context, AppRouter.MOVIE, arguments: item.movie);
   }
 }
 
