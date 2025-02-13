@@ -10,12 +10,12 @@ class InitialMovieDetailsState extends MovieDetailsState {
 }
 
 class OpenBookTimeSlotScreen extends MovieDetailsState {
-  bool open = false;
+  final bool open;
 
-  OpenBookTimeSlotScreen({
-    required this.open,
+  const OpenBookTimeSlotScreen({
+    this.open = false,
   });
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [open];
 }

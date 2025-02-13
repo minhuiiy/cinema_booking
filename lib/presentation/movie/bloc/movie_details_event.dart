@@ -10,9 +10,9 @@ class OpenScreen extends MovieDetailsEvent {
 }
 
 class ClickBtnBook extends MovieDetailsEvent {
-  MovieEntity movie;
+  final MovieEntity movie;
 
-  ClickBtnBook(this.movie);
+  const ClickBtnBook(this.movie);
 
   @override
   List<Object> get props => [movie];

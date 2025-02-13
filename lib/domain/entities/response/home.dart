@@ -4,17 +4,21 @@
  * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
  */
 
+import 'package:cinema_booking/domain/entities/cast/movie_cast.dart';
 import 'package:cinema_booking/domain/entities/cinema/cinema.dart';
 import 'package:cinema_booking/domain/entities/genres/genres.dart';
 import 'package:cinema_booking/domain/entities/movies/banner.dart';
 import 'package:cinema_booking/domain/entities/movies/movies.dart';
+import 'package:cinema_booking/domain/entities/offer/movie_offer.dart';
+import 'package:cinema_booking/domain/entities/reviews/movie_review.dart';
 
 part 'movie_by_genres.dart';
+part 'movie_detail.dart';
 
 class HomeEntity {
   List<BannerEntity> banners;
   List<GenresEntity> genres;
-  List<MovieEntity> recommendedMovies;
+  List<MovieDetailEntity> recommendedMovies;
   List<CinemaEntity> nearbyCinemas;
   List<MovieByGenresEntity> movieByGenres;
 

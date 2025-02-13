@@ -6,7 +6,7 @@
 
 import 'package:cinema_booking/data/models/movies/movies.dart';
 import 'package:cinema_booking/domain/entities/movies/movies.dart';
-import 'package:cinema_booking/domain/entities/responce/home.dart';
+import 'package:cinema_booking/domain/entities/response/home.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'movie_by_genres_response.g.dart';

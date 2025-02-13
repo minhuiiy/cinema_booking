@@ -10,6 +10,7 @@ import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:cinema_booking/domain/entities/movies/movies.dart';
+import 'package:cinema_booking/domain/entities/response/home.dart';
 import 'package:cinema_booking/presentation/home/recommended_movies/bloc/recommended_movies_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -187,11 +188,11 @@ class ItemRecommendedSeatVM {
   late String photo;
   late String title;
   late int likePercent;
-  MovieEntity movie;
+  MovieDetailEntity movie;
 
   ItemRecommendedSeatVM.fromShow(this.movie) {
-    photo = movie.thumb;
-    title = movie.name;
-    likePercent = movie.rate;
+    photo = movie.detail.thumb;
+    title = movie.detail.name;
+    likePercent = movie.detail.rate;
   }
 }
