@@ -3,20 +3,18 @@ import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:cinema_booking/domain/entities/cast/movie_cast.dart';
-import 'package:cinema_booking/domain/entities/movies/movies.dart';
-// import 'package:cinema_booking/presentation/router.dart';
+import 'package:cinema_booking/domain/entities/response/home.dart';
 import 'package:cinema_booking/presentation/movie/bloc/movie_details_bloc.dart';
-import 'package:cinema_booking/presentation/movie/widgets/widget_offers.dart';
 import 'package:cinema_booking/presentation/movie/widgets/widget_movie_casts.dart';
 import 'package:cinema_booking/presentation/movie/widgets/widget_movie_desc.dart';
 import 'package:cinema_booking/presentation/movie/widgets/widget_movie_review.dart';
+import 'package:cinema_booking/presentation/movie/widgets/widget_offers.dart';
 import 'package:cinema_booking/presentation/movie/widgets/widget_video_player.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MovieInfoScreen extends StatelessWidget {
-  final MovieEntity movie;
+  final MovieDetailEntity movie;
   final List<MovieCastEntity> casts;
 
   const MovieInfoScreen({
@@ -46,7 +44,7 @@ class MovieInfoScreen extends StatelessWidget {
                 children: [
                   ListView(
                     children: <Widget>[
-                      WidgetVideoPlayer(videoUrl: movie.trailer),
+                      WidgetVideoPlayer(videoUrl: movie.detail.trailer),
                       WidgetMovieDesc(movie: movie),
                       WidgetSpacer(height: 14),
                       WidgetOffers(movie: movie),
@@ -91,7 +89,7 @@ class MovieInfoScreen extends StatelessWidget {
             ],
           ),
           onPressed: () {
-            BlocProvider.of<MovieDetailsBloc>(context).add(ClickBtnBook(movie));
+            BlocProvider.of<MovieDetailsBloc>(context).add(ClickBtnBook(movie.detail));
           },
         ),
       ),

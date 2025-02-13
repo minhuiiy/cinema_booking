@@ -2,13 +2,13 @@ import 'package:cinema_booking/common/helpers/formatter_helpers.dart';
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
-import 'package:cinema_booking/domain/entities/movies/movies.dart';
+import 'package:cinema_booking/domain/entities/response/home.dart';
 import 'package:flutter/material.dart';
 
 class WidgetMovieReview extends StatelessWidget {
-  MovieEntity movie;
+  final MovieDetailEntity movie;
 
-  WidgetMovieReview({required this.movie});
+  const WidgetMovieReview({super.key, required this.movie});
 
   @override
   Widget build(BuildContext context) {

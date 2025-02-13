@@ -3,11 +3,11 @@ import 'package:cinema_booking/common/widgets/image/svg_image.dart';
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
-import 'package:cinema_booking/domain/entities/movies/movies.dart';
+import 'package:cinema_booking/domain/entities/response/home.dart';
 import 'package:flutter/material.dart';
 
 class WidgetMovieDesc extends StatelessWidget {
-  final MovieEntity movie;
+  final MovieDetailEntity movie;
 
   const WidgetMovieDesc({super.key, required this.movie});
 
@@ -40,8 +40,8 @@ class WidgetMovieDesc extends StatelessWidget {
   }
 
   _buildMovieNameDate() {
-    final name = movie.name;
-    final textDate = movie.releaseDate.MMM_dd_yyyy();
+    final name = movie.detail.name;
+    final textDate = movie.detail.releaseDate.MMM_dd_yyyy();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,8 +54,8 @@ class WidgetMovieDesc extends StatelessWidget {
   }
 
   _buildLikeVotes() {
-    final textRating = "${movie.rate}%";
-    final textVotes = movie.votes;
+    final textRating = "${movie.detail.rate}%";
+    final textVotes = movie.detail.votes;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
@@ -84,10 +84,10 @@ class WidgetMovieDesc extends StatelessWidget {
     itemTamis.add(Text('Tami', style: AppFont.regular_default_12));
     itemTamis.add(WidgetSpacer(width: 10));
 
-    movie.tami.forEach((tami) {
+    for (var tami in movie.format) {
       itemTamis.add(_buildTag(tami));
       itemTamis.add(WidgetSpacer(width: 6));
-    });
+    }
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -98,19 +98,24 @@ class WidgetMovieDesc extends StatelessWidget {
 
   _buildTag(String tag) {
     return Container(
-      child: Center(child: Text(tag, style: AppFont.regular_default_12)),
       padding: EdgeInsets.symmetric(horizontal: 4, vertical: 3),
       decoration: BoxDecoration(
-          color: AppColors.tag_bg,
+          color: AppColors.white1,
           borderRadius: BorderRadius.circular(3),
           shape: BoxShape.rectangle),
+      child: Center(
+        child: Text(
+          tag,
+          style: AppFont.regular_default_12,
+        ),
+      ),
     );
   }
 
   _buildExtraInfo() {
     //'2h 59m'
-    final textDuration = Duration(seconds: movie.duration).formatHHmm();
-    final textTag = movie.tags.join(", ").toString();
+    final textDuration = Duration(seconds: movie.detail.duration).formatHHmm();
+    final textTag = movie.genres.join(", ").toString();
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,

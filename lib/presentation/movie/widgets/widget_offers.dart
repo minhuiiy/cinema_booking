@@ -3,16 +3,15 @@ import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:cinema_booking/core/enum/offer_type.dart';
-import 'package:cinema_booking/domain/entities/movies/movies.dart';
-import 'package:cinema_booking/domain/entities/movie/offer.dart';
-import 'package:cinema_booking/domain/entities/movie/movie.dart';
+import 'package:cinema_booking/domain/entities/offer/movie_offer.dart';
+import 'package:cinema_booking/domain/entities/response/home.dart';
 import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
 
 class WidgetOffers extends StatelessWidget {
-  MovieEntity movie;
+  final MovieDetailEntity movie;
 
-  WidgetOffers({required this.movie});
+  const WidgetOffers({super.key, required this.movie});
 
   @override
   Widget build(BuildContext context) {
@@ -25,29 +24,29 @@ class WidgetOffers extends StatelessWidget {
         children: <Widget>[
           Text('Your offers', style: AppFont.medium_black2_16),
           WidgetSpacer(height: 14),
-          Container(
+          SizedBox(
             height: 81,
             child: ListView.separated(
               itemBuilder: (context, index) {
-                OfferEntity offer = movie.offers[index];
+                MovieOfferEntity offer = movie.movieOffer[index];
 
                 String iconPath = '';
                 Color textColor;
                 Color iconBgColor;
                 switch (offer.type) {
-                  case OFFER_TYPE.GREEN:
+                  case TypeOffer.green:
                     iconPath = 'assets/ic_gift.svg';
                     textColor = AppColors.red2;
-                    iconBgColor = AppColors.gift_bg1;
+                    iconBgColor = AppColors.gift1;
                     break;
-                  case OFFER_TYPE.RED:
+                  case TypeOffer.red:
                     iconPath = 'assets/ic_gift_green.svg';
                     textColor = AppColors.green2;
-                    iconBgColor = AppColors.gift_bg2;
+                    iconBgColor = AppColors.gift2;
                     break;
                 }
 
-                return _WidgetGrabReward(
+                return WidgetGrabReward(
                   iconPath: iconPath,
                   textColor: textColor,
                   iconBgColor: iconBgColor,
@@ -61,7 +60,7 @@ class WidgetOffers extends StatelessWidget {
               shrinkWrap: true,
               physics: BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
-              itemCount: movie.offers.length,
+              itemCount: movie.movieOffer.length,
             ),
           )
         ],
@@ -70,14 +69,15 @@ class WidgetOffers extends StatelessWidget {
   }
 }
 
-class _WidgetGrabReward extends StatelessWidget {
-  String iconPath;
-  Color iconBgColor;
-  Color textColor;
-  String title;
-  String content;
+class WidgetGrabReward extends StatelessWidget {
+  final String iconPath;
+  final Color iconBgColor;
+  final Color textColor;
+  final String title;
+  final String content;
 
-  _WidgetGrabReward({
+  const WidgetGrabReward({
+    super.key,
     required this.iconPath,
     required this.iconBgColor,
     required this.textColor,

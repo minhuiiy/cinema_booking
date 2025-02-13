@@ -1,14 +1,14 @@
-import 'package:cinema_booking/common/widgets/button/widget_btn_back.dart';
+import 'package:cinema_booking/common/widgets/button/basic_back_button.dart';
 import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class WidgetVideoPlayer extends StatefulWidget {
-  String videoUrl;
+  final String videoUrl;
 
-  WidgetVideoPlayer({required this.videoUrl});
+  const WidgetVideoPlayer({super.key, required this.videoUrl});
 
   @override
-  _WidgetVideoPlayerState createState() => _WidgetVideoPlayerState();
+  State<WidgetVideoPlayer> createState() => _WidgetVideoPlayerState();
 }
 
 class _WidgetVideoPlayerState extends State<WidgetVideoPlayer> {
@@ -58,13 +58,13 @@ class _WidgetVideoPlayerState extends State<WidgetVideoPlayer> {
       children: <Widget>[
         YoutubePlayer(
           controller: _controller,
-          movieVideoProgressIndicator: true,
+          showVideoProgressIndicator: true,
           progressIndicatorColor: Colors.blueAccent,
           onReady: () {
             _isPlayerReady = true;
           },
         ),
-        WidgetBtnBack(
+        BasicBackButton(
           padding: const EdgeInsets.only(left: 20, top: 20),
         ),
       ],

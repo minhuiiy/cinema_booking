@@ -1,4 +1,4 @@
-import 'package:cinema_booking/common/widgets/button/widget_btn_back.dart';
+import 'package:cinema_booking/common/widgets/button/basic_back_button.dart';
 import 'package:cinema_booking/common/widgets/image/svg_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -29,7 +29,7 @@ class WidgetMovieTrailer extends StatelessWidget {
               ),
             ),
           ),
-          WidgetBtnBack(
+          BasicBackButton(
             padding: const EdgeInsets.only(left: 20, top: 20),
           ),
         ],
