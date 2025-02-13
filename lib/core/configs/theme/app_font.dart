@@ -160,4 +160,13 @@ class AppFont {
   static final medium_blue = medium.copyWith(color: AppColors.blue);
   static final medium_blue_14 = medium_blue.copyWith(fontSize: 14);
   static final medium_blue_16 = medium_blue.copyWith(fontSize: 16);
+
+  // oswald
+  static final oswald_regular = TextStyle(
+    fontFamily: 'Oswald',
+    fontWeight: FontWeight.w400,
+  );
+
+  static final oswald_regular_red2 = oswald_regular.copyWith(color: AppColors.red2);
+  static final oswald_regular_red2_12 = oswald_regular_red2.copyWith(fontSize: 12);
 }
