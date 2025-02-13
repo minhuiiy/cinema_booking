@@ -54,7 +54,7 @@ extension MovieDetailResponseX on MovieDetailResponse {
       genres: genres ?? [],
       movieOffer: movieOffer?.map((offer) => offer.toEntity()).toList() ?? [],
       totalReviews: totalReviews ?? 0,
-      latestReviews: latestReviews?.toEntity(),
+      latestReviews: latestReviews!.toEntity(),
       casts: casts?.map((cast) => cast.toEntity()).toList() ?? [],
     );
   }

@@ -16,11 +16,11 @@ part 'movie_by_genres.dart';
 part 'movie_detail.dart';
 
 class HomeEntity {
-  List<BannerEntity> banners;
-  List<GenresEntity> genres;
-  List<MovieDetailEntity> recommendedMovies;
-  List<CinemaEntity> nearbyCinemas;
-  List<MovieByGenresEntity> movieByGenres;
+  final List<BannerEntity> banners;
+  final List<GenresEntity> genres;
+  final List<MovieDetailEntity> recommendedMovies;
+  final List<CinemaEntity> nearbyCinemas;
+  final List<MovieByGenresEntity> movieByGenres;
 
   HomeEntity({
     required this.banners,

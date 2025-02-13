@@ -12,7 +12,7 @@ class MovieDetailEntity {
   final List<String> genres;
   final List<MovieOfferEntity> movieOffer;
   final int totalReviews;
-  final MovieReviewEntity? latestReviews;
+  final MovieReviewEntity latestReviews;
   final List<MovieCastEntity> casts;
 
   MovieDetailEntity({
@@ -21,7 +21,7 @@ class MovieDetailEntity {
     required this.genres,
     required this.movieOffer,
     required this.totalReviews,
-    this.latestReviews,
+    required this.latestReviews,
     required this.casts,
   });
 }

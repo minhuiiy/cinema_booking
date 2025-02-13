@@ -4,17 +4,11 @@
  * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
  */
 
+import 'package:cinema_booking/core/enum/offer_type.dart';
 import 'package:cinema_booking/domain/entities/offer/movie_offer.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'movie_offer.g.dart';
-
-enum TypeOffer {
-  @JsonValue("red")
-  red,
-  @JsonValue("green")
-  green
-}
 
 @JsonSerializable()
 class MovieOfferModel {

@@ -3,9 +3,15 @@
  * @ Created: 2024-12-28
  * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
  */
-
+// ignore_for_file: unnecessary_null_comparison
 import 'dart:convert';
+import 'package:cinema_booking/core/local/pref.dart';
+import 'package:cinema_booking/data/models/booking/booking_time_slot.dart';
+import 'package:cinema_booking/data/models/movies/movies.dart';
+import 'package:cinema_booking/data/models/show_time/time_slot.dart';
+import 'package:cinema_booking/domain/entities/booking/booking_time_slot.dart';
 import 'package:cinema_booking/domain/entities/movies/movies.dart';
+import 'package:cinema_booking/domain/entities/show_time/time_slot.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class MovieInfoService {
@@ -18,7 +24,7 @@ abstract class MovieInfoService {
 }
 
 class MovieInfoServiceImpl extends MovieInfoService {
-  final Pref pref;
+  final LocalPref pref;
 
   MovieInfoServiceImpl({required this.pref});
 
@@ -40,7 +46,7 @@ class MovieInfoServiceImpl extends MovieInfoService {
     try {
       bool result = await pref.saveString(
         DATA_CONST.CACHE_SHOW,
-        json.encode(show.toJson()),
+        json.encode(show.toModel().toJson()),
       );
       return Right(result);
     } catch (e) {
