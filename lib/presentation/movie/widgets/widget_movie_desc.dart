@@ -1,11 +1,12 @@
+import 'dart:ui';
 import 'package:cinema_booking/common/helpers/formatter_helpers.dart';
+import 'package:flutter/material.dart';
 import 'package:cinema_booking/common/widgets/image/svg_image.dart';
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
 import 'package:cinema_booking/core/configs/assets/app_vectors.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:cinema_booking/domain/entities/response/home.dart';
-import 'package:flutter/material.dart';
 
 class WidgetMovieDesc extends StatelessWidget {
   final MovieDetailEntity movie;
@@ -15,9 +16,17 @@ class WidgetMovieDesc extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: AppColors.white,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Colors.black.withOpacity(0.85), Colors.black.withOpacity(0.6)],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
       padding: EdgeInsets.all(20),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Row(
             children: <Widget>[
@@ -31,9 +40,9 @@ class WidgetMovieDesc extends StatelessWidget {
               ),
             ],
           ),
-          WidgetSpacer(height: 12),
+          WidgetSpacer(height: 14),
           _buildTagList(),
-          WidgetSpacer(height: 10),
+          WidgetSpacer(height: 12),
           _buildExtraInfo(),
         ],
       ),
@@ -47,7 +56,10 @@ class WidgetMovieDesc extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text(name, style: AppFont.medium_black2_16),
+        Text(name,
+            style: AppFont.semibold_white_18.copyWith(
+              shadows: [Shadow(color: Colors.black38, blurRadius: 4)],
+            )),
         WidgetSpacer(height: 6),
         Text(textDate, style: AppFont.regular_gray4_12)
       ],
@@ -61,28 +73,23 @@ class WidgetMovieDesc extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: <Widget>[
-        Wrap(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(top: 2),
-              child: Icon(
-                Icons.favorite,
-                size: 20,
-                color: AppColors.defaultColor,
-              ),
-            ),
-            Text(textRating, style: AppFont.medium_black2_16)
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Icon(Icons.favorite, size: 20, color: Colors.pinkAccent),
+            WidgetSpacer(width: 4),
+            Text(textRating, style: AppFont.medium_white_16),
           ],
         ),
         WidgetSpacer(height: 6),
-        Text(textVotes, style: AppFont.regular_default_10)
+        Text(textVotes, style: AppFont.regular_gray4_14)
       ],
     );
   }
 
   _buildTagList() {
     final List<Widget> itemTamis = [];
-    itemTamis.add(Text('Tami', style: AppFont.regular_default_12));
+    itemTamis.add(Text('Tami', style: AppFont.regular_white_14));
     itemTamis.add(WidgetSpacer(width: 10));
 
     for (var tami in movie.format) {
@@ -99,22 +106,29 @@ class WidgetMovieDesc extends StatelessWidget {
 
   _buildTag(String tag) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 4, vertical: 3),
+      padding: EdgeInsets.symmetric(horizontal: 6, vertical: 4),
       decoration: BoxDecoration(
-          color: AppColors.white1,
-          borderRadius: BorderRadius.circular(3),
-          shape: BoxShape.rectangle),
+        color: Colors.deepPurpleAccent.withOpacity(0.3),
+        borderRadius: BorderRadius.circular(6),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.purple.withOpacity(0.5),
+            blurRadius: 8,
+            spreadRadius: -2,
+            offset: Offset(0, 2),
+          ),
+        ],
+      ),
       child: Center(
         child: Text(
           tag,
-          style: AppFont.regular_default_12,
+          style: AppFont.medium_white_14,
         ),
       ),
     );
   }
 
   _buildExtraInfo() {
-    //'2h 59m'
     final textDuration = Duration(seconds: movie.detail.duration).formatHHmm();
     final textTag = movie.genres.join(", ").toString();
 
@@ -122,23 +136,19 @@ class WidgetMovieDesc extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        MySvgImage(
-          width: 10,
-          height: 10,
-          color: AppColors.gray1,
-          path: AppVectors.iconClockLine,
-        ),
+        Icon(Icons.access_time, color: Colors.white70, size: 16),
         WidgetSpacer(width: 6),
-        Text(textDuration, style: AppFont.regular_gray1_10),
-        WidgetSpacer(width: 9),
-        MySvgImage(
-          width: 10,
-          height: 10,
-          path: AppVectors.iconPlayLine,
-          color: AppColors.gray1,
-        ),
+        Text(textDuration, style: AppFont.regular_white_12),
+        WidgetSpacer(width: 16),
+        Icon(Icons.local_movies_outlined, color: Colors.white70, size: 16),
         WidgetSpacer(width: 6),
-        Text(textTag, style: AppFont.regular_gray1_10),
+        Expanded(
+          child: Text(
+            textTag,
+            style: AppFont.regular_white_12,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
       ],
     );
   }

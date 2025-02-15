@@ -17,13 +17,25 @@ class WidgetOffers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 18),
-      color: AppColors.white,
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Colors.black.withOpacity(0.9), Colors.black.withOpacity(0.7)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(12),
+      ),
       height: 156,
       child: ListView(
         physics: ClampingScrollPhysics(),
         children: <Widget>[
-          Text('Your offers', style: AppFont.medium_black2_16),
+          Text(
+            'Your Offers',
+            style: AppFont.semibold_white_18.copyWith(
+              shadows: [Shadow(color: Colors.black38, blurRadius: 6)],
+            ),
+          ),
           WidgetSpacer(height: 14),
           SizedBox(
             height: 81,
@@ -56,7 +68,7 @@ class WidgetOffers extends StatelessWidget {
                 );
               },
               separatorBuilder: (context, index) {
-                return WidgetSpacer(width: 20);
+                return WidgetSpacer(width: 14);
               },
               shrinkWrap: true,
               physics: BouncingScrollPhysics(),

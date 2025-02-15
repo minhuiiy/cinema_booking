@@ -10,7 +10,7 @@ import 'package:cinema_booking/common/widgets/scroll_list/hoz_list_view.dart';
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
-import 'package:cinema_booking/domain/entities/movies/movies.dart';
+import 'package:cinema_booking/domain/entities/response/home.dart';
 import 'package:cinema_booking/presentation/router.dart';
 import 'package:flutter/material.dart';
 
@@ -171,7 +171,7 @@ class WidgetItemPoster extends StatelessWidget {
     );
   }
 
-  void openMovieDetails(MovieEntity movie, BuildContext context) {
+  void openMovieDetails(MovieDetailEntity movie, BuildContext context) {
     Navigator.pushNamed(context, AppRouter.MOVIE, arguments: movie);
   }
 }
@@ -180,13 +180,13 @@ class ItemPosterVM {
   late String title;
   late String subTitle;
   late String photo;
-  late MovieEntity movie;
+  late MovieDetailEntity movie;
 
   ItemPosterVM(this.photo, this.title, this.subTitle);
 
   ItemPosterVM.fromMovie(this.movie) {
-    title = movie.name;
-    subTitle = movie.tags.join(" - ");
-    photo = movie.thumb;
+    title = movie.detail.name;
+    subTitle = movie.detail.tags.join(" - ");
+    photo = movie.detail.thumb;
   }
 }

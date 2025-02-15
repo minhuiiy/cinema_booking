@@ -23,7 +23,7 @@ class WidgetHomeEvents extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WidgetHomePosters(
-      items: movies.map((movie) => ItemPosterVM.fromMovie(movie.detail)).toList(),
+      items: movies.map((movie) => ItemPosterVM.fromMovie(movie)).toList(),
       label: genres.name,
       iconPath: AppVectors.basePath + genres.icon.toString(),
     );
