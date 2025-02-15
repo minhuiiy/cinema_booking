@@ -8,7 +8,6 @@ import 'dart:async';
 
 import 'package:cinema_booking/common/helpers/log_helpers.dart';
 import 'package:cinema_booking/domain/entities/genres/genres.dart';
-import 'package:cinema_booking/domain/entities/movies/movies.dart';
 import 'package:cinema_booking/domain/entities/response/home.dart';
 import 'package:cinema_booking/presentation/home/bloc/home_bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -39,7 +38,7 @@ class HomeMoviesGenresBloc extends Bloc<HomeMoviesGenresEvent, HomeMoviesGenresS
 
   Future<void> _onDisplayMoviesByGenres(
       DisplayMoviesByGenres event, Emitter<HomeMoviesGenresState> emit) async {
-    List<MapEntry<GenresEntity, List<MovieEntity>>> list = [];
+    List<MapEntry<GenresEntity, List<MovieDetailEntity>>> list = [];
 
     final homeResponse = event.homeResponse;
 

@@ -6,13 +6,13 @@
 
 import 'package:cinema_booking/core/configs/assets/app_vectors.dart';
 import 'package:cinema_booking/domain/entities/genres/genres.dart';
-import 'package:cinema_booking/domain/entities/movies/movies.dart';
+import 'package:cinema_booking/domain/entities/response/home.dart';
 import 'package:cinema_booking/presentation/home/widgets/widget_home_poster.dart';
 import 'package:flutter/material.dart';
 
 class WidgetHomeEvents extends StatelessWidget {
   final GenresEntity genres;
-  final List<MovieEntity> movies;
+  final List<MovieDetailEntity> movies;
 
   const WidgetHomeEvents({
     super.key,
@@ -23,7 +23,7 @@ class WidgetHomeEvents extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WidgetHomePosters(
-      items: movies.map((movie) => ItemPosterVM.fromMovie(movie)).toList(),
+      items: movies.map((movie) => ItemPosterVM.fromMovie(movie.detail)).toList(),
       label: genres.name,
       iconPath: AppVectors.basePath + genres.icon.toString(),
     );

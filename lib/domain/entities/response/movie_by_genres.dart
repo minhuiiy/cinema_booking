@@ -8,7 +8,7 @@ part of 'home.dart';
 
 class MovieByGenresEntity {
   final String genresId;
-  final List<MovieEntity> movies;
+  final List<MovieDetailEntity> movies;
 
   MovieByGenresEntity({
     required this.genresId,

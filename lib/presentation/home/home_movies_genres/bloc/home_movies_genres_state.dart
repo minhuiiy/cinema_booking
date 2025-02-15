@@ -14,7 +14,7 @@ class HomeMoviesGenresState extends Equatable {
 class MoviesByGenresNotLoaded extends HomeMoviesGenresState {}
 
 class MoviesByGenresLoaded extends HomeMoviesGenresState {
-  final List<MapEntry<GenresEntity, List<MovieEntity>>> list;
+  final List<MapEntry<GenresEntity, List<MovieDetailEntity>>> list;
 
   MoviesByGenresLoaded({required this.list});
 
