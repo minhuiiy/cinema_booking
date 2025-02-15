@@ -1,9 +1,4 @@
-import 'package:cinema_booking/common/widgets/image/svg_image.dart';
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
-import 'package:cinema_booking/core/configs/assets/app_vectors.dart';
-import 'package:cinema_booking/core/configs/theme/app_color.dart';
-import 'package:cinema_booking/core/configs/theme/app_font.dart';
-import 'package:cinema_booking/domain/entities/cast/movie_cast.dart';
 import 'package:cinema_booking/domain/entities/response/home.dart';
 import 'package:cinema_booking/presentation/movie/bloc/movie_details_bloc.dart';
 import 'package:cinema_booking/presentation/movie/widgets/widget_movie_casts.dart';
@@ -54,7 +49,7 @@ class MovieInfoScreen extends StatelessWidget {
                       WidgetSpacer(height: 70),
                     ],
                   ),
-                  _buildBtnBookSeat(context),
+                  _buildBtnBookTicket(context),
                 ],
               ),
             );
@@ -64,33 +59,15 @@ class MovieInfoScreen extends StatelessWidget {
     );
   }
 
-  _buildBtnBookSeat(BuildContext context) {
+  _buildBtnBookTicket(BuildContext context) {
     return Positioned(
       bottom: 0,
-      right: 0,
-      left: 0,
-      child: SizedBox(
-        height: 54,
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: AppColors.defaultColor,
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              MySvgImage(
-                width: 18.25,
-                height: 16.1,
-                path: AppVectors.iconSofa,
-              ),
-              WidgetSpacer(width: 5),
-              Text('Book seats', style: AppFont.medium_white_16),
-            ],
-          ),
-          onPressed: () {
-            BlocProvider.of<MovieDetailsBloc>(context).add(ClickBtnBook(movie.detail));
-          },
-        ),
+      right: 14,
+      left: 14,
+      child: CinematicBookTicketButton(
+        onPressed: () {
+          BlocProvider.of<MovieDetailsBloc>(context).add(ClickBtnBook(movie.detail));
+        },
       ),
     );
   }
@@ -98,5 +75,67 @@ class MovieInfoScreen extends StatelessWidget {
   void openBookCineTimeSlot(BuildContext context) {
     // BlocProvider.of<MovieDetailsBloc>(context).add(OpenedBookTimeSlotScreen());
     // Navigator.pushNamed(context, AppRouter.BOOK_TIME_SLOT, arguments: movie);
+  }
+}
+
+class CinematicBookTicketButton extends StatefulWidget {
+  final VoidCallback onPressed;
+
+  const CinematicBookTicketButton({super.key, required this.onPressed});
+
+  @override
+  State<CinematicBookTicketButton> createState() => _CinematicBookTicketButtonState();
+}
+
+class _CinematicBookTicketButtonState extends State<CinematicBookTicketButton> {
+  bool isPressed = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTapDown: (_) => setState(() => isPressed = true),
+      onTapUp: (_) => setState(() => isPressed = false),
+      onTapCancel: () => setState(() => isPressed = false),
+      onTap: widget.onPressed,
+      child: AnimatedContainer(
+        duration: Duration(milliseconds: 150),
+        curve: Curves.easeInOut,
+        height: isPressed ? 50 : 54, // Slightly shrink on press
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(30),
+          gradient: LinearGradient(
+            colors: [Color(0xFF9C27B0), Color(0xFFE91E63)], // Purple to Pink gradient
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.pinkAccent.withValues(alpha: 0.5),
+              blurRadius: 20,
+              spreadRadius: -2,
+              offset: Offset(0, 5),
+            ),
+          ],
+        ),
+        child: Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Icon(Icons.event_seat, color: Colors.white, size: 22), // Sofa Icon
+              SizedBox(width: 8),
+              Text(
+                'BOOK SEATS',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 1.2,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

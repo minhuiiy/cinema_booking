@@ -1,10 +1,6 @@
-import 'dart:ui';
 import 'package:cinema_booking/common/helpers/formatter_helpers.dart';
 import 'package:flutter/material.dart';
-import 'package:cinema_booking/common/widgets/image/svg_image.dart';
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
-import 'package:cinema_booking/core/configs/assets/app_vectors.dart';
-import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:cinema_booking/domain/entities/response/home.dart';
 
@@ -18,7 +14,7 @@ class WidgetMovieDesc extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [Colors.black.withOpacity(0.85), Colors.black.withOpacity(0.6)],
+          colors: [Colors.black.withValues(alpha: 0.85), Colors.black.withValues(alpha: 0.6)],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         ),
@@ -108,11 +104,11 @@ class WidgetMovieDesc extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 6, vertical: 4),
       decoration: BoxDecoration(
-        color: Colors.deepPurpleAccent.withOpacity(0.3),
+        color: Colors.deepPurpleAccent.withValues(alpha: 0.3),
         borderRadius: BorderRadius.circular(6),
         boxShadow: [
           BoxShadow(
-            color: Colors.purple.withOpacity(0.5),
+            color: Colors.purple.withValues(alpha: 0.5),
             blurRadius: 8,
             spreadRadius: -2,
             offset: Offset(0, 2),

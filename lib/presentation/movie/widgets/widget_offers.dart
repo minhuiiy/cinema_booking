@@ -20,7 +20,7 @@ class WidgetOffers extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [Colors.black.withOpacity(0.9), Colors.black.withOpacity(0.7)],
+          colors: [Colors.black.withValues(alpha: 0.9), Colors.black.withValues(alpha: 0.7)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),

@@ -5,7 +5,6 @@
  */
 
 import 'dart:async';
-import 'package:cinema_booking/domain/entities/movies/movies.dart';
 import 'package:cinema_booking/domain/entities/response/home.dart';
 import 'package:cinema_booking/presentation/home/bloc/home_bloc.dart';
 import 'package:equatable/equatable.dart';
