@@ -22,4 +22,12 @@ class AppVectors {
 
   // home screen
   static const String iconTicket = '${basePath}ic_ticket$format';
+
+  static const String iconBack = '${basePath}ic_back$format';
+  static const String iconPlay = '${basePath}ic_plays$format';
+  static const String iconSofa = '${basePath}ic_sofa$format';
+  static const String iconPlayLine = '${basePath}ic_plays_line$format';
+  static const String iconClockLine = '${basePath}ic_clock_line$format';
+  static const String iconGift = '${basePath}ic_gift$format';
+  static const String iconGiftGreen = '${basePath}ic_gift_green$format';
 }

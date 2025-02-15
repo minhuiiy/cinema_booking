@@ -14,7 +14,7 @@ class RecommendedMoviesEvent extends Equatable {
 }
 
 class DisplayRecommendedMovies extends RecommendedMoviesEvent {
-  final List<MovieEntity> movies;
+  final List<MovieDetailEntity> movies;
 
   const DisplayRecommendedMovies(this.movies);
 

@@ -11,7 +11,7 @@ MovieByGenresResponse _$MovieByGenresResponseFromJson(
     MovieByGenresResponse(
       genresId: json['genres_id'] as String?,
       movies: (json['movies'] as List<dynamic>?)
-          ?.map((e) => MovieModel.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => MovieDetailResponse.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

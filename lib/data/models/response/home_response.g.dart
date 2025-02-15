@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'home_responce.dart';
+part of 'home_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
@@ -15,7 +15,7 @@ HomeModelResponse _$HomeModelResponseFromJson(Map<String, dynamic> json) =>
           ?.map((e) => GenresModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       recommendedMovies: (json['recommended_movies'] as List<dynamic>?)
-          ?.map((e) => MovieModel.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => MovieDetailResponse.fromJson(e as Map<String, dynamic>))
           .toList(),
       nearbyCinemas: (json['nearby_cinemas'] as List<dynamic>?)
           ?.map((e) => CinemaModel.fromJson(e as Map<String, dynamic>))

@@ -29,19 +29,27 @@ dependencies:
 
   # for local database
   sqflite: 2.4.1
+  shared_preferences: ^2.5.2
 
   # support for create model
   json_serializable: ^6.9.3
   json_annotation: ^4.9.0
 
-  # for view image 
+  # for view support ui 
   shimmer: ^3.0.0
   carousel_slider: ^5.0.0
+  dotted_border: ^2.1.0
+
+  # for function watch trailer from youtube
+  youtube_player_flutter: ^9.1.1
 
   # I use dio, because i like dio's api implementation
   # Retrofit It allows define API endpoints using annotations,
   dio: ^5.8.0+1
   retrofit: ^4.4.2
+
+  #format date time and other formats
+  intl: ^0.20.2
 
 dev_dependencies:
   flutter_test:
@@ -73,4 +81,8 @@ flutter:
         - asset: assets/fonts/Satoshi-Medium.ttf
           weight: 500
         - asset: assets/fonts/Satoshi-Regular.ttf
+          weight: 400
+    - family: Oswald
+      fonts:
+        - asset: assets/fonts/Oswald-Regular.ttf
           weight: 400

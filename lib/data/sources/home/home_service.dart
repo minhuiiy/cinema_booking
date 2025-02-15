@@ -1,6 +1,6 @@
 import 'package:cinema_booking/common/helpers/log_helpers.dart';
 import 'package:cinema_booking/core/api/rest_client.dart';
-import 'package:cinema_booking/data/models/responce/home_responce.dart';
+import 'package:cinema_booking/data/models/response/home_response.dart';
 import 'package:cinema_booking/service_locator.dart';
 import 'package:dartz/dartz.dart';
 
