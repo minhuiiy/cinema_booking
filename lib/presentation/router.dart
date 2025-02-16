@@ -5,7 +5,10 @@
  */
 
 // ignore_for_file: constant_identifier_names
+import 'package:cinema_booking/common/helpers/log_helpers.dart';
+import 'package:cinema_booking/domain/entities/movies/movies.dart';
 import 'package:cinema_booking/domain/entities/response/home.dart';
+import 'package:cinema_booking/presentation/booking/book_time_slot/sc_book_time_slot.dart';
 import 'package:cinema_booking/presentation/home/home_main.dart';
 import 'package:cinema_booking/presentation/login/pages/login.dart';
 import 'package:cinema_booking/presentation/login/pages/register.dart';
@@ -19,6 +22,7 @@ class AppRouter {
   static const String LOGIN = '/login';
   static const String REGISTER = '/register';
   static const String MOVIE = '/movie';
+  static const String BOOK_TIME_SLOT = '/bookTimeSlot';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -33,6 +37,11 @@ class AppRouter {
 
       case REGISTER:
         return MaterialPageRoute(builder: (_) => RegisterScreen());
+
+      case BOOK_TIME_SLOT:
+        var movie = settings.arguments as MovieEntity;
+        LogHelper.logDebug(tag: "AppRouter", message: "BOOK_TIME_SLOT Done " + movie.toString());
+        return MaterialPageRoute(builder: (_) => BookTimeSlotScreen(movie: movie));
 
       case MOVIE:
         var movieDetail = settings.arguments as MovieDetailEntity;
