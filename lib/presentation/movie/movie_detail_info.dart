@@ -1,3 +1,4 @@
+import 'package:cinema_booking/common/helpers/log_helpers.dart';
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
 import 'package:cinema_booking/domain/entities/response/home.dart';
 import 'package:cinema_booking/presentation/movie/bloc/movie_details_bloc.dart';
@@ -6,6 +7,7 @@ import 'package:cinema_booking/presentation/movie/widgets/widget_movie_desc.dart
 import 'package:cinema_booking/presentation/movie/widgets/widget_movie_review.dart';
 import 'package:cinema_booking/presentation/movie/widgets/widget_offers.dart';
 import 'package:cinema_booking/presentation/movie/widgets/widget_video_player.dart';
+import 'package:cinema_booking/presentation/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -73,8 +75,10 @@ class MovieInfoScreen extends StatelessWidget {
   }
 
   void openBookCineTimeSlot(BuildContext context) {
+    LogHelper.logDebug(tag: "openBookCineTimeSlot", message: "start");
     // BlocProvider.of<MovieDetailsBloc>(context).add(OpenedBookTimeSlotScreen());
-    // Navigator.pushNamed(context, AppRouter.BOOK_TIME_SLOT, arguments: movie);
+    LogHelper.logDebug(tag: "openBookCineTimeSlot", message: "BlocProvider Done");
+    Navigator.pushNamed(context, AppRouter.BOOK_TIME_SLOT, arguments: movie.detail);
   }
 }
 
