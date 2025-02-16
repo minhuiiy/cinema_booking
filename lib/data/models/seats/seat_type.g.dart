@@ -13,6 +13,9 @@ SeatTypesModel _$SeatTypesModelFromJson(Map<String, dynamic> json) =>
           json['price'], const StringAsDoubleConverter().fromJson),
       $enumDecodeNullable(_$TypeSeatEnumMap, json['seat_type']) ??
           TypeSeat.jack,
+      (json['seat_rows'] as List<dynamic>)
+          .map((e) => SeatRowModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     )..id = json['id'] as String?;
 
 Map<String, dynamic> _$SeatTypesModelToJson(SeatTypesModel instance) =>
@@ -22,6 +25,7 @@ Map<String, dynamic> _$SeatTypesModelToJson(SeatTypesModel instance) =>
       'price': _$JsonConverterToJson<Object, double>(
           instance.price, const StringAsDoubleConverter().toJson),
       'seat_type': _$TypeSeatEnumMap[instance.type]!,
+      'seat_rows': instance.seatRows,
     };
 
 Value? _$JsonConverterFromJson<Json, Value>(

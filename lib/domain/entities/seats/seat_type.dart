@@ -5,6 +5,7 @@
  */
 
 import 'package:cinema_booking/data/models/seats/seat_type.dart';
+import 'package:cinema_booking/domain/entities/seats/seat_row.dart';
 import 'package:equatable/equatable.dart';
 
 class SeatTypeEntity extends Equatable {
@@ -12,12 +13,14 @@ class SeatTypeEntity extends Equatable {
   final String name;
   final double price;
   final TypeSeat type;
+  final List<SeatRowEntity>? seatRows;
 
   const SeatTypeEntity({
     required this.id,
     required this.name,
     required this.price,
     required this.type,
+    this.seatRows,
   });
 
   @override

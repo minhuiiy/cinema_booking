@@ -1,4 +1,5 @@
 import 'package:cinema_booking/common/helpers/json_converter.dart';
+import 'package:cinema_booking/data/models/seats/seat_row.dart';
 import 'package:cinema_booking/domain/entities/seats/seat_type.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -17,10 +18,15 @@ class SeatTypesModel {
   @JsonKey(name: "seat_type", defaultValue: TypeSeat.jack)
   TypeSeat type;
 
+  // connect with relationship 1 - n
+  @JsonKey(name: "seat_rows")
+  List<SeatRowModel> seatRows;
+
   SeatTypesModel(
     this.name,
     this.price,
     this.type,
+    this.seatRows,
   );
 
   factory SeatTypesModel.fromJson(Map<String, dynamic> json) => _$SeatTypesModelFromJson(json);
@@ -33,9 +39,9 @@ class SeatTypesModel {
   }
 
   static final List<SeatTypesModel> SAMPLE_DATA = [
-    SeatTypesModel('King', 120.0, TypeSeat.king),
-    SeatTypesModel('Queen', 100.0, TypeSeat.queen),
-    SeatTypesModel('Jack', 80.0, TypeSeat.jack),
+    SeatTypesModel('King', 120.0, TypeSeat.king, SeatRowModel.SAMPLE_KING),
+    SeatTypesModel('Queen', 100.0, TypeSeat.queen, SeatRowModel.SAMPLE_QUEEN),
+    SeatTypesModel('Jack', 80.0, TypeSeat.jack, SeatRowModel.SAMPLE_JACK),
   ];
 }
 

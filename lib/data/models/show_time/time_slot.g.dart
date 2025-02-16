@@ -11,7 +11,7 @@ TimeSlotModel _$TimeSlotModelFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String?,
       showtimeId: json['showtime_id'] as String?,
       time: json['time'] as String?,
-      active: json['active'] as String?,
+      active: json['active'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$TimeSlotModelToJson(TimeSlotModel instance) =>
