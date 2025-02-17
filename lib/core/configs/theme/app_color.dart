@@ -26,6 +26,7 @@ class AppColors {
   static const Color gray6 = Color(0xFF707070);
   static const Color gray7 = Color(0xFFDDDDDD);
   static const Color greyDark = Color(0xff666666);
+  static const Color orange = Color(0xFFEB8D2F);
   static const Color red = Color(0xffFF1D25);
   static const Color red2 = Color(0xFFD05045);
   static const Color blue = Color(0xff4267B2);
@@ -34,6 +35,10 @@ class AppColors {
   static const Color green2 = Color(0xFF8CC153);
   static const Color gift1 = Color(0xFFFCCAC6);
   static const Color gift2 = Color(0x2687D57E);
+  static const Color seatSlotBgBooked = Color(0xFFEBEBEB);
+  static const Color seatSlotBg = Color(0xFFFFFFFF);
+  static const Color timeSlotBg = Color(0xFFFCFCFC);
+  static const Color timeSlotBorder = Color(0xFFE5E5E5);
 
   static const Color textLight = Color(0xffC6C6C6);
 

@@ -11,7 +11,9 @@ class TimeSlotEntity extends Equatable {
   final String id;
   final String showtimeId;
   final String time;
-  final String active;
+  final bool active;
+
+  int get hour => int.parse(time.split(":").first);
 
   const TimeSlotEntity({
     required this.id,

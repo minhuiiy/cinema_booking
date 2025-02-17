@@ -13,7 +13,7 @@ class HomeServiceImpl extends HomeService {
   Future<Either> getHomeData() async {
     try {
       LogHelper.logDebug(tag: "HomeService", message: "Making API request to fetch home data");
-      final client = RestClient(dio);
+      final client = RestClient(localDio);
       final HomeModelResponse homeData = await client.getHomeData();
 
       return right(homeData.toEntity());

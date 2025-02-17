@@ -5,21 +5,40 @@
  */
 
 import 'package:cinema_booking/core/api/dio_provider.dart';
+import 'package:cinema_booking/core/local/pref.dart';
 import 'package:cinema_booking/data/repository/auth/auth_repository_impl.dart';
 import 'package:cinema_booking/data/repository/authentication/authentication_repository_impl.dart';
+import 'package:cinema_booking/data/repository/booking_time/booking_time_repository_impl.dart';
 import 'package:cinema_booking/data/repository/home/home_repository_impl.dart';
+import 'package:cinema_booking/data/repository/movie/movie_info_repository_impl.dart';
 import 'package:cinema_booking/data/sources/Authentication/Authentication_service.dart';
 import 'package:cinema_booking/data/sources/auth/auth_service.dart';
+import 'package:cinema_booking/data/sources/booking_time/mock_book_time_slot_service.dart';
+import 'package:cinema_booking/data/sources/booking_time/remote_booking_time_service.dart';
+import 'package:cinema_booking/data/sources/booking_time/session_service.dart';
 import 'package:cinema_booking/data/sources/home/home_service.dart';
+import 'package:cinema_booking/data/sources/movie/movie_info_service.dart';
 import 'package:cinema_booking/domain/repository/Authentication/Authentication.dart';
 import 'package:cinema_booking/domain/repository/auth/auth.dart';
+import 'package:cinema_booking/domain/repository/booking_time/book_time_slot_repository.dart';
 import 'package:cinema_booking/domain/repository/home/home.dart';
+import 'package:cinema_booking/domain/repository/movie/movie.dart';
+import 'package:cinema_booking/domain/repository/seat_slot/seat_slot_repository.dart';
 import 'package:cinema_booking/domain/usecase/auth/get_user.dart';
 import 'package:cinema_booking/domain/usecase/auth/login_google.dart';
 import 'package:cinema_booking/domain/usecase/auth/signin.dart';
 import 'package:cinema_booking/domain/usecase/auth/signup.dart';
 import 'package:cinema_booking/domain/usecase/authentication/is_signed_in.dart';
+import 'package:cinema_booking/domain/usecase/booking_time/cache_book_time_slot.dart';
+import 'package:cinema_booking/domain/usecase/booking_time/cache_selected_time_slot.dart';
+import 'package:cinema_booking/domain/usecase/booking_time/cache_show.dart';
+import 'package:cinema_booking/domain/usecase/booking_time/get_all_shows_by_type.dart';
+import 'package:cinema_booking/domain/usecase/booking_time/get_cached_book_time_slot.dart';
+import 'package:cinema_booking/domain/usecase/booking_time/get_cached_selected_time_slot.dart';
+import 'package:cinema_booking/domain/usecase/booking_time/get_cached_show.dart';
+import 'package:cinema_booking/domain/usecase/booking_time/mock_book_time.dart';
 import 'package:cinema_booking/domain/usecase/home/get_home_data.dart';
+import 'package:cinema_booking/domain/usecase/movie/cache_movie_info_data.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get_it/get_it.dart';
 
@@ -27,7 +46,7 @@ final sl = GetIt.instance;
 
 final firestore = FirebaseFirestore.instance;
 
-final dio = DioProvider.instance();
+final localDio = DioProvider.instance();
 
 Future<void> initializeDependencies() async {
   // Authentication
@@ -79,5 +98,63 @@ Future<void> initializeDependencies() async {
 
   sl.registerSingleton<GetHomeDataUseCase>(
     GetHomeDataUseCase(),
+  );
+
+  // Booking time and ticket cinema
+  sl.registerSingleton<BookTimeSlotRepository>(
+    BookTimeSlotRepositoryImpl(),
+  );
+
+  sl.registerSingleton<SeatSlotRepository>(
+    RemoteSeatSlotRepository(),
+  );
+
+  sl.registerSingleton<MockBookTimeSlotService>(
+    MockBookTimeSlotServiceImpl(),
+  );
+
+  sl.registerSingleton<RemoteBookTimeSlotService>(
+    RemoteBookTimeSlotServiceImpl(),
+  );
+
+  sl.registerSingleton<SessionService>(
+    SessionServiceImpl(pref: LocalPref()),
+  );
+
+  sl.registerSingleton<CacheBookTimeSlotUseCase>(
+    CacheBookTimeSlotUseCase(),
+  );
+
+  sl.registerSingleton<CacheMovieUseCase>(
+    CacheMovieUseCase(),
+  );
+
+  sl.registerSingleton<GetAllMoviesByTypeUseCase>(
+    GetAllMoviesByTypeUseCase(),
+  );
+  sl.registerSingleton<GetCachedBookTimeSlotUseCase>(
+    GetCachedBookTimeSlotUseCase(),
+  );
+  sl.registerSingleton<GetCachedSelectedTimeSlotUseCase>(
+    GetCachedSelectedTimeSlotUseCase(),
+  );
+  sl.registerSingleton<GetCachedMovieUseCase>(
+    GetCachedMovieUseCase(),
+  );
+  sl.registerSingleton<MockBookTimeSlotUseCase>(
+    MockBookTimeSlotUseCase(),
+  );
+
+  // all movie
+  sl.registerSingleton<MovieInfoService>(
+    MovieInfoServiceImpl(pref: LocalPref()),
+  );
+
+  sl.registerSingleton<MovieInfoRepository>(
+    MovieInfoRepositoryImpl(),
+  );
+
+  sl.registerSingleton<CacheMovieInfoDataUseCase>(
+    CacheMovieInfoDataUseCase(),
   );
 }

@@ -30,4 +30,8 @@ class AppVectors {
   static const String iconClockLine = '${basePath}ic_clock_line$format';
   static const String iconGift = '${basePath}ic_gift$format';
   static const String iconGiftGreen = '${basePath}ic_gift_green$format';
+  static const String iconSearch = '${basePath}ic_search$format';
+  static const String iconMore = '${basePath}ic_more$format';
+  static const String iconCineDot = '${basePath}ic_cine_dot$format';
+  static const String iconClose = '${basePath}ic_close$format';
 }
