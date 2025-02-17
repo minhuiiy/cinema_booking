@@ -1,11 +1,10 @@
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
-import 'package:cinema_booking/core/configs/theme/app_color.dart';
-import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:cinema_booking/domain/entities/booking/booking_time_slot.dart';
 import 'package:cinema_booking/domain/entities/cinema/cinema.dart';
 import 'package:cinema_booking/domain/entities/movies/movies.dart';
 import 'package:cinema_booking/presentation/booking/bloc/book_time_slot_bloc.dart';
 import 'package:cinema_booking/presentation/booking/bloc/book_time_slot_state.dart';
+import 'package:cinema_booking/presentation/booking/widgets/widget_cinema_pick_date.dart';
 import 'package:cinema_booking/presentation/booking/widgets/widget_search_sort_toolbar.dart';
 import 'package:cinema_booking/presentation/booking/widgets/widget_cinema_timeslot.dart';
 import 'package:cinema_booking/presentation/booking/widgets/widget_loading.dart';
@@ -93,41 +92,52 @@ class BookTimeSlotScreen extends StatelessWidget {
       bottom: 0,
       right: 0,
       left: 0,
-      child: Container(
-        height: 56,
-        padding: EdgeInsets.only(left: 20),
-//        width: MediaQuery.of(_context).size.width,
-        color: AppColors.blue,
-        child: Row(
-          children: <Widget>[
-            Expanded(
-              child: GestureDetector(
-                onTap: () {
-                  // openCineDatePicker();
-                },
-                child: Row(
-                  children: <Widget>[
-                    Icon(Icons.calendar_today, color: AppColors.white, size: 14),
-                    WidgetSpacer(width: 6),
-                    Text('Today, 14 NOV', style: AppFont.regular_white_14),
-                    WidgetSpacer(width: 4),
-                    Icon(Icons.keyboard_arrow_down, color: AppColors.white, size: 12)
-                  ],
-                ),
-              ),
-            ),
-            Expanded(
-              child: Row(
-                children: <Widget>[
-                  Text('Tamil, 3D', style: AppFont.regular_white_14),
-                  WidgetSpacer(width: 4),
-                  Icon(Icons.keyboard_arrow_down, color: AppColors.white, size: 10)
-                ],
-              ),
-            )
-          ],
-        ),
+      child: CinematicBottomBar(
+        dateText: "Today, 14 NOV",
+        formatText: "Tamil, 3D",
+        onDateTap: () {
+          // openCineDatePicker();
+        },
+        onFormatTap: () {
+          // openCineDatePicker();
+        },
       ),
+
+//       Container(
+//         height: 56,
+//         padding: EdgeInsets.only(left: 20),
+// //        width: MediaQuery.of(_context).size.width,
+//         color: AppColors.blue,
+//         child: Row(
+//           children: <Widget>[
+//             Expanded(
+//               child: GestureDetector(
+//                 onTap: () {
+//                   // openCineDatePicker();
+//                 },
+//                 child: Row(
+//                   children: <Widget>[
+//                     Icon(Icons.calendar_today, color: AppColors.white, size: 14),
+//                     WidgetSpacer(width: 6),
+//                     Text('Today, 14 NOV', style: AppFont.regular_white_14),
+//                     WidgetSpacer(width: 4),
+//                     Icon(Icons.keyboard_arrow_down, color: AppColors.white, size: 12)
+//                   ],
+//                 ),
+//               ),
+//             ),
+//             Expanded(
+//               child: Row(
+//                 children: <Widget>[
+//                   Text('Tamil, 3D', style: AppFont.regular_white_14),
+//                   WidgetSpacer(width: 4),
+//                   Icon(Icons.keyboard_arrow_down, color: AppColors.white, size: 10)
+//                 ],
+//               ),
+//             )
+//           ],
+//         ),
+//       ),
     );
   }
 

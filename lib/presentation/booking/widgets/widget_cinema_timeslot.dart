@@ -34,53 +34,85 @@ class WidgetCineTimeSlot extends StatelessWidget {
     _context = context;
 
     return Container(
-      padding: EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 7),
-      color: AppColors.white,
+      padding: EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Colors.black.withOpacity(0.9), Colors.black.withOpacity(0.7)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.5),
+            blurRadius: 12,
+            spreadRadius: -3,
+            offset: Offset(0, 6),
+          ),
+        ],
+      ),
       child: Column(
-        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          movieCineName
-              ? Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: Text(item.cineName, style: AppFont.medium_blue_14),
+          // Cinema Name & Info Icon
+          if (movieCineName)
+            Row(
+              children: <Widget>[
+                Expanded(
+                  child: Text(
+                    item.cineName,
+                    style: AppFont.semibold_white_16.copyWith(
+                      shadows: [Shadow(color: Colors.black38, blurRadius: 6)],
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        _openCineLocation();
-                      },
-                      child:
-                          Icon(Icons.info_outline, color: AppColors.gray1.withValues(alpha: 0.50)),
-                    ),
-                  ],
-                )
-              : Container(),
-          WidgetSpacer(height: 4),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () => _openCineLocation(),
+                  child: Icon(Icons.info_outline, color: Colors.white.withOpacity(0.6)),
+                ),
+              ],
+            ),
+          WidgetSpacer(height: 6),
+
+          // Location & Distance
           Row(
             children: <Widget>[
-              movieCineDot
-                  ? MySvgImage(
-                      path: AppVectors.iconCineDot,
-                      width: 9.94,
-                      height: 12,
-                      color: AppColors.gray1,
-                    )
-                  : Container(),
+              if (movieCineDot)
+                MySvgImage(
+                  path: AppVectors.iconCineDot,
+                  width: 10,
+                  height: 12,
+                  color: Colors.white70,
+                ),
               WidgetSpacer(width: movieCineDot ? 7 : 0),
               Expanded(
                 child: Text(
                   item.textLocation,
-                  style: AppFont.regular_gray1_12,
+                  style: AppFont.regular_white_12,
                   maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
-              WidgetSpacer(width: 11),
-              Text("${item.textDistance} miles away", style: AppFont.regular_black2_10),
+              WidgetSpacer(width: 10),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                child: Text(
+                  "${item.textDistance} miles away",
+                  style: AppFont.regular_white_10,
+                ),
+              ),
             ],
           ),
           WidgetSpacer(height: 16),
+
+          // Time Slots
           Wrap(
+            spacing: 10,
+            runSpacing: 10,
             children: <Widget>[
               for (final timeSlot in item.timeSlots)
                 _WidgetTimeSlot(
@@ -97,7 +129,7 @@ class WidgetCineTimeSlot extends StatelessWidget {
                   },
                 )
             ],
-          )
+          ),
         ],
       ),
     );
@@ -115,66 +147,82 @@ class WidgetCineTimeSlot extends StatelessWidget {
   }
 }
 
-class _WidgetTimeSlot extends StatelessWidget {
-  ItemTimeSlot item;
-  bool isSelected;
-  bool isSmallMode;
+class _WidgetTimeSlot extends StatefulWidget {
+  final ItemTimeSlot item;
+  final bool isSelected;
+  final bool isSmallMode;
+  final Function(TimeSlotEntity) itemClick;
 
-  Function(TimeSlotEntity) itemClick;
+  const _WidgetTimeSlot(this.item, this.isSelected, this.isSmallMode, this.itemClick, {super.key});
 
-  _WidgetTimeSlot(
-    this.item,
-    this.isSelected,
-    this.isSmallMode,
-    this.itemClick,
-  );
+  @override
+  __WidgetTimeSlotState createState() => __WidgetTimeSlotState();
+}
+
+class __WidgetTimeSlotState extends State<_WidgetTimeSlot> {
+  bool isPressed = false;
 
   @override
   Widget build(BuildContext context) {
-    var itemWidth = 99.0;
-    var fontSize = 14.0;
-    var textPaddingHoz = 10.0;
+    double itemWidth = widget.isSmallMode ? 84.0 : 100.0;
+    double fontSize = widget.isSmallMode ? 12.0 : 14.0;
 
-    var textStyle = AppFont.regular_black2_14;
-    var timeColor = item.hour % 2 == 0 ? AppColors.green : AppColors.orange;
-    if (!item.active) {
+    Color timeColor = widget.item.hour % 2 == 0 ? AppColors.green : AppColors.orange;
+    if (!widget.item.active) {
       timeColor = AppColors.timeSlotBorder;
     }
 
-    var itemBg = isSelected ? AppColors.green : AppColors.timeSlotBg;
-    var itemBorder = isSelected ? Colors.transparent : AppColors.timeSlotBorder;
+    Color itemBg = widget.isSelected ? AppColors.green : AppColors.timeSlotBg;
+    Color itemBorder = widget.isSelected ? Colors.transparent : AppColors.timeSlotBorder;
 
-    if (isSelected) {
-      timeColor = AppColors.white;
-      textStyle = AppFont.medium_white_14;
-    }
-
-    if (isSmallMode) {
-      itemWidth = 84.0;
-      fontSize = 12.0;
+    if (widget.isSelected) {
+      timeColor = Colors.white;
     }
 
     return GestureDetector(
+      onTapDown: (_) => setState(() => isPressed = true),
+      onTapUp: (_) => setState(() => isPressed = false),
+      onTapCancel: () => setState(() => isPressed = false),
       onTap: () {
-        if (!isSmallMode) {
-          itemClick(item.timeSlot);
+        if (!widget.isSmallMode) {
+          widget.itemClick(widget.item.timeSlot);
         }
       },
-      child: Container(
+      child: AnimatedContainer(
+        duration: Duration(milliseconds: 200),
+        curve: Curves.easeInOut,
         width: itemWidth,
-        padding: EdgeInsets.symmetric(vertical: textPaddingHoz),
-        margin: EdgeInsets.only(right: 13, bottom: 13),
+        padding: EdgeInsets.symmetric(vertical: 10),
+        margin: EdgeInsets.only(right: 8, bottom: 8),
         decoration: BoxDecoration(
-            border: Border.all(
-              color: itemBorder,
-              width: 0.5,
-            ),
-            borderRadius: BorderRadius.all(Radius.circular(4)),
-            color: itemBg),
+          border: Border.all(color: itemBorder, width: 1),
+          borderRadius: BorderRadius.circular(6),
+          gradient: widget.isSelected
+              ? LinearGradient(
+                  colors: [Colors.greenAccent, Colors.green],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                )
+              : LinearGradient(
+                  colors: [Colors.white.withOpacity(0.1), Colors.white.withOpacity(0.05)],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+          boxShadow: widget.isSelected
+              ? [
+                  BoxShadow(
+                    color: Colors.greenAccent.withOpacity(0.4),
+                    blurRadius: 10,
+                    spreadRadius: -2,
+                    offset: Offset(0, 4),
+                  ),
+                ]
+              : [],
+        ),
         child: Center(
           child: Text(
-            item.time,
-            style: textStyle.copyWith(color: timeColor, fontSize: fontSize),
+            widget.item.time,
+            style: AppFont.medium_white_14.copyWith(color: timeColor, fontSize: fontSize),
           ),
         ),
       ),
