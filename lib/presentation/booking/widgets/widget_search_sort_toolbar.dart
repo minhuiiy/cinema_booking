@@ -106,11 +106,23 @@ class _WidgetSearchSortToolbarState extends State<WidgetSearchSortToolbar> {
           ? TextField(
               controller: _searchController,
               keyboardType: TextInputType.text,
-              maxLines: 1,
               autofocus: true,
               textInputAction: TextInputAction.search,
-              style: AppFont.regular_white_14,
-              decoration: InputDecoration(hintText: 'Search', hintStyle: AppFont.regular_gray4_14),
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+              ),
+              decoration: InputDecoration(
+                hintText: 'Search movies...',
+                hintStyle: TextStyle(
+                  color: Colors.white70,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                ),
+                border: InputBorder.none,
+                contentPadding: EdgeInsets.symmetric(vertical: 12), // Fix: Proper padding
+              ),
             )
           : Text(widget.title, style: AppFont.semibold_white_18),
     );
