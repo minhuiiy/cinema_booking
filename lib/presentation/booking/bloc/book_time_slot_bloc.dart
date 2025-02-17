@@ -52,7 +52,7 @@ class BookTimeSlotBloc extends Bloc<BookTimeSlotEvent, BookTimeSlotState> {
           LogHelper.logInfo(tag: 'OpenScreen Success', message: 'Data loaded successfully');
         },
       );
-    } catch (e, stackTrace) {
+    } catch (e) {
       emit(state.copyWith(msg: e.toString()));
       LogHelper.logError(
           tag: 'OpenScreen Error', message: 'Failed to load movies: ' + e.toString());
