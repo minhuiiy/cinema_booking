@@ -41,7 +41,7 @@ class ClickIconSort extends BookTimeSlotEvent {
 }
 
 class SortByChanged extends BookTimeSlotEvent {
-  final BOOKING_TIME_SLOT_SORT_BY sortBy;
+  final BookingTimeSlotSortBy sortBy;
 
   const SortByChanged({required this.sortBy});
 

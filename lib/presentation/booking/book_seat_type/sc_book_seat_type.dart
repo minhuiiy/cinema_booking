@@ -9,7 +9,7 @@ import 'package:cinema_booking/presentation/booking/book_seat_slot/sc_book_seat_
 import 'package:cinema_booking/presentation/booking/book_seat_type/bloc/book_seat_type_bloc.dart';
 import 'package:cinema_booking/presentation/booking/book_seat_type/bloc/book_seat_type_state.dart';
 import 'package:cinema_booking/presentation/booking/book_seat_type/widget_how_many_seats.dart';
-import 'package:cinema_booking/presentation/booking/book_time_slot/sc_book_time_slot.dart';
+import 'package:cinema_booking/presentation/booking/book_time_slot_main.dart';
 import 'package:cinema_booking/presentation/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

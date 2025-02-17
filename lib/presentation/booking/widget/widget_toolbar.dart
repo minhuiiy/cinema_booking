@@ -1,5 +1,6 @@
 import 'package:cinema_booking/common/widgets/image/svg_image.dart';
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
+import 'package:cinema_booking/core/configs/assets/app_vectors.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:flutter/material.dart';
@@ -48,13 +49,13 @@ class WidgetToolbar extends StatelessWidget {
     return Row(
       children: <Widget>[
         MySvgImage(
-          path: "assets/ic_search.svg",
+          path: AppVectors.iconSearch,
           width: 20,
           height: 20,
         ),
         WidgetSpacer(width: 12),
         MySvgImage(
-          path: "assets/ic_more.svg",
+          path: AppVectors.iconMore,
           width: 20,
           height: 20,
         ),

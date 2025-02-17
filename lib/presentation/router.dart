@@ -8,7 +8,7 @@
 import 'package:cinema_booking/common/helpers/log_helpers.dart';
 import 'package:cinema_booking/domain/entities/movies/movies.dart';
 import 'package:cinema_booking/domain/entities/response/home.dart';
-import 'package:cinema_booking/presentation/booking/book_time_slot/sc_book_time_slot.dart';
+import 'package:cinema_booking/presentation/booking/book_time_slot_main.dart';
 import 'package:cinema_booking/presentation/home/home_main.dart';
 import 'package:cinema_booking/presentation/login/pages/login.dart';
 import 'package:cinema_booking/presentation/login/pages/register.dart';

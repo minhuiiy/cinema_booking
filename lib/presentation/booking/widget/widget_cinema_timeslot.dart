@@ -2,11 +2,12 @@
 
 import 'package:cinema_booking/common/widgets/image/svg_image.dart';
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
+import 'package:cinema_booking/core/configs/assets/app_vectors.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:cinema_booking/domain/entities/show_time/time_slot.dart';
-import 'package:cinema_booking/presentation/booking/book_time_slot/bloc/book_time_slot_bloc.dart';
-import 'package:cinema_booking/presentation/booking/book_time_slot/sc_book_time_slot.dart';
+import 'package:cinema_booking/presentation/booking/bloc/book_time_slot_bloc.dart';
+import 'package:cinema_booking/presentation/booking/book_time_slot_main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -60,7 +61,7 @@ class WidgetCineTimeSlot extends StatelessWidget {
             children: <Widget>[
               movieCineDot
                   ? MySvgImage(
-                      path: 'assets/ic_cine_dot.svg',
+                      path: AppVectors.iconCineDot,
                       width: 9.94,
                       height: 12,
                       color: AppColors.gray1,

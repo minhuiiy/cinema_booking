@@ -3,8 +3,8 @@ import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
 import 'package:cinema_booking/core/configs/assets/app_vectors.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
-import 'package:cinema_booking/presentation/booking/book_time_slot/bloc/book_time_slot_bloc.dart';
-import 'package:cinema_booking/presentation/booking/book_time_slot/bloc/book_time_slot_state.dart';
+import 'package:cinema_booking/presentation/booking/bloc/book_time_slot_bloc.dart';
+import 'package:cinema_booking/presentation/booking/bloc/book_time_slot_state.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,6 +14,7 @@ class WidgetSearchSortToolbar extends StatefulWidget {
   final String title;
 
   const WidgetSearchSortToolbar({
+    super.key,
     required this.title,
   });
 
@@ -83,7 +84,7 @@ class _WidgetSearchSortToolbarState extends State<WidgetSearchSortToolbar> {
                 .add(state.movieSearchField ? ClickCloseSearch() : ClickIconSearch());
           },
           child: MySvgImage(
-            path: state.movieSearchField ? "assets/ic_close.svg" : "assets/ic_search.svg",
+            path: state.movieSearchField ? AppVectors.iconClose : AppVectors.iconSearch,
             width: 20,
             height: 20,
           ),
@@ -94,7 +95,7 @@ class _WidgetSearchSortToolbarState extends State<WidgetSearchSortToolbar> {
 //            BlocProvider.of<BookTimeSlotBloc>(_blocContext).add(ClickIconSort());
           },
           child: MySvgImage(
-            path: "assets/ic_more.svg",
+            path: AppVectors.iconMore,
             width: 20,
             height: 20,
           ),
