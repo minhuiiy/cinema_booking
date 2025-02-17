@@ -1,8 +1,8 @@
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
 import 'package:cinema_booking/domain/entities/booking/booking_time_slot.dart';
-import 'package:cinema_booking/presentation/booking/widget/widget_cinema_timeslot.dart';
-import 'package:cinema_booking/presentation/booking/widget/widget_empty.dart';
-import 'package:cinema_booking/presentation/booking/widget/widget_toolbar.dart';
+import 'package:cinema_booking/presentation/booking/widgets/widget_cinema_timeslot.dart';
+import 'package:cinema_booking/presentation/booking/widgets/widget_empty.dart';
+import 'package:cinema_booking/presentation/booking/widgets/widget_toolbar.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:cinema_booking/presentation/booking/book_seat_slot/sc_book_seat_slot.dart';

@@ -7,10 +7,10 @@ import 'package:cinema_booking/domain/entities/movies/movies.dart';
 import 'package:cinema_booking/presentation/booking/bloc/book_time_slot_bloc.dart';
 import 'package:cinema_booking/presentation/booking/bloc/book_time_slot_state.dart';
 import 'package:cinema_booking/presentation/booking/widgets/widget_search_sort_toolbar.dart';
-import 'package:cinema_booking/presentation/booking/widget/widget_cinema_timeslot.dart';
-import 'package:cinema_booking/presentation/booking/widget/widget_loading.dart';
-import 'package:cinema_booking/presentation/booking/widget/widget_screen_message.dart';
-import 'package:cinema_booking/presentation/booking/widget/widget_unknown_state.dart';
+import 'package:cinema_booking/presentation/booking/widgets/widget_cinema_timeslot.dart';
+import 'package:cinema_booking/presentation/booking/widgets/widget_loading.dart';
+import 'package:cinema_booking/presentation/booking/widgets/widget_screen_message.dart';
+import 'package:cinema_booking/presentation/booking/widgets/widget_unknown_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

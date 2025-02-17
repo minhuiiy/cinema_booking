@@ -55,10 +55,10 @@ class SortByChanged extends BookTimeSlotEvent {
 }
 
 class SelectTimeSlot extends BookTimeSlotEvent {
-  TimeSlotEntity selectedTimeSlot;
-  BookTimeSlotEntity bookTimeSlot;
+  final TimeSlotEntity selectedTimeSlot;
+  final BookTimeSlotEntity bookTimeSlot;
 
-  SelectTimeSlot({
+  const SelectTimeSlot({
     required this.selectedTimeSlot,
     required this.bookTimeSlot,
   });

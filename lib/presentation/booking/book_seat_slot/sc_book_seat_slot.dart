@@ -1,10 +1,10 @@
 import 'package:cinema_booking/common/widgets/snackbar/my_snackbar.dart';
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
-import 'package:cinema_booking/presentation/booking/widget/widget_cinema_timeslot.dart';
-import 'package:cinema_booking/presentation/booking/widget/widget_empty.dart';
-import 'package:cinema_booking/presentation/booking/widget/widget_loading.dart';
-import 'package:cinema_booking/presentation/booking/widget/widget_screen_message.dart';
-import 'package:cinema_booking/presentation/booking/widget/widget_toolbar.dart';
+import 'package:cinema_booking/presentation/booking/widgets/widget_cinema_timeslot.dart';
+import 'package:cinema_booking/presentation/booking/widgets/widget_empty.dart';
+import 'package:cinema_booking/presentation/booking/widgets/widget_loading.dart';
+import 'package:cinema_booking/presentation/booking/widgets/widget_screen_message.dart';
+import 'package:cinema_booking/presentation/booking/widgets/widget_toolbar.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:cinema_booking/data/models/seats/seat_type.dart';
