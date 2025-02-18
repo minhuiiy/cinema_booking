@@ -1,7 +1,10 @@
 import 'package:cinema_booking/common/helpers/log_helpers.dart';
 import 'package:cinema_booking/core/enum/sort_movie.dart';
+import 'package:cinema_booking/data/models/response/all_movie_by_type_response.dart';
 import 'package:cinema_booking/domain/entities/movies/movies.dart';
+import 'package:cinema_booking/domain/entities/response/all_mobie_by_type.dart';
 import 'package:cinema_booking/domain/entities/response/home.dart';
+import 'package:cinema_booking/domain/usecase/all_movie/get_all_movie.dart';
 import 'package:cinema_booking/service_locator.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -49,7 +52,7 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
         },
       );
     } catch (e) {
-      LogHelper.logDebug(tag: "AllMoviesBloc", message: "Error fetching data: $e");
+      LogHelper.logError(tag: "AllMoviesBloc", message: "Error fetching data: $e");
       emit(DisplayListMovies.error(e.toString()));
     }
   }
@@ -95,15 +98,15 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
           emit(DisplayListMovies.error(l.toString()));
         },
         (data) async {
-          if (data is AllMoviesModelResponse) {
-            bool query(MovieEntity movie) =>
-                keyword.isEmpty || movie.name.toLowerCase().contains(keyword.toLowerCase());
+          if (data is AllMoviesEntity) {
+            bool query(MovieDetailEntity movie) =>
+                keyword.isEmpty || movie.detail.name.toLowerCase().contains(keyword.toLowerCase());
 
             data.nowMovieing = data.nowMovieing.where(query).toList();
             data.comingSoon = data.comingSoon.where(query).toList();
             data.exclusive = data.exclusive.where(query).toList();
 
-            final meta = _metaFromResponse(data.toEntity());
+            final meta = _metaFromResponse(data);
             emit(DisplayListMovies.data(meta));
           } else {
             emit(DisplayListMovies.error("Invalid response type"));
@@ -111,7 +114,7 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
         },
       );
     } catch (e) {
-      LogHelper.logDebug(tag: "AllMoviesBloc", message: "Error filtering search results: $e");
+      LogHelper.logError(tag: "AllMoviesBloc", message: "Error filtering search results: $e");
       emit(DisplayListMovies.error(e.toString()));
     }
   }
@@ -130,7 +133,7 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
     await _mapSearchQueryChangedToState('', emit);
   }
 
-  Meta _metaFromResponse(AllMoviesByTypeResponseEntity response) {
+  Meta _metaFromResponse(AllMoviesEntity response) {
     var sortBy;
     // if (movieSortBy == MovieSoftBy.NAME) {
     //   sortBy = (MovieEntity a, MovieEntity b) => a.name.compareTo(b.name);

@@ -92,7 +92,7 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
     LogHelper.logDebug(
         tag: "AllMoviesScreen",
         message: "Opening sort options dialog with current sortBy: $movieSortBy");
-    switch (await movieDialog<MovieSoftBy>(
+    switch (await showDialog<MovieSoftBy>(
         context: context,
         builder: (BuildContext context) {
           return SimpleDialog(

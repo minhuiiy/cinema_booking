@@ -10,6 +10,7 @@ import 'package:cinema_booking/presentation/booking/widgets/widget_cinema_timesl
 import 'package:cinema_booking/presentation/booking/widgets/widget_loading.dart';
 import 'package:cinema_booking/presentation/booking/widgets/widget_screen_message.dart';
 import 'package:cinema_booking/presentation/booking/widgets/widget_unknown_state.dart';
+import 'package:cinema_booking/presentation/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -143,8 +144,8 @@ class BookTimeSlotScreen extends StatelessWidget {
 
   _openBookSeatTypeScreen(BuildContext context) {
     // TODO:
-    // BlocProvider.of<BookTimeSlotBloc>(context).add(OpenedBookSeatTypeScreen());
-    // Navigator.pushNamed(context, AppRouter.BOOK_SEAT_TYPE);
+    BlocProvider.of<BookTimeSlotBloc>(context).add(OpenedBookSeatTypeScreen());
+    Navigator.pushNamed(context, AppRouter.BOOK_SEAT_TYPE);
   }
 
   // void openCineDatePicker() {

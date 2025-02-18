@@ -8,6 +8,9 @@
 import 'package:cinema_booking/common/helpers/log_helpers.dart';
 import 'package:cinema_booking/domain/entities/movies/movies.dart';
 import 'package:cinema_booking/domain/entities/response/home.dart';
+import 'package:cinema_booking/presentation/all_movies/sc_all_movies.dart';
+import 'package:cinema_booking/presentation/booking/book_seat_slot/sc_book_seat_slot.dart';
+import 'package:cinema_booking/presentation/booking/book_seat_type/sc_book_seat_type.dart';
 import 'package:cinema_booking/presentation/booking/book_time_slot_main.dart';
 import 'package:cinema_booking/presentation/home/home_main.dart';
 import 'package:cinema_booking/presentation/login/pages/login.dart';
@@ -23,6 +26,9 @@ class AppRouter {
   static const String REGISTER = '/register';
   static const String MOVIE = '/movie';
   static const String BOOK_TIME_SLOT = '/bookTimeSlot';
+  static const String ALL_MOVIES = '/allMovies';
+  static const String BOOK_SEAT_TYPE = '/bookSeatType';
+  static const String BOOK_SEAT_SLOT = '/bookSeatSlot';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -40,12 +46,20 @@ class AppRouter {
 
       case BOOK_TIME_SLOT:
         var movie = settings.arguments as MovieEntity;
-        LogHelper.logDebug(tag: "AppRouter", message: "BOOK_TIME_SLOT Done " + movie.toString());
         return MaterialPageRoute(builder: (_) => BookTimeSlotScreen(movie: movie));
 
       case MOVIE:
         var movieDetail = settings.arguments as MovieDetailEntity;
         return MaterialPageRoute(builder: (_) => MovieInfoScreen(movie: movieDetail));
+
+      case ALL_MOVIES:
+        return MaterialPageRoute(builder: (_) => AllMoviesScreen());
+
+      case BOOK_SEAT_TYPE:
+        return MaterialPageRoute(builder: (_) => BookSeatTypeScreen());
+      case BOOK_SEAT_SLOT:
+        final args = settings.arguments as ScreenArguments;
+        return MaterialPageRoute(builder: (_) => BookSeatSlotScreen(args: args));
 
       default:
         return MaterialPageRoute(

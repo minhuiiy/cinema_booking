@@ -9,7 +9,6 @@ import 'package:cinema_booking/common/widgets/scroll_list/hoz_list_view.dart';
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
-import 'package:cinema_booking/domain/entities/movies/movies.dart';
 import 'package:cinema_booking/domain/entities/response/home.dart';
 import 'package:cinema_booking/presentation/home/recommended_movies/bloc/recommended_movies_bloc.dart';
 import 'package:cinema_booking/presentation/router.dart';
@@ -33,7 +32,7 @@ class _WidgetRecommendedMoviesState extends State<WidgetRecommendedMovies> {
     return BlocBuilder<RecommendedMoviesBloc, RecommendedMoviesState>(
       builder: (context, state) {
         if (state is RecommendedMoviesLoaded) {
-          items = state.movies.map((movie) => ItemRecommendedSeatVM.fromShow(movie)).toList();
+          items = state.movies.map((movie) => ItemRecommendedSeatVM.fromMovie(movie)).toList();
 
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -142,7 +141,7 @@ class _WidgetItemRecommendedSeat extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        openShowDetails(context);
+        openMovieDetails(context);
       },
       child: SizedBox(
         width: 180,
@@ -180,7 +179,7 @@ class _WidgetItemRecommendedSeat extends StatelessWidget {
     );
   }
 
-  void openShowDetails(BuildContext context) {
+  void openMovieDetails(BuildContext context) {
     Navigator.pushNamed(context, AppRouter.MOVIE, arguments: item.movie);
   }
 }
@@ -191,7 +190,7 @@ class ItemRecommendedSeatVM {
   late int likePercent;
   MovieDetailEntity movie;
 
-  ItemRecommendedSeatVM.fromShow(this.movie) {
+  ItemRecommendedSeatVM.fromMovie(this.movie) {
     photo = movie.detail.thumb;
     title = movie.detail.name;
     likePercent = movie.detail.rate;
