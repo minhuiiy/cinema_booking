@@ -8,9 +8,7 @@ part of 'movie_detail_response.dart';
 
 MovieDetailResponse _$MovieDetailResponseFromJson(Map<String, dynamic> json) =>
     MovieDetailResponse(
-      detail: json['movie'] == null
-          ? null
-          : MovieModel.fromJson(json['movie'] as Map<String, dynamic>),
+      detail: MovieModel.fromJson(json['movie'] as Map<String, dynamic>),
       format:
           (json['tami'] as List<dynamic>?)?.map((e) => e as String).toList(),
       genres:

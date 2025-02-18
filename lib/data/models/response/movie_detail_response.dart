@@ -16,7 +16,7 @@ part 'movie_detail_response.g.dart';
 @JsonSerializable()
 class MovieDetailResponse {
   @JsonKey(name: "movie")
-  MovieModel? detail;
+  MovieModel detail;
   @JsonKey(name: "tami")
   List<String>? format;
   @JsonKey(name: "tags")
@@ -31,7 +31,7 @@ class MovieDetailResponse {
   List<MovieCastModel>? casts;
 
   MovieDetailResponse({
-    this.detail,
+    required this.detail,
     this.format,
     this.genres,
     this.movieOffer,
@@ -49,7 +49,7 @@ class MovieDetailResponse {
 extension MovieDetailResponseX on MovieDetailResponse {
   MovieDetailEntity toEntity() {
     return MovieDetailEntity(
-      detail: detail!.toEntity(),
+      detail: detail.toEntity(),
       format: format ?? [],
       genres: genres ?? [],
       movieOffer: movieOffer?.map((offer) => offer.toEntity()).toList() ?? [],
@@ -57,5 +57,11 @@ extension MovieDetailResponseX on MovieDetailResponse {
       latestReviews: latestReviews!.toEntity(),
       casts: casts?.map((cast) => cast.toEntity()).toList() ?? [],
     );
+  }
+}
+
+extension MovieDetailResponseListX on List<MovieDetailResponse>? {
+  List<MovieDetailEntity> toEntities() {
+    return this?.map((response) => response.toEntity()).toList() ?? [];
   }
 }
