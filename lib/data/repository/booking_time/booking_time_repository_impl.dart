@@ -14,7 +14,7 @@ import 'package:cinema_booking/data/sources/booking_time/session_service.dart';
 import 'package:cinema_booking/domain/entities/booking/booking_time_slot.dart';
 import 'package:cinema_booking/domain/entities/movies/movies.dart';
 import 'package:cinema_booking/domain/entities/show_time/time_slot.dart';
-import 'package:cinema_booking/domain/repository/booking_time/book_time_slot_repository.dart';
+import 'package:cinema_booking/domain/repository/booking_time/book_time_slot.dart';
 import 'package:cinema_booking/service_locator.dart';
 import 'package:dartz/dartz.dart';
 

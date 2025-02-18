@@ -5,7 +5,7 @@
  */
 
 import 'package:cinema_booking/data/models/response/booking_time_slot_by_cinema_response.dart';
-import 'package:cinema_booking/domain/repository/booking_time/book_time_slot_repository.dart';
+import 'package:cinema_booking/domain/repository/booking_time/book_time_slot.dart';
 import 'package:dartz/dartz.dart';
 import 'package:cinema_booking/service_locator.dart';
 

@@ -1,4 +1,4 @@
-import 'package:cinema_booking/domain/repository/booking_time/book_time_slot_repository.dart';
+import 'package:cinema_booking/domain/repository/booking_time/book_time_slot.dart';
 import 'package:dartz/dartz.dart';
 import 'package:cinema_booking/service_locator.dart';
 
