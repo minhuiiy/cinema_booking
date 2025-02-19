@@ -1,5 +1,6 @@
 import 'package:cinema_booking/common/widgets/image/svg_image.dart';
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
+import 'package:cinema_booking/core/configs/assets/app_vectors.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:cinema_booking/presentation/all_movies/bloc/all_movies_bloc.dart';
@@ -56,7 +57,7 @@ class _WidgetAllMoviesToolbarState extends State<WidgetAllMoviesToolbar> {
                     child: MySvgImage(
                       width: 19,
                       height: 16,
-                      path: 'assets/ic_back.svg',
+                      path: AppVectors.iconBack,
                     ),
                   ),
                 ),
@@ -83,7 +84,7 @@ class _WidgetAllMoviesToolbarState extends State<WidgetAllMoviesToolbar> {
                 .add(state.movieSearchField ? ClickCloseSearch() : ClickIconSearch());
           },
           child: MySvgImage(
-            path: state.movieSearchField ? "assets/ic_close.svg" : "assets/ic_search.svg",
+            path: state.movieSearchField ? AppVectors.iconClose : AppVectors.iconSearch,
             width: 20,
             height: 20,
           ),
@@ -94,7 +95,7 @@ class _WidgetAllMoviesToolbarState extends State<WidgetAllMoviesToolbar> {
             BlocProvider.of<AllMoviesBloc>(_blocContext).add(ClickIconSort());
           },
           child: MySvgImage(
-            path: "assets/ic_more.svg",
+            path: AppVectors.iconMore,
             width: 20,
             height: 20,
           ),
