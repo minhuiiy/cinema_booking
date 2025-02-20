@@ -153,7 +153,7 @@ class _WidgetSearchSortToolbarState extends State<WidgetSearchSortToolbar> {
         WidgetSpacer(width: 8),
         InkWell(
           onTap: () {
-//            BlocProvider.of<BookTimeSlotBloc>(_blocContext).add(ClickIconSort());
+            BlocProvider.of<BookTimeSlotBloc>(_blocContext).add(ClickIconSort());
           },
           child: MySvgImage(
             path: AppVectors.iconMore,

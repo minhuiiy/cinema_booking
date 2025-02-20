@@ -2,8 +2,8 @@ import 'package:cinema_booking/common/helpers/log_helpers.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:cinema_booking/core/enum/sort_movie.dart';
 import 'package:cinema_booking/presentation/all_movies/bloc/all_movies_bloc.dart';
-import 'package:cinema_booking/presentation/all_movies/widget_all_movies_toolbar.dart';
-import 'package:cinema_booking/presentation/all_movies/widget_movie_gallery.dart';
+import 'package:cinema_booking/presentation/all_movies/widgets/widget_all_movies_toolbar.dart';
+import 'package:cinema_booking/presentation/all_movies/widgets/widget_movie_gallery.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -53,7 +53,7 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
         return current is! UpdateToolbarState && current is! OpenSortOption;
       },
       builder: (context, state) {
-        LogHelper.logDebug(tag: "AllMoviesScreen", message: "state: " + state.toString());
+        LogHelper.logDebug(tag: "AllMoviesScreen", message: "state: $state");
         if (state is DisplayListMovies) {
           if (state.loading) {
             LogHelper.logDebug(tag: "AllMoviesScreen", message: "Loading data for display...");
@@ -64,7 +64,9 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
 
           if (state.msg != null) {
             LogHelper.logDebug(
-                tag: "AllMoviesScreen", message: "Displaying error message: ${state.msg}");
+              tag: "AllMoviesScreen",
+              message: "Displaying error message: ${state.msg}",
+            );
             return Center(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 32),

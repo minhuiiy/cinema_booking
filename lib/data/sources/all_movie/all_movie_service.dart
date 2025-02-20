@@ -15,19 +15,23 @@ class AllMoviesServiceImpl extends AllMoviesService {
 
     try {
       LogHelper.logDebug(
-          tag: "AllMovieRepository", message: "Making API request to fetch allMovies data");
+        tag: "AllMovieRepository",
+        message: "Making API request to fetch allMovies data",
+      );
       final client = RestClient(localDio);
       LogHelper.logDebug(
-          tag: "AllMovieRepository", message: "Making API request to getAllMovieData");
+        tag: "AllMovieRepository",
+        message: "Making API request to getAllMovieData",
+      );
       final AllMoviesModelResponse allMoviesData = await client.getAllMoviesByType();
 
       // Log the actual response for debugging
       LogHelper.logDebug(
         tag: "AllMovieRepository",
-        message: "Received allMovies data: ${allMoviesData.toJson()}",
+        message: "Received allMovies data: ${allMoviesData.toEntity().toString()}",
       );
 
-      return right(allMoviesData);
+      return right(allMoviesData.toEntity());
     } catch (e, stackTrace) {
       LogHelper.logError(
         tag: "AllMovieRepository",

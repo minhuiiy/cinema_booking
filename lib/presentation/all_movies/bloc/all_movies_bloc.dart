@@ -38,12 +38,12 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
           emit(DisplayListMovies.error(l.toString()));
         },
         (data) async {
-          if (data is AllMoviesModelResponse) {
+          if (data is AllMoviesEntity) {
             LogHelper.logDebug(
               tag: '' "AllMoviesBloc",
               message: "Data fetched successfully + ${response.toString()}",
             );
-            var ok = DisplayListMovies.data(_metaFromResponse(data.toEntity()));
+            var ok = DisplayListMovies.data(_metaFromResponse(data));
             emit(ok);
             LogHelper.logDebug(tag: "AllMoviesBloc", message: "emit(ok)");
           } else {
@@ -67,7 +67,6 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
   Future<void> _onClickCloseSearch(ClickCloseSearch event, Emitter<AllMoviesState> emit) async {
     LogHelper.logDebug(tag: "AllMoviesBloc", message: "Closing search field");
     emit(UpdateToolbarState(movieSearchField: false));
-    emit(DisplayListMovies.loading());
     await _mapSearchQueryChangedToState('', emit);
   }
 
@@ -80,14 +79,16 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
   // Hàm debounce cho tìm kiếm
   Future<void> _debouncedSearchQueryChanged(String keyword, Emitter<AllMoviesState> emit) async {
     LogHelper.logDebug(tag: "AllMoviesBloc", message: "Debouncing search query...");
-    await Future.delayed(Duration(milliseconds: 400)); // Debounce logic
+    await Future.delayed(Duration(milliseconds: 400));
     await _mapSearchQueryChangedToState(keyword, emit);
   }
 
   // Hàm xử lý thay đổi truy vấn tìm kiếm
   Future<void> _mapSearchQueryChangedToState(String keyword, Emitter<AllMoviesState> emit) async {
     LogHelper.logDebug(
-        tag: "AllMoviesBloc", message: "Updating search results for query: $keyword");
+      tag: "AllMoviesBloc",
+      message: "Updating search results for query: $keyword",
+    );
     // emit(DisplayListMovies.loading());
     try {
       LogHelper.logDebug(tag: "AllMoviesBloc", message: "Fetching data for all movies...");
@@ -95,10 +96,22 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
 
       response.fold(
         (l) {
+          LogHelper.logDebug(
+            tag: "AllMoviesBloc",
+            message: "Fetching data for all movies... error: $l",
+          );
           emit(DisplayListMovies.error(l.toString()));
         },
         (data) async {
+          LogHelper.logDebug(
+            tag: "AllMoviesBloc",
+            message: "Fetching data for all movies... data: $data",
+          );
           if (data is AllMoviesEntity) {
+            LogHelper.logDebug(
+              tag: "AllMoviesBloc",
+              message: "AllMoviesEntity success",
+            );
             bool query(MovieDetailEntity movie) =>
                 keyword.isEmpty || movie.detail.name.toLowerCase().contains(keyword.toLowerCase());
 
@@ -107,8 +120,18 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
             data.exclusive = data.exclusive.where(query).toList();
 
             final meta = _metaFromResponse(data);
+
+            LogHelper.logDebug(
+              tag: "AllMoviesBloc",
+              message: "AllMoviesEntity success meta: $meta",
+            );
+
             emit(DisplayListMovies.data(meta));
           } else {
+            LogHelper.logDebug(
+              tag: "AllMoviesBloc",
+              message: "error",
+            );
             emit(DisplayListMovies.error("Invalid response type"));
           }
         },
@@ -135,15 +158,15 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
 
   Meta _metaFromResponse(AllMoviesEntity response) {
     var sortBy;
-    // if (movieSortBy == MovieSoftBy.NAME) {
-    //   sortBy = (MovieEntity a, MovieEntity b) => a.name.compareTo(b.name);
-    // } else {
-    //   sortBy = (MovieEntity a, MovieEntity b) => b.rate.compareTo(a.rate);
-    // }
+    if (movieSortBy == MovieSoftBy.name) {
+      sortBy = (MovieDetailEntity a, MovieDetailEntity b) => a.detail.name.compareTo(b.detail.name);
+    } else {
+      sortBy = (MovieDetailEntity a, MovieDetailEntity b) => b.detail.rate.compareTo(a.detail.rate);
+    }
 
-    // response.nowMovieing.sort(sortBy);
-    // response.comingSoon.sort(sortBy);
-    // response.exclusive.sort(sortBy);
+    response.nowMovieing.sort(sortBy);
+    response.comingSoon.sort(sortBy);
+    response.exclusive.sort(sortBy);
 
     return Meta(
       nowMovieing: response.nowMovieing,

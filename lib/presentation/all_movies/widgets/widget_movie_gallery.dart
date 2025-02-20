@@ -74,24 +74,21 @@ class _WidgetMovieGalleryState extends State<WidgetMovieGallery>
       child: TabBar(
         controller: _controller,
         tabs: <Widget>[
-          Tab(
-            text: 'Now movieing',
-          ),
-          Tab(
-            text: 'Coming soon',
-          ),
-          Tab(
-            text: 'Exclusive',
-          ),
+          Tab(text: 'Now Showing'),
+          Tab(text: 'Coming Soon'),
+          Tab(text: 'Exclusive'),
         ],
-        onTap: (index) {},
-        labelColor: AppColors.defaultColor,
-        labelStyle: AppFont.medium_default,
-        unselectedLabelColor: AppColors.gray1.withValues(alpha: 0.7),
-        unselectedLabelStyle: AppFont.regular_gray1_12,
+        labelColor: Colors.purpleAccent,
+        labelStyle: AppFont.medium_default.copyWith(fontSize: 16, fontWeight: FontWeight.bold),
+        unselectedLabelColor: Colors.grey.shade500,
+        unselectedLabelStyle: AppFont.regular_gray1_12.copyWith(fontSize: 14),
         indicatorSize: TabBarIndicatorSize.label,
         indicator: RoundedRectIndicator(
-            color: AppColors.defaultColor, radius: 2, padding: 22, weight: 3.0),
+          color: Colors.purpleAccent,
+          radius: 4,
+          padding: 24,
+          weight: 4.0,
+        ),
       ),
     );
   }

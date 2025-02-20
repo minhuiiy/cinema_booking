@@ -13,64 +13,79 @@ class WidgetListMovie extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.count(
-      crossAxisCount: 2,
-      crossAxisSpacing: 20,
-      mainAxisSpacing: 10,
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-      shrinkWrap: true,
-      childAspectRatio: 150 / 250,
-      physics: BouncingScrollPhysics(),
-      children: items.map(
-        (item) {
-          return _WidgetItemMovie(item: item);
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+      child: GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 12,
+          mainAxisSpacing: 16,
+          childAspectRatio: 0.65,
+        ),
+        itemCount: items.length,
+        itemBuilder: (context, index) {
+          var movie = items[index];
+          return _buildMovieCard(movie, context);
         },
-      ).toList(),
+      ),
     );
   }
-}
 
-class _WidgetItemMovie extends StatelessWidget {
-  final ItemMovieVM item;
-
-  const _WidgetItemMovie({required this.item});
-
-  @override
-  Widget build(BuildContext context) {
+  Widget _buildMovieCard(ItemMovieVM movie, BuildContext context) {
     return GestureDetector(
       onTap: () {
-        openMovieDetails(item.movie, context);
+        openMovieDetails(movie.movie, context);
       },
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          Flexible(
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: ShimmerImage(
-                url: item.photo,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.3),
+              blurRadius: 8,
+              spreadRadius: -2,
+              offset: Offset(0, 6),
+            ),
+          ],
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(12),
+          child: Stack(
+            children: [
+              ShimmerImage(
+                url: movie.photo,
                 aspectRatio: 150 / 200,
+                width: double.infinity,
+                height: double.infinity,
                 fit: BoxFit.cover,
               ),
-            ),
-          ),
-          WidgetSpacer(height: 6),
-          Text(item.title,
-              style: AppFont.regular_black2_14, maxLines: 1, overflow: TextOverflow.ellipsis),
-          WidgetSpacer(height: 2),
-          Row(
-            children: <Widget>[
-              Icon(
-                Icons.favorite,
-                color: AppColors.defaultColor,
-                size: 16,
+              Positioned(
+                bottom: 10,
+                left: 8,
+                right: 8,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      movie.title,
+                      style: AppFont.medium_white_16,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    WidgetSpacer(height: 4),
+                    Row(
+                      children: [
+                        Icon(Icons.favorite, color: Colors.pinkAccent, size: 16),
+                        WidgetSpacer(width: 4),
+                        Text('${movie.likePercent} %', style: AppFont.regular_white_12),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-              WidgetSpacer(width: 6),
-              Text('${item.likePercent}%', style: AppFont.regular_gray6_12)
             ],
           ),
-        ],
+        ),
       ),
     );
   }

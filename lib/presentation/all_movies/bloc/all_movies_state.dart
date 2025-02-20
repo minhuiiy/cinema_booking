@@ -24,9 +24,6 @@ class DisplayListMovies extends AllMoviesState {
     return DisplayListMovies(msg: msg, meta: null, loading: false);
   }
 
-//  @override
-//  List<Object> get props => [meta, loading, msg];
-
   @override
   String toString() {
     return 'DisplayListMovies{meta: $meta, loading: $loading, msg: $msg}';
