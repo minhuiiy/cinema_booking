@@ -1,5 +1,8 @@
 import 'package:cinema_booking/common/helpers/log_helpers.dart';
+import 'package:cinema_booking/common/widgets/image/svg_image.dart';
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
+import 'package:cinema_booking/core/configs/theme/app_color.dart';
+import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:cinema_booking/domain/entities/response/home.dart';
 import 'package:cinema_booking/presentation/movie/bloc/movie_details_bloc.dart';
 import 'package:cinema_booking/presentation/movie/widgets/widget_movie_casts.dart';
@@ -74,6 +77,37 @@ class MovieInfoScreen extends StatelessWidget {
     );
   }
 
+  // _buildBtnBookTicket(BuildContext context) {
+  //   return Positioned(
+  //     bottom: 0,
+  //     right: 0,
+  //     left: 0,
+  //     child: Container(
+  //       height: 54,
+  //       child: ElevatedButton(
+  //         style: ElevatedButton.styleFrom(
+  //           backgroundColor: AppColors.defaultColor,
+  //         ),
+  //         child: Row(
+  //           mainAxisAlignment: MainAxisAlignment.center,
+  //           children: <Widget>[
+  //             MySvgImage(
+  //               width: 18.25,
+  //               height: 16.1,
+  //               path: 'assets/vectors/ic_sofa.svg',
+  //             ),
+  //             WidgetSpacer(width: 5),
+  //             Text('Book seats', style: AppFont.medium_white_16),
+  //           ],
+  //         ),
+  //         onPressed: () {
+  //           BlocProvider.of<MovieDetailsBloc>(context).add(ClickBtnBook(movie.detail));
+  //         },
+  //       ),
+  //     ),
+  //   );
+  // }
+
   void openBookCineTimeSlot(BuildContext context) {
     LogHelper.logDebug(tag: "openBookCineTimeSlot", message: "start");
     // BlocProvider.of<MovieDetailsBloc>(context).add(OpenedBookTimeSlotScreen());
@@ -82,29 +116,19 @@ class MovieInfoScreen extends StatelessWidget {
   }
 }
 
-class CinematicBookTicketButton extends StatefulWidget {
+class CinematicBookTicketButton extends StatelessWidget {
   final VoidCallback onPressed;
 
   const CinematicBookTicketButton({super.key, required this.onPressed});
 
   @override
-  State<CinematicBookTicketButton> createState() => _CinematicBookTicketButtonState();
-}
-
-class _CinematicBookTicketButtonState extends State<CinematicBookTicketButton> {
-  bool isPressed = false;
-
-  @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTapDown: (_) => setState(() => isPressed = true),
-      onTapUp: (_) => setState(() => isPressed = false),
-      onTapCancel: () => setState(() => isPressed = false),
-      onTap: widget.onPressed,
+      onTap: onPressed,
       child: AnimatedContainer(
         duration: Duration(milliseconds: 150),
         curve: Curves.easeInOut,
-        height: isPressed ? 50 : 54, // Slightly shrink on press
+        height: 54,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
           gradient: LinearGradient(

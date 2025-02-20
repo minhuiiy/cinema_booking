@@ -13,7 +13,7 @@ class OpenBookTimeSlotScreen extends MovieDetailsState {
   final bool open;
 
   const OpenBookTimeSlotScreen({
-    this.open = false,
+    required this.open,
   });
 
   @override

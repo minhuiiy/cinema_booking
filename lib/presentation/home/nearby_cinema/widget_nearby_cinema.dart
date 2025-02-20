@@ -71,7 +71,7 @@
 //   }
 
 //   _openAllCine() {
-//     // TODO:
+//     Navigator.pushNamed(context, AppRouter.LIST_ALL_CINE);
 //   }
 
 //   Completer<GoogleMapController> _controller = Completer();

@@ -29,7 +29,7 @@ class WidgetToolbar extends StatelessWidget {
               child: MySvgImage(
                 width: 19,
                 height: 16,
-                path: 'assets/ic_back.svg',
+                path: AppVectors.iconBack,
               ),
             ),
           ),

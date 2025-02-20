@@ -1,4 +1,5 @@
 import 'package:cinema_booking/domain/entities/movies/movies.dart';
+import 'package:cinema_booking/domain/entities/response/home.dart';
 import 'package:cinema_booking/domain/usecase/movie/cache_movie_info_data.dart';
 import 'package:cinema_booking/service_locator.dart';
 import 'package:equatable/equatable.dart';

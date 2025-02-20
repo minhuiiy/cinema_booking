@@ -1,0 +1,4 @@
+enum MovieSoftBy {
+  ratting,
+  name,
+}
