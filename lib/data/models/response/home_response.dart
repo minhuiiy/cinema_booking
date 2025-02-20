@@ -71,7 +71,7 @@ extension HomeResponseModelX on HomeModelResponse {
 
   List<MovieEntity> toRecommendedMoviesEntity() {
     return recommendedMovies
-            ?.map((recommendedMovie) => recommendedMovie.detail!.toEntity())
+            ?.map((recommendedMovie) => recommendedMovie.detail.toEntity())
             .toList() ??
         [];
   }

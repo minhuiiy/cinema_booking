@@ -12,10 +12,7 @@ class WidgetMovieTrailer extends StatelessWidget {
       aspectRatio: 360 / 196,
       child: Stack(
         children: <Widget>[
-          Image.asset(
-            "images/thumb_movie.png",
-            fit: BoxFit.contain,
-          ),
+          Image.asset("assets/images/thumb_movie.png", fit: BoxFit.contain),
           Align(
             alignment: Alignment.center,
             child: Container(
@@ -23,17 +20,11 @@ class WidgetMovieTrailer extends StatelessWidget {
               width: 42,
               decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.black38),
               child: Center(
-                child: MySvgImage(
-                  width: 16.72,
-                  height: 15.07,
-                  path: AppVectors.iconPlay,
-                ),
+                child: MySvgImage(width: 16.72, height: 15.07, path: AppVectors.iconPlay),
               ),
             ),
           ),
-          BasicBackButton(
-            padding: const EdgeInsets.only(left: 20, top: 20),
-          ),
+          BasicBackButton(padding: const EdgeInsets.only(left: 20, top: 20)),
         ],
       ),
     );

@@ -34,6 +34,7 @@ import 'package:cinema_booking/domain/usecase/auth/signin.dart';
 import 'package:cinema_booking/domain/usecase/auth/signup.dart';
 import 'package:cinema_booking/domain/usecase/authentication/is_signed_in.dart';
 import 'package:cinema_booking/domain/usecase/booking_time/cache_book_time_slot.dart';
+import 'package:cinema_booking/domain/usecase/booking_time/cache_selected_time_slot.dart';
 import 'package:cinema_booking/domain/usecase/booking_time/cache_show.dart';
 import 'package:cinema_booking/domain/usecase/booking_time/get_all_shows_by_type.dart';
 import 'package:cinema_booking/domain/usecase/booking_time/get_cached_book_time_slot.dart';
@@ -53,124 +54,46 @@ final localDio = DioProvider.instance();
 
 Future<void> initializeDependencies() async {
   // Authentication
-  sl.registerSingleton<AuthenticationService>(
-    AuthenticationServiceImpl(),
-  );
-
-  sl.registerSingleton<AuthenticationRepository>(
-    AuthenticationRepositoryImpl(),
-  );
-
-  sl.registerSingleton<IsSignedInUsecase>(
-    IsSignedInUsecase(),
-  );
+  sl.registerSingleton<AuthenticationService>(AuthenticationServiceImpl());
+  sl.registerSingleton<AuthenticationRepository>(AuthenticationRepositoryImpl());
+  sl.registerSingleton<IsSignedInUsecase>(IsSignedInUsecase());
 
   // Login
-  sl.registerSingleton<AuthRepository>(
-    AuthRepositoryImpl(),
-  );
-
-  sl.registerSingleton<AuthService>(
-    AuthServiceImpl(),
-  );
-
-  sl.registerSingleton<SignupUseCase>(
-    SignupUseCase(),
-  );
-
-  sl.registerSingleton<SigninUseCase>(
-    SigninUseCase(),
-  );
-
-  sl.registerSingleton<LoginWithGoogleUsecase>(
-    LoginWithGoogleUsecase(),
-  );
-
-  sl.registerSingleton<GetUserUseCase>(
-    GetUserUseCase(),
-  );
+  sl.registerSingleton<AuthRepository>(AuthRepositoryImpl());
+  sl.registerSingleton<AuthService>(AuthServiceImpl());
+  sl.registerSingleton<SignupUseCase>(SignupUseCase());
+  sl.registerSingleton<SigninUseCase>(SigninUseCase());
+  sl.registerSingleton<LoginWithGoogleUsecase>(LoginWithGoogleUsecase());
+  sl.registerSingleton<GetUserUseCase>(GetUserUseCase());
 
   // home
-  sl.registerSingleton<HomeRepository>(
-    HomeRepositoryImpl(),
-  );
-
-  sl.registerSingleton<HomeService>(
-    HomeServiceImpl(),
-  );
-
-  sl.registerSingleton<GetHomeDataUseCase>(
-    GetHomeDataUseCase(),
-  );
+  sl.registerSingleton<HomeRepository>(HomeRepositoryImpl());
+  sl.registerSingleton<HomeService>(HomeServiceImpl());
+  sl.registerSingleton<GetHomeDataUseCase>(GetHomeDataUseCase());
 
   // Booking time and ticket cinema
-  sl.registerSingleton<BookTimeSlotRepository>(
-    BookTimeSlotRepositoryImpl(),
-  );
+  sl.registerSingleton<BookTimeSlotRepository>(BookTimeSlotRepositoryImpl());
+  sl.registerSingleton<SeatSlotRepository>(RemoteSeatSlotRepository());
+  sl.registerSingleton<MockBookTimeSlotService>(MockBookTimeSlotServiceImpl());
+  sl.registerSingleton<RemoteBookTimeSlotService>(RemoteBookTimeSlotServiceImpl());
+  sl.registerSingleton<SessionService>(SessionServiceImpl(pref: LocalPref()));
+  sl.registerSingleton<CacheBookTimeSlotUseCase>(CacheBookTimeSlotUseCase());
+  sl.registerSingleton<CacheMovieUseCase>(CacheMovieUseCase());
 
-  sl.registerSingleton<SeatSlotRepository>(
-    RemoteSeatSlotRepository(),
-  );
-
-  sl.registerSingleton<MockBookTimeSlotService>(
-    MockBookTimeSlotServiceImpl(),
-  );
-
-  sl.registerSingleton<RemoteBookTimeSlotService>(
-    RemoteBookTimeSlotServiceImpl(),
-  );
-
-  sl.registerSingleton<SessionService>(
-    SessionServiceImpl(pref: LocalPref()),
-  );
-
-  sl.registerSingleton<CacheBookTimeSlotUseCase>(
-    CacheBookTimeSlotUseCase(),
-  );
-
-  sl.registerSingleton<CacheMovieUseCase>(
-    CacheMovieUseCase(),
-  );
-
-  sl.registerSingleton<GetAllMoviesByTypeUseCase>(
-    GetAllMoviesByTypeUseCase(),
-  );
-  sl.registerSingleton<GetCachedBookTimeSlotUseCase>(
-    GetCachedBookTimeSlotUseCase(),
-  );
-  sl.registerSingleton<GetCachedSelectedTimeSlotUseCase>(
-    GetCachedSelectedTimeSlotUseCase(),
-  );
-  sl.registerSingleton<GetCachedMovieUseCase>(
-    GetCachedMovieUseCase(),
-  );
-  sl.registerSingleton<MockBookTimeSlotUseCase>(
-    MockBookTimeSlotUseCase(),
-  );
+  sl.registerSingleton<GetAllMoviesByTypeUseCase>(GetAllMoviesByTypeUseCase());
+  sl.registerSingleton<GetCachedBookTimeSlotUseCase>(GetCachedBookTimeSlotUseCase());
+  sl.registerSingleton<GetCachedSelectedTimeSlotUseCase>(GetCachedSelectedTimeSlotUseCase());
+  sl.registerSingleton<GetCachedMovieUseCase>(GetCachedMovieUseCase());
+  sl.registerSingleton<MockBookTimeSlotUseCase>(MockBookTimeSlotUseCase());
+  sl.registerSingleton<CacheSelectedTimeSlotUseCase>(CacheSelectedTimeSlotUseCase());
 
   // movie
-  sl.registerSingleton<MovieInfoService>(
-    MovieInfoServiceImpl(pref: LocalPref()),
-  );
-
-  sl.registerSingleton<MovieInfoRepository>(
-    MovieInfoRepositoryImpl(),
-  );
-
-  sl.registerSingleton<CacheMovieInfoDataUseCase>(
-    CacheMovieInfoDataUseCase(),
-  );
+  sl.registerSingleton<MovieInfoService>(MovieInfoServiceImpl(pref: LocalPref()));
+  sl.registerSingleton<MovieInfoRepository>(MovieInfoRepositoryImpl());
+  sl.registerSingleton<CacheMovieInfoDataUseCase>(CacheMovieInfoDataUseCase());
 
   // all movie
-  sl.registerSingleton<AllMoviesService>(
-    AllMoviesServiceImpl(),
-  );
-
-  sl.registerSingleton<AllMoviesRepository>(
-    AllMoviesRepositoryImpl(),
-  );
-
-  sl.registerSingleton<GetAllMoviesDataUseCase>(
-    GetAllMoviesDataUseCase(),
-  );
+  sl.registerSingleton<AllMoviesService>(AllMoviesServiceImpl());
+  sl.registerSingleton<AllMoviesRepository>(AllMoviesRepositoryImpl());
+  sl.registerSingleton<GetAllMoviesDataUseCase>(GetAllMoviesDataUseCase());
 }
