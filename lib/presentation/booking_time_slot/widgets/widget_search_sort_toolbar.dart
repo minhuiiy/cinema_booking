@@ -13,8 +13,7 @@ class WidgetSearchSortToolbar extends StatefulWidget {
   const WidgetSearchSortToolbar({super.key, required this.title});
 
   @override
-  State<WidgetSearchSortToolbar> createState() =>
-      _WidgetSearchSortToolbarState();
+  State<WidgetSearchSortToolbar> createState() => _WidgetSearchSortToolbarState();
 }
 
 class _WidgetSearchSortToolbarState extends State<WidgetSearchSortToolbar> {
@@ -28,9 +27,7 @@ class _WidgetSearchSortToolbarState extends State<WidgetSearchSortToolbar> {
     _searchController.addListener(() {
       final keyword = _searchController.text;
       if (keyword.isNotEmpty) {
-        BlocProvider.of<BookTimeSlotBloc>(
-          _blocContext,
-        ).add(SearchQueryChanged(keyword: keyword));
+        BlocProvider.of<BookTimeSlotBloc>(_blocContext).add(SearchQueryChanged(keyword: keyword));
       }
     });
   }
@@ -65,11 +62,7 @@ class _WidgetSearchSortToolbarState extends State<WidgetSearchSortToolbar> {
                 borderRadius: BorderRadius.circular(12),
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10),
-                  child: MySvgImage(
-                    width: 19,
-                    height: 16,
-                    path: AppVectors.iconBack,
-                  ),
+                  child: MySvgImage(width: 19, height: 16, path: AppVectors.iconBack),
                 ),
               ),
               Expanded(child: _buildTitle(state)),
@@ -87,10 +80,7 @@ class _WidgetSearchSortToolbarState extends State<WidgetSearchSortToolbar> {
       curve: Curves.easeInOut,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30),
-        color:
-            isSearching
-                ? Colors.white.withValues(alpha: .1)
-                : Colors.transparent,
+        color: isSearching ? Colors.white.withValues(alpha: .1) : Colors.transparent,
         boxShadow:
             isSearching
                 ? [
@@ -101,9 +91,7 @@ class _WidgetSearchSortToolbarState extends State<WidgetSearchSortToolbar> {
                     offset: Offset(0, 6),
                   ),
                   BoxShadow(
-                    color: Colors.black.withValues(
-                      alpha: 0.7,
-                    ), // Lighter shadow layer
+                    color: Colors.black.withValues(alpha: 0.7), // Lighter shadow layer
                     blurRadius: 10,
                     spreadRadius: -3,
                   ),
@@ -118,11 +106,7 @@ class _WidgetSearchSortToolbarState extends State<WidgetSearchSortToolbar> {
                 keyboardType: TextInputType.text,
                 autofocus: true,
                 textInputAction: TextInputAction.search,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                ),
+                style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w500),
                 decoration: InputDecoration(
                   hintText: 'Search movies...',
                   hintStyle: TextStyle(
@@ -131,9 +115,7 @@ class _WidgetSearchSortToolbarState extends State<WidgetSearchSortToolbar> {
                     fontWeight: FontWeight.w400,
                   ),
                   border: InputBorder.none,
-                  contentPadding: EdgeInsets.symmetric(
-                    vertical: 12,
-                  ), // Fix: Proper padding
+                  contentPadding: EdgeInsets.symmetric(vertical: 12), // Fix: Proper padding
                 ),
               )
               : Text(widget.title, style: AppFont.semibold_white_18),
@@ -149,18 +131,15 @@ class _WidgetSearchSortToolbarState extends State<WidgetSearchSortToolbar> {
               isSearching = !isSearching;
               if (!isSearching) _searchController.clear();
             });
-            BlocProvider.of<BookTimeSlotBloc>(_blocContext).add(
-              state.movieSearchField ? ClickCloseSearch() : ClickIconSearch(),
-            );
+            BlocProvider.of<BookTimeSlotBloc>(
+              _blocContext,
+            ).add(state.movieSearchField ? ClickCloseSearch() : ClickIconSearch());
           },
           borderRadius: BorderRadius.circular(12),
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 10),
             child: MySvgImage(
-              path:
-                  state.movieSearchField
-                      ? AppVectors.iconClose
-                      : AppVectors.iconSearch,
+              path: state.movieSearchField ? AppVectors.iconClose : AppVectors.iconSearch,
               width: 20,
               height: 20,
             ),
@@ -169,9 +148,7 @@ class _WidgetSearchSortToolbarState extends State<WidgetSearchSortToolbar> {
         WidgetSpacer(width: 8),
         InkWell(
           onTap: () {
-            BlocProvider.of<BookTimeSlotBloc>(
-              _blocContext,
-            ).add(ClickIconSort());
+            BlocProvider.of<BookTimeSlotBloc>(_blocContext).add(ClickIconSort());
           },
           child: MySvgImage(path: AppVectors.iconMore, width: 20, height: 20),
         ),
