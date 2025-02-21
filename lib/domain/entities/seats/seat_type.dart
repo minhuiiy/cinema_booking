@@ -4,7 +4,7 @@
  * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
  */
 
-import 'package:cinema_booking/data/models/seats/seat_type.dart';
+import 'package:cinema_booking/core/enum/type_seat.dart';
 import 'package:cinema_booking/domain/entities/seats/seat_row.dart';
 import 'package:equatable/equatable.dart';
 

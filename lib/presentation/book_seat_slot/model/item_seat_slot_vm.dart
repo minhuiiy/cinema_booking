@@ -1,15 +1,14 @@
-import 'package:cinema_booking/data/models/seats/seat_type.dart';
+import 'package:cinema_booking/core/enum/type_seat.dart';
 import 'package:equatable/equatable.dart';
 
-// ignore: must_be_immutable
 class ItemSeatSlotVM extends Equatable {
-  String seatId;
-  bool isOff;
-  bool isBooked;
-  bool isSelected;
-  TypeSeat seatType;
+  final String seatId;
+  final bool isOff;
+  final bool isBooked;
+  final bool isSelected;
+  final TypeSeat seatType;
 
-  ItemSeatSlotVM({
+  const ItemSeatSlotVM({
     required this.seatId,
     required this.isOff,
     required this.isBooked,
@@ -22,6 +21,6 @@ class ItemSeatSlotVM extends Equatable {
 
   @override
   String toString() {
-    return 'ItemSeatSlotVM{seatId: $seatId}';
+    return 'ItemSeatSlotVM{seatId: $seatId, isOff: $isOff, isBooked: $isBooked, isSelected: $isSelected, seatType: $seatType}';
   }
 }
