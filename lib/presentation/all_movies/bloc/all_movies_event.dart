@@ -31,7 +31,7 @@ class ClickIconSort extends AllMoviesEvent {
 }
 
 class SortByChanged extends AllMoviesEvent {
-  MovieSoftBy movieSortBy;
+  final MovieSoftBy movieSortBy;
 
   SortByChanged(this.movieSortBy);
 

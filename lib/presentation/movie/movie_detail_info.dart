@@ -1,8 +1,5 @@
 import 'package:cinema_booking/common/helpers/log_helpers.dart';
-import 'package:cinema_booking/common/widgets/image/svg_image.dart';
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
-import 'package:cinema_booking/core/configs/theme/app_color.dart';
-import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:cinema_booking/domain/entities/response/home.dart';
 import 'package:cinema_booking/presentation/movie/bloc/movie_details_bloc.dart';
 import 'package:cinema_booking/presentation/movie/widgets/widget_movie_casts.dart';
@@ -68,9 +65,7 @@ class MovieInfoScreen extends StatelessWidget {
       left: 14,
       child: CinematicBookTicketButton(
         onPressed: () {
-          BlocProvider.of<MovieDetailsBloc>(
-            context,
-          ).add(ClickBtnBook(movie.detail));
+          BlocProvider.of<MovieDetailsBloc>(context).add(ClickBtnBook(movie.detail));
         },
       ),
     );
@@ -110,15 +105,8 @@ class MovieInfoScreen extends StatelessWidget {
   void openBookCineTimeSlot(BuildContext context) {
     LogHelper.logDebug(tag: "openBookCineTimeSlot", message: "start");
     // BlocProvider.of<MovieDetailsBloc>(context).add(OpenedBookTimeSlotScreen());
-    LogHelper.logDebug(
-      tag: "openBookCineTimeSlot",
-      message: "BlocProvider Done",
-    );
-    Navigator.pushNamed(
-      context,
-      AppRouter.BOOK_TIME_SLOT,
-      arguments: movie.detail,
-    );
+    LogHelper.logDebug(tag: "openBookCineTimeSlot", message: "BlocProvider Done");
+    Navigator.pushNamed(context, AppRouter.BOOK_TIME_SLOT, arguments: movie.detail);
   }
 }
 
@@ -138,10 +126,7 @@ class CinematicBookTicketButton extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
           gradient: LinearGradient(
-            colors: [
-              Color(0xFF9C27B0),
-              Color(0xFFE91E63),
-            ], // Purple to Pink gradient
+            colors: [Color(0xFF9C27B0), Color(0xFFE91E63)], // Purple to Pink gradient
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -158,11 +143,7 @@ class CinematicBookTicketButton extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Icon(
-                Icons.event_seat,
-                color: Colors.white,
-                size: 22,
-              ), // Sofa Icon
+              Icon(Icons.event_seat, color: Colors.white, size: 22), // Sofa Icon
               SizedBox(width: 8),
               Text(
                 'BOOK SEATS',
