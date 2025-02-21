@@ -3,7 +3,7 @@ import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:cinema_booking/data/models/seats/seat_type.dart';
 import 'package:cinema_booking/domain/entities/seats/seat_type.dart';
-import 'package:cinema_booking/presentation/booking/book_seat_type/bloc/book_seat_type_bloc.dart';
+import 'package:cinema_booking/presentation/book_seat_type/bloc/book_seat_type_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -26,7 +26,7 @@ class _WidgetHowManySeatsState extends State<WidgetHowManySeats> {
           WidgetSpacer(height: 34),
           Text('How many seats ?', style: AppFont.regular_blue_16),
           WidgetSpacer(height: 37),
-          Image.asset('images/motor_bike.png', height: 90.57),
+          Image.asset("assets/images/motor.png", height: 90.57),
           WidgetSpacer(height: 30),
           WidgetNumberSeatPicker(),
           WidgetSeatTypePicker(),
@@ -55,10 +55,7 @@ class _WidgetSeatTypePickerState extends State<WidgetSeatTypePicker> {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 19, vertical: 40),
       child: ConstrainedBox(
-        constraints: BoxConstraints(
-          minHeight: 137,
-          maxHeight: 237,
-        ),
+        constraints: BoxConstraints(minHeight: 137, maxHeight: 237),
         child: GridView.count(
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
@@ -79,9 +76,10 @@ class _WidgetSeatTypePickerState extends State<WidgetSeatTypePicker> {
     String textStatus = index == 0 ? 'Filling fast' : 'Available';
     var itemBg = isSelected ? AppColors.green : AppColors.timeSlotBg;
     var itemBorder = isSelected ? Colors.transparent : AppColors.timeSlotBorder;
-    var nameColor = isSelected
-        ? AppColors.white.withValues(alpha: 0.5)
-        : AppColors.gray1.withValues(alpha: 0.7);
+    var nameColor =
+        isSelected
+            ? AppColors.white.withValues(alpha: 0.5)
+            : AppColors.gray1.withValues(alpha: 0.7);
     var priceColor = isSelected ? AppColors.white : AppColors.blue;
     var statusColor = priceColor;
 
@@ -99,8 +97,10 @@ class _WidgetSeatTypePickerState extends State<WidgetSeatTypePicker> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(seatType.name, style: AppFont.regular_white_12.copyWith(color: nameColor)),
-            Text('\$ ${seatType.price}',
-                style: AppFont.regular_white_14.copyWith(color: priceColor)),
+            Text(
+              '\$ ${seatType.price}',
+              style: AppFont.regular_white_14.copyWith(color: priceColor),
+            ),
             WidgetSpacer(height: 32),
             Text(textStatus, style: AppFont.regular_white_12.copyWith(color: statusColor)),
           ],
@@ -114,9 +114,9 @@ class _WidgetSeatTypePickerState extends State<WidgetSeatTypePicker> {
       _selectedIndex = index;
     });
 
-    BlocProvider.of<BookSeatTypeBloc>(context).add(ClickSelectSeatType(
-      selectedSeatType: widget.seatTypes[index].type,
-    ));
+    BlocProvider.of<BookSeatTypeBloc>(
+      context,
+    ).add(ClickSelectSeatType(selectedSeatType: widget.seatTypes[index].type));
   }
 }
 
@@ -153,10 +153,7 @@ class _WidgetNumberSeatPickerState extends State<WidgetNumberSeatPicker> {
             child: Container(
               width: 32,
               height: 32,
-              decoration: BoxDecoration(
-                color: boxColor,
-                borderRadius: BorderRadius.circular(4),
-              ),
+              decoration: BoxDecoration(color: boxColor, borderRadius: BorderRadius.circular(4)),
               child: Center(
                 child: Text(
                   seats[index].toString(),

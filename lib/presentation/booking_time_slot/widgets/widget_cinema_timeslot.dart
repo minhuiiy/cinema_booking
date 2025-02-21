@@ -6,8 +6,8 @@ import 'package:cinema_booking/core/configs/assets/app_vectors.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:cinema_booking/domain/entities/show_time/time_slot.dart';
-import 'package:cinema_booking/presentation/booking/bloc/book_time_slot_bloc.dart';
-import 'package:cinema_booking/presentation/booking/book_time_slot_main.dart';
+import 'package:cinema_booking/presentation/booking_time_slot/bloc/book_time_slot_bloc.dart';
+import 'package:cinema_booking/presentation/booking_time_slot/book_time_slot_main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -100,10 +100,7 @@ class WidgetCineTimeSlot extends StatelessWidget {
                   color: Colors.white.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(6),
                 ),
-                child: Text(
-                  "${item.textDistance} miles away",
-                  style: AppFont.regular_white_10,
-                ),
+                child: Text("${item.textDistance} miles away", style: AppFont.regular_white_10),
               ),
             ],
           ),
@@ -127,7 +124,7 @@ class WidgetCineTimeSlot extends StatelessWidget {
                       ),
                     );
                   },
-                )
+                ),
             ],
           ),
         ],
@@ -197,27 +194,29 @@ class __WidgetTimeSlotState extends State<_WidgetTimeSlot> {
         decoration: BoxDecoration(
           border: Border.all(color: itemBorder, width: 1),
           borderRadius: BorderRadius.circular(6),
-          gradient: widget.isSelected
-              ? LinearGradient(
-                  colors: [Colors.greenAccent, Colors.green],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                )
-              : LinearGradient(
-                  colors: [Colors.white.withOpacity(0.1), Colors.white.withOpacity(0.05)],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
-          boxShadow: widget.isSelected
-              ? [
-                  BoxShadow(
-                    color: Colors.greenAccent.withOpacity(0.4),
-                    blurRadius: 10,
-                    spreadRadius: -2,
-                    offset: Offset(0, 4),
+          gradient:
+              widget.isSelected
+                  ? LinearGradient(
+                    colors: [Colors.greenAccent, Colors.green],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  )
+                  : LinearGradient(
+                    colors: [Colors.white.withOpacity(0.1), Colors.white.withOpacity(0.05)],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
                   ),
-                ]
-              : [],
+          boxShadow:
+              widget.isSelected
+                  ? [
+                    BoxShadow(
+                      color: Colors.greenAccent.withOpacity(0.4),
+                      blurRadius: 10,
+                      spreadRadius: -2,
+                      offset: Offset(0, 4),
+                    ),
+                  ]
+                  : [],
         ),
         child: Center(
           child: Text(
@@ -238,14 +237,10 @@ class ItemTimeSlot {
 
   late TimeSlotEntity timeSlot;
 
-  ItemTimeSlot({
-    required this.time,
-    required this.hour,
-    required this.active,
-  });
+  ItemTimeSlot({required this.time, required this.hour, required this.active});
 
   ItemTimeSlot.fromTimeSlot({required this.timeSlot})
-      : time = timeSlot.time,
-        hour = timeSlot.hour,
-        active = timeSlot.active;
+    : time = timeSlot.time,
+      hour = timeSlot.hour,
+      active = timeSlot.active;
 }

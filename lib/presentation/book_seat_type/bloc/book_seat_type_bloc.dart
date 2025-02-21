@@ -8,7 +8,7 @@ import 'package:cinema_booking/domain/entities/show_time/time_slot.dart';
 import 'package:cinema_booking/domain/usecase/booking_time/get_cached_book_time_slot.dart';
 import 'package:cinema_booking/domain/usecase/booking_time/get_cached_selected_time_slot.dart';
 import 'package:cinema_booking/domain/usecase/booking_time/get_cached_show.dart';
-import 'package:cinema_booking/presentation/booking/book_seat_type/bloc/book_seat_type_state.dart';
+import 'package:cinema_booking/presentation/book_seat_type/bloc/book_seat_type_state.dart';
 import 'package:cinema_booking/service_locator.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,10 +25,7 @@ class BookSeatTypeBloc extends Bloc<BookSeatTypeEvent, BookSeatTypeState> {
     on<OpenedBookSeatSlotScreen>(_onOpenedBookSeatSlotScreen);
   }
 
-  Future<void> _onOpenScreen(
-    OpenScreen event,
-    Emitter<BookSeatTypeState> emit,
-  ) async {
+  Future<void> _onOpenScreen(OpenScreen event, Emitter<BookSeatTypeState> emit) async {
     try {
       MovieEntity? movie;
       TimeSlotEntity? selectedTimeSlot;
@@ -49,7 +46,9 @@ class BookSeatTypeBloc extends Bloc<BookSeatTypeEvent, BookSeatTypeState> {
       selectedTimeSlotData.fold(
         (error) {
           LogHelper.logError(
-              tag: 'OpenScreen Error', message: "BookSeatTypeBloc selectedTimeSlotData $error");
+            tag: 'OpenScreen Error',
+            message: "BookSeatTypeBloc selectedTimeSlotData $error",
+          );
         },
         (data) {
           selectedTimeSlot = data;
@@ -58,41 +57,36 @@ class BookSeatTypeBloc extends Bloc<BookSeatTypeEvent, BookSeatTypeState> {
       bookTimeSlotData.fold(
         (error) {
           LogHelper.logError(
-              tag: 'OpenScreen Error', message: "BookSeatTypeBloc bookTimeSlotData $error");
+            tag: 'OpenScreen Error',
+            message: "BookSeatTypeBloc bookTimeSlotData $error",
+          );
         },
         (data) {
           bookTimeSlot = data;
         },
       );
 
-      emit(state.copyWith(
-        movie: movie,
-        selectedTimeSlot: selectedTimeSlot,
-        bookTimeSlot: bookTimeSlot,
-      ));
+      emit(
+        state.copyWith(
+          movie: movie,
+          selectedTimeSlot: selectedTimeSlot,
+          bookTimeSlot: bookTimeSlot,
+        ),
+      );
     } catch (e) {
       rethrow;
     }
   }
 
-  void _onClickHowManySeat(
-    ClickHowManySeat event,
-    Emitter<BookSeatTypeState> emit,
-  ) {
+  void _onClickHowManySeat(ClickHowManySeat event, Emitter<BookSeatTypeState> emit) {
     emit(state.copyWith(seatCount: event.seatCount));
   }
 
-  void _onClickSelectSeatType(
-    ClickSelectSeatType event,
-    Emitter<BookSeatTypeState> emit,
-  ) {
+  void _onClickSelectSeatType(ClickSelectSeatType event, Emitter<BookSeatTypeState> emit) {
     emit(state.copyWith(selectedSeatType: event.selectedSeatType));
   }
 
-  void _onClickSelectSeats(
-    ClickSelectSeats event,
-    Emitter<BookSeatTypeState> emit,
-  ) {
+  void _onClickSelectSeats(ClickSelectSeats event, Emitter<BookSeatTypeState> emit) {
     emit(state.copyWith(isOpenBookSeatSlotScreen: true));
   }
 

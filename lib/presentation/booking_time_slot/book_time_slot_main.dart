@@ -2,14 +2,14 @@ import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
 import 'package:cinema_booking/domain/entities/booking/booking_time_slot.dart';
 import 'package:cinema_booking/domain/entities/cinema/cinema.dart';
 import 'package:cinema_booking/domain/entities/movies/movies.dart';
-import 'package:cinema_booking/presentation/booking/bloc/book_time_slot_bloc.dart';
-import 'package:cinema_booking/presentation/booking/bloc/book_time_slot_state.dart';
-import 'package:cinema_booking/presentation/booking/widgets/widget_cinema_pick_date.dart';
-import 'package:cinema_booking/presentation/booking/widgets/widget_search_sort_toolbar.dart';
-import 'package:cinema_booking/presentation/booking/widgets/widget_cinema_timeslot.dart';
-import 'package:cinema_booking/presentation/booking/widgets/widget_loading.dart';
-import 'package:cinema_booking/presentation/booking/widgets/widget_screen_message.dart';
-import 'package:cinema_booking/presentation/booking/widgets/widget_unknown_state.dart';
+import 'package:cinema_booking/presentation/booking_time_slot/bloc/book_time_slot_bloc.dart';
+import 'package:cinema_booking/presentation/booking_time_slot/bloc/book_time_slot_state.dart';
+import 'package:cinema_booking/presentation/booking_time_slot/widgets/widget_cinema_pick_date.dart';
+import 'package:cinema_booking/presentation/booking_time_slot/widgets/widget_search_sort_toolbar.dart';
+import 'package:cinema_booking/presentation/booking_time_slot/widgets/widget_cinema_timeslot.dart';
+import 'package:cinema_booking/presentation/booking_time_slot/widgets/widget_loading.dart';
+import 'package:cinema_booking/presentation/booking_time_slot/widgets/widget_screen_message.dart';
+import 'package:cinema_booking/presentation/booking_time_slot/widgets/widget_unknown_state.dart';
 import 'package:cinema_booking/presentation/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,13 +29,8 @@ class BookTimeSlotScreen extends StatelessWidget {
             children: <Widget>[
               WidgetSearchSortToolbar(title: movie.name),
               Expanded(
-                child: Stack(
-                  children: <Widget>[
-                    _buildListCineTimeSlot(),
-                    _buildBtnToday(),
-                  ],
-                ),
-              )
+                child: Stack(children: <Widget>[_buildListCineTimeSlot(), _buildBtnToday()]),
+              ),
             ],
           ),
         ),
@@ -57,8 +52,9 @@ class BookTimeSlotScreen extends StatelessWidget {
               if (index < state.list.length) {
                 BookTimeSlotEntity bookTimeSlot = state.list[index];
 
-                ItemCineTimeSlot item =
-                    ItemCineTimeSlot.fromBookTimeSlot(bookTimeSlot: bookTimeSlot);
+                ItemCineTimeSlot item = ItemCineTimeSlot.fromBookTimeSlot(
+                  bookTimeSlot: bookTimeSlot,
+                );
 
                 return WidgetCineTimeSlot(item);
               } else {
@@ -66,9 +62,7 @@ class BookTimeSlotScreen extends StatelessWidget {
               }
             },
             separatorBuilder: (context, index) {
-              return WidgetSpacer(
-                height: 14,
-              );
+              return WidgetSpacer(height: 14);
             },
             itemCount: state.list.length + 1,
             physics: BouncingScrollPhysics(),
@@ -104,41 +98,41 @@ class BookTimeSlotScreen extends StatelessWidget {
         },
       ),
 
-//       Container(
-//         height: 56,
-//         padding: EdgeInsets.only(left: 20),
-// //        width: MediaQuery.of(_context).size.width,
-//         color: AppColors.blue,
-//         child: Row(
-//           children: <Widget>[
-//             Expanded(
-//               child: GestureDetector(
-//                 onTap: () {
-//                   // openCineDatePicker();
-//                 },
-//                 child: Row(
-//                   children: <Widget>[
-//                     Icon(Icons.calendar_today, color: AppColors.white, size: 14),
-//                     WidgetSpacer(width: 6),
-//                     Text('Today, 14 NOV', style: AppFont.regular_white_14),
-//                     WidgetSpacer(width: 4),
-//                     Icon(Icons.keyboard_arrow_down, color: AppColors.white, size: 12)
-//                   ],
-//                 ),
-//               ),
-//             ),
-//             Expanded(
-//               child: Row(
-//                 children: <Widget>[
-//                   Text('Tamil, 3D', style: AppFont.regular_white_14),
-//                   WidgetSpacer(width: 4),
-//                   Icon(Icons.keyboard_arrow_down, color: AppColors.white, size: 10)
-//                 ],
-//               ),
-//             )
-//           ],
-//         ),
-//       ),
+      //       Container(
+      //         height: 56,
+      //         padding: EdgeInsets.only(left: 20),
+      // //        width: MediaQuery.of(_context).size.width,
+      //         color: AppColors.blue,
+      //         child: Row(
+      //           children: <Widget>[
+      //             Expanded(
+      //               child: GestureDetector(
+      //                 onTap: () {
+      //                   // openCineDatePicker();
+      //                 },
+      //                 child: Row(
+      //                   children: <Widget>[
+      //                     Icon(Icons.calendar_today, color: AppColors.white, size: 14),
+      //                     WidgetSpacer(width: 6),
+      //                     Text('Today, 14 NOV', style: AppFont.regular_white_14),
+      //                     WidgetSpacer(width: 4),
+      //                     Icon(Icons.keyboard_arrow_down, color: AppColors.white, size: 12)
+      //                   ],
+      //                 ),
+      //               ),
+      //             ),
+      //             Expanded(
+      //               child: Row(
+      //                 children: <Widget>[
+      //                   Text('Tamil, 3D', style: AppFont.regular_white_14),
+      //                   WidgetSpacer(width: 4),
+      //                   Icon(Icons.keyboard_arrow_down, color: AppColors.white, size: 10)
+      //                 ],
+      //               ),
+      //             )
+      //           ],
+      //         ),
+      //       ),
     );
   }
 
@@ -177,9 +171,10 @@ class ItemCineTimeSlot {
 
   ItemCineTimeSlot.fromBookTimeSlot({required this.bookTimeSlot}) {
     cine = bookTimeSlot.cine;
-    timeSlots = bookTimeSlot.timeSlots
-        .map((timeSlot) => ItemTimeSlot.fromTimeSlot(timeSlot: timeSlot))
-        .toList();
+    timeSlots =
+        bookTimeSlot.timeSlots
+            .map((timeSlot) => ItemTimeSlot.fromTimeSlot(timeSlot: timeSlot))
+            .toList();
 
     cineName = bookTimeSlot.cine.name;
     textLocation = bookTimeSlot.cine.address;

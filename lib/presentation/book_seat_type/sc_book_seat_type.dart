@@ -1,15 +1,15 @@
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
 import 'package:cinema_booking/domain/entities/booking/booking_time_slot.dart';
-import 'package:cinema_booking/presentation/booking/widgets/widget_cinema_timeslot.dart';
-import 'package:cinema_booking/presentation/booking/widgets/widget_empty.dart';
-import 'package:cinema_booking/presentation/booking/widgets/widget_toolbar.dart';
+import 'package:cinema_booking/presentation/booking_time_slot/widgets/widget_cinema_timeslot.dart';
+import 'package:cinema_booking/presentation/booking_time_slot/widgets/widget_empty.dart';
+import 'package:cinema_booking/presentation/booking_time_slot/widgets/widget_toolbar.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
-import 'package:cinema_booking/presentation/booking/book_seat_slot/sc_book_seat_slot.dart';
-import 'package:cinema_booking/presentation/booking/book_seat_type/bloc/book_seat_type_bloc.dart';
-import 'package:cinema_booking/presentation/booking/book_seat_type/bloc/book_seat_type_state.dart';
-import 'package:cinema_booking/presentation/booking/book_seat_type/widget_how_many_seats.dart';
-import 'package:cinema_booking/presentation/booking/book_time_slot_main.dart';
+import 'package:cinema_booking/presentation/book_seat_slot/sc_book_seat_slot.dart';
+import 'package:cinema_booking/presentation/book_seat_type/bloc/book_seat_type_bloc.dart';
+import 'package:cinema_booking/presentation/book_seat_type/bloc/book_seat_type_state.dart';
+import 'package:cinema_booking/presentation/book_seat_type/widget_how_many_seats.dart';
+import 'package:cinema_booking/presentation/booking_time_slot/book_time_slot_main.dart';
 import 'package:cinema_booking/presentation/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -72,7 +72,7 @@ class _BookSeatTypeScreenState extends State<BookSeatTypeScreen> {
                               ],
                             ),
                           ),
-                        )
+                        ),
                       ],
                     ),
                     _buildBtnSelectSeat(),
@@ -104,9 +104,7 @@ class _BookSeatTypeScreenState extends State<BookSeatTypeScreen> {
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text('Select seats', style: AppFont.medium_white_16),
-            ],
+            children: <Widget>[Text('Select seats', style: AppFont.medium_white_16)],
           ),
           onPressed: () {
             BlocProvider.of<BookSeatTypeBloc>(_blocContext).add(ClickSelectSeats());
@@ -117,11 +115,11 @@ class _BookSeatTypeScreenState extends State<BookSeatTypeScreen> {
   }
 
   _openBookSeatSlotScreen(BookSeatTypeState state) {
-    Navigator.pushNamed(context, AppRouter.BOOK_SEAT_SLOT,
-        arguments: ScreenArguments(
-          seatCount: state.seatCount,
-          seatType: state.selectedSeatType,
-        ));
+    Navigator.pushNamed(
+      context,
+      AppRouter.BOOK_SEAT_SLOT,
+      arguments: ScreenArguments(seatCount: state.seatCount, seatType: state.selectedSeatType),
+    );
     BlocProvider.of<BookSeatTypeBloc>(_blocContext).add(OpenedBookSeatSlotScreen());
   }
 }

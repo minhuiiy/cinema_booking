@@ -1,19 +1,19 @@
 import 'package:cinema_booking/common/widgets/snackbar/my_snackbar.dart';
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
-import 'package:cinema_booking/presentation/booking/widgets/widget_cinema_timeslot.dart';
-import 'package:cinema_booking/presentation/booking/widgets/widget_empty.dart';
-import 'package:cinema_booking/presentation/booking/widgets/widget_loading.dart';
-import 'package:cinema_booking/presentation/booking/widgets/widget_screen_message.dart';
-import 'package:cinema_booking/presentation/booking/widgets/widget_toolbar.dart';
+import 'package:cinema_booking/presentation/booking_time_slot/widgets/widget_cinema_timeslot.dart';
+import 'package:cinema_booking/presentation/booking_time_slot/widgets/widget_empty.dart';
+import 'package:cinema_booking/presentation/booking_time_slot/widgets/widget_loading.dart';
+import 'package:cinema_booking/presentation/booking_time_slot/widgets/widget_screen_message.dart';
+import 'package:cinema_booking/presentation/booking_time_slot/widgets/widget_toolbar.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:cinema_booking/data/models/seats/seat_type.dart';
 import 'package:cinema_booking/domain/entities/booking/booking_time_slot.dart';
-import 'package:cinema_booking/presentation/booking/book_seat_slot/bloc/book_seat_slot_bloc.dart';
-import 'package:cinema_booking/presentation/booking/book_seat_slot/bloc/book_seat_slot_state.dart';
-import 'package:cinema_booking/presentation/booking/book_seat_slot/widget_cine_screen.dart';
-import 'package:cinema_booking/presentation/booking/book_seat_slot/widget_item_grid_seat_slot.dart';
-import 'package:cinema_booking/presentation/booking/book_time_slot_main.dart';
+import 'package:cinema_booking/presentation/book_seat_slot/bloc/book_seat_slot_bloc.dart';
+import 'package:cinema_booking/presentation/book_seat_slot/bloc/book_seat_slot_state.dart';
+import 'package:cinema_booking/presentation/book_seat_slot/widget_cine_screen.dart';
+import 'package:cinema_booking/presentation/book_seat_slot/widget_item_grid_seat_slot.dart';
+import 'package:cinema_booking/presentation/booking_time_slot/book_time_slot_main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,10 +21,7 @@ class ScreenArguments {
   int seatCount;
   TypeSeat seatType;
 
-  ScreenArguments({
-    required this.seatCount,
-    required this.seatType,
-  });
+  ScreenArguments({required this.seatCount, required this.seatType});
 
   @override
   String toString() {
@@ -58,10 +55,11 @@ class _BookSeatSlotScreenState extends State<BookSeatSlotScreen> {
     return SafeArea(
       child: Scaffold(
         body: BlocProvider<BookSeatSlotBloc>(
-          create: (context) => BookSeatSlotBloc(
-            selectedSeatType: widget.args.seatType,
-            seatCount: widget.args.seatCount,
-          )..add(OpenScreen()),
+          create:
+              (context) => BookSeatSlotBloc(
+                selectedSeatType: widget.args.seatType,
+                seatCount: widget.args.seatCount,
+              )..add(OpenScreen()),
           child: BlocConsumer<BookSeatSlotBloc, BookSeatSlotState>(
             listener: (context, state) {
               _handleBlocListener(context, state);
@@ -78,41 +76,45 @@ class _BookSeatSlotScreenState extends State<BookSeatSlotScreen> {
 
                 _itemCineTimeSlot = ItemCineTimeSlot.fromBookTimeSlot(bookTimeSlot: bookTimeSlot);
 
-                String textSeat = state.selectedSeatIds != null
-                    ? '${state.selectedSeatIds.length} seats'
-                    : '0 seat';
+                String textSeat =
+                    state.selectedSeatIds != null
+                        ? '${state.selectedSeatIds.length} seats'
+                        : '0 seat';
 
-                return Stack(fit: StackFit.expand, children: <Widget>[
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      WidgetToolbar(
-                        title: movieName,
-                        actions: Text(textSeat, style: AppFont.medium_white_12),
-                      ),
-                      Expanded(
-                        child: SingleChildScrollView(
-                          physics: BouncingScrollPhysics(),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              WidgetCineTimeSlot.selected(
-                                item: _itemCineTimeSlot,
-                                selectedIndex: selectedIndex,
-                                movieCineName: false,
-                                movieCineDot: false,
-                              ),
-                              WidgetCineScreen(),
-                              _buildListItemGridSeatSlot(state),
-                              WidgetSpacer(height: 64),
-                            ],
+                return Stack(
+                  fit: StackFit.expand,
+                  children: <Widget>[
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        WidgetToolbar(
+                          title: movieName,
+                          actions: Text(textSeat, style: AppFont.medium_white_12),
+                        ),
+                        Expanded(
+                          child: SingleChildScrollView(
+                            physics: BouncingScrollPhysics(),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                WidgetCineTimeSlot.selected(
+                                  item: _itemCineTimeSlot,
+                                  selectedIndex: selectedIndex,
+                                  movieCineName: false,
+                                  movieCineDot: false,
+                                ),
+                                WidgetCineScreen(),
+                                _buildListItemGridSeatSlot(state),
+                                WidgetSpacer(height: 64),
+                              ],
+                            ),
                           ),
                         ),
-                      )
-                    ],
-                  ),
-                  _buildBtnPay(state),
-                ]);
+                      ],
+                    ),
+                    _buildBtnPay(state),
+                  ],
+                );
               }
 
               if (state.isLoading) {
@@ -135,18 +137,11 @@ class _BookSeatSlotScreenState extends State<BookSeatSlotScreen> {
     List<Widget> widgets = [];
 
     for (var itemGridSeatSlotVM in state.itemGridSeatSlotVMs) {
-      widgets.add(
-        WidgetItemGridSeatSlot(itemGridSeatSlotVM: itemGridSeatSlotVM),
-      );
-      widgets.add(
-        WidgetSpacer(height: 14),
-      );
+      widgets.add(WidgetItemGridSeatSlot(itemGridSeatSlotVM: itemGridSeatSlotVM));
+      widgets.add(WidgetSpacer(height: 14));
     }
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: widgets,
-    );
+    return Column(mainAxisSize: MainAxisSize.min, children: widgets);
   }
 
   _buildBtnPay(BookSeatSlotState state) {
@@ -166,8 +161,10 @@ class _BookSeatSlotScreenState extends State<BookSeatSlotScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text('Pay${state.totalPrice > 0 ? " \$ ${state.totalPrice}" : ""}',
-                  style: AppFont.medium_white_16),
+              Text(
+                'Pay${state.totalPrice > 0 ? " \$ ${state.totalPrice}" : ""}',
+                style: AppFont.medium_white_16,
+              ),
             ],
           ),
           onPressed: () {
