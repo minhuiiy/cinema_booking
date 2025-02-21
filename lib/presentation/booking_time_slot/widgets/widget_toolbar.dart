@@ -16,7 +16,7 @@ class WidgetToolbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 60,
+      height: 55,
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [Color(0xFF9C27B0), Color(0xFFE91E63)],

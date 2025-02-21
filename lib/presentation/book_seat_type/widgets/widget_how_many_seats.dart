@@ -1,6 +1,8 @@
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
+import 'package:cinema_booking/core/configs/assets/app_images.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
+import 'package:cinema_booking/core/enum/type_seat.dart';
 import 'package:cinema_booking/data/models/seats/seat_type.dart';
 import 'package:cinema_booking/domain/entities/seats/seat_type.dart';
 import 'package:cinema_booking/presentation/book_seat_type/bloc/book_seat_type_bloc.dart';
@@ -15,6 +17,14 @@ class WidgetHowManySeats extends StatefulWidget {
 }
 
 class _WidgetHowManySeatsState extends State<WidgetHowManySeats> {
+  String _selectedSeatTypeImage = AppImages.seatJack;
+
+  void _onSeatTypeChanged(String newImage) {
+    setState(() {
+      _selectedSeatTypeImage = newImage;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -35,10 +45,11 @@ class _WidgetHowManySeatsState extends State<WidgetHowManySeats> {
             style: AppFont.medium_white_22.copyWith(letterSpacing: 1.2),
           ),
           WidgetSpacer(height: 37),
-          Image.asset("assets/images/motor.png", height: 90.57),
-          WidgetSpacer(height: 30),
+
+          Image.asset(_selectedSeatTypeImage, height: 100.57),
+          WidgetSpacer(height: 60),
           WidgetNumberSeatPicker(),
-          WidgetSeatTypePicker(),
+          WidgetSeatTypePicker(onSeatTypeChanged: _onSeatTypeChanged),
           WidgetSpacer(height: 40),
         ],
       ),
@@ -51,7 +62,9 @@ class WidgetSeatTypePicker extends StatefulWidget {
   final List<SeatTypeEntity> seatTypes =
       SeatTypesModel.SAMPLE_DATA.toEntities();
 
-  WidgetSeatTypePicker({super.key});
+  final Function(String) onSeatTypeChanged;
+
+  WidgetSeatTypePicker({super.key, required this.onSeatTypeChanged});
 
   @override
   State<WidgetSeatTypePicker> createState() => _WidgetSeatTypePickerState();
@@ -125,9 +138,24 @@ class _WidgetSeatTypePickerState extends State<WidgetSeatTypePicker> {
       _selectedIndex = index;
     });
 
+    // Update parent widget with the new image
+    String newImage = _getImageForSeatType(widget.seatTypes[index].type);
+    widget.onSeatTypeChanged(newImage);
+
     BlocProvider.of<BookSeatTypeBloc>(
       context,
     ).add(ClickSelectSeatType(selectedSeatType: widget.seatTypes[index].type));
+  }
+
+  String _getImageForSeatType(TypeSeat seatType) {
+    switch (seatType) {
+      case TypeSeat.king:
+        return AppImages.seatKing;
+      case TypeSeat.queen:
+        return AppImages.seatQueen;
+      case TypeSeat.jack:
+        return AppImages.seatJack;
+    }
   }
 }
 
