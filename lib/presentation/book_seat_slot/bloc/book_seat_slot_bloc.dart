@@ -11,9 +11,9 @@ import 'package:cinema_booking/domain/usecase/booking_time/get_cached_book_time_
 import 'package:cinema_booking/domain/usecase/booking_time/get_cached_selected_time_slot.dart';
 import 'package:cinema_booking/domain/usecase/booking_time/get_cached_show.dart';
 import 'package:cinema_booking/presentation/book_seat_slot/bloc/book_seat_slot_state.dart';
-import 'package:cinema_booking/presentation/book_seat_slot/viewmodel/item_grid_seat_slot_vm.dart';
-import 'package:cinema_booking/presentation/book_seat_slot/viewmodel/item_seat_row_vm.dart';
-import 'package:cinema_booking/presentation/book_seat_slot/viewmodel/item_seat_slot_vm.dart';
+import 'package:cinema_booking/presentation/book_seat_slot/model/item_grid_seat_slot_vm.dart';
+import 'package:cinema_booking/presentation/book_seat_slot/model/item_seat_row_vm.dart';
+import 'package:cinema_booking/presentation/book_seat_slot/model/item_seat_slot_vm.dart';
 import 'package:cinema_booking/service_locator.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -39,53 +39,70 @@ class BookSeatSlotBloc extends Bloc<BookSeatSlotEvent, BookSeatSlotState> {
 
   Future<void> _onOpenScreen(OpenScreen event, Emitter<BookSeatSlotState> emit) async {
     LogHelper.logInfo(tag: 'BookSeatSlotBloc', message: 'Opening screen...');
+
+    MovieEntity? movie;
+    TimeSlotEntity? selectedTimeSlot;
+    BookTimeSlotEntity? bookTimeSlot;
+
+    final movieData = await sl<GetCachedMovieUseCase>().call();
+    final selectedTimeSlotData = await sl<GetCachedSelectedTimeSlotUseCase>().call();
+    final bookTimeSlotData = await sl<GetCachedBookTimeSlotUseCase>().call();
+
+    LogHelper.logDebug(tag: 'BookSeatSlotBloc', message: 'Data loaded movieData: $movieData');
+
+    LogHelper.logDebug(
+      tag: 'BookSeatSlotBloc',
+      message: 'Data loaded selectedTimeSlotData: $selectedTimeSlotData',
+    );
+
+    LogHelper.logDebug(
+      tag: 'BookSeatSlotBloc',
+      message: 'Data loaded bookTimeSlotData: $bookTimeSlotData',
+    );
+
+    movieData.fold(
+      (error) {
+        LogHelper.logError(tag: 'OpenScreen Error', message: "BookSeatSlotBloc movieData $error");
+      },
+      (data) {
+        movie = data;
+      },
+    );
+    selectedTimeSlotData.fold(
+      (error) {
+        LogHelper.logError(
+          tag: 'OpenScreen Error',
+          message: "BookSeatSlotBloc selectedTimeSlotData $error",
+        );
+      },
+      (data) {
+        selectedTimeSlot = data;
+      },
+    );
+    bookTimeSlotData.fold(
+      (error) {
+        LogHelper.logError(
+          tag: 'OpenScreen Error',
+          message: "BookSeatSlotBloc bookTimeSlotData $error",
+        );
+      },
+      (data) {
+        bookTimeSlot = data;
+      },
+    );
     try {
-      MovieEntity? movie;
-      TimeSlotEntity? selectedTimeSlot;
-      BookTimeSlotEntity? bookTimeSlot;
-
-      final movieData = await sl<GetCachedMovieUseCase>().call();
-      final selectedTimeSlotData = await sl<GetCachedSelectedTimeSlotUseCase>().call();
-      final bookTimeSlotData = await sl<GetCachedBookTimeSlotUseCase>().call();
-
-      movieData.fold(
-        (error) {
-          LogHelper.logError(
-            tag: 'OpenScreen Error',
-            message: "BookSeatSlotBloc movieData " + error,
-          );
-        },
-        (data) {
-          movie = data;
-        },
-      );
-      selectedTimeSlotData.fold(
-        (error) {
-          LogHelper.logError(
-            tag: 'OpenScreen Error',
-            message: "BookSeatSlotBloc selectedTimeSlotData " + error,
-          );
-        },
-        (data) {
-          selectedTimeSlot = data;
-        },
-      );
-      bookTimeSlotData.fold(
-        (error) {
-          LogHelper.logError(
-            tag: 'OpenScreen Error',
-            message: "BookSeatSlotBloc bookTimeSlotData " + error,
-          );
-        },
-        (data) {
-          bookTimeSlot = data;
-        },
-      );
-
       List<SeatTypesModel> seatSlotModelByTypes =
-          await sl<RemoteSeatSlotRepository>().getListSeatSlotBySeatTypes();
+          await sl<SeatSlotRepository>().getListSeatSlotBySeatTypes();
+
+      LogHelper.logDebug(
+        tag: 'BookSeatSlotBloc',
+        message: 'Data loaded seatSlotModelByTypes: $seatSlotModelByTypes',
+      );
       seatSlotByTypes = seatSlotModelByTypes.toEntities();
-      LogHelper.logDebug(tag: 'BookSeatSlotBloc', message: 'Data loaded successfully');
+      LogHelper.logDebug(
+        tag: 'BookSeatSlotBloc',
+        message: 'Data loaded successfully seatSlotByTypes $seatSlotByTypes',
+      );
       emit(
         state.copyWith(
           isLoading: false,
@@ -96,7 +113,7 @@ class BookSeatSlotBloc extends Bloc<BookSeatSlotEvent, BookSeatSlotState> {
         ),
       );
     } catch (e) {
-      LogHelper.logError(tag: 'BookSeatSlotBloc', message: 'Failed to open screen' + e.toString());
+      LogHelper.logError(tag: 'BookSeatSlotBloc', message: 'Failed to open screen $e');
       emit(state.copyWith(isLoading: false, msg: e.toString()));
     }
   }
@@ -200,9 +217,15 @@ class BookSeatSlotBloc extends Bloc<BookSeatSlotEvent, BookSeatSlotState> {
   }
 
   List<ItemGridSeatSlotVM> toItemGridSeatSlotVMs(List<SeatTypeEntity> seatSlotByTypes) {
+    LogHelper.logDebug(tag: 'BookSeatSlotBloc', message: 'toItemGridSeatSlotVMs: $seatSlotByTypes');
     return seatSlotByTypes.map((seatSlotType) {
       final seatTypeName = '\$ ${seatSlotType.price} ${seatSlotType.type.toText().toUpperCase()}';
       final maxColumn = seatSlotType.seatRows![0].count + 1;
+
+      LogHelper.logError(
+        tag: 'BookSeatSlotBloc',
+        message: 'Invalid seatTypeName: $seatTypeName ; SeatTypeModel: $seatSlotType',
+      );
 
       return ItemGridSeatSlotVM(
         seatTypeName: seatTypeName,
@@ -214,7 +237,7 @@ class BookSeatSlotBloc extends Bloc<BookSeatSlotEvent, BookSeatSlotState> {
 
   List<ItemSeatRowVM> _toItemSeatRowVMs(List<SeatRowEntity>? seatRows, TypeSeat seatType) {
     return seatRows!.map((seatRow) {
-      final itemRowName = '${seatRow.rowId}';
+      final itemRowName = seatRow.rowId;
       return ItemSeatRowVM(
         itemRowName: itemRowName,
         seatSlotVMs: _toItemSeatSlotVMs(seatRow, seatRow.count, seatType),

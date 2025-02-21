@@ -20,14 +20,7 @@ class SeatRowModel {
   List<int>? offs = [];
   List<int>? booked = [];
 
-  SeatRowModel({
-    this.id,
-    this.rowId,
-    this.seatId,
-    this.count,
-    this.offs,
-    this.booked,
-  });
+  SeatRowModel({this.id, this.rowId, this.seatId, this.count, this.offs, this.booked});
 
   factory SeatRowModel.fromJson(Map<String, dynamic> json) => _$SeatRowModelFromJson(json);
 
@@ -47,14 +40,7 @@ class SeatRowModel {
       offs: [4, 5],
       booked: [],
     ),
-    SeatRowModel(
-      id: 'mock_data',
-      seatId: 'mock_data',
-      rowId: 'J',
-      count: 11,
-      offs: [],
-      booked: [],
-    ),
+    SeatRowModel(id: 'mock_data', seatId: 'mock_data', rowId: 'J', count: 11, offs: [], booked: []),
   ];
 
   static final List<SeatRowModel> SAMPLE_QUEEN = [
@@ -124,7 +110,7 @@ class SeatRowModel {
       count: 11,
       offs: [],
       booked: [2, 3, 4, 5, 6, 7],
-    )
+    ),
   ];
 }
 
@@ -132,7 +118,7 @@ extension SeatRowModelMapper on SeatRowModel {
   SeatRowEntity toEntity() {
     return SeatRowEntity(
       rowId: rowId ?? "",
-      count: count ?? 00,
+      count: count ?? 0,
       offs: offs != null ? List<int>.from(offs!) : [],
       booked: booked != null ? List<int>.from(booked!) : [],
       id: id ?? "",

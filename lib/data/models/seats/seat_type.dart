@@ -13,6 +13,7 @@ class SeatTypesModel {
   String? name;
 
   @StringAsDoubleConverter()
+  @JsonKey(name: "price")
   double? price;
 
   @JsonKey(name: "seat_type", defaultValue: TypeSeat.jack)
@@ -22,12 +23,7 @@ class SeatTypesModel {
   @JsonKey(name: "seat_rows")
   List<SeatRowModel> seatRows;
 
-  SeatTypesModel(
-    this.name,
-    this.price,
-    this.type,
-    this.seatRows,
-  );
+  SeatTypesModel(this.name, this.price, this.type, this.seatRows);
 
   factory SeatTypesModel.fromJson(Map<String, dynamic> json) => _$SeatTypesModelFromJson(json);
 
@@ -35,7 +31,7 @@ class SeatTypesModel {
 
   @override
   String toString() {
-    return 'SeatType{name: $name}';
+    return 'SeatTypesModel{id: $id, name: $name, price: $price, type: $type, seatRows: ${seatRows.map((row) => row.toString()).toList()}}';
   }
 
   static final List<SeatTypesModel> SAMPLE_DATA = [
@@ -74,6 +70,7 @@ extension SeatTypesModelMapper on SeatTypesModel {
       name: name ?? "",
       price: price ?? 0,
       type: type,
+      seatRows: seatRows.map((row) => row.toEntity()).toList(),
     );
   }
 }

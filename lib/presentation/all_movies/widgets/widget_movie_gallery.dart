@@ -3,7 +3,7 @@ import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:cinema_booking/domain/entities/response/home.dart';
 import 'package:cinema_booking/presentation/all_movies/bloc/all_movies_bloc.dart';
-import 'package:cinema_booking/presentation/all_movies/list_movies/widget_list_movies.dart';
+import 'package:cinema_booking/presentation/all_movies/widgets/widget_list_movies.dart';
 import 'package:flutter/material.dart';
 
 class WidgetMovieGallery extends StatefulWidget {
@@ -22,10 +22,7 @@ class _WidgetMovieGalleryState extends State<WidgetMovieGallery>
 
   @override
   void initState() {
-    _controller = TabController(
-      length: 3,
-      vsync: this,
-    );
+    _controller = TabController(length: 3, vsync: this);
 
     _controller.addListener(() {
       setState(() {
@@ -50,7 +47,7 @@ class _WidgetMovieGalleryState extends State<WidgetMovieGallery>
               _listMoviesToContent(widget.meta.exclusive),
             ],
           ),
-        )
+        ),
       ],
     );
   }
@@ -73,11 +70,7 @@ class _WidgetMovieGalleryState extends State<WidgetMovieGallery>
       length: 3,
       child: TabBar(
         controller: _controller,
-        tabs: <Widget>[
-          Tab(text: 'Now Showing'),
-          Tab(text: 'Coming Soon'),
-          Tab(text: 'Exclusive'),
-        ],
+        tabs: <Widget>[Tab(text: 'Now Showing'), Tab(text: 'Coming Soon'), Tab(text: 'Exclusive')],
         labelColor: Colors.purpleAccent,
         labelStyle: AppFont.medium_default.copyWith(fontSize: 16, fontWeight: FontWeight.bold),
         unselectedLabelColor: Colors.grey.shade500,

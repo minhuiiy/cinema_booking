@@ -19,18 +19,24 @@ class _WidgetHowManySeatsState extends State<WidgetHowManySeats> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      color: AppColors.white,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Color(0xFF1B1B2F), Color(0xFF3A3D63)],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ),
+      ),
       child: Column(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
           WidgetSpacer(height: 34),
-          Text('How many seats ?', style: AppFont.regular_blue_16),
+          Text('How many seats?', style: AppFont.medium_white_22.copyWith(letterSpacing: 1.2)),
           WidgetSpacer(height: 37),
           Image.asset("assets/images/motor.png", height: 90.57),
           WidgetSpacer(height: 30),
           WidgetNumberSeatPicker(),
           WidgetSeatTypePicker(),
-          WidgetSpacer(height: 54),
+          WidgetSpacer(height: 40),
         ],
       ),
     );
@@ -53,18 +59,15 @@ class _WidgetSeatTypePickerState extends State<WidgetSeatTypePicker> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 19, vertical: 40),
-      child: ConstrainedBox(
-        constraints: BoxConstraints(minHeight: 137, maxHeight: 237),
-        child: GridView.count(
-          shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          crossAxisCount: widget.seatTypes.length,
-          scrollDirection: Axis.vertical,
-          childAspectRatio: 94 / 137,
-          crossAxisSpacing: 19,
-          children: <Widget>[for (final seatType in widget.seatTypes) _buildItemSeatType(seatType)],
-        ),
+      margin: EdgeInsets.symmetric(horizontal: 24, vertical: 40),
+      child: GridView.count(
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+        crossAxisCount: 3,
+        crossAxisSpacing: 14,
+        mainAxisSpacing: 14,
+        childAspectRatio: 3 / 4,
+        children: <Widget>[for (final seatType in widget.seatTypes) _buildItemSeatType(seatType)],
       ),
     );
   }
@@ -73,36 +76,28 @@ class _WidgetSeatTypePickerState extends State<WidgetSeatTypePicker> {
     var index = widget.seatTypes.indexOf(seatType);
     var isSelected = index == _selectedIndex;
 
-    String textStatus = index == 0 ? 'Filling fast' : 'Available';
-    var itemBg = isSelected ? AppColors.green : AppColors.timeSlotBg;
-    var itemBorder = isSelected ? Colors.transparent : AppColors.timeSlotBorder;
-    var nameColor =
-        isSelected
-            ? AppColors.white.withValues(alpha: 0.5)
-            : AppColors.gray1.withValues(alpha: 0.7);
-    var priceColor = isSelected ? AppColors.white : AppColors.blue;
-    var statusColor = priceColor;
-
     return GestureDetector(
       onTap: () {
         _clickSelectSeatType(index);
       },
-      child: Container(
+      child: AnimatedContainer(
+        duration: Duration(milliseconds: 300),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          color: itemBg,
-          border: Border.all(color: itemBorder),
+          borderRadius: BorderRadius.circular(10),
+          color: isSelected ? AppColors.green : Colors.black54,
+          border: Border.all(color: isSelected ? Colors.greenAccent : Colors.grey.shade700),
+          boxShadow: isSelected ? [BoxShadow(color: Colors.greenAccent, blurRadius: 10)] : [],
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(seatType.name, style: AppFont.regular_white_12.copyWith(color: nameColor)),
+            Text(seatType.name, style: AppFont.medium_white_14),
             Text(
-              '\$ ${seatType.price}',
-              style: AppFont.regular_white_14.copyWith(color: priceColor),
+              '\$${seatType.price}',
+              style: AppFont.semibold_white_16.copyWith(color: Colors.yellowAccent),
             ),
-            WidgetSpacer(height: 32),
-            Text(textStatus, style: AppFont.regular_white_12.copyWith(color: statusColor)),
+            WidgetSpacer(height: 10),
+            Text(index == 0 ? 'Filling fast' : 'Available', style: AppFont.regular_white_12),
           ],
         ),
       ),
@@ -135,35 +130,45 @@ class _WidgetNumberSeatPickerState extends State<WidgetNumberSeatPicker> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 32,
-      child: ListView.builder(
-        physics: BouncingScrollPhysics(),
-        scrollDirection: Axis.horizontal,
-        shrinkWrap: true,
-        itemBuilder: (context, index) {
-          var isSelected = _selectedIndex == index;
-          var boxColor = isSelected ? AppColors.green : Colors.transparent;
-          var textColor = isSelected ? AppColors.white : AppColors.gray4;
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: SizedBox(
+        height: 40,
+        child: ListView.builder(
+          physics: BouncingScrollPhysics(),
+          scrollDirection: Axis.horizontal,
+          shrinkWrap: true,
+          itemBuilder: (context, index) {
+            var isSelected = _selectedIndex == index;
+            var boxColor = isSelected ? AppColors.green : Colors.black45;
+            var textColor = isSelected ? AppColors.white : Colors.white70;
 
-          return GestureDetector(
-            onTap: () {
-              _clickSelectSeat(index);
-            },
-            child: Container(
-              width: 32,
-              height: 32,
-              decoration: BoxDecoration(color: boxColor, borderRadius: BorderRadius.circular(4)),
-              child: Center(
-                child: Text(
-                  seats[index].toString(),
-                  style: AppFont.medium_white_14.copyWith(color: textColor),
+            return GestureDetector(
+              onTap: () {
+                _clickSelectSeat(index);
+              },
+              child: AnimatedContainer(
+                duration: Duration(milliseconds: 200),
+                width: 38,
+                height: 38,
+                margin: EdgeInsets.symmetric(horizontal: 5),
+                decoration: BoxDecoration(
+                  color: boxColor,
+                  borderRadius: BorderRadius.circular(6),
+                  boxShadow:
+                      isSelected ? [BoxShadow(color: Colors.greenAccent, blurRadius: 8)] : [],
+                ),
+                child: Center(
+                  child: Text(
+                    seats[index].toString(),
+                    style: AppFont.medium_white_14.copyWith(color: textColor),
+                  ),
                 ),
               ),
-            ),
-          );
-        },
-        itemCount: seats.length,
+            );
+          },
+          itemCount: seats.length,
+        ),
       ),
     );
   }

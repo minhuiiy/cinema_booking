@@ -25,9 +25,8 @@ class SeatTypeEntity extends Equatable {
 
   @override
   List<Object> get props => [id, name, price, type];
-
   @override
   String toString() {
-    return 'SeatType{name: $name}';
+    return 'SeatTypesModel{id: $id, name: $name, price: $price, type: $type, seatRows: ${seatRows?.map((row) => row.toString()).toList()}}';
   }
 }

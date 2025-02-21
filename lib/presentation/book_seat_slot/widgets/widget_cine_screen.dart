@@ -3,8 +3,10 @@ import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:flutter/material.dart';
 
 class WidgetCineScreen extends StatefulWidget {
+  const WidgetCineScreen({super.key});
+
   @override
-  _WidgetCineScreenState createState() => _WidgetCineScreenState();
+  State<WidgetCineScreen> createState() => _WidgetCineScreenState();
 }
 
 class _WidgetCineScreenState extends State<WidgetCineScreen> {
@@ -14,23 +16,13 @@ class _WidgetCineScreenState extends State<WidgetCineScreen> {
       padding: EdgeInsets.all(20),
       child: Stack(
         children: <Widget>[
-          AspectRatio(
-            aspectRatio: 320 / 41,
-            child: CustomPaint(
-              painter: CurveScreenPainter(),
-            ),
-          ),
+          AspectRatio(aspectRatio: 320 / 41, child: CustomPaint(painter: CurveScreenPainter())),
           Positioned(
             bottom: 0,
             left: 0,
             right: 0,
-            child: Center(
-              child: Text(
-                'Screen here',
-                style: AppFont.regular_gray4_12,
-              ),
-            ),
-          )
+            child: Center(child: Text('Screen here', style: AppFont.regular_gray4_12)),
+          ),
         ],
       ),
     );
@@ -53,7 +45,11 @@ class CurveScreenPainter extends CustomPainter {
     var path = Path();
     path.moveTo(offset, size.height - offset);
     path.quadraticBezierTo(
-        size.width / 2, -size.height + offset, size.width - offset, size.height - offset);
+      size.width / 2,
+      -size.height + offset,
+      size.width - offset,
+      size.height - offset,
+    );
 
     canvas.drawPath(path, paint);
   }

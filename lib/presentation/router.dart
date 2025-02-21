@@ -5,12 +5,11 @@
  */
 
 // ignore_for_file: constant_identifier_names
-import 'package:cinema_booking/common/helpers/log_helpers.dart';
 import 'package:cinema_booking/domain/entities/movies/movies.dart';
 import 'package:cinema_booking/domain/entities/response/home.dart';
 import 'package:cinema_booking/presentation/all_movies/sc_all_movies.dart';
-import 'package:cinema_booking/presentation/book_seat_slot/sc_book_seat_slot.dart';
-import 'package:cinema_booking/presentation/book_seat_type/sc_book_seat_type.dart';
+import 'package:cinema_booking/presentation/book_seat_slot/book_seat_slot_screen.dart';
+import 'package:cinema_booking/presentation/book_seat_type/book_seat_type_screen.dart';
 import 'package:cinema_booking/presentation/booking_time_slot/book_time_slot_main.dart';
 import 'package:cinema_booking/presentation/home/home_main.dart';
 import 'package:cinema_booking/presentation/login/pages/login.dart';

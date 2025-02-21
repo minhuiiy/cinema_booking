@@ -5,7 +5,7 @@ import 'package:cinema_booking/presentation/booking_time_slot/widgets/widget_emp
 import 'package:cinema_booking/presentation/booking_time_slot/widgets/widget_toolbar.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
-import 'package:cinema_booking/presentation/book_seat_slot/sc_book_seat_slot.dart';
+import 'package:cinema_booking/presentation/book_seat_slot/book_seat_slot_screen.dart';
 import 'package:cinema_booking/presentation/book_seat_type/bloc/book_seat_type_bloc.dart';
 import 'package:cinema_booking/presentation/book_seat_type/bloc/book_seat_type_state.dart';
 import 'package:cinema_booking/presentation/book_seat_type/widgets/widget_how_many_seats.dart';
@@ -97,18 +97,35 @@ class _BookSeatTypeScreenState extends State<BookSeatTypeScreen> {
         height: 54,
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            backgroundColor: AppColors.defaultColor, // Màu nền của nút
+            padding: EdgeInsets.zero, // Ensures full-width gradient
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8), // Nếu bạn muốn làm tròn các góc của nút
+              borderRadius: BorderRadius.circular(8), // Smooth rounded corners
             ),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[Text('Select seats', style: AppFont.medium_white_16)],
           ),
           onPressed: () {
             BlocProvider.of<BookSeatTypeBloc>(_blocContext).add(ClickSelectSeats());
           },
+          child: Ink(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Color(0xFF9C27B0), Color(0xFFE91E63)], // Gradient effect
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Container(
+              alignment: Alignment.center,
+              constraints: BoxConstraints(minHeight: 54),
+              child: Text(
+                'Select seats',
+                style: AppFont.medium_white_16.copyWith(
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 1.2,
+                ),
+              ),
+            ),
+          ),
         ),
       ),
     );
