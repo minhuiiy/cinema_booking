@@ -60,8 +60,11 @@ class _WidgetHomePostersState extends State<WidgetHomePosters> {
           Spacer(),
           TextButton(
             onPressed: () {},
-            child: Text("View All", style: AppFont.medium_white_12.copyWith(color: AppColors.red)),
-          )
+            child: Text(
+              "View All",
+              style: AppFont.medium_white_12.copyWith(color: AppColors.red),
+            ),
+          ),
         ],
       ),
     );
@@ -101,7 +104,9 @@ class _WidgetHomePostersState extends State<WidgetHomePosters> {
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
                   colors: [
-                    Colors.black.withValues(alpha: 0.80), // Dark fade on the left
+                    Colors.black.withValues(
+                      alpha: 0.80,
+                    ), // Dark fade on the left
                     Colors.transparent,
                   ],
                 ),
@@ -122,7 +127,9 @@ class _WidgetHomePostersState extends State<WidgetHomePosters> {
                   begin: Alignment.centerRight,
                   end: Alignment.centerLeft,
                   colors: [
-                    Colors.black.withValues(alpha: 0.80), // Dark fade on the right
+                    Colors.black.withValues(
+                      alpha: 0.80,
+                    ), // Dark fade on the right
                     Colors.transparent,
                   ],
                 ),
@@ -161,8 +168,12 @@ class WidgetItemPoster extends StatelessWidget {
               ),
             ),
             WidgetSpacer(height: 4),
-            Text(item.title,
-                style: AppFont.regular_white_12, maxLines: 2, overflow: TextOverflow.ellipsis),
+            Text(
+              item.title,
+              style: AppFont.regular_white_12,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
             WidgetSpacer(height: 2),
             Text(item.subTitle, style: AppFont.regular_white_10),
           ],

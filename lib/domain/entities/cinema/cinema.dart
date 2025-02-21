@@ -29,7 +29,16 @@ class CinemaEntity extends Equatable {
   });
 
   @override
-  List<Object> get props => [id, name, address, rating, distance, photo, lat, lng];
+  List<Object> get props => [
+    id,
+    name,
+    address,
+    rating,
+    distance,
+    photo,
+    lat,
+    lng,
+  ];
 
   @override
   String toString() {

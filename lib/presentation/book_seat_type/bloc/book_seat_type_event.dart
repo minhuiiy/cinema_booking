@@ -12,9 +12,7 @@ class OpenScreen extends BookSeatTypeEvent {
 class ClickHowManySeat extends BookSeatTypeEvent {
   final int seatCount;
 
-  const ClickHowManySeat({
-    required this.seatCount,
-  });
+  const ClickHowManySeat({required this.seatCount});
 
   @override
   List<Object> get props => [seatCount];
@@ -23,9 +21,7 @@ class ClickHowManySeat extends BookSeatTypeEvent {
 class ClickSelectSeatType extends BookSeatTypeEvent {
   final TypeSeat selectedSeatType;
 
-  const ClickSelectSeatType({
-    required this.selectedSeatType,
-  });
+  const ClickSelectSeatType({required this.selectedSeatType});
 
   @override
   List<Object> get props => [selectedSeatType];

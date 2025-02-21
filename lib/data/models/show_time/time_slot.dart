@@ -17,14 +17,10 @@ class TimeSlotModel {
   String? time;
   bool active;
 
-  TimeSlotModel({
-    this.id,
-    this.showtimeId,
-    this.time,
-    this.active = false,
-  });
+  TimeSlotModel({this.id, this.showtimeId, this.time, this.active = false});
 
-  factory TimeSlotModel.fromJson(Map<String, dynamic> json) => _$TimeSlotModelFromJson(json);
+  factory TimeSlotModel.fromJson(Map<String, dynamic> json) =>
+      _$TimeSlotModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$TimeSlotModelToJson(this);
 }

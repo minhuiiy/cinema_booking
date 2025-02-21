@@ -49,12 +49,21 @@ class HomeModelResponse {
 extension HomeResponseModelX on HomeModelResponse {
   HomeEntity toEntity() {
     return HomeEntity(
-      banners: banners?.map((bannerModel) => bannerModel.toEntity()).toList() ?? [],
-      genres: genres?.map((categoryModel) => categoryModel.toEntity()).toList() ?? [],
+      banners:
+          banners?.map((bannerModel) => bannerModel.toEntity()).toList() ?? [],
+      genres:
+          genres?.map((categoryModel) => categoryModel.toEntity()).toList() ??
+          [],
       recommendedMovies:
-          recommendedMovies?.map((movieModel) => movieModel.toEntity()).toList() ?? [],
-      nearbyCinemas: nearbyCinemas?.map((cineModel) => cineModel.toEntity()).toList() ?? [],
-      movieByGenres: movieByGenres
+          recommendedMovies
+              ?.map((movieModel) => movieModel.toEntity())
+              .toList() ??
+          [],
+      nearbyCinemas:
+          nearbyCinemas?.map((cineModel) => cineModel.toEntity()).toList() ??
+          [],
+      movieByGenres:
+          movieByGenres
               ?.map((movieByGenresResponse) => movieByGenresResponse.toEntity())
               .toList() ??
           [],
@@ -62,7 +71,8 @@ extension HomeResponseModelX on HomeModelResponse {
   }
 
   List<GenresEntity> toGenresEntity() {
-    return genres?.map((categoryModel) => categoryModel.toEntity()).toList() ?? [];
+    return genres?.map((categoryModel) => categoryModel.toEntity()).toList() ??
+        [];
   }
 
   List<BannerEntity> toBannersEntity() {
@@ -77,6 +87,7 @@ extension HomeResponseModelX on HomeModelResponse {
   }
 
   List<CinemaEntity> toNearbyCinemasEntity() {
-    return nearbyCinemas?.map((cineModel) => cineModel.toEntity()).toList() ?? [];
+    return nearbyCinemas?.map((cineModel) => cineModel.toEntity()).toList() ??
+        [];
   }
 }

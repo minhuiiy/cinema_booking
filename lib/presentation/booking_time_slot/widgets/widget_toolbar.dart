@@ -11,7 +11,8 @@ class WidgetToolbar extends StatelessWidget {
 
   const WidgetToolbar({super.key, required this.title, required this.actions});
 
-  WidgetToolbar.defaultActions({super.key, required this.title}) : actions = _buildActions();
+  WidgetToolbar.defaultActions({super.key, required this.title})
+    : actions = _buildActions();
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,11 @@ class WidgetToolbar extends StatelessWidget {
           end: Alignment.bottomRight,
         ),
         boxShadow: [
-          BoxShadow(color: Colors.white.withValues(alpha: .1), blurRadius: 10, spreadRadius: -2),
+          BoxShadow(
+            color: Colors.white.withValues(alpha: .1),
+            blurRadius: 10,
+            spreadRadius: -2,
+          ),
         ],
       ),
       padding: EdgeInsets.symmetric(horizontal: 16),
@@ -36,11 +41,18 @@ class WidgetToolbar extends StatelessWidget {
             },
             child: Padding(
               padding: const EdgeInsets.only(left: 12, right: 10),
-              child: MySvgImage(width: 19, height: 16, path: AppVectors.iconBack),
+              child: MySvgImage(
+                width: 19,
+                height: 16,
+                path: AppVectors.iconBack,
+              ),
             ),
           ),
           Expanded(child: Text(title, style: AppFont.medium_white_16)),
-          Padding(padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 20), child: actions),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 20),
+            child: actions,
+          ),
         ],
       ),
     );

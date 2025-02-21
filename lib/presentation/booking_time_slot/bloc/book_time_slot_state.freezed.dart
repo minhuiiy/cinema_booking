@@ -12,7 +12,8 @@ part of 'book_time_slot_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$BookTimeSlotState {
@@ -32,15 +33,17 @@ mixin _$BookTimeSlotState {
 /// @nodoc
 abstract class $BookTimeSlotStateCopyWith<$Res> {
   factory $BookTimeSlotStateCopyWith(
-          BookTimeSlotState value, $Res Function(BookTimeSlotState) then) =
-      _$BookTimeSlotStateCopyWithImpl<$Res, BookTimeSlotState>;
+    BookTimeSlotState value,
+    $Res Function(BookTimeSlotState) then,
+  ) = _$BookTimeSlotStateCopyWithImpl<$Res, BookTimeSlotState>;
   @useResult
-  $Res call(
-      {bool isLoading,
-      List<BookTimeSlotEntity> list,
-      String? msg,
-      bool movieSearchField,
-      bool isOpenBookSeatTypeScreen});
+  $Res call({
+    bool isLoading,
+    List<BookTimeSlotEntity> list,
+    String? msg,
+    bool movieSearchField,
+    bool isOpenBookSeatTypeScreen,
+  });
 }
 
 /// @nodoc
@@ -64,54 +67,65 @@ class _$BookTimeSlotStateCopyWithImpl<$Res, $Val extends BookTimeSlotState>
     Object? movieSearchField = null,
     Object? isOpenBookSeatTypeScreen = null,
   }) {
-    return _then(_value.copyWith(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      list: null == list
-          ? _value.list
-          : list // ignore: cast_nullable_to_non_nullable
-              as List<BookTimeSlotEntity>,
-      msg: freezed == msg
-          ? _value.msg
-          : msg // ignore: cast_nullable_to_non_nullable
-              as String?,
-      movieSearchField: null == movieSearchField
-          ? _value.movieSearchField
-          : movieSearchField // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isOpenBookSeatTypeScreen: null == isOpenBookSeatTypeScreen
-          ? _value.isOpenBookSeatTypeScreen
-          : isOpenBookSeatTypeScreen // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            isLoading:
+                null == isLoading
+                    ? _value.isLoading
+                    : isLoading // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            list:
+                null == list
+                    ? _value.list
+                    : list // ignore: cast_nullable_to_non_nullable
+                        as List<BookTimeSlotEntity>,
+            msg:
+                freezed == msg
+                    ? _value.msg
+                    : msg // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            movieSearchField:
+                null == movieSearchField
+                    ? _value.movieSearchField
+                    : movieSearchField // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            isOpenBookSeatTypeScreen:
+                null == isOpenBookSeatTypeScreen
+                    ? _value.isOpenBookSeatTypeScreen
+                    : isOpenBookSeatTypeScreen // ignore: cast_nullable_to_non_nullable
+                        as bool,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$BookTimeSlotStateImplCopyWith<$Res>
     implements $BookTimeSlotStateCopyWith<$Res> {
-  factory _$$BookTimeSlotStateImplCopyWith(_$BookTimeSlotStateImpl value,
-          $Res Function(_$BookTimeSlotStateImpl) then) =
-      __$$BookTimeSlotStateImplCopyWithImpl<$Res>;
+  factory _$$BookTimeSlotStateImplCopyWith(
+    _$BookTimeSlotStateImpl value,
+    $Res Function(_$BookTimeSlotStateImpl) then,
+  ) = __$$BookTimeSlotStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {bool isLoading,
-      List<BookTimeSlotEntity> list,
-      String? msg,
-      bool movieSearchField,
-      bool isOpenBookSeatTypeScreen});
+  $Res call({
+    bool isLoading,
+    List<BookTimeSlotEntity> list,
+    String? msg,
+    bool movieSearchField,
+    bool isOpenBookSeatTypeScreen,
+  });
 }
 
 /// @nodoc
 class __$$BookTimeSlotStateImplCopyWithImpl<$Res>
     extends _$BookTimeSlotStateCopyWithImpl<$Res, _$BookTimeSlotStateImpl>
     implements _$$BookTimeSlotStateImplCopyWith<$Res> {
-  __$$BookTimeSlotStateImplCopyWithImpl(_$BookTimeSlotStateImpl _value,
-      $Res Function(_$BookTimeSlotStateImpl) _then)
-      : super(_value, _then);
+  __$$BookTimeSlotStateImplCopyWithImpl(
+    _$BookTimeSlotStateImpl _value,
+    $Res Function(_$BookTimeSlotStateImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of BookTimeSlotState
   /// with the given fields replaced by the non-null parameter values.
@@ -124,41 +138,48 @@ class __$$BookTimeSlotStateImplCopyWithImpl<$Res>
     Object? movieSearchField = null,
     Object? isOpenBookSeatTypeScreen = null,
   }) {
-    return _then(_$BookTimeSlotStateImpl(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      list: null == list
-          ? _value._list
-          : list // ignore: cast_nullable_to_non_nullable
-              as List<BookTimeSlotEntity>,
-      msg: freezed == msg
-          ? _value.msg
-          : msg // ignore: cast_nullable_to_non_nullable
-              as String?,
-      movieSearchField: null == movieSearchField
-          ? _value.movieSearchField
-          : movieSearchField // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isOpenBookSeatTypeScreen: null == isOpenBookSeatTypeScreen
-          ? _value.isOpenBookSeatTypeScreen
-          : isOpenBookSeatTypeScreen // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
+    return _then(
+      _$BookTimeSlotStateImpl(
+        isLoading:
+            null == isLoading
+                ? _value.isLoading
+                : isLoading // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        list:
+            null == list
+                ? _value._list
+                : list // ignore: cast_nullable_to_non_nullable
+                    as List<BookTimeSlotEntity>,
+        msg:
+            freezed == msg
+                ? _value.msg
+                : msg // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        movieSearchField:
+            null == movieSearchField
+                ? _value.movieSearchField
+                : movieSearchField // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        isOpenBookSeatTypeScreen:
+            null == isOpenBookSeatTypeScreen
+                ? _value.isOpenBookSeatTypeScreen
+                : isOpenBookSeatTypeScreen // ignore: cast_nullable_to_non_nullable
+                    as bool,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$BookTimeSlotStateImpl implements _BookTimeSlotState {
-  const _$BookTimeSlotStateImpl(
-      {this.isLoading = false,
-      final List<BookTimeSlotEntity> list = const [],
-      this.msg,
-      this.movieSearchField = false,
-      this.isOpenBookSeatTypeScreen = false})
-      : _list = list;
+  const _$BookTimeSlotStateImpl({
+    this.isLoading = false,
+    final List<BookTimeSlotEntity> list = const [],
+    this.msg,
+    this.movieSearchField = false,
+    this.isOpenBookSeatTypeScreen = false,
+  }) : _list = list;
 
   @override
   @JsonKey()
@@ -198,18 +219,21 @@ class _$BookTimeSlotStateImpl implements _BookTimeSlotState {
             (identical(other.movieSearchField, movieSearchField) ||
                 other.movieSearchField == movieSearchField) &&
             (identical(
-                    other.isOpenBookSeatTypeScreen, isOpenBookSeatTypeScreen) ||
+                  other.isOpenBookSeatTypeScreen,
+                  isOpenBookSeatTypeScreen,
+                ) ||
                 other.isOpenBookSeatTypeScreen == isOpenBookSeatTypeScreen));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      isLoading,
-      const DeepCollectionEquality().hash(_list),
-      msg,
-      movieSearchField,
-      isOpenBookSeatTypeScreen);
+    runtimeType,
+    isLoading,
+    const DeepCollectionEquality().hash(_list),
+    msg,
+    movieSearchField,
+    isOpenBookSeatTypeScreen,
+  );
 
   /// Create a copy of BookTimeSlotState
   /// with the given fields replaced by the non-null parameter values.
@@ -218,16 +242,19 @@ class _$BookTimeSlotStateImpl implements _BookTimeSlotState {
   @pragma('vm:prefer-inline')
   _$$BookTimeSlotStateImplCopyWith<_$BookTimeSlotStateImpl> get copyWith =>
       __$$BookTimeSlotStateImplCopyWithImpl<_$BookTimeSlotStateImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 }
 
 abstract class _BookTimeSlotState implements BookTimeSlotState {
-  const factory _BookTimeSlotState(
-      {final bool isLoading,
-      final List<BookTimeSlotEntity> list,
-      final String? msg,
-      final bool movieSearchField,
-      final bool isOpenBookSeatTypeScreen}) = _$BookTimeSlotStateImpl;
+  const factory _BookTimeSlotState({
+    final bool isLoading,
+    final List<BookTimeSlotEntity> list,
+    final String? msg,
+    final bool movieSearchField,
+    final bool isOpenBookSeatTypeScreen,
+  }) = _$BookTimeSlotStateImpl;
 
   @override
   bool get isLoading;

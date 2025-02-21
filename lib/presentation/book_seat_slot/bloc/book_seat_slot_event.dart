@@ -12,9 +12,7 @@ class OpenScreen extends BookSeatSlotEvent {
 class ClickSelectSeatSlot extends BookSeatSlotEvent {
   ItemSeatSlotVM itemSeatSlotVM;
 
-  ClickSelectSeatSlot({
-    required this.itemSeatSlotVM,
-  });
+  ClickSelectSeatSlot({required this.itemSeatSlotVM});
 
   @override
   List<Object> get props => [itemSeatSlotVM];

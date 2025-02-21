@@ -20,7 +20,10 @@ class WidgetOffers extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [Colors.black.withValues(alpha: 0.9), Colors.black.withValues(alpha: 0.7)],
+          colors: [
+            Colors.black.withValues(alpha: 0.9),
+            Colors.black.withValues(alpha: 0.7),
+          ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
@@ -75,7 +78,7 @@ class WidgetOffers extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: movie.movieOffer.length,
             ),
-          )
+          ),
         ],
       ),
     );
@@ -117,8 +120,10 @@ class WidgetGrabReward extends StatelessWidget {
               child: Container(
                 width: 30,
                 height: 53,
-                decoration:
-                    BoxDecoration(color: iconBgColor, borderRadius: BorderRadius.circular(4)),
+                decoration: BoxDecoration(
+                  color: iconBgColor,
+                  borderRadius: BorderRadius.circular(4),
+                ),
                 child: Center(
                   child: MySvgImage(
                     path: iconPath,
@@ -135,16 +140,17 @@ class WidgetGrabReward extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(title,
-                      maxLines: 1, style: AppFont.oswald_regular_red2.copyWith(color: textColor)),
                   Text(
-                    content,
-                    style: AppFont.regular_gray4_10,
-                    maxLines: 2,
+                    title,
+                    maxLines: 1,
+                    style: AppFont.oswald_regular_red2.copyWith(
+                      color: textColor,
+                    ),
                   ),
+                  Text(content, style: AppFont.regular_gray4_10, maxLines: 2),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),

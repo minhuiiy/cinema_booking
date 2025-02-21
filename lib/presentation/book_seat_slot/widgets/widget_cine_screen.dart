@@ -16,12 +16,17 @@ class _WidgetCineScreenState extends State<WidgetCineScreen> {
       padding: EdgeInsets.all(20),
       child: Stack(
         children: <Widget>[
-          AspectRatio(aspectRatio: 320 / 41, child: CustomPaint(painter: CurveScreenPainter())),
+          AspectRatio(
+            aspectRatio: 320 / 41,
+            child: CustomPaint(painter: CurveScreenPainter()),
+          ),
           Positioned(
             bottom: 0,
             left: 0,
             right: 0,
-            child: Center(child: Text('Screen here', style: AppFont.regular_gray4_12)),
+            child: Center(
+              child: Text('Screen here', style: AppFont.regular_gray4_12),
+            ),
           ),
         ],
       ),
@@ -76,7 +81,12 @@ class CurvePainter extends CustomPainter {
     path.lineTo(size.width, size.height);
 
     path.moveTo(0, size.height * 0.25);
-    path.quadraticBezierTo(size.width / 2, size.height / 2, size.width, size.height * 0.25);
+    path.quadraticBezierTo(
+      size.width / 2,
+      size.height / 2,
+      size.width,
+      size.height * 0.25,
+    );
     path.lineTo(size.width, 0);
     path.lineTo(0, 0);
 

@@ -75,9 +75,16 @@ class WidgetListMovie extends StatelessWidget {
                     WidgetSpacer(height: 4),
                     Row(
                       children: [
-                        Icon(Icons.favorite, color: Colors.pinkAccent, size: 16),
+                        Icon(
+                          Icons.favorite,
+                          color: Colors.pinkAccent,
+                          size: 16,
+                        ),
                         WidgetSpacer(width: 4),
-                        Text('${movie.likePercent} %', style: AppFont.regular_white_12),
+                        Text(
+                          '${movie.likePercent} %',
+                          style: AppFont.regular_white_12,
+                        ),
                       ],
                     ),
                   ],

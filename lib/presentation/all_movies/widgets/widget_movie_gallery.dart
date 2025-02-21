@@ -54,7 +54,9 @@ class _WidgetMovieGalleryState extends State<WidgetMovieGallery>
 
   Widget _listMoviesToContent(List<MovieDetailEntity> movies) {
     if (movies.isNotEmpty) {
-      return WidgetListMovie(movies.map((movie) => ItemMovieVM.fromMovie(movie)).toList());
+      return WidgetListMovie(
+        movies.map((movie) => ItemMovieVM.fromMovie(movie)).toList(),
+      );
     } else {
       return Center(
         child: Padding(
@@ -70,9 +72,16 @@ class _WidgetMovieGalleryState extends State<WidgetMovieGallery>
       length: 3,
       child: TabBar(
         controller: _controller,
-        tabs: <Widget>[Tab(text: 'Now Showing'), Tab(text: 'Coming Soon'), Tab(text: 'Exclusive')],
+        tabs: <Widget>[
+          Tab(text: 'Now Showing'),
+          Tab(text: 'Coming Soon'),
+          Tab(text: 'Exclusive'),
+        ],
         labelColor: Colors.purpleAccent,
-        labelStyle: AppFont.medium_default.copyWith(fontSize: 16, fontWeight: FontWeight.bold),
+        labelStyle: AppFont.medium_default.copyWith(
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+        ),
         unselectedLabelColor: Colors.grey.shade500,
         unselectedLabelStyle: AppFont.regular_gray1_12.copyWith(fontSize: 14),
         indicatorSize: TabBarIndicatorSize.label,

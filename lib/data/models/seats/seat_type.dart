@@ -1,4 +1,5 @@
 import 'package:cinema_booking/common/helpers/json_converter.dart';
+import 'package:cinema_booking/core/enum/type_seat.dart';
 import 'package:cinema_booking/data/models/seats/seat_row.dart';
 import 'package:cinema_booking/domain/entities/seats/seat_type.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -25,7 +26,8 @@ class SeatTypesModel {
 
   SeatTypesModel(this.name, this.price, this.type, this.seatRows);
 
-  factory SeatTypesModel.fromJson(Map<String, dynamic> json) => _$SeatTypesModelFromJson(json);
+  factory SeatTypesModel.fromJson(Map<String, dynamic> json) =>
+      _$SeatTypesModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$SeatTypesModelToJson(this);
 
@@ -39,15 +41,6 @@ class SeatTypesModel {
     SeatTypesModel('Queen', 100.0, TypeSeat.queen, SeatRowModel.SAMPLE_QUEEN),
     SeatTypesModel('Jack', 80.0, TypeSeat.jack, SeatRowModel.SAMPLE_JACK),
   ];
-}
-
-enum TypeSeat {
-  @JsonValue("king")
-  king,
-  @JsonValue("queen")
-  queen,
-  @JsonValue("jack")
-  jack,
 }
 
 extension TypeSeatoText on TypeSeat {

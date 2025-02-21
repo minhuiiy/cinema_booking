@@ -24,11 +24,7 @@ class BasicBackButton extends StatelessWidget {
       },
       child: Padding(
         padding: padding,
-        child: MySvgImage(
-          width: 19,
-          height: 16,
-          path: AppVectors.iconBack,
-        ),
+        child: MySvgImage(width: 19, height: 16, path: AppVectors.iconBack),
       ),
     );
   }

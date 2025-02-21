@@ -14,7 +14,10 @@ class WidgetMovieDesc extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [Colors.black.withValues(alpha: 0.85), Colors.black.withValues(alpha: 0.6)],
+          colors: [
+            Colors.black.withValues(alpha: 0.85),
+            Colors.black.withValues(alpha: 0.6),
+          ],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         ),
@@ -26,14 +29,8 @@ class WidgetMovieDesc extends StatelessWidget {
         children: <Widget>[
           Row(
             children: <Widget>[
-              Expanded(
-                flex: 4,
-                child: _buildMovieNameDate(),
-              ),
-              Expanded(
-                flex: 1,
-                child: _buildLikeVotes(),
-              ),
+              Expanded(flex: 4, child: _buildMovieNameDate()),
+              Expanded(flex: 1, child: _buildLikeVotes()),
             ],
           ),
           WidgetSpacer(height: 14),
@@ -52,12 +49,14 @@ class WidgetMovieDesc extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text(name,
-            style: AppFont.semibold_white_18.copyWith(
-              shadows: [Shadow(color: Colors.black38, blurRadius: 4)],
-            )),
+        Text(
+          name,
+          style: AppFont.semibold_white_18.copyWith(
+            shadows: [Shadow(color: Colors.black38, blurRadius: 4)],
+          ),
+        ),
         WidgetSpacer(height: 6),
-        Text(textDate, style: AppFont.regular_gray4_12)
+        Text(textDate, style: AppFont.regular_gray4_12),
       ],
     );
   }
@@ -78,7 +77,7 @@ class WidgetMovieDesc extends StatelessWidget {
           ],
         ),
         WidgetSpacer(height: 6),
-        Text(textVotes, style: AppFont.regular_gray4_14)
+        Text(textVotes, style: AppFont.regular_gray4_14),
       ],
     );
   }
@@ -115,12 +114,7 @@ class WidgetMovieDesc extends StatelessWidget {
           ),
         ],
       ),
-      child: Center(
-        child: Text(
-          tag,
-          style: AppFont.medium_white_14,
-        ),
-      ),
+      child: Center(child: Text(tag, style: AppFont.medium_white_14)),
     );
   }
 

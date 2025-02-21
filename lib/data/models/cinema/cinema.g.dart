@@ -7,15 +7,15 @@ part of 'cinema.dart';
 // **************************************************************************
 
 CinemaModel _$CinemaModelFromJson(Map<String, dynamic> json) => CinemaModel(
-      id: json['id'] as String?,
-      name: json['name'] as String?,
-      address: json['address'] as String?,
-      rating: (json['rating'] as num?)?.toInt(),
-      distance: (json['distance'] as num?)?.toDouble(),
-      photo: json['photo'] as String?,
-      lat: (json['lat'] as num?)?.toDouble(),
-      lng: (json['lng'] as num?)?.toDouble(),
-    );
+  id: json['id'] as String?,
+  name: json['name'] as String?,
+  address: json['address'] as String?,
+  rating: (json['rating'] as num?)?.toInt(),
+  distance: (json['distance'] as num?)?.toDouble(),
+  photo: json['photo'] as String?,
+  lat: (json['lat'] as num?)?.toDouble(),
+  lng: (json['lng'] as num?)?.toDouble(),
+);
 
 Map<String, dynamic> _$CinemaModelToJson(CinemaModel instance) =>
     <String, dynamic>{

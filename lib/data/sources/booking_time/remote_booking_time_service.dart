@@ -10,13 +10,14 @@ import 'package:cinema_booking/service_locator.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class RemoteBookTimeSlotService {
-  Future<Either<String, List<BookingTimeSlotByCinemaResponse>>> getAllMoviesByType(String showId);
+  Future<Either<String, List<BookingTimeSlotByCinemaResponse>>>
+  getAllMoviesByType(String showId);
 }
 
 class RemoteBookTimeSlotServiceImpl implements RemoteBookTimeSlotService {
   @override
-  Future<Either<String, List<BookingTimeSlotByCinemaResponse>>> getAllMoviesByType(
-      String showId) async {
+  Future<Either<String, List<BookingTimeSlotByCinemaResponse>>>
+  getAllMoviesByType(String showId) async {
     try {
       final client = RestClient(localDio);
       // Gọi API lấy dữ liệu

@@ -20,19 +20,25 @@ import 'package:dartz/dartz.dart';
 
 class BookTimeSlotRepositoryImpl extends BookTimeSlotRepository {
   @override
-  Future<Either<String, List<BookingTimeSlotByCinemaResponse>>> getAllMoviesByType(
-      String showId) async {
-    final result = await sl<RemoteBookTimeSlotService>().getAllMoviesByType(showId);
+  Future<Either<String, List<BookingTimeSlotByCinemaResponse>>>
+  getAllMoviesByType(String showId) async {
+    final result = await sl<RemoteBookTimeSlotService>().getAllMoviesByType(
+      showId,
+    );
     return result;
   }
 
   @override
-  Future<Either<String, bool>> cacheBookTimeSlot(BookTimeSlotEntity bookTimeSlot) async {
+  Future<Either<String, bool>> cacheBookTimeSlot(
+    BookTimeSlotEntity bookTimeSlot,
+  ) async {
     return await sl<SessionService>().cacheBookTimeSlot(bookTimeSlot.toModel());
   }
 
   @override
-  Future<Either<String, bool>> cacheSelectedTimeSlot(TimeSlotEntity timeSlot) async {
+  Future<Either<String, bool>> cacheSelectedTimeSlot(
+    TimeSlotEntity timeSlot,
+  ) async {
     return await sl<SessionService>().cacheSelectedTimeSlot(timeSlot.toModel());
   }
 

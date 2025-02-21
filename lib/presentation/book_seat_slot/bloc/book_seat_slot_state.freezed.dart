@@ -12,7 +12,8 @@ part of 'book_seat_slot_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$BookSeatSlotState {
@@ -39,21 +40,23 @@ mixin _$BookSeatSlotState {
 /// @nodoc
 abstract class $BookSeatSlotStateCopyWith<$Res> {
   factory $BookSeatSlotStateCopyWith(
-          BookSeatSlotState value, $Res Function(BookSeatSlotState) then) =
-      _$BookSeatSlotStateCopyWithImpl<$Res, BookSeatSlotState>;
+    BookSeatSlotState value,
+    $Res Function(BookSeatSlotState) then,
+  ) = _$BookSeatSlotStateCopyWithImpl<$Res, BookSeatSlotState>;
   @useResult
-  $Res call(
-      {MovieEntity? movie,
-      TimeSlotEntity? selectedTimeSlot,
-      BookTimeSlotEntity? bookTimeSlot,
-      bool isLoading,
-      List<ItemGridSeatSlotVM> itemGridSeatSlotVMs,
-      String? msg,
-      bool isSelectWrongSeatType,
-      bool isReachedLimitSeatSlot,
-      List<String> selectedSeatIds,
-      double totalPrice,
-      bool isOpenPaymentMethod});
+  $Res call({
+    MovieEntity? movie,
+    TimeSlotEntity? selectedTimeSlot,
+    BookTimeSlotEntity? bookTimeSlot,
+    bool isLoading,
+    List<ItemGridSeatSlotVM> itemGridSeatSlotVMs,
+    String? msg,
+    bool isSelectWrongSeatType,
+    bool isReachedLimitSeatSlot,
+    List<String> selectedSeatIds,
+    double totalPrice,
+    bool isOpenPaymentMethod,
+  });
 }
 
 /// @nodoc
@@ -83,84 +86,101 @@ class _$BookSeatSlotStateCopyWithImpl<$Res, $Val extends BookSeatSlotState>
     Object? totalPrice = null,
     Object? isOpenPaymentMethod = null,
   }) {
-    return _then(_value.copyWith(
-      movie: freezed == movie
-          ? _value.movie
-          : movie // ignore: cast_nullable_to_non_nullable
-              as MovieEntity?,
-      selectedTimeSlot: freezed == selectedTimeSlot
-          ? _value.selectedTimeSlot
-          : selectedTimeSlot // ignore: cast_nullable_to_non_nullable
-              as TimeSlotEntity?,
-      bookTimeSlot: freezed == bookTimeSlot
-          ? _value.bookTimeSlot
-          : bookTimeSlot // ignore: cast_nullable_to_non_nullable
-              as BookTimeSlotEntity?,
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      itemGridSeatSlotVMs: null == itemGridSeatSlotVMs
-          ? _value.itemGridSeatSlotVMs
-          : itemGridSeatSlotVMs // ignore: cast_nullable_to_non_nullable
-              as List<ItemGridSeatSlotVM>,
-      msg: freezed == msg
-          ? _value.msg
-          : msg // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isSelectWrongSeatType: null == isSelectWrongSeatType
-          ? _value.isSelectWrongSeatType
-          : isSelectWrongSeatType // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isReachedLimitSeatSlot: null == isReachedLimitSeatSlot
-          ? _value.isReachedLimitSeatSlot
-          : isReachedLimitSeatSlot // ignore: cast_nullable_to_non_nullable
-              as bool,
-      selectedSeatIds: null == selectedSeatIds
-          ? _value.selectedSeatIds
-          : selectedSeatIds // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      totalPrice: null == totalPrice
-          ? _value.totalPrice
-          : totalPrice // ignore: cast_nullable_to_non_nullable
-              as double,
-      isOpenPaymentMethod: null == isOpenPaymentMethod
-          ? _value.isOpenPaymentMethod
-          : isOpenPaymentMethod // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            movie:
+                freezed == movie
+                    ? _value.movie
+                    : movie // ignore: cast_nullable_to_non_nullable
+                        as MovieEntity?,
+            selectedTimeSlot:
+                freezed == selectedTimeSlot
+                    ? _value.selectedTimeSlot
+                    : selectedTimeSlot // ignore: cast_nullable_to_non_nullable
+                        as TimeSlotEntity?,
+            bookTimeSlot:
+                freezed == bookTimeSlot
+                    ? _value.bookTimeSlot
+                    : bookTimeSlot // ignore: cast_nullable_to_non_nullable
+                        as BookTimeSlotEntity?,
+            isLoading:
+                null == isLoading
+                    ? _value.isLoading
+                    : isLoading // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            itemGridSeatSlotVMs:
+                null == itemGridSeatSlotVMs
+                    ? _value.itemGridSeatSlotVMs
+                    : itemGridSeatSlotVMs // ignore: cast_nullable_to_non_nullable
+                        as List<ItemGridSeatSlotVM>,
+            msg:
+                freezed == msg
+                    ? _value.msg
+                    : msg // ignore: cast_nullable_to_non_nullable
+                        as String?,
+            isSelectWrongSeatType:
+                null == isSelectWrongSeatType
+                    ? _value.isSelectWrongSeatType
+                    : isSelectWrongSeatType // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            isReachedLimitSeatSlot:
+                null == isReachedLimitSeatSlot
+                    ? _value.isReachedLimitSeatSlot
+                    : isReachedLimitSeatSlot // ignore: cast_nullable_to_non_nullable
+                        as bool,
+            selectedSeatIds:
+                null == selectedSeatIds
+                    ? _value.selectedSeatIds
+                    : selectedSeatIds // ignore: cast_nullable_to_non_nullable
+                        as List<String>,
+            totalPrice:
+                null == totalPrice
+                    ? _value.totalPrice
+                    : totalPrice // ignore: cast_nullable_to_non_nullable
+                        as double,
+            isOpenPaymentMethod:
+                null == isOpenPaymentMethod
+                    ? _value.isOpenPaymentMethod
+                    : isOpenPaymentMethod // ignore: cast_nullable_to_non_nullable
+                        as bool,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$BookSeatSlotStateImplCopyWith<$Res>
     implements $BookSeatSlotStateCopyWith<$Res> {
-  factory _$$BookSeatSlotStateImplCopyWith(_$BookSeatSlotStateImpl value,
-          $Res Function(_$BookSeatSlotStateImpl) then) =
-      __$$BookSeatSlotStateImplCopyWithImpl<$Res>;
+  factory _$$BookSeatSlotStateImplCopyWith(
+    _$BookSeatSlotStateImpl value,
+    $Res Function(_$BookSeatSlotStateImpl) then,
+  ) = __$$BookSeatSlotStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {MovieEntity? movie,
-      TimeSlotEntity? selectedTimeSlot,
-      BookTimeSlotEntity? bookTimeSlot,
-      bool isLoading,
-      List<ItemGridSeatSlotVM> itemGridSeatSlotVMs,
-      String? msg,
-      bool isSelectWrongSeatType,
-      bool isReachedLimitSeatSlot,
-      List<String> selectedSeatIds,
-      double totalPrice,
-      bool isOpenPaymentMethod});
+  $Res call({
+    MovieEntity? movie,
+    TimeSlotEntity? selectedTimeSlot,
+    BookTimeSlotEntity? bookTimeSlot,
+    bool isLoading,
+    List<ItemGridSeatSlotVM> itemGridSeatSlotVMs,
+    String? msg,
+    bool isSelectWrongSeatType,
+    bool isReachedLimitSeatSlot,
+    List<String> selectedSeatIds,
+    double totalPrice,
+    bool isOpenPaymentMethod,
+  });
 }
 
 /// @nodoc
 class __$$BookSeatSlotStateImplCopyWithImpl<$Res>
     extends _$BookSeatSlotStateCopyWithImpl<$Res, _$BookSeatSlotStateImpl>
     implements _$$BookSeatSlotStateImplCopyWith<$Res> {
-  __$$BookSeatSlotStateImplCopyWithImpl(_$BookSeatSlotStateImpl _value,
-      $Res Function(_$BookSeatSlotStateImpl) _then)
-      : super(_value, _then);
+  __$$BookSeatSlotStateImplCopyWithImpl(
+    _$BookSeatSlotStateImpl _value,
+    $Res Function(_$BookSeatSlotStateImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of BookSeatSlotState
   /// with the given fields replaced by the non-null parameter values.
@@ -179,72 +199,85 @@ class __$$BookSeatSlotStateImplCopyWithImpl<$Res>
     Object? totalPrice = null,
     Object? isOpenPaymentMethod = null,
   }) {
-    return _then(_$BookSeatSlotStateImpl(
-      movie: freezed == movie
-          ? _value.movie
-          : movie // ignore: cast_nullable_to_non_nullable
-              as MovieEntity?,
-      selectedTimeSlot: freezed == selectedTimeSlot
-          ? _value.selectedTimeSlot
-          : selectedTimeSlot // ignore: cast_nullable_to_non_nullable
-              as TimeSlotEntity?,
-      bookTimeSlot: freezed == bookTimeSlot
-          ? _value.bookTimeSlot
-          : bookTimeSlot // ignore: cast_nullable_to_non_nullable
-              as BookTimeSlotEntity?,
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      itemGridSeatSlotVMs: null == itemGridSeatSlotVMs
-          ? _value._itemGridSeatSlotVMs
-          : itemGridSeatSlotVMs // ignore: cast_nullable_to_non_nullable
-              as List<ItemGridSeatSlotVM>,
-      msg: freezed == msg
-          ? _value.msg
-          : msg // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isSelectWrongSeatType: null == isSelectWrongSeatType
-          ? _value.isSelectWrongSeatType
-          : isSelectWrongSeatType // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isReachedLimitSeatSlot: null == isReachedLimitSeatSlot
-          ? _value.isReachedLimitSeatSlot
-          : isReachedLimitSeatSlot // ignore: cast_nullable_to_non_nullable
-              as bool,
-      selectedSeatIds: null == selectedSeatIds
-          ? _value._selectedSeatIds
-          : selectedSeatIds // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      totalPrice: null == totalPrice
-          ? _value.totalPrice
-          : totalPrice // ignore: cast_nullable_to_non_nullable
-              as double,
-      isOpenPaymentMethod: null == isOpenPaymentMethod
-          ? _value.isOpenPaymentMethod
-          : isOpenPaymentMethod // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
+    return _then(
+      _$BookSeatSlotStateImpl(
+        movie:
+            freezed == movie
+                ? _value.movie
+                : movie // ignore: cast_nullable_to_non_nullable
+                    as MovieEntity?,
+        selectedTimeSlot:
+            freezed == selectedTimeSlot
+                ? _value.selectedTimeSlot
+                : selectedTimeSlot // ignore: cast_nullable_to_non_nullable
+                    as TimeSlotEntity?,
+        bookTimeSlot:
+            freezed == bookTimeSlot
+                ? _value.bookTimeSlot
+                : bookTimeSlot // ignore: cast_nullable_to_non_nullable
+                    as BookTimeSlotEntity?,
+        isLoading:
+            null == isLoading
+                ? _value.isLoading
+                : isLoading // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        itemGridSeatSlotVMs:
+            null == itemGridSeatSlotVMs
+                ? _value._itemGridSeatSlotVMs
+                : itemGridSeatSlotVMs // ignore: cast_nullable_to_non_nullable
+                    as List<ItemGridSeatSlotVM>,
+        msg:
+            freezed == msg
+                ? _value.msg
+                : msg // ignore: cast_nullable_to_non_nullable
+                    as String?,
+        isSelectWrongSeatType:
+            null == isSelectWrongSeatType
+                ? _value.isSelectWrongSeatType
+                : isSelectWrongSeatType // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        isReachedLimitSeatSlot:
+            null == isReachedLimitSeatSlot
+                ? _value.isReachedLimitSeatSlot
+                : isReachedLimitSeatSlot // ignore: cast_nullable_to_non_nullable
+                    as bool,
+        selectedSeatIds:
+            null == selectedSeatIds
+                ? _value._selectedSeatIds
+                : selectedSeatIds // ignore: cast_nullable_to_non_nullable
+                    as List<String>,
+        totalPrice:
+            null == totalPrice
+                ? _value.totalPrice
+                : totalPrice // ignore: cast_nullable_to_non_nullable
+                    as double,
+        isOpenPaymentMethod:
+            null == isOpenPaymentMethod
+                ? _value.isOpenPaymentMethod
+                : isOpenPaymentMethod // ignore: cast_nullable_to_non_nullable
+                    as bool,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$BookSeatSlotStateImpl implements _BookSeatSlotState {
-  const _$BookSeatSlotStateImpl(
-      {this.movie,
-      this.selectedTimeSlot,
-      this.bookTimeSlot,
-      this.isLoading = false,
-      final List<ItemGridSeatSlotVM> itemGridSeatSlotVMs = const [],
-      this.msg,
-      this.isSelectWrongSeatType = false,
-      this.isReachedLimitSeatSlot = false,
-      final List<String> selectedSeatIds = const [],
-      this.totalPrice = 0,
-      this.isOpenPaymentMethod = false})
-      : _itemGridSeatSlotVMs = itemGridSeatSlotVMs,
-        _selectedSeatIds = selectedSeatIds;
+  const _$BookSeatSlotStateImpl({
+    this.movie,
+    this.selectedTimeSlot,
+    this.bookTimeSlot,
+    this.isLoading = false,
+    final List<ItemGridSeatSlotVM> itemGridSeatSlotVMs = const [],
+    this.msg,
+    this.isSelectWrongSeatType = false,
+    this.isReachedLimitSeatSlot = false,
+    final List<String> selectedSeatIds = const [],
+    this.totalPrice = 0,
+    this.isOpenPaymentMethod = false,
+  }) : _itemGridSeatSlotVMs = itemGridSeatSlotVMs,
+       _selectedSeatIds = selectedSeatIds;
 
   @override
   final MovieEntity? movie;
@@ -252,7 +285,7 @@ class _$BookSeatSlotStateImpl implements _BookSeatSlotState {
   final TimeSlotEntity? selectedTimeSlot;
   @override
   final BookTimeSlotEntity? bookTimeSlot;
-//
+  //
   @override
   @JsonKey()
   final bool isLoading;
@@ -268,16 +301,16 @@ class _$BookSeatSlotStateImpl implements _BookSeatSlotState {
 
   @override
   final String? msg;
-//
+  //
   @override
   @JsonKey()
   final bool isSelectWrongSeatType;
   @override
   @JsonKey()
   final bool isReachedLimitSeatSlot;
-//
+  //
   final List<String> _selectedSeatIds;
-//
+  //
   @override
   @JsonKey()
   List<String> get selectedSeatIds {
@@ -289,7 +322,7 @@ class _$BookSeatSlotStateImpl implements _BookSeatSlotState {
   @override
   @JsonKey()
   final double totalPrice;
-//
+  //
   @override
   @JsonKey()
   final bool isOpenPaymentMethod;
@@ -311,15 +344,19 @@ class _$BookSeatSlotStateImpl implements _BookSeatSlotState {
                 other.bookTimeSlot == bookTimeSlot) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
-            const DeepCollectionEquality()
-                .equals(other._itemGridSeatSlotVMs, _itemGridSeatSlotVMs) &&
+            const DeepCollectionEquality().equals(
+              other._itemGridSeatSlotVMs,
+              _itemGridSeatSlotVMs,
+            ) &&
             (identical(other.msg, msg) || other.msg == msg) &&
             (identical(other.isSelectWrongSeatType, isSelectWrongSeatType) ||
                 other.isSelectWrongSeatType == isSelectWrongSeatType) &&
             (identical(other.isReachedLimitSeatSlot, isReachedLimitSeatSlot) ||
                 other.isReachedLimitSeatSlot == isReachedLimitSeatSlot) &&
-            const DeepCollectionEquality()
-                .equals(other._selectedSeatIds, _selectedSeatIds) &&
+            const DeepCollectionEquality().equals(
+              other._selectedSeatIds,
+              _selectedSeatIds,
+            ) &&
             (identical(other.totalPrice, totalPrice) ||
                 other.totalPrice == totalPrice) &&
             (identical(other.isOpenPaymentMethod, isOpenPaymentMethod) ||
@@ -328,18 +365,19 @@ class _$BookSeatSlotStateImpl implements _BookSeatSlotState {
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      movie,
-      selectedTimeSlot,
-      bookTimeSlot,
-      isLoading,
-      const DeepCollectionEquality().hash(_itemGridSeatSlotVMs),
-      msg,
-      isSelectWrongSeatType,
-      isReachedLimitSeatSlot,
-      const DeepCollectionEquality().hash(_selectedSeatIds),
-      totalPrice,
-      isOpenPaymentMethod);
+    runtimeType,
+    movie,
+    selectedTimeSlot,
+    bookTimeSlot,
+    isLoading,
+    const DeepCollectionEquality().hash(_itemGridSeatSlotVMs),
+    msg,
+    isSelectWrongSeatType,
+    isReachedLimitSeatSlot,
+    const DeepCollectionEquality().hash(_selectedSeatIds),
+    totalPrice,
+    isOpenPaymentMethod,
+  );
 
   /// Create a copy of BookSeatSlotState
   /// with the given fields replaced by the non-null parameter values.
@@ -348,22 +386,25 @@ class _$BookSeatSlotStateImpl implements _BookSeatSlotState {
   @pragma('vm:prefer-inline')
   _$$BookSeatSlotStateImplCopyWith<_$BookSeatSlotStateImpl> get copyWith =>
       __$$BookSeatSlotStateImplCopyWithImpl<_$BookSeatSlotStateImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 }
 
 abstract class _BookSeatSlotState implements BookSeatSlotState {
-  const factory _BookSeatSlotState(
-      {final MovieEntity? movie,
-      final TimeSlotEntity? selectedTimeSlot,
-      final BookTimeSlotEntity? bookTimeSlot,
-      final bool isLoading,
-      final List<ItemGridSeatSlotVM> itemGridSeatSlotVMs,
-      final String? msg,
-      final bool isSelectWrongSeatType,
-      final bool isReachedLimitSeatSlot,
-      final List<String> selectedSeatIds,
-      final double totalPrice,
-      final bool isOpenPaymentMethod}) = _$BookSeatSlotStateImpl;
+  const factory _BookSeatSlotState({
+    final MovieEntity? movie,
+    final TimeSlotEntity? selectedTimeSlot,
+    final BookTimeSlotEntity? bookTimeSlot,
+    final bool isLoading,
+    final List<ItemGridSeatSlotVM> itemGridSeatSlotVMs,
+    final String? msg,
+    final bool isSelectWrongSeatType,
+    final bool isReachedLimitSeatSlot,
+    final List<String> selectedSeatIds,
+    final double totalPrice,
+    final bool isOpenPaymentMethod,
+  }) = _$BookSeatSlotStateImpl;
 
   @override
   MovieEntity? get movie;

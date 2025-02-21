@@ -12,13 +12,17 @@ class WidgetMovieCasts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<ItemCast> items = casts.map((cast) => ItemCast.fromCast(cast)).toList();
+    List<ItemCast> items =
+        casts.map((cast) => ItemCast.fromCast(cast)).toList();
 
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 18),
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [Colors.black.withValues(alpha: .9), Colors.black.withValues(alpha: 0.7)],
+          colors: [
+            Colors.black.withValues(alpha: .9),
+            Colors.black.withValues(alpha: 0.7),
+          ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
@@ -52,7 +56,9 @@ class WidgetMovieCasts extends StatelessWidget {
                 },
                 child: Text(
                   'View all >',
-                  style: AppFont.medium_white_12.copyWith(color: AppColors.defaultColor),
+                  style: AppFont.medium_white_12.copyWith(
+                    color: AppColors.defaultColor,
+                  ),
                   textAlign: TextAlign.right,
                 ),
               ),
@@ -103,10 +109,7 @@ class WidgetItemCast extends StatelessWidget {
             clipBehavior: Clip.antiAlias,
             child: AspectRatio(
               aspectRatio: 85 / 117,
-              child: Image.network(
-                item.photo,
-                fit: BoxFit.cover,
-              ),
+              child: Image.network(item.photo, fit: BoxFit.cover),
             ),
           ),
         ),

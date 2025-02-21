@@ -11,8 +11,11 @@ import 'package:cinema_booking/domain/entities/show_time/time_slot.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class BookTimeSlotRepository {
-  Future<Either<String, List<BookingTimeSlotByCinemaResponse>>> getAllMoviesByType(String showId);
-  Future<Either<String, bool>> cacheBookTimeSlot(BookTimeSlotEntity bookTimeSlot);
+  Future<Either<String, List<BookingTimeSlotByCinemaResponse>>>
+  getAllMoviesByType(String showId);
+  Future<Either<String, bool>> cacheBookTimeSlot(
+    BookTimeSlotEntity bookTimeSlot,
+  );
   Future<Either<String, bool>> cacheMovie(MovieEntity show);
   Future<Either<String, bool>> cacheSelectedTimeSlot(TimeSlotEntity timeSlot);
   Future<Either<String, BookTimeSlotEntity?>> getBookTimeSlot();

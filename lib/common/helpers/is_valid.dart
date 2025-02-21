@@ -18,9 +18,7 @@ class Validators {
 
   /// Regular expression for validating passwords.
   /// - Ensures password length is between **4 to 8 characters**.
-  static final RegExp _passwordRegExp = RegExp(
-    r'^.{4,8}$',
-  );
+  static final RegExp _passwordRegExp = RegExp(r'^.{4,8}$');
 
   static isValidEmail(String email) {
     return _emailRegExp.hasMatch(email);

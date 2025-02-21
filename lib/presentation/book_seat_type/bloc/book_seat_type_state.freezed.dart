@@ -12,7 +12,8 @@ part of 'book_seat_type_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$BookSeatTypeState {
@@ -33,16 +34,18 @@ mixin _$BookSeatTypeState {
 /// @nodoc
 abstract class $BookSeatTypeStateCopyWith<$Res> {
   factory $BookSeatTypeStateCopyWith(
-          BookSeatTypeState value, $Res Function(BookSeatTypeState) then) =
-      _$BookSeatTypeStateCopyWithImpl<$Res, BookSeatTypeState>;
+    BookSeatTypeState value,
+    $Res Function(BookSeatTypeState) then,
+  ) = _$BookSeatTypeStateCopyWithImpl<$Res, BookSeatTypeState>;
   @useResult
-  $Res call(
-      {MovieEntity? movie,
-      TimeSlotEntity? selectedTimeSlot,
-      BookTimeSlotEntity? bookTimeSlot,
-      int seatCount,
-      TypeSeat selectedSeatType,
-      bool isOpenBookSeatSlotScreen});
+  $Res call({
+    MovieEntity? movie,
+    TimeSlotEntity? selectedTimeSlot,
+    BookTimeSlotEntity? bookTimeSlot,
+    int seatCount,
+    TypeSeat selectedSeatType,
+    bool isOpenBookSeatSlotScreen,
+  });
 }
 
 /// @nodoc
@@ -67,59 +70,71 @@ class _$BookSeatTypeStateCopyWithImpl<$Res, $Val extends BookSeatTypeState>
     Object? selectedSeatType = null,
     Object? isOpenBookSeatSlotScreen = null,
   }) {
-    return _then(_value.copyWith(
-      movie: freezed == movie
-          ? _value.movie
-          : movie // ignore: cast_nullable_to_non_nullable
-              as MovieEntity?,
-      selectedTimeSlot: freezed == selectedTimeSlot
-          ? _value.selectedTimeSlot
-          : selectedTimeSlot // ignore: cast_nullable_to_non_nullable
-              as TimeSlotEntity?,
-      bookTimeSlot: freezed == bookTimeSlot
-          ? _value.bookTimeSlot
-          : bookTimeSlot // ignore: cast_nullable_to_non_nullable
-              as BookTimeSlotEntity?,
-      seatCount: null == seatCount
-          ? _value.seatCount
-          : seatCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      selectedSeatType: null == selectedSeatType
-          ? _value.selectedSeatType
-          : selectedSeatType // ignore: cast_nullable_to_non_nullable
-              as TypeSeat,
-      isOpenBookSeatSlotScreen: null == isOpenBookSeatSlotScreen
-          ? _value.isOpenBookSeatSlotScreen
-          : isOpenBookSeatSlotScreen // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            movie:
+                freezed == movie
+                    ? _value.movie
+                    : movie // ignore: cast_nullable_to_non_nullable
+                        as MovieEntity?,
+            selectedTimeSlot:
+                freezed == selectedTimeSlot
+                    ? _value.selectedTimeSlot
+                    : selectedTimeSlot // ignore: cast_nullable_to_non_nullable
+                        as TimeSlotEntity?,
+            bookTimeSlot:
+                freezed == bookTimeSlot
+                    ? _value.bookTimeSlot
+                    : bookTimeSlot // ignore: cast_nullable_to_non_nullable
+                        as BookTimeSlotEntity?,
+            seatCount:
+                null == seatCount
+                    ? _value.seatCount
+                    : seatCount // ignore: cast_nullable_to_non_nullable
+                        as int,
+            selectedSeatType:
+                null == selectedSeatType
+                    ? _value.selectedSeatType
+                    : selectedSeatType // ignore: cast_nullable_to_non_nullable
+                        as TypeSeat,
+            isOpenBookSeatSlotScreen:
+                null == isOpenBookSeatSlotScreen
+                    ? _value.isOpenBookSeatSlotScreen
+                    : isOpenBookSeatSlotScreen // ignore: cast_nullable_to_non_nullable
+                        as bool,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$BookSeatTypeStateImplCopyWith<$Res>
     implements $BookSeatTypeStateCopyWith<$Res> {
-  factory _$$BookSeatTypeStateImplCopyWith(_$BookSeatTypeStateImpl value,
-          $Res Function(_$BookSeatTypeStateImpl) then) =
-      __$$BookSeatTypeStateImplCopyWithImpl<$Res>;
+  factory _$$BookSeatTypeStateImplCopyWith(
+    _$BookSeatTypeStateImpl value,
+    $Res Function(_$BookSeatTypeStateImpl) then,
+  ) = __$$BookSeatTypeStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {MovieEntity? movie,
-      TimeSlotEntity? selectedTimeSlot,
-      BookTimeSlotEntity? bookTimeSlot,
-      int seatCount,
-      TypeSeat selectedSeatType,
-      bool isOpenBookSeatSlotScreen});
+  $Res call({
+    MovieEntity? movie,
+    TimeSlotEntity? selectedTimeSlot,
+    BookTimeSlotEntity? bookTimeSlot,
+    int seatCount,
+    TypeSeat selectedSeatType,
+    bool isOpenBookSeatSlotScreen,
+  });
 }
 
 /// @nodoc
 class __$$BookSeatTypeStateImplCopyWithImpl<$Res>
     extends _$BookSeatTypeStateCopyWithImpl<$Res, _$BookSeatTypeStateImpl>
     implements _$$BookSeatTypeStateImplCopyWith<$Res> {
-  __$$BookSeatTypeStateImplCopyWithImpl(_$BookSeatTypeStateImpl _value,
-      $Res Function(_$BookSeatTypeStateImpl) _then)
-      : super(_value, _then);
+  __$$BookSeatTypeStateImplCopyWithImpl(
+    _$BookSeatTypeStateImpl _value,
+    $Res Function(_$BookSeatTypeStateImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of BookSeatTypeState
   /// with the given fields replaced by the non-null parameter values.
@@ -133,45 +148,54 @@ class __$$BookSeatTypeStateImplCopyWithImpl<$Res>
     Object? selectedSeatType = null,
     Object? isOpenBookSeatSlotScreen = null,
   }) {
-    return _then(_$BookSeatTypeStateImpl(
-      movie: freezed == movie
-          ? _value.movie
-          : movie // ignore: cast_nullable_to_non_nullable
-              as MovieEntity?,
-      selectedTimeSlot: freezed == selectedTimeSlot
-          ? _value.selectedTimeSlot
-          : selectedTimeSlot // ignore: cast_nullable_to_non_nullable
-              as TimeSlotEntity?,
-      bookTimeSlot: freezed == bookTimeSlot
-          ? _value.bookTimeSlot
-          : bookTimeSlot // ignore: cast_nullable_to_non_nullable
-              as BookTimeSlotEntity?,
-      seatCount: null == seatCount
-          ? _value.seatCount
-          : seatCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      selectedSeatType: null == selectedSeatType
-          ? _value.selectedSeatType
-          : selectedSeatType // ignore: cast_nullable_to_non_nullable
-              as TypeSeat,
-      isOpenBookSeatSlotScreen: null == isOpenBookSeatSlotScreen
-          ? _value.isOpenBookSeatSlotScreen
-          : isOpenBookSeatSlotScreen // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
+    return _then(
+      _$BookSeatTypeStateImpl(
+        movie:
+            freezed == movie
+                ? _value.movie
+                : movie // ignore: cast_nullable_to_non_nullable
+                    as MovieEntity?,
+        selectedTimeSlot:
+            freezed == selectedTimeSlot
+                ? _value.selectedTimeSlot
+                : selectedTimeSlot // ignore: cast_nullable_to_non_nullable
+                    as TimeSlotEntity?,
+        bookTimeSlot:
+            freezed == bookTimeSlot
+                ? _value.bookTimeSlot
+                : bookTimeSlot // ignore: cast_nullable_to_non_nullable
+                    as BookTimeSlotEntity?,
+        seatCount:
+            null == seatCount
+                ? _value.seatCount
+                : seatCount // ignore: cast_nullable_to_non_nullable
+                    as int,
+        selectedSeatType:
+            null == selectedSeatType
+                ? _value.selectedSeatType
+                : selectedSeatType // ignore: cast_nullable_to_non_nullable
+                    as TypeSeat,
+        isOpenBookSeatSlotScreen:
+            null == isOpenBookSeatSlotScreen
+                ? _value.isOpenBookSeatSlotScreen
+                : isOpenBookSeatSlotScreen // ignore: cast_nullable_to_non_nullable
+                    as bool,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$BookSeatTypeStateImpl implements _BookSeatTypeState {
-  const _$BookSeatTypeStateImpl(
-      {this.movie,
-      this.selectedTimeSlot,
-      this.bookTimeSlot,
-      this.seatCount = 2,
-      this.selectedSeatType = TypeSeat.king,
-      this.isOpenBookSeatSlotScreen = false});
+  const _$BookSeatTypeStateImpl({
+    this.movie,
+    this.selectedTimeSlot,
+    this.bookTimeSlot,
+    this.seatCount = 2,
+    this.selectedSeatType = TypeSeat.king,
+    this.isOpenBookSeatSlotScreen = false,
+  });
 
   @override
   final MovieEntity? movie;
@@ -179,7 +203,7 @@ class _$BookSeatTypeStateImpl implements _BookSeatTypeState {
   final TimeSlotEntity? selectedTimeSlot;
   @override
   final BookTimeSlotEntity? bookTimeSlot;
-//
+  //
   @override
   @JsonKey()
   final int seatCount;
@@ -210,13 +234,22 @@ class _$BookSeatTypeStateImpl implements _BookSeatTypeState {
             (identical(other.selectedSeatType, selectedSeatType) ||
                 other.selectedSeatType == selectedSeatType) &&
             (identical(
-                    other.isOpenBookSeatSlotScreen, isOpenBookSeatSlotScreen) ||
+                  other.isOpenBookSeatSlotScreen,
+                  isOpenBookSeatSlotScreen,
+                ) ||
                 other.isOpenBookSeatSlotScreen == isOpenBookSeatSlotScreen));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, movie, selectedTimeSlot,
-      bookTimeSlot, seatCount, selectedSeatType, isOpenBookSeatSlotScreen);
+  int get hashCode => Object.hash(
+    runtimeType,
+    movie,
+    selectedTimeSlot,
+    bookTimeSlot,
+    seatCount,
+    selectedSeatType,
+    isOpenBookSeatSlotScreen,
+  );
 
   /// Create a copy of BookSeatTypeState
   /// with the given fields replaced by the non-null parameter values.
@@ -225,17 +258,20 @@ class _$BookSeatTypeStateImpl implements _BookSeatTypeState {
   @pragma('vm:prefer-inline')
   _$$BookSeatTypeStateImplCopyWith<_$BookSeatTypeStateImpl> get copyWith =>
       __$$BookSeatTypeStateImplCopyWithImpl<_$BookSeatTypeStateImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 }
 
 abstract class _BookSeatTypeState implements BookSeatTypeState {
-  const factory _BookSeatTypeState(
-      {final MovieEntity? movie,
-      final TimeSlotEntity? selectedTimeSlot,
-      final BookTimeSlotEntity? bookTimeSlot,
-      final int seatCount,
-      final TypeSeat selectedSeatType,
-      final bool isOpenBookSeatSlotScreen}) = _$BookSeatTypeStateImpl;
+  const factory _BookSeatTypeState({
+    final MovieEntity? movie,
+    final TimeSlotEntity? selectedTimeSlot,
+    final BookTimeSlotEntity? bookTimeSlot,
+    final int seatCount,
+    final TypeSeat selectedSeatType,
+    final bool isOpenBookSeatSlotScreen,
+  }) = _$BookSeatTypeStateImpl;
 
   @override
   MovieEntity? get movie;

@@ -28,7 +28,8 @@ class MovieReviewModel {
     this.avatar,
   });
 
-  factory MovieReviewModel.fromJson(Map<String, dynamic> json) => _$MovieReviewModelFromJson(json);
+  factory MovieReviewModel.fromJson(Map<String, dynamic> json) =>
+      _$MovieReviewModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$MovieReviewModelToJson(this);
 

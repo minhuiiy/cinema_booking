@@ -47,18 +47,13 @@ class ShimmerImage extends StatelessWidget {
         Shimmer.fromColors(
           baseColor: Colors.grey[200]!,
           highlightColor: Colors.grey[100]!,
-          child: aspectRatio != 0
-              ? AspectRatio(
-                  aspectRatio: aspectRatio,
-                  child: Container(
-                    child: _buildIcon(),
-                  ),
-                )
-              : SizedBox(
-                  width: width,
-                  height: height,
-                  child: _buildIcon(),
-                ),
+          child:
+              aspectRatio != 0
+                  ? AspectRatio(
+                    aspectRatio: aspectRatio,
+                    child: Container(child: _buildIcon()),
+                  )
+                  : SizedBox(width: width, height: height, child: _buildIcon()),
         ),
 
         /// The actual image fetched from the provided `url`.
@@ -66,29 +61,17 @@ class ShimmerImage extends StatelessWidget {
         /// otherwise it follows `width` and `height`.
         aspectRatio != 0
             ? AspectRatio(
-                aspectRatio: aspectRatio,
-                child: Image.network(
-                  url,
-                  fit: fit,
-                ),
-              )
-            : Image.network(
-                url,
-                width: width,
-                height: height,
-                fit: fit,
-              ),
+              aspectRatio: aspectRatio,
+              child: Image.network(url, fit: fit),
+            )
+            : Image.network(url, width: width, height: height, fit: fit),
       ],
     );
   }
 
   _buildIcon() {
     return Center(
-      child: Icon(
-        Icons.crop_original,
-        color: Colors.red,
-        size: iconHolderSize,
-      ),
+      child: Icon(Icons.crop_original, color: Colors.red, size: iconHolderSize),
     );
   }
 }

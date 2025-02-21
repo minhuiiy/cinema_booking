@@ -11,11 +11,7 @@ class BookTimeSlotModel {
   final List<TimeSlotModel> timeSlots;
   final List<String>? tami;
 
-  BookTimeSlotModel({
-    required this.cine,
-    required this.timeSlots,
-    this.tami,
-  });
+  BookTimeSlotModel({required this.cine, required this.timeSlots, this.tami});
 
   factory BookTimeSlotModel.fromJson(Map<String, dynamic> json) =>
       _$BookTimeSlotModelFromJson(json);

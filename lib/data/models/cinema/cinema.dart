@@ -31,7 +31,8 @@ class CinemaModel {
     this.lng,
   });
 
-  factory CinemaModel.fromJson(Map<String, dynamic> json) => _$CinemaModelFromJson(json);
+  factory CinemaModel.fromJson(Map<String, dynamic> json) =>
+      _$CinemaModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$CinemaModelToJson(this);
 

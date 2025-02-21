@@ -1,4 +1,1 @@
-enum MovieSoftBy {
-  ratting,
-  name,
-}
+enum MovieSoftBy { ratting, name }

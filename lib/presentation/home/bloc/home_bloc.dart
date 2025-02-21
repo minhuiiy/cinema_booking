@@ -14,10 +14,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<RefreshHome>(_onRefreshHome);
   }
 
-  Future<void> _onLoadHome(
-    LoadHome event,
-    Emitter<HomeState> emit,
-  ) async {
+  Future<void> _onLoadHome(LoadHome event, Emitter<HomeState> emit) async {
     try {
       LogHelper.logDebug(tag: "HomeBloc", message: "_onLoadHome start ");
       final response = await sl<GetHomeDataUseCase>().call();
@@ -27,9 +24,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           emit(HomeNotLoaded("fail"));
         },
         (data) {
-          emit(
-            HomeLoaded(data),
-          );
+          emit(HomeLoaded(data));
         },
       );
     } catch (e) {

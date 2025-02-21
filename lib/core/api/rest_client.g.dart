@@ -48,7 +48,7 @@ class _RestClient implements RestClient {
 
   @override
   Future<List<BookingTimeSlotByCinemaResponse>>
-      getBookingTimeSlotByCine() async {
+  getBookingTimeSlotByCine() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -66,13 +66,14 @@ class _RestClient implements RestClient {
     final _result = await _dio.fetch<List<dynamic>>(_options);
     late List<BookingTimeSlotByCinemaResponse> _value;
     try {
-      _value = _result.data!
-          .map(
-            (dynamic i) => BookingTimeSlotByCinemaResponse.fromJson(
-              i as Map<String, dynamic>,
-            ),
-          )
-          .toList();
+      _value =
+          _result.data!
+              .map(
+                (dynamic i) => BookingTimeSlotByCinemaResponse.fromJson(
+                  i as Map<String, dynamic>,
+                ),
+              )
+              .toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

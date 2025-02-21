@@ -29,10 +29,7 @@ class CustomSnackBar {
         SnackBar(
           content: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text(msg),
-              Icon(Icons.error),
-            ],
+            children: <Widget>[Text(msg), Icon(Icons.error)],
           ),
           backgroundColor: Colors.red,
         ),
@@ -44,11 +41,7 @@ class CustomSnackBar {
       ..hideCurrentSnackBar()
       ..showSnackBar(
         SnackBar(
-          content: Row(
-            children: <Widget>[
-              Text(msg),
-            ],
-          ),
+          content: Row(children: <Widget>[Text(msg)]),
           backgroundColor: AppColors.defaultColor,
         ),
       );

@@ -32,11 +32,6 @@ class MovieOfferEntity extends Equatable {
 
 extension MovieOfferEntityX on MovieOfferEntity {
   MovieOfferModel toModel() {
-    return MovieOfferModel(
-      id: id,
-      type: type,
-      title: title,
-      content: content,
-    );
+    return MovieOfferModel(id: id, type: type, title: title, content: content);
   }
 }

@@ -14,7 +14,8 @@ class WidgetHomeToolbar extends StatefulWidget {
   State<WidgetHomeToolbar> createState() => _WidgetHomeToolbarState();
 }
 
-class _WidgetHomeToolbarState extends State<WidgetHomeToolbar> with TickerProviderStateMixin {
+class _WidgetHomeToolbarState extends State<WidgetHomeToolbar>
+    with TickerProviderStateMixin {
   int _textIndex = 0;
   late Timer _timer;
   late AnimationController _avatarController;
@@ -85,10 +86,7 @@ class _WidgetHomeToolbarState extends State<WidgetHomeToolbar> with TickerProvid
       color: AppColors.darkBackground,
       height: 70,
       child: Row(
-        children: <Widget>[
-          _buildAvatarAndName(),
-          _buildNotificationIcon(),
-        ],
+        children: <Widget>[_buildAvatarAndName(), _buildNotificationIcon()],
       ),
     );
   }
@@ -118,12 +116,9 @@ class _WidgetHomeToolbarState extends State<WidgetHomeToolbar> with TickerProvid
               color: AppColors.primary.withValues(alpha: 0.6),
               blurRadius: 10,
               spreadRadius: 2,
-            )
+            ),
           ],
-          border: Border.all(
-            color: AppColors.white,
-            width: 1.0,
-          ),
+          border: Border.all(color: AppColors.white, width: 1.0),
           image: DecorationImage(image: AssetImage(AppImages.avatar)),
         ),
       ),
@@ -167,7 +162,10 @@ class _WidgetHomeToolbarState extends State<WidgetHomeToolbar> with TickerProvid
             opacity: 0.5,
             child: Row(
               children: <Widget>[
-                Text('Vietnam', style: AppFont.medium_white_16.copyWith(fontSize: 14)),
+                Text(
+                  'Vietnam',
+                  style: AppFont.medium_white_16.copyWith(fontSize: 14),
+                ),
                 const Icon(Icons.keyboard_arrow_down, color: Colors.white),
               ],
             ),
@@ -183,11 +181,7 @@ class _WidgetHomeToolbarState extends State<WidgetHomeToolbar> with TickerProvid
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Text(
-          text,
-          style: AppFont.medium_white_16,
-          textAlign: TextAlign.left,
-        ),
+        Text(text, style: AppFont.medium_white_16, textAlign: TextAlign.left),
       ],
     );
   }
@@ -214,7 +208,7 @@ class _WidgetHomeToolbarState extends State<WidgetHomeToolbar> with TickerProvid
                 color: AppColors.red.withValues(alpha: 0.50),
                 blurRadius: 8,
                 spreadRadius: 2,
-              )
+              ),
             ],
           ),
           child: const Icon(

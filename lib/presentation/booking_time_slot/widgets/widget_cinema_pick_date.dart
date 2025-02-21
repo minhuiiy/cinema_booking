@@ -25,7 +25,9 @@ class CinematicBottomBar extends StatelessWidget {
         height: 70,
         // padding: EdgeInsets.symmetric(horizontal: 20),
         decoration: BoxDecoration(
-          color: Colors.black.withValues(alpha: 0.6), // Semi-transparent background
+          color: Colors.black.withValues(
+            alpha: 0.6,
+          ), // Semi-transparent background
           borderRadius: BorderRadius.vertical(top: Radius.circular(14)),
           gradient: LinearGradient(
             colors: [Color(0xFF9C27B0), Color(0xFFE91E63)],
@@ -44,11 +46,18 @@ class CinematicBottomBar extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.vertical(top: Radius.circular(14)),
           child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10), // Frosted glass effect
+            filter: ImageFilter.blur(
+              sigmaX: 10,
+              sigmaY: 10,
+            ), // Frosted glass effect
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                _buildSelectionButton(onTap: onDateTap, icon: Icons.calendar_today, text: dateText),
+                _buildSelectionButton(
+                  onTap: onDateTap,
+                  icon: Icons.calendar_today,
+                  text: dateText,
+                ),
                 _buildSelectionButton(
                   onTap: onFormatTap,
                   icon: Icons.movie_filter,

@@ -10,7 +10,11 @@ class DisplayListMovies extends AllMoviesState {
   final bool loading;
   final String? msg;
 
-  DisplayListMovies({required this.meta, required this.loading, required this.msg});
+  DisplayListMovies({
+    required this.meta,
+    required this.loading,
+    required this.msg,
+  });
 
   factory DisplayListMovies.loading() {
     return DisplayListMovies(msg: null, meta: null, loading: true);

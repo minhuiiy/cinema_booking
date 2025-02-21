@@ -10,8 +10,6 @@ class WidgetSeatType extends StatefulWidget {
 class _WidgetSeatTypeState extends State<WidgetSeatType> {
   @override
   Widget build(BuildContext context) {
-    return Placeholder(
-      fallbackHeight: 650,
-    );
+    return Placeholder(fallbackHeight: 650);
   }
 }

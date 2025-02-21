@@ -25,13 +25,11 @@ class HomeBannerBloc extends Bloc<HomeBannerEvent, HomeBannerState> {
       final state = homeBloc.state as HomeLoaded;
       add(DisplayHomeBanner(banners: state.homeState.banners));
     } else {
-      _subscription = homeBloc.stream.listen(
-        (state) {
-          if (state is HomeLoaded) {
-            add(DisplayHomeBanner(banners: state.homeState.banners));
-          }
-        },
-      );
+      _subscription = homeBloc.stream.listen((state) {
+        if (state is HomeLoaded) {
+          add(DisplayHomeBanner(banners: state.homeState.banners));
+        }
+      });
     }
   }
 

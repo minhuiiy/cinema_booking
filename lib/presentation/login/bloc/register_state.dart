@@ -14,7 +14,8 @@ class RegisterState {
   final bool isSuccess;
   final bool isFailure;
 
-  bool get isFormValid => isEmailValid && isPasswordValid && isConfirmPasswordValid && isNameValid;
+  bool get isFormValid =>
+      isEmailValid && isPasswordValid && isConfirmPasswordValid && isNameValid;
 
   const RegisterState({
     required this.isEmailValid,
@@ -115,7 +116,8 @@ class RegisterState {
     return RegisterState(
       isEmailValid: isEmailValid ?? this.isEmailValid,
       isPasswordValid: isPasswordValid ?? this.isPasswordValid,
-      isConfirmPasswordValid: isConfirmPasswordValid ?? this.isConfirmPasswordValid,
+      isConfirmPasswordValid:
+          isConfirmPasswordValid ?? this.isConfirmPasswordValid,
       isNameValid: isNameValid ?? this.isNameValid,
       isSubmitting: isSubmitting ?? this.isSubmitting,
       isSuccess: isSuccess ?? this.isSuccess,

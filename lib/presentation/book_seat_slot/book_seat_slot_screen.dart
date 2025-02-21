@@ -71,10 +71,14 @@ class _BookSeatSlotScreenState extends State<BookSeatSlotScreen> {
                   state.bookTimeSlot != null &&
                   state.itemGridSeatSlotVMs.isNotEmpty) {
                 BookTimeSlotEntity bookTimeSlot = state.bookTimeSlot!;
-                int selectedIndex = bookTimeSlot.timeSlots.indexOf(state.selectedTimeSlot!);
+                int selectedIndex = bookTimeSlot.timeSlots.indexOf(
+                  state.selectedTimeSlot!,
+                );
                 String movieName = state.movie!.name;
 
-                _itemCineTimeSlot = ItemCineTimeSlot.fromBookTimeSlot(bookTimeSlot: bookTimeSlot);
+                _itemCineTimeSlot = ItemCineTimeSlot.fromBookTimeSlot(
+                  bookTimeSlot: bookTimeSlot,
+                );
 
                 String textSeat =
                     state.selectedSeatIds != null
@@ -89,7 +93,10 @@ class _BookSeatSlotScreenState extends State<BookSeatSlotScreen> {
                       children: <Widget>[
                         WidgetToolbar(
                           title: movieName,
-                          actions: Text(textSeat, style: AppFont.medium_white_12),
+                          actions: Text(
+                            textSeat,
+                            style: AppFont.medium_white_12,
+                          ),
                         ),
                         Expanded(
                           child: SingleChildScrollView(
@@ -137,7 +144,9 @@ class _BookSeatSlotScreenState extends State<BookSeatSlotScreen> {
     List<Widget> widgets = [];
 
     for (var itemGridSeatSlotVM in state.itemGridSeatSlotVMs) {
-      widgets.add(WidgetItemGridSeatSlot(itemGridSeatSlotVM: itemGridSeatSlotVM));
+      widgets.add(
+        WidgetItemGridSeatSlot(itemGridSeatSlotVM: itemGridSeatSlotVM),
+      );
       widgets.add(WidgetSpacer(height: 14));
     }
 
@@ -155,7 +164,9 @@ class _BookSeatSlotScreenState extends State<BookSeatSlotScreen> {
           style: ElevatedButton.styleFrom(
             backgroundColor: AppColors.defaultColor, // Màu nền của nút
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8), // Nếu bạn muốn làm tròn các góc của nút
+              borderRadius: BorderRadius.circular(
+                8,
+              ), // Nếu bạn muốn làm tròn các góc của nút
             ),
           ),
           child: Row(
@@ -177,12 +188,18 @@ class _BookSeatSlotScreenState extends State<BookSeatSlotScreen> {
 
   void _handleBlocListener(BuildContext context, BookSeatSlotState state) {
     if (state.isReachedLimitSeatSlot) {
-      CustomSnackBar.failure(context, msg: "You reached ${widget.args.seatCount} seats");
+      CustomSnackBar.failure(
+        context,
+        msg: "You reached ${widget.args.seatCount} seats",
+      );
       bloc.add(DismissMessageReachedLimitSeatSlot());
     }
 
     if (state.isSelectWrongSeatType) {
-      CustomSnackBar.failure(context, msg: "Please select seat ${widget.args.seatType.toText()}");
+      CustomSnackBar.failure(
+        context,
+        msg: "Please select seat ${widget.args.seatType.toText()}",
+      );
       bloc.add(DismissMessageWrongSeatType());
     }
 

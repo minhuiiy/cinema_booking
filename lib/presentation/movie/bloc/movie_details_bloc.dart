@@ -19,8 +19,13 @@ class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MovieDetailsState> {
     emit(InitialMovieDetailsState());
   }
 
-  Future<void> _onClickBtnBook(ClickBtnBook event, Emitter<MovieDetailsState> emit) async {
-    var response = await sl<CacheMovieInfoDataUseCase>().call(movie: event.movie);
+  Future<void> _onClickBtnBook(
+    ClickBtnBook event,
+    Emitter<MovieDetailsState> emit,
+  ) async {
+    var response = await sl<CacheMovieInfoDataUseCase>().call(
+      movie: event.movie,
+    );
 
     response.fold(
       (l) {
@@ -33,7 +38,9 @@ class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MovieDetailsState> {
   }
 
   void _onOpenedBookTimeSlotScreen(
-      OpenedBookTimeSlotScreen event, Emitter<MovieDetailsState> emit) {
+    OpenedBookTimeSlotScreen event,
+    Emitter<MovieDetailsState> emit,
+  ) {
     emit(OpenBookTimeSlotScreen(open: false));
     emit(InitialMovieDetailsState());
   }

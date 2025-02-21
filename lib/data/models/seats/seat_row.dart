@@ -20,9 +20,17 @@ class SeatRowModel {
   List<int>? offs = [];
   List<int>? booked = [];
 
-  SeatRowModel({this.id, this.rowId, this.seatId, this.count, this.offs, this.booked});
+  SeatRowModel({
+    this.id,
+    this.rowId,
+    this.seatId,
+    this.count,
+    this.offs,
+    this.booked,
+  });
 
-  factory SeatRowModel.fromJson(Map<String, dynamic> json) => _$SeatRowModelFromJson(json);
+  factory SeatRowModel.fromJson(Map<String, dynamic> json) =>
+      _$SeatRowModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$SeatRowModelToJson(this);
 
@@ -40,7 +48,14 @@ class SeatRowModel {
       offs: [4, 5],
       booked: [],
     ),
-    SeatRowModel(id: 'mock_data', seatId: 'mock_data', rowId: 'J', count: 11, offs: [], booked: []),
+    SeatRowModel(
+      id: 'mock_data',
+      seatId: 'mock_data',
+      rowId: 'J',
+      count: 11,
+      offs: [],
+      booked: [],
+    ),
   ];
 
   static final List<SeatRowModel> SAMPLE_QUEEN = [

@@ -25,17 +25,18 @@ class NearbyCineBloc extends Bloc<NearbyCineEvent, NearbyCineState> {
       final state = homeBloc.state as HomeLoaded;
       add(DisplayNearbyCine(cines: state.homeState.nearbyCinemas));
     } else {
-      subscription = homeBloc.stream.listen(
-        (state) {
-          if (state is HomeLoaded) {
-            add(DisplayNearbyCine(cines: state.homeState.nearbyCinemas));
-          }
-        },
-      );
+      subscription = homeBloc.stream.listen((state) {
+        if (state is HomeLoaded) {
+          add(DisplayNearbyCine(cines: state.homeState.nearbyCinemas));
+        }
+      });
     }
   }
 
-  Future<void> _onDisplayNearbyCine(DisplayNearbyCine event, Emitter<NearbyCineState> emit) async {
+  Future<void> _onDisplayNearbyCine(
+    DisplayNearbyCine event,
+    Emitter<NearbyCineState> emit,
+  ) async {
     emit(NearbyCineLoaded(cines: event.cines));
   }
 

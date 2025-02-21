@@ -22,7 +22,8 @@ class _WidgetSignInFormState extends State<WidgetSignInForm> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  bool get isPopulated => _emailController.text.isNotEmpty && _passwordController.text.isNotEmpty;
+  bool get isPopulated =>
+      _emailController.text.isNotEmpty && _passwordController.text.isNotEmpty;
 
   @override
   void initState() {
@@ -57,51 +58,68 @@ class _WidgetSignInFormState extends State<WidgetSignInForm> {
           );
         }
       },
-      child: BlocBuilder<LoginBloc, LoginState>(builder: (context, state) {
-        return SingleChildScrollView(
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
-              color: AppColors.black.withValues(alpha: 0.70), // Dark mode card
-            ),
-            child: Form(
-              child: Column(
-                children: <Widget>[
-                  _buildTextField("Email", _emailController, Icons.email),
-                  const WidgetSpacer(height: 14),
-                  _buildTextField("Password", _passwordController, Icons.lock, isPassword: true),
-                  const WidgetSpacer(height: 10),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: Text(
-                      'Forgot password?',
-                      style: AppFont.kNormalTextStyleGrey.copyWith(color: Colors.orangeAccent),
+      child: BlocBuilder<LoginBloc, LoginState>(
+        builder: (context, state) {
+          return SingleChildScrollView(
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+                color: AppColors.black.withValues(
+                  alpha: 0.70,
+                ), // Dark mode card
+              ),
+              child: Form(
+                child: Column(
+                  children: <Widget>[
+                    _buildTextField("Email", _emailController, Icons.email),
+                    const WidgetSpacer(height: 14),
+                    _buildTextField(
+                      "Password",
+                      _passwordController,
+                      Icons.lock,
+                      isPassword: true,
                     ),
-                  ),
-                  const WidgetSpacer(height: 35),
-                  _buildButtonLogin(state),
-                  const WidgetSpacer(height: 30),
-                  _buildTextOr(),
-                  const WidgetSpacer(height: 20),
-                  _buildSocialLogin(),
-                ],
+                    const WidgetSpacer(height: 10),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: Text(
+                        'Forgot password?',
+                        style: AppFont.kNormalTextStyleGrey.copyWith(
+                          color: Colors.orangeAccent,
+                        ),
+                      ),
+                    ),
+                    const WidgetSpacer(height: 35),
+                    _buildButtonLogin(state),
+                    const WidgetSpacer(height: 30),
+                    _buildTextOr(),
+                    const WidgetSpacer(height: 20),
+                    _buildSocialLogin(),
+                  ],
+                ),
               ),
             ),
-          ),
-        );
-      }),
+          );
+        },
+      ),
     );
   }
 
-  Widget _buildTextField(String hint, TextEditingController controller, IconData icon,
-      {bool isPassword = false}) {
+  Widget _buildTextField(
+    String hint,
+    TextEditingController controller,
+    IconData icon, {
+    bool isPassword = false,
+  }) {
     return Container(
       height: 60, // Increased height for better centering
       padding: const EdgeInsets.symmetric(horizontal: 15),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: AppColors.white.withValues(alpha: 0.10), // Dark transparent input fields
+        color: AppColors.white.withValues(
+          alpha: 0.10,
+        ), // Dark transparent input fields
       ),
       child: Center(
         child: TextFormField(
@@ -115,8 +133,8 @@ class _WidgetSignInFormState extends State<WidgetSignInForm> {
                     ? 'Invalid Password'
                     : null
                 : !_loginBloc.state.isEmailValid
-                    ? 'Invalid Email'
-                    : null;
+                ? 'Invalid Email'
+                : null;
           },
           maxLines: 1,
           keyboardType: TextInputType.text,
@@ -124,15 +142,22 @@ class _WidgetSignInFormState extends State<WidgetSignInForm> {
           controller: controller,
           obscureText: isPassword,
           style: AppFont.kNormalTextStyleWhite,
-          textAlignVertical: TextAlignVertical.center, // Centers text inside field
+          textAlignVertical:
+              TextAlignVertical.center, // Centers text inside field
           decoration: InputDecoration(
             labelText: hint, // Floating label text
             labelStyle: AppFont.kNormalTextStyleGrey.copyWith(fontSize: 16),
-            floatingLabelBehavior: FloatingLabelBehavior.auto, // Always show label
+            floatingLabelBehavior:
+                FloatingLabelBehavior.auto, // Always show label
             alignLabelWithHint: true, // Aligns label correctly
-            contentPadding: const EdgeInsets.symmetric(vertical: 15), // Centers hint
+            contentPadding: const EdgeInsets.symmetric(
+              vertical: 15,
+            ), // Centers hint
             border: InputBorder.none,
-            prefixIcon: Icon(icon, color: Colors.white70), // Add an icon inside input
+            prefixIcon: Icon(
+              icon,
+              color: Colors.white70,
+            ), // Add an icon inside input
           ),
         ),
       ),
@@ -147,24 +172,33 @@ class _WidgetSignInFormState extends State<WidgetSignInForm> {
         height: 50,
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            backgroundColor: isRegisterButtonEnabled()
-                ? AppColors.red
-                : AppColors.primary, // Movie-themed red button
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            backgroundColor:
+                isRegisterButtonEnabled()
+                    ? AppColors.red
+                    : AppColors.primary, // Movie-themed red button
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
           ),
           onPressed: () {
             if (isRegisterButtonEnabled()) {
-              _loginBloc.add(LoginSubmitEmailPasswordEvent(
-                email: _emailController.text,
-                password: _passwordController.text,
-              ));
+              _loginBloc.add(
+                LoginSubmitEmailPasswordEvent(
+                  email: _emailController.text,
+                  password: _passwordController.text,
+                ),
+              );
             }
           },
           child: Text(
             'LOGIN',
             style: AppFont.kNormalBoldTextStyleWhite.copyWith(
-                fontSize: 18,
-                color: isRegisterButtonEnabled() ? AppColors.textLight : AppColors.black),
+              fontSize: 18,
+              color:
+                  isRegisterButtonEnabled()
+                      ? AppColors.textLight
+                      : AppColors.black,
+            ),
           ),
         ),
       ),
@@ -174,7 +208,10 @@ class _WidgetSignInFormState extends State<WidgetSignInForm> {
   Widget _buildTextOr() {
     return Stack(
       children: <Widget>[
-        Align(alignment: Alignment.center, child: Divider(color: Colors.white24)),
+        Align(
+          alignment: Alignment.center,
+          child: Divider(color: Colors.white24),
+        ),
         Align(
           alignment: Alignment.center,
           child: Container(
@@ -188,7 +225,9 @@ class _WidgetSignInFormState extends State<WidgetSignInForm> {
   }
 
   bool isRegisterButtonEnabled() {
-    return _loginBloc.state.isFormValid && isPopulated && !_loginBloc.state.isSubmitting;
+    return _loginBloc.state.isFormValid &&
+        isPopulated &&
+        !_loginBloc.state.isSubmitting;
   }
 
   Widget _buildSocialLogin() {

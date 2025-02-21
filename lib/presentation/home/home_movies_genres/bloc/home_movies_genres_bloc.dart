@@ -16,11 +16,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 part 'home_movies_genres_event.dart';
 part 'home_movies_genres_state.dart';
 
-class HomeMoviesGenresBloc extends Bloc<HomeMoviesGenresEvent, HomeMoviesGenresState> {
+class HomeMoviesGenresBloc
+    extends Bloc<HomeMoviesGenresEvent, HomeMoviesGenresState> {
   final HomeBloc homeBloc;
   late StreamSubscription subscription;
 
-  HomeMoviesGenresBloc({required this.homeBloc}) : super(MoviesByGenresNotLoaded()) {
+  HomeMoviesGenresBloc({required this.homeBloc})
+    : super(MoviesByGenresNotLoaded()) {
     on<DisplayMoviesByGenres>(_onDisplayMoviesByGenres);
 
     if (homeBloc.state is HomeLoaded) {
@@ -37,7 +39,9 @@ class HomeMoviesGenresBloc extends Bloc<HomeMoviesGenresEvent, HomeMoviesGenresS
   }
 
   Future<void> _onDisplayMoviesByGenres(
-      DisplayMoviesByGenres event, Emitter<HomeMoviesGenresState> emit) async {
+    DisplayMoviesByGenres event,
+    Emitter<HomeMoviesGenresState> emit,
+  ) async {
     List<MapEntry<GenresEntity, List<MovieDetailEntity>>> list = [];
 
     final homeResponse = event.homeResponse;
@@ -47,11 +51,9 @@ class HomeMoviesGenresBloc extends Bloc<HomeMoviesGenresEvent, HomeMoviesGenresS
       message: "check data: ${homeResponse.genres}",
     );
     for (var data in homeResponse.movieByGenres) {
-      final genres = homeResponse.genres.firstWhere(
-        (genres) {
-          return genres.id == data.genresId;
-        },
-      );
+      final genres = homeResponse.genres.firstWhere((genres) {
+        return genres.id == data.genresId;
+      });
       list.add(MapEntry(genres, data.movies));
     }
 
