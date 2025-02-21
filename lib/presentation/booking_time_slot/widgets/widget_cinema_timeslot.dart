@@ -37,7 +37,10 @@ class WidgetCineTimeSlot extends StatelessWidget {
       padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [Colors.black.withValues(alpha: 0.9), Colors.black.withValues(alpha: 0.7)],
+          colors: [
+            Colors.black.withValues(alpha: 0.9),
+            Colors.black.withValues(alpha: 0.7),
+          ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
@@ -68,7 +71,10 @@ class WidgetCineTimeSlot extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () => _openCineLocation(),
-                  child: Icon(Icons.info_outline, color: Colors.white.withValues(alpha: 0.6)),
+                  child: Icon(
+                    Icons.info_outline,
+                    color: Colors.white.withValues(alpha: 0.6),
+                  ),
                 ),
               ],
             ),
@@ -100,7 +106,10 @@ class WidgetCineTimeSlot extends StatelessWidget {
                   color: Colors.white.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(6),
                 ),
-                child: Text("${item.textDistance} miles away", style: AppFont.regular_white_10),
+                child: Text(
+                  "${item.textDistance} miles away",
+                  style: AppFont.regular_white_10,
+                ),
               ),
             ],
           ),
@@ -150,7 +159,12 @@ class _WidgetTimeSlot extends StatefulWidget {
   final bool isSmallMode;
   final Function(TimeSlotEntity) itemClick;
 
-  const _WidgetTimeSlot(this.item, this.isSelected, this.isSmallMode, this.itemClick);
+  const _WidgetTimeSlot(
+    this.item,
+    this.isSelected,
+    this.isSmallMode,
+    this.itemClick,
+  );
 
   @override
   State<_WidgetTimeSlot> createState() => __WidgetTimeSlotState();
@@ -164,13 +178,15 @@ class __WidgetTimeSlotState extends State<_WidgetTimeSlot> {
     double itemWidth = widget.isSmallMode ? 84.0 : 100.0;
     double fontSize = widget.isSmallMode ? 12.0 : 14.0;
 
-    Color timeColor = widget.item.hour % 2 == 0 ? AppColors.green : AppColors.orange;
+    Color timeColor =
+        widget.item.hour % 2 == 0 ? AppColors.green : AppColors.orange;
     if (!widget.item.active) {
       timeColor = AppColors.timeSlotBorder;
     }
 
     Color itemBg = widget.isSelected ? AppColors.green : AppColors.timeSlotBg;
-    Color itemBorder = widget.isSelected ? Colors.transparent : AppColors.timeSlotBorder;
+    Color itemBorder =
+        widget.isSelected ? Colors.transparent : AppColors.timeSlotBorder;
 
     if (widget.isSelected) {
       timeColor = Colors.white;
@@ -224,7 +240,10 @@ class __WidgetTimeSlotState extends State<_WidgetTimeSlot> {
         child: Center(
           child: Text(
             widget.item.time,
-            style: AppFont.medium_white_14.copyWith(color: timeColor, fontSize: fontSize),
+            style: AppFont.medium_white_14.copyWith(
+              color: timeColor,
+              fontSize: fontSize,
+            ),
           ),
         ),
       ),
