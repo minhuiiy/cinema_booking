@@ -25,7 +25,7 @@ class CinematicBottomBar extends StatelessWidget {
         height: 70,
         // padding: EdgeInsets.symmetric(horizontal: 20),
         decoration: BoxDecoration(
-          color: Colors.black.withOpacity(0.6), // Semi-transparent background
+          color: Colors.black.withValues(alpha: 0.6), // Semi-transparent background
           borderRadius: BorderRadius.vertical(top: Radius.circular(14)),
           gradient: LinearGradient(
             colors: [Color(0xFF9C27B0), Color(0xFFE91E63)],
@@ -34,7 +34,7 @@ class CinematicBottomBar extends StatelessWidget {
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.3),
+              color: Colors.black.withValues(alpha: 0.3),
               blurRadius: 12,
               spreadRadius: -4,
               offset: Offset(0, -4),
@@ -48,11 +48,7 @@ class CinematicBottomBar extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                _buildSelectionButton(
-                  onTap: onDateTap,
-                  icon: Icons.calendar_today,
-                  text: dateText,
-                ),
+                _buildSelectionButton(onTap: onDateTap, icon: Icons.calendar_today, text: dateText),
                 _buildSelectionButton(
                   onTap: onFormatTap,
                   icon: Icons.movie_filter,
@@ -79,10 +75,10 @@ class CinematicBottomBar extends StatelessWidget {
         padding: EdgeInsets.symmetric(vertical: 10, horizontal: 12),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: Colors.white.withOpacity(0.1),
+          color: Colors.white.withValues(alpha: 0.1),
           boxShadow: [
             BoxShadow(
-              color: Colors.white.withOpacity(0.2),
+              color: Colors.white.withValues(alpha: 0.2),
               blurRadius: 8,
               spreadRadius: -2,
               offset: Offset(0, 4),

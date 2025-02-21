@@ -6,18 +6,28 @@ import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:flutter/material.dart';
 
 class WidgetToolbar extends StatelessWidget {
-  String title;
-  Widget actions;
+  final String title;
+  final Widget actions;
 
-  WidgetToolbar({required this.title, required this.actions});
+  const WidgetToolbar({super.key, required this.title, required this.actions});
 
-  WidgetToolbar.defaultActions({required this.title}) : actions = _buildActions();
+  WidgetToolbar.defaultActions({super.key, required this.title}) : actions = _buildActions();
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: AppColors.blue,
-      height: 50,
+      height: 60,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Color(0xFF9C27B0), Color(0xFFE91E63)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        boxShadow: [
+          BoxShadow(color: Colors.white.withValues(alpha: .1), blurRadius: 10, spreadRadius: -2),
+        ],
+      ),
+      padding: EdgeInsets.symmetric(horizontal: 16),
       child: Row(
         children: <Widget>[
           GestureDetector(
@@ -26,20 +36,11 @@ class WidgetToolbar extends StatelessWidget {
             },
             child: Padding(
               padding: const EdgeInsets.only(left: 12, right: 10),
-              child: MySvgImage(
-                width: 19,
-                height: 16,
-                path: AppVectors.iconBack,
-              ),
+              child: MySvgImage(width: 19, height: 16, path: AppVectors.iconBack),
             ),
           ),
-          Expanded(
-            child: Text(title, style: AppFont.medium_white_16),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 20),
-            child: actions,
-          ),
+          Expanded(child: Text(title, style: AppFont.medium_white_16)),
+          Padding(padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 20), child: actions),
         ],
       ),
     );
@@ -48,18 +49,10 @@ class WidgetToolbar extends StatelessWidget {
   static _buildActions() {
     return Row(
       children: <Widget>[
-        MySvgImage(
-          path: AppVectors.iconSearch,
-          width: 20,
-          height: 20,
-        ),
+        MySvgImage(path: AppVectors.iconSearch, width: 20, height: 20),
         WidgetSpacer(width: 12),
-        MySvgImage(
-          path: AppVectors.iconMore,
-          width: 20,
-          height: 20,
-        ),
-        WidgetSpacer(width: 12)
+        MySvgImage(path: AppVectors.iconMore, width: 20, height: 20),
+        WidgetSpacer(width: 12),
       ],
     );
   }

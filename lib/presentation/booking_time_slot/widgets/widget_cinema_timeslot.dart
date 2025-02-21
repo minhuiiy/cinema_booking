@@ -37,14 +37,14 @@ class WidgetCineTimeSlot extends StatelessWidget {
       padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [Colors.black.withOpacity(0.9), Colors.black.withOpacity(0.7)],
+          colors: [Colors.black.withValues(alpha: 0.9), Colors.black.withValues(alpha: 0.7)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.5),
+            color: Colors.black.withValues(alpha: 0.5),
             blurRadius: 12,
             spreadRadius: -3,
             offset: Offset(0, 6),
@@ -68,7 +68,7 @@ class WidgetCineTimeSlot extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () => _openCineLocation(),
-                  child: Icon(Icons.info_outline, color: Colors.white.withOpacity(0.6)),
+                  child: Icon(Icons.info_outline, color: Colors.white.withValues(alpha: 0.6)),
                 ),
               ],
             ),
@@ -97,7 +97,7 @@ class WidgetCineTimeSlot extends StatelessWidget {
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.1),
+                  color: Colors.white.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(6),
                 ),
                 child: Text("${item.textDistance} miles away", style: AppFont.regular_white_10),
@@ -202,7 +202,10 @@ class __WidgetTimeSlotState extends State<_WidgetTimeSlot> {
                     end: Alignment.bottomRight,
                   )
                   : LinearGradient(
-                    colors: [Colors.white.withOpacity(0.1), Colors.white.withOpacity(0.05)],
+                    colors: [
+                      Colors.white.withValues(alpha: 0.1),
+                      Colors.white.withValues(alpha: 0.05),
+                    ],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
@@ -210,7 +213,7 @@ class __WidgetTimeSlotState extends State<_WidgetTimeSlot> {
               widget.isSelected
                   ? [
                     BoxShadow(
-                      color: Colors.greenAccent.withOpacity(0.4),
+                      color: Colors.greenAccent.withValues(alpha: 0.4),
                       blurRadius: 10,
                       spreadRadius: -2,
                       offset: Offset(0, 4),

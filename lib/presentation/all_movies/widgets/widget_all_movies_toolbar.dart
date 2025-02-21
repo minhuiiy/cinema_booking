@@ -53,7 +53,7 @@ class _WidgetAllMoviesToolbarState extends State<WidgetAllMoviesToolbar> {
               ),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.white.withOpacity(0.1),
+                  color: Colors.white.withValues(alpha: 0.1),
                   blurRadius: 10,
                   spreadRadius: -2,
                 ),
@@ -67,11 +67,7 @@ class _WidgetAllMoviesToolbarState extends State<WidgetAllMoviesToolbar> {
                   borderRadius: BorderRadius.circular(12),
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: MySvgImage(
-                      width: 19,
-                      height: 16,
-                      path: AppVectors.iconBack,
-                    ),
+                    child: MySvgImage(width: 19, height: 16, path: AppVectors.iconBack),
                   ),
                 ),
                 Expanded(child: _buildTitle(state)),
@@ -95,8 +91,9 @@ class _WidgetAllMoviesToolbarState extends State<WidgetAllMoviesToolbar> {
               isSearching = !isSearching;
               if (!isSearching) _searchController.clear();
             });
-            BlocProvider.of<AllMoviesBloc>(_blocContext)
-                .add(state.movieSearchField ? ClickCloseSearch() : ClickIconSearch());
+            BlocProvider.of<AllMoviesBloc>(
+              _blocContext,
+            ).add(state.movieSearchField ? ClickCloseSearch() : ClickIconSearch());
           },
           borderRadius: BorderRadius.circular(12),
           child: Padding(
@@ -113,13 +110,9 @@ class _WidgetAllMoviesToolbarState extends State<WidgetAllMoviesToolbar> {
           onTap: () {
             BlocProvider.of<AllMoviesBloc>(_blocContext).add(ClickIconSort());
           },
-          child: MySvgImage(
-            path: AppVectors.iconMore,
-            width: 20,
-            height: 20,
-          ),
+          child: MySvgImage(path: AppVectors.iconMore, width: 20, height: 20),
         ),
-        WidgetSpacer(width: 12)
+        WidgetSpacer(width: 12),
       ],
     );
   }
@@ -131,46 +124,44 @@ class _WidgetAllMoviesToolbarState extends State<WidgetAllMoviesToolbar> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30),
         color: isSearching ? Colors.white.withValues(alpha: .1) : Colors.transparent,
-        boxShadow: isSearching
-            ? [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.9), // Darker shadow
-                  blurRadius: 15,
-                  spreadRadius: -5,
-                  offset: Offset(0, 6),
-                ),
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.7), // Lighter shadow layer
-                  blurRadius: 10,
-                  spreadRadius: -3,
-                ),
-              ]
-            : [],
+        boxShadow:
+            isSearching
+                ? [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.9), // Darker shadow
+                    blurRadius: 15,
+                    spreadRadius: -5,
+                    offset: Offset(0, 6),
+                  ),
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.7), // Lighter shadow layer
+                    blurRadius: 10,
+                    spreadRadius: -3,
+                  ),
+                ]
+                : [],
       ),
       padding: EdgeInsets.symmetric(horizontal: 12),
-      child: isSearching && state.movieSearchField
-          ? TextField(
-              controller: _searchController,
-              keyboardType: TextInputType.text,
-              autofocus: true,
-              textInputAction: TextInputAction.search,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-              ),
-              decoration: InputDecoration(
-                hintText: 'Search movies...',
-                hintStyle: TextStyle(
-                  color: Colors.white70,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
+      child:
+          isSearching && state.movieSearchField
+              ? TextField(
+                controller: _searchController,
+                keyboardType: TextInputType.text,
+                autofocus: true,
+                textInputAction: TextInputAction.search,
+                style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w500),
+                decoration: InputDecoration(
+                  hintText: 'Search movies...',
+                  hintStyle: TextStyle(
+                    color: Colors.white70,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.symmetric(vertical: 12), // Fix: Proper padding
                 ),
-                border: InputBorder.none,
-                contentPadding: EdgeInsets.symmetric(vertical: 12), // Fix: Proper padding
-              ),
-            )
-          : Text('Movies in coimbatore', style: AppFont.semibold_white_18),
+              )
+              : Text('Movies in coimbatore', style: AppFont.semibold_white_18),
     );
   }
 

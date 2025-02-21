@@ -47,7 +47,11 @@ class _WidgetSearchSortToolbarState extends State<WidgetSearchSortToolbar> {
               end: Alignment.bottomRight,
             ),
             boxShadow: [
-              BoxShadow(color: Colors.white.withOpacity(0.1), blurRadius: 10, spreadRadius: -2),
+              BoxShadow(
+                color: Colors.white.withValues(alpha: 0.1),
+                blurRadius: 10,
+                spreadRadius: -2,
+              ),
             ],
           ),
           padding: EdgeInsets.symmetric(horizontal: 16),
@@ -81,13 +85,13 @@ class _WidgetSearchSortToolbarState extends State<WidgetSearchSortToolbar> {
             isSearching
                 ? [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.9), // Darker shadow
+                    color: Colors.black.withValues(alpha: 0.9), // Darker shadow
                     blurRadius: 15,
                     spreadRadius: -5,
                     offset: Offset(0, 6),
                   ),
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.7), // Lighter shadow layer
+                    color: Colors.black.withValues(alpha: 0.7), // Lighter shadow layer
                     blurRadius: 10,
                     spreadRadius: -3,
                   ),
