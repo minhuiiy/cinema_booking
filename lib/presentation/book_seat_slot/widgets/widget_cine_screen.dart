@@ -30,17 +30,22 @@ class _WidgetCineScreenState extends State<WidgetCineScreen> {
 }
 
 class CurveScreenPainter extends CustomPainter {
-  var strokeWidth = 8.0;
-  var offset = 10.0;
+  final double strokeWidth = 8.0;
+  final double offset = 10.0;
 
   @override
   void paint(Canvas canvas, Size size) {
-    var paint = Paint();
-    paint.color = AppColors.defaultColor;
-    paint.style = PaintingStyle.stroke;
-    paint.isAntiAlias = true;
-    paint.strokeCap = StrokeCap.round;
-    paint.strokeWidth = strokeWidth;
+    var paint =
+        Paint()
+          ..shader = LinearGradient(
+            colors: [Color(0xFF9C27B0), Color(0xFFE91E63)],
+            begin: Alignment.centerLeft,
+            end: Alignment.centerRight,
+          ).createShader(Rect.fromLTWH(0, 0, size.width, size.height))
+          ..style = PaintingStyle.stroke
+          ..isAntiAlias = true
+          ..strokeCap = StrokeCap.round
+          ..strokeWidth = strokeWidth;
 
     var path = Path();
     path.moveTo(offset, size.height - offset);

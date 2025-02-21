@@ -43,7 +43,7 @@ class _WidgetItemGridSeatSlotState extends State<WidgetItemGridSeatSlot> {
     );
   }
 
-  _buildSlotGrid() {
+  Widget _buildSlotGrid() {
     return ConstrainedBox(
       constraints: BoxConstraints(minHeight: 40, maxHeight: 200),
       child: GridView.count(
@@ -82,8 +82,8 @@ class _WidgetItemGridSeatSlotState extends State<WidgetItemGridSeatSlot> {
             }
 
             if (itemSeatSlotVM.isSelected) {
-              itemBgColor = AppColors.green;
-              itemBorderColor = AppColors.transparent;
+              itemBgColor = Colors.purpleAccent;
+              itemBorderColor = Colors.white;
             }
 
             var itemAvailable = GestureDetector(
@@ -93,8 +93,12 @@ class _WidgetItemGridSeatSlotState extends State<WidgetItemGridSeatSlot> {
               child: Container(
                 decoration: BoxDecoration(
                   color: itemBgColor,
-                  borderRadius: BorderRadius.circular(4),
+                  borderRadius: BorderRadius.circular(6),
                   border: Border.all(color: itemBorderColor, width: 1),
+                  boxShadow:
+                      itemSeatSlotVM.isSelected
+                          ? [BoxShadow(color: Colors.purpleAccent, blurRadius: 8)]
+                          : [],
                 ),
                 //            child: Center(child: Text('${seatRow.rowId}${i + 1}')),
               ),
