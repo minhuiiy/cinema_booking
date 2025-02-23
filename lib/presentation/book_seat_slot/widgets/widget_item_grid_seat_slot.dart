@@ -35,10 +35,7 @@ class _WidgetItemGridSeatSlotState extends State<WidgetItemGridSeatSlot> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(
-            itemGridSeatSlotVM.seatTypeName,
-            style: AppFont.regular_gray4_12,
-          ),
+          Text(itemGridSeatSlotVM.seatTypeName, style: AppFont.regular_gray4_12),
           WidgetSpacer(height: 14),
           _buildSlotGrid(),
         ],
@@ -100,12 +97,7 @@ class _WidgetItemGridSeatSlotState extends State<WidgetItemGridSeatSlot> {
                   border: Border.all(color: itemBorderColor, width: 1),
                   boxShadow:
                       itemSeatSlotVM.isSelected
-                          ? [
-                            BoxShadow(
-                              color: Colors.purpleAccent,
-                              blurRadius: 8,
-                            ),
-                          ]
+                          ? [BoxShadow(color: Colors.purpleAccent, blurRadius: 8)]
                           : [],
                 ),
                 //            child: Center(child: Text('${seatRow.rowId}${i + 1}')),

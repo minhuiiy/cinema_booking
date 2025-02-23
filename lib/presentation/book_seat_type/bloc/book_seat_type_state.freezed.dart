@@ -19,7 +19,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$BookSeatTypeState {
   MovieEntity? get movie => throw _privateConstructorUsedError;
   TimeSlotEntity? get selectedTimeSlot => throw _privateConstructorUsedError;
-  BookTimeSlotEntity? get bookTimeSlot => throw _privateConstructorUsedError; //
+  BookTimeSlotEntity? get bookTimeSlot => throw _privateConstructorUsedError;
   int get seatCount => throw _privateConstructorUsedError;
   TypeSeat get selectedSeatType => throw _privateConstructorUsedError;
   bool get isOpenBookSeatSlotScreen => throw _privateConstructorUsedError;
@@ -203,7 +203,6 @@ class _$BookSeatTypeStateImpl implements _BookSeatTypeState {
   final TimeSlotEntity? selectedTimeSlot;
   @override
   final BookTimeSlotEntity? bookTimeSlot;
-  //
   @override
   @JsonKey()
   final int seatCount;
@@ -278,7 +277,7 @@ abstract class _BookSeatTypeState implements BookSeatTypeState {
   @override
   TimeSlotEntity? get selectedTimeSlot;
   @override
-  BookTimeSlotEntity? get bookTimeSlot; //
+  BookTimeSlotEntity? get bookTimeSlot;
   @override
   int get seatCount;
   @override

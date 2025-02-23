@@ -33,17 +33,12 @@ class BookSeatSlotBloc extends Bloc<BookSeatSlotEvent, BookSeatSlotState> {
     on<OpenScreen>(_onOpenScreen);
     on<ClickSelectSeatSlot>(_onClickSelectSeatSlot);
     on<DismissMessageWrongSeatType>(_onDismissMessageWrongSeatType);
-    on<DismissMessageReachedLimitSeatSlot>(
-      _onDismissMessageReachedLimitSeatSlot,
-    );
+    on<DismissMessageReachedLimitSeatSlot>(_onDismissMessageReachedLimitSeatSlot);
     on<ClickButtonPay>(_onClickButtonPay);
     on<OpenedPaymentMethodScreen>(_onOpenedPaymentMethodScreen);
   }
 
-  Future<void> _onOpenScreen(
-    OpenScreen event,
-    Emitter<BookSeatSlotState> emit,
-  ) async {
+  Future<void> _onOpenScreen(OpenScreen event, Emitter<BookSeatSlotState> emit) async {
     LogHelper.logInfo(tag: 'BookSeatSlotBloc', message: 'Opening screen...');
 
     MovieEntity? movie;
@@ -51,14 +46,10 @@ class BookSeatSlotBloc extends Bloc<BookSeatSlotEvent, BookSeatSlotState> {
     BookTimeSlotEntity? bookTimeSlot;
 
     final movieData = await sl<GetCachedMovieUseCase>().call();
-    final selectedTimeSlotData =
-        await sl<GetCachedSelectedTimeSlotUseCase>().call();
+    final selectedTimeSlotData = await sl<GetCachedSelectedTimeSlotUseCase>().call();
     final bookTimeSlotData = await sl<GetCachedBookTimeSlotUseCase>().call();
 
-    LogHelper.logDebug(
-      tag: 'BookSeatSlotBloc',
-      message: 'Data loaded movieData: $movieData',
-    );
+    LogHelper.logDebug(tag: 'BookSeatSlotBloc', message: 'Data loaded movieData: $movieData');
 
     LogHelper.logDebug(
       tag: 'BookSeatSlotBloc',
@@ -72,10 +63,7 @@ class BookSeatSlotBloc extends Bloc<BookSeatSlotEvent, BookSeatSlotState> {
 
     movieData.fold(
       (error) {
-        LogHelper.logError(
-          tag: 'OpenScreen Error',
-          message: "BookSeatSlotBloc movieData $error",
-        );
+        LogHelper.logError(tag: 'OpenScreen Error', message: "BookSeatSlotBloc movieData $error");
       },
       (data) {
         movie = data;
@@ -126,10 +114,7 @@ class BookSeatSlotBloc extends Bloc<BookSeatSlotEvent, BookSeatSlotState> {
         ),
       );
     } catch (e) {
-      LogHelper.logError(
-        tag: 'BookSeatSlotBloc',
-        message: 'Failed to open screen $e',
-      );
+      LogHelper.logError(tag: 'BookSeatSlotBloc', message: 'Failed to open screen $e');
       emit(state.copyWith(isLoading: false, msg: e.toString()));
     }
   }
@@ -139,19 +124,13 @@ class BookSeatSlotBloc extends Bloc<BookSeatSlotEvent, BookSeatSlotState> {
     Emitter<BookSeatSlotState> emit,
   ) async {
     final item = event.itemSeatSlotVM;
-    LogHelper.logDebug(
-      tag: 'BookSeatSlotBloc',
-      message: 'Click seat slot: ${item.seatId}',
-    );
+    LogHelper.logDebug(tag: 'BookSeatSlotBloc', message: 'Click seat slot: ${item.seatId}');
 
     if (item.seatType == selectedSeatType) {
       if (!selectedSeats.containsKey(item.seatId)) {
         if (!isReachedLimitSlot()) {
           selectedSeats[item.seatId] = true;
-          LogHelper.logInfo(
-            tag: 'BookSeatSlotBloc',
-            message: 'Seat selected: ${item.seatId}',
-          );
+          LogHelper.logInfo(tag: 'BookSeatSlotBloc', message: 'Seat selected: ${item.seatId}');
           emit(
             state.copyWith(
               itemGridSeatSlotVMs: toItemGridSeatSlotVMs(seatSlotByTypes),
@@ -160,10 +139,7 @@ class BookSeatSlotBloc extends Bloc<BookSeatSlotEvent, BookSeatSlotState> {
             ),
           );
         } else {
-          LogHelper.logWarning(
-            tag: 'BookSeatSlotBloc',
-            message: 'Seat limit reached',
-          );
+          LogHelper.logWarning(tag: 'BookSeatSlotBloc', message: 'Seat limit reached');
           emit(state.copyWith(isReachedLimitSeatSlot: true));
         }
       } else {
@@ -172,8 +148,7 @@ class BookSeatSlotBloc extends Bloc<BookSeatSlotEvent, BookSeatSlotState> {
           selectedSeats[item.seatId] = isSelected;
           LogHelper.logInfo(
             tag: 'BookSeatSlotBloc',
-            message:
-                'Seat ${isSelected ? "selected" : "deselected"}: ${item.seatId}',
+            message: 'Seat ${isSelected ? "selected" : "deselected"}: ${item.seatId}',
           );
           emit(
             state.copyWith(
@@ -183,18 +158,12 @@ class BookSeatSlotBloc extends Bloc<BookSeatSlotEvent, BookSeatSlotState> {
             ),
           );
         } else {
-          LogHelper.logWarning(
-            tag: 'BookSeatSlotBloc',
-            message: 'Seat limit reached',
-          );
+          LogHelper.logWarning(tag: 'BookSeatSlotBloc', message: 'Seat limit reached');
           emit(state.copyWith(isReachedLimitSeatSlot: true));
         }
       }
     } else {
-      LogHelper.logWarning(
-        tag: 'BookSeatSlotBloc',
-        message: 'Wrong seat type selected',
-      );
+      LogHelper.logWarning(tag: 'BookSeatSlotBloc', message: 'Wrong seat type selected');
       emit(state.copyWith(isSelectWrongSeatType: true));
     }
   }
@@ -203,10 +172,7 @@ class BookSeatSlotBloc extends Bloc<BookSeatSlotEvent, BookSeatSlotState> {
     DismissMessageWrongSeatType event,
     Emitter<BookSeatSlotState> emit,
   ) {
-    LogHelper.logDebug(
-      tag: 'BookSeatSlotBloc',
-      message: 'Dismissing wrong seat type message',
-    );
+    LogHelper.logDebug(tag: 'BookSeatSlotBloc', message: 'Dismissing wrong seat type message');
     emit(state.copyWith(isSelectWrongSeatType: false));
   }
 
@@ -214,17 +180,11 @@ class BookSeatSlotBloc extends Bloc<BookSeatSlotEvent, BookSeatSlotState> {
     DismissMessageReachedLimitSeatSlot event,
     Emitter<BookSeatSlotState> emit,
   ) {
-    LogHelper.logDebug(
-      tag: 'BookSeatSlotBloc',
-      message: 'Dismissing seat limit reached message',
-    );
+    LogHelper.logDebug(tag: 'BookSeatSlotBloc', message: 'Dismissing seat limit reached message');
     emit(state.copyWith(isReachedLimitSeatSlot: false));
   }
 
-  void _onClickButtonPay(
-    ClickButtonPay event,
-    Emitter<BookSeatSlotState> emit,
-  ) {
+  void _onClickButtonPay(ClickButtonPay event, Emitter<BookSeatSlotState> emit) {
     LogHelper.logInfo(tag: 'BookSeatSlotBloc', message: 'Button Pay clicked');
     emit(state.copyWith(isOpenPaymentMethod: true));
   }
@@ -233,61 +193,39 @@ class BookSeatSlotBloc extends Bloc<BookSeatSlotEvent, BookSeatSlotState> {
     OpenedPaymentMethodScreen event,
     Emitter<BookSeatSlotState> emit,
   ) {
-    LogHelper.logDebug(
-      tag: 'BookSeatSlotBloc',
-      message: 'Payment method screen opened',
-    );
+    LogHelper.logDebug(tag: 'BookSeatSlotBloc', message: 'Payment method screen opened');
     emit(state.copyWith(isOpenPaymentMethod: false));
   }
 
   bool isReachedLimitSlot() {
     final isReached = getSelectedSeatSlotId().length == seatCount;
-    LogHelper.logDebug(
-      tag: 'BookSeatSlotBloc',
-      message: 'Is seat limit reached: $isReached',
-    );
+    LogHelper.logDebug(tag: 'BookSeatSlotBloc', message: 'Is seat limit reached: $isReached');
     return isReached;
   }
 
   List<String> getSelectedSeatSlotId() {
-    final selectedIds =
-        selectedSeats.keys.where((key) => selectedSeats[key]!).toList();
-    LogHelper.logDebug(
-      tag: 'BookSeatSlotBloc',
-      message: 'Selected seat IDs: $selectedIds',
-    );
+    final selectedIds = selectedSeats.keys.where((key) => selectedSeats[key]!).toList();
+    LogHelper.logDebug(tag: 'BookSeatSlotBloc', message: 'Selected seat IDs: $selectedIds');
     return selectedIds;
   }
 
   double calculateTotalPrice() {
     final totalPrice =
-        SeatTypesModel.SAMPLE_DATA
-            .firstWhere((type) => type.type == selectedSeatType)
-            .price! *
+        SeatTypesModel.SAMPLE_DATA.firstWhere((type) => type.type == selectedSeatType).price! *
         getSelectedSeatSlotId().length;
-    LogHelper.logInfo(
-      tag: 'BookSeatSlotBloc',
-      message: 'Total price calculated: $totalPrice',
-    );
+    LogHelper.logInfo(tag: 'BookSeatSlotBloc', message: 'Total price calculated: $totalPrice');
     return totalPrice;
   }
 
-  List<ItemGridSeatSlotVM> toItemGridSeatSlotVMs(
-    List<SeatTypeEntity> seatSlotByTypes,
-  ) {
-    LogHelper.logDebug(
-      tag: 'BookSeatSlotBloc',
-      message: 'toItemGridSeatSlotVMs: $seatSlotByTypes',
-    );
+  List<ItemGridSeatSlotVM> toItemGridSeatSlotVMs(List<SeatTypeEntity> seatSlotByTypes) {
+    LogHelper.logDebug(tag: 'BookSeatSlotBloc', message: 'toItemGridSeatSlotVMs: $seatSlotByTypes');
     return seatSlotByTypes.map((seatSlotType) {
-      final seatTypeName =
-          '\$ ${seatSlotType.price} ${seatSlotType.type.toText().toUpperCase()}';
+      final seatTypeName = '\$ ${seatSlotType.price} ${seatSlotType.type.toText().toUpperCase()}';
       final maxColumn = seatSlotType.seatRows![0].count + 1;
 
       LogHelper.logError(
         tag: 'BookSeatSlotBloc',
-        message:
-            'Invalid seatTypeName: $seatTypeName ; SeatTypeModel: $seatSlotType',
+        message: 'Invalid seatTypeName: $seatTypeName ; SeatTypeModel: $seatSlotType',
       );
 
       return ItemGridSeatSlotVM(
@@ -298,10 +236,7 @@ class BookSeatSlotBloc extends Bloc<BookSeatSlotEvent, BookSeatSlotState> {
     }).toList();
   }
 
-  List<ItemSeatRowVM> _toItemSeatRowVMs(
-    List<SeatRowEntity>? seatRows,
-    TypeSeat seatType,
-  ) {
+  List<ItemSeatRowVM> _toItemSeatRowVMs(List<SeatRowEntity>? seatRows, TypeSeat seatType) {
     return seatRows!.map((seatRow) {
       final itemRowName = seatRow.rowId;
       return ItemSeatRowVM(
@@ -311,11 +246,7 @@ class BookSeatSlotBloc extends Bloc<BookSeatSlotEvent, BookSeatSlotState> {
     }).toList();
   }
 
-  List<ItemSeatSlotVM> _toItemSeatSlotVMs(
-    SeatRowEntity seatRow,
-    int count,
-    TypeSeat seatType,
-  ) {
+  List<ItemSeatSlotVM> _toItemSeatSlotVMs(SeatRowEntity seatRow, int count, TypeSeat seatType) {
     return Iterable<int>.generate(count).map((i) {
       final seatId = "${seatRow.rowId}$i";
       final isOff = seatRow.offs.contains(i);
