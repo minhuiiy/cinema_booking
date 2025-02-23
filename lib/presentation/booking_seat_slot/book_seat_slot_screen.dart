@@ -10,10 +10,10 @@ import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:cinema_booking/data/models/seats/seat_type.dart';
 import 'package:cinema_booking/domain/entities/booking/booking_time_slot.dart';
-import 'package:cinema_booking/presentation/book_seat_slot/bloc/book_seat_slot_bloc.dart';
-import 'package:cinema_booking/presentation/book_seat_slot/bloc/book_seat_slot_state.dart';
-import 'package:cinema_booking/presentation/book_seat_slot/widgets/widget_cine_screen.dart';
-import 'package:cinema_booking/presentation/book_seat_slot/widgets/widget_item_grid_seat_slot.dart';
+import 'package:cinema_booking/presentation/booking_seat_slot/bloc/book_seat_slot_bloc.dart';
+import 'package:cinema_booking/presentation/booking_seat_slot/bloc/book_seat_slot_state.dart';
+import 'package:cinema_booking/presentation/booking_seat_slot/widgets/widget_cine_screen.dart';
+import 'package:cinema_booking/presentation/booking_seat_slot/widgets/widget_item_grid_seat_slot.dart';
 import 'package:cinema_booking/presentation/booking_time_slot/book_time_slot_main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -72,14 +72,10 @@ class _BookSeatSlotScreenState extends State<BookSeatSlotScreen> {
                   state.bookTimeSlot != null &&
                   state.itemGridSeatSlotVMs.isNotEmpty) {
                 BookTimeSlotEntity bookTimeSlot = state.bookTimeSlot!;
-                int selectedIndex = bookTimeSlot.timeSlots.indexOf(
-                  state.selectedTimeSlot!,
-                );
+                int selectedIndex = bookTimeSlot.timeSlots.indexOf(state.selectedTimeSlot!);
                 String movieName = state.movie!.name;
 
-                _itemCineTimeSlot = ItemCineTimeSlot.fromBookTimeSlot(
-                  bookTimeSlot: bookTimeSlot,
-                );
+                _itemCineTimeSlot = ItemCineTimeSlot.fromBookTimeSlot(bookTimeSlot: bookTimeSlot);
 
                 String textSeat =
                     state.selectedSeatIds != null
@@ -94,10 +90,7 @@ class _BookSeatSlotScreenState extends State<BookSeatSlotScreen> {
                       children: <Widget>[
                         WidgetToolbar(
                           title: movieName,
-                          actions: Text(
-                            textSeat,
-                            style: AppFont.medium_white_12,
-                          ),
+                          actions: Text(textSeat, style: AppFont.medium_white_12),
                         ),
                         Expanded(
                           child: SingleChildScrollView(
@@ -145,9 +138,7 @@ class _BookSeatSlotScreenState extends State<BookSeatSlotScreen> {
     List<Widget> widgets = [];
 
     for (var itemGridSeatSlotVM in state.itemGridSeatSlotVMs) {
-      widgets.add(
-        WidgetItemGridSeatSlot(itemGridSeatSlotVM: itemGridSeatSlotVM),
-      );
+      widgets.add(WidgetItemGridSeatSlot(itemGridSeatSlotVM: itemGridSeatSlotVM));
       widgets.add(WidgetSpacer(height: 14));
     }
 
@@ -173,12 +164,8 @@ class _BookSeatSlotScreenState extends State<BookSeatSlotScreen> {
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
               padding: EdgeInsets.symmetric(vertical: 14),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30),
-              ),
-              backgroundColor:
-                  Colors
-                      .transparent, // Set transparent so container's gradient shows
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+              backgroundColor: Colors.transparent, // Set transparent so container's gradient shows
               shadowColor: Colors.transparent,
               elevation: 0, // Removes shadow effect from the button itself
             ),
@@ -197,18 +184,12 @@ class _BookSeatSlotScreenState extends State<BookSeatSlotScreen> {
 
   void _handleBlocListener(BuildContext context, BookSeatSlotState state) {
     if (state.isReachedLimitSeatSlot) {
-      CustomSnackBar.failure(
-        context,
-        msg: "You reached ${widget.args.seatCount} seats",
-      );
+      CustomSnackBar.failure(context, msg: "You reached ${widget.args.seatCount} seats");
       bloc.add(DismissMessageReachedLimitSeatSlot());
     }
 
     if (state.isSelectWrongSeatType) {
-      CustomSnackBar.failure(
-        context,
-        msg: "Please select seat ${widget.args.seatType.toText()}",
-      );
+      CustomSnackBar.failure(context, msg: "Please select seat ${widget.args.seatType.toText()}");
       bloc.add(DismissMessageWrongSeatType());
     }
 
