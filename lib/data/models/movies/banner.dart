@@ -15,12 +15,10 @@ class BannerModel {
   @JsonKey(name: 'image')
   String? url;
 
-  BannerModel({
-    this.id,
-    this.url,
-  });
+  BannerModel({this.id, this.url});
 
-  factory BannerModel.fromJson(Map<String, dynamic> json) => _$BannerModelFromJson(json);
+  factory BannerModel.fromJson(Map<String, dynamic> json) =>
+      _$BannerModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$BannerModelToJson(this);
 
@@ -32,9 +30,6 @@ class BannerModel {
 
 extension BannerModelX on BannerModel {
   BannerEntity toEntity() {
-    return BannerEntity(
-      id: id ?? "",
-      url: url ?? "",
-    );
+    return BannerEntity(id: id ?? "", url: url ?? "");
   }
 }

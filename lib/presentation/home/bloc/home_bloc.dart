@@ -1,5 +1,5 @@
 import 'package:cinema_booking/common/helpers/log_helpers.dart';
-import 'package:cinema_booking/domain/entities/responce/home.dart';
+import 'package:cinema_booking/domain/entities/response/home.dart';
 import 'package:cinema_booking/domain/usecase/home/get_home_data.dart';
 import 'package:cinema_booking/service_locator.dart';
 import 'package:equatable/equatable.dart';
@@ -14,10 +14,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<RefreshHome>(_onRefreshHome);
   }
 
-  Future<void> _onLoadHome(
-    LoadHome event,
-    Emitter<HomeState> emit,
-  ) async {
+  Future<void> _onLoadHome(LoadHome event, Emitter<HomeState> emit) async {
     try {
       LogHelper.logDebug(tag: "HomeBloc", message: "_onLoadHome start ");
       final response = await sl<GetHomeDataUseCase>().call();
@@ -27,9 +24,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           emit(HomeNotLoaded("fail"));
         },
         (data) {
-          emit(
-            HomeLoaded(data),
-          );
+          emit(HomeLoaded(data));
         },
       );
     } catch (e) {

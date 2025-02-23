@@ -22,7 +22,4 @@ Map<String, dynamic> _$MovieOfferModelToJson(MovieOfferModel instance) =>
       'content': instance.content,
     };
 
-const _$TypeOfferEnumMap = {
-  TypeOffer.red: 'red',
-  TypeOffer.green: 'green',
-};
+const _$TypeOfferEnumMap = {TypeOffer.red: 'red', TypeOffer.green: 'green'};

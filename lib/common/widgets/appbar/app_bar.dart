@@ -29,31 +29,32 @@ class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: true,
       backgroundColor: backgroundColor,
       elevation: 0,
-      actions: [
-        action,
-      ],
-      leading: hiveBack
-          ? null
-          : IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Container(
-                height: 50,
-                width: 50,
-                decoration: BoxDecoration(
-                  color: context.isDarkMode
-                      ? AppColors.white.withValues(alpha: 0.03)
-                      : AppColors.darkBackground.withValues(alpha: 0.4),
-                  shape: BoxShape.circle,
-                ),
-                child: Icon(
-                  Icons.arrow_back_ios_new,
-                  size: 20,
-                  color: context.isDarkMode ? AppColors.white : AppColors.black,
+      actions: [action],
+      leading:
+          hiveBack
+              ? null
+              : IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: Container(
+                  height: 50,
+                  width: 50,
+                  decoration: BoxDecoration(
+                    color:
+                        context.isDarkMode
+                            ? AppColors.white.withValues(alpha: 0.03)
+                            : AppColors.darkBackground.withValues(alpha: 0.4),
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(
+                    Icons.arrow_back_ios_new,
+                    size: 20,
+                    color:
+                        context.isDarkMode ? AppColors.white : AppColors.black,
+                  ),
                 ),
               ),
-            ),
     );
   }
 

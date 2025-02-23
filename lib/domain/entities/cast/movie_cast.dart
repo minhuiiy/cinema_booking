@@ -30,11 +30,6 @@ class MovieCastEntity extends Equatable {
 
 extension MovieCastEntityX on MovieCastEntity {
   MovieCastModel toModel() {
-    return MovieCastModel(
-      id: id,
-      movieId: id,
-      name: name,
-      photo: photo,
-    );
+    return MovieCastModel(id: id, movieId: id, name: name, photo: photo);
   }
 }

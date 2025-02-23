@@ -10,6 +10,7 @@ import 'package:cinema_booking/core/configs/assets/app_vectors.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:cinema_booking/domain/entities/genres/genres.dart';
 import 'package:cinema_booking/presentation/home/home_genres/bloc/home_genres_bloc.dart';
+import 'package:cinema_booking/presentation/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -28,7 +29,10 @@ class _WidgetHomeGenresState extends State<WidgetHomeGenres> {
     return BlocBuilder<HomeGenresBloc, HomeGenresState>(
       builder: (context, state) {
         if (state is HomeGenresLoaded) {
-          items = state.genres.map((genres) => ItemGenresVM.fromGenres(genres)).toList();
+          items =
+              state.genres
+                  .map((genres) => ItemGenresVM.fromGenres(genres))
+                  .toList();
 
           return Padding(
             padding: const EdgeInsets.only(left: 20),
@@ -83,7 +87,7 @@ class WidgetItemGenres extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        openAllMovies();
+        openAllMovies(context);
       },
       child: Column(
         children: <Widget>[
@@ -100,14 +104,17 @@ class WidgetItemGenres extends StatelessWidget {
             ),
           ),
           WidgetSpacer(height: 4),
-          Text(item.title, style: AppFont.kNormalTextStyleGrey.copyWith(fontSize: 12)),
+          Text(
+            item.title,
+            style: AppFont.kNormalTextStyleGrey.copyWith(fontSize: 12),
+          ),
         ],
       ),
     );
   }
 
-  void openAllMovies() {
-    // TODO:
+  void openAllMovies(BuildContext context) {
+    Navigator.pushNamed(context, AppRouter.ALL_MOVIES);
   }
 }
 

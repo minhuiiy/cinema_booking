@@ -7,14 +7,14 @@ part of 'booking.dart';
 // **************************************************************************
 
 BookingModel _$BookingModelFromJson(Map<String, dynamic> json) => BookingModel(
-      id: json['id'] as String?,
-      showTimeId: json['showtime_id'] as String?,
-      userId: json['user_id'] as String?,
-      seatRowId: json['seat_row_id'] as String?,
-      seatNumber: json['seatNumber'] as String?,
-      bookingTime: json['bookingTime'] as String?,
-      status: json['status'] as String?,
-    );
+  id: json['id'] as String?,
+  showTimeId: json['showtime_id'] as String?,
+  userId: json['user_id'] as String?,
+  seatRowId: json['seat_row_id'] as String?,
+  seatNumber: json['seatNumber'] as String?,
+  bookingTime: json['bookingTime'] as String?,
+  status: json['status'] as String?,
+);
 
 Map<String, dynamic> _$BookingModelToJson(BookingModel instance) =>
     <String, dynamic>{

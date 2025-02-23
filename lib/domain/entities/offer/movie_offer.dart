@@ -4,6 +4,7 @@
  * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
  */
 
+import 'package:cinema_booking/core/enum/offer_type.dart';
 import 'package:cinema_booking/data/models/offer/movie_offer.dart';
 import 'package:equatable/equatable.dart';
 
@@ -31,11 +32,6 @@ class MovieOfferEntity extends Equatable {
 
 extension MovieOfferEntityX on MovieOfferEntity {
   MovieOfferModel toModel() {
-    return MovieOfferModel(
-      id: id,
-      type: type,
-      title: title,
-      content: content,
-    );
+    return MovieOfferModel(id: id, type: type, title: title, content: content);
   }
 }

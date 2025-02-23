@@ -35,15 +35,7 @@ class MySvgImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return applyColorFilter
-        ? SvgPicture.asset(
-            path,
-            width: width,
-            height: height,
-          )
-        : SvgPicture.asset(
-            path,
-            width: width,
-            height: height,
-          );
+        ? SvgPicture.asset(path, width: width, height: height)
+        : SvgPicture.asset(path, width: width, height: height);
   }
 }

@@ -4,17 +4,11 @@
  * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
  */
 
+import 'package:cinema_booking/core/enum/offer_type.dart';
 import 'package:cinema_booking/domain/entities/offer/movie_offer.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'movie_offer.g.dart';
-
-enum TypeOffer {
-  @JsonValue("red")
-  red,
-  @JsonValue("green")
-  green
-}
 
 @JsonSerializable()
 class MovieOfferModel {
@@ -23,14 +17,10 @@ class MovieOfferModel {
   String? title;
   String? content;
 
-  MovieOfferModel({
-    this.id,
-    this.type,
-    this.title,
-    this.content,
-  });
+  MovieOfferModel({this.id, this.type, this.title, this.content});
 
-  factory MovieOfferModel.fromJson(Map<String, dynamic> json) => _$MovieOfferModelFromJson(json);
+  factory MovieOfferModel.fromJson(Map<String, dynamic> json) =>
+      _$MovieOfferModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$MovieOfferModelToJson(this);
 

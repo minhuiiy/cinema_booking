@@ -1,0 +1,2 @@
+D:/vscode/ChunhThanhDe_Project/cinema-booking/android/app/.cxx/Debug/185x275a/x86_64/CMakeFiles/edit_cache.dir
+D:/vscode/ChunhThanhDe_Project/cinema-booking/android/app/.cxx/Debug/185x275a/x86_64/CMakeFiles/rebuild_cache.dir

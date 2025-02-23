@@ -14,8 +14,10 @@ abstract class AuthenticationService {
 class AuthenticationServiceImpl extends AuthenticationService {
   final FirebaseAuth _firebaseAuth;
 
-  AuthenticationServiceImpl({FirebaseAuth? firebaseAuth, GoogleSignIn? googleSignIn})
-      : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance;
+  AuthenticationServiceImpl({
+    FirebaseAuth? firebaseAuth,
+    GoogleSignIn? googleSignIn,
+  }) : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance;
 
   @override
   Future<bool> isSignedIn() async {

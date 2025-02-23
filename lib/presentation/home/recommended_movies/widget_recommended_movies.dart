@@ -9,8 +9,9 @@ import 'package:cinema_booking/common/widgets/scroll_list/hoz_list_view.dart';
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
-import 'package:cinema_booking/domain/entities/movies/movies.dart';
+import 'package:cinema_booking/domain/entities/response/home.dart';
 import 'package:cinema_booking/presentation/home/recommended_movies/bloc/recommended_movies_bloc.dart';
+import 'package:cinema_booking/presentation/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,7 +19,8 @@ class WidgetRecommendedMovies extends StatefulWidget {
   const WidgetRecommendedMovies({super.key});
 
   @override
-  State<WidgetRecommendedMovies> createState() => _WidgetRecommendedMoviesState();
+  State<WidgetRecommendedMovies> createState() =>
+      _WidgetRecommendedMoviesState();
 }
 
 class _WidgetRecommendedMoviesState extends State<WidgetRecommendedMovies> {
@@ -31,7 +33,10 @@ class _WidgetRecommendedMoviesState extends State<WidgetRecommendedMovies> {
     return BlocBuilder<RecommendedMoviesBloc, RecommendedMoviesState>(
       builder: (context, state) {
         if (state is RecommendedMoviesLoaded) {
-          items = state.movies.map((movie) => ItemRecommendedSeatVM.fromShow(movie)).toList();
+          items =
+              state.movies
+                  .map((movie) => ItemRecommendedSeatVM.fromMovie(movie))
+                  .toList();
 
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,8 +62,11 @@ class _WidgetRecommendedMoviesState extends State<WidgetRecommendedMovies> {
           Text('Recommended Movies', style: AppFont.medium_white_16),
           TextButton(
             onPressed: () {},
-            child: Text("View All", style: AppFont.medium_white_12.copyWith(color: AppColors.red)),
-          )
+            child: Text(
+              "View All",
+              style: AppFont.medium_white_12.copyWith(color: AppColors.red),
+            ),
+          ),
         ],
       ),
     );
@@ -140,7 +148,7 @@ class _WidgetItemRecommendedSeat extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        openShowDetails(context);
+        openMovieDetails(context);
       },
       child: SizedBox(
         width: 180,
@@ -169,7 +177,7 @@ class _WidgetItemRecommendedSeat extends StatelessWidget {
               children: <Widget>[
                 Icon(Icons.favorite, color: AppColors.red, size: 14),
                 WidgetSpacer(width: 6),
-                Text('${item.likePercent}%', style: AppFont.regular_white_10)
+                Text('${item.likePercent}%', style: AppFont.regular_white_10),
               ],
             ),
           ],
@@ -178,8 +186,8 @@ class _WidgetItemRecommendedSeat extends StatelessWidget {
     );
   }
 
-  void openShowDetails(BuildContext context) {
-    // TODO:
+  void openMovieDetails(BuildContext context) {
+    Navigator.pushNamed(context, AppRouter.MOVIE, arguments: item.movie);
   }
 }
 
@@ -187,11 +195,11 @@ class ItemRecommendedSeatVM {
   late String photo;
   late String title;
   late int likePercent;
-  MovieEntity movie;
+  MovieDetailEntity movie;
 
-  ItemRecommendedSeatVM.fromShow(this.movie) {
-    photo = movie.thumb;
-    title = movie.name;
-    likePercent = movie.rate;
+  ItemRecommendedSeatVM.fromMovie(this.movie) {
+    photo = movie.detail.thumb;
+    title = movie.detail.name;
+    likePercent = movie.detail.rate;
   }
 }

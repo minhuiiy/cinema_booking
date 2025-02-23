@@ -24,12 +24,14 @@ class HomeGenresBloc extends Bloc<HomeGenresEvent, HomeGenresState> {
       final state = homeBloc.state as HomeLoaded;
       add(DisplayHomeGenres(state.homeState.genres));
     } else {
-      _subscription =
-          homeBloc.stream.where((state) => state is HomeLoaded).distinct().listen((state) {
-        if (state is HomeLoaded) {
-          add(DisplayHomeGenres(state.homeState.genres));
-        }
-      });
+      _subscription = homeBloc.stream
+          .where((state) => state is HomeLoaded)
+          .distinct()
+          .listen((state) {
+            if (state is HomeLoaded) {
+              add(DisplayHomeGenres(state.homeState.genres));
+            }
+          });
     }
   }
 

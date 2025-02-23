@@ -18,14 +18,10 @@ class ShowTimeModel {
   String? movieId;
   String? format;
 
-  ShowTimeModel({
-    this.id,
-    this.cinemaId,
-    this.movieId,
-    this.format,
-  });
+  ShowTimeModel({this.id, this.cinemaId, this.movieId, this.format});
 
-  factory ShowTimeModel.fromJson(Map<String, dynamic> json) => _$ShowTimeModelFromJson(json);
+  factory ShowTimeModel.fromJson(Map<String, dynamic> json) =>
+      _$ShowTimeModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$ShowTimeModelToJson(this);
 }

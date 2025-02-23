@@ -10,7 +10,7 @@ import 'package:cinema_booking/core/configs/theme/app_theme.dart';
 import 'package:cinema_booking/firebase_options.dart';
 import 'package:cinema_booking/presentation/home/bloc/home_bloc.dart';
 import 'package:cinema_booking/presentation/home/home_main.dart';
-import 'package:cinema_booking/presentation/login/pages/login.dart';
+import 'package:cinema_booking/presentation/login/login.dart';
 import 'package:cinema_booking/presentation/router.dart';
 
 import 'package:cinema_booking/presentation/splash/splash.dart';
@@ -31,15 +31,16 @@ Future<void> main() async {
   // - If running on the web, use the default web storage
   // - If running on mobile/desktop, use the application documents directory
   HydratedBloc.storage = await HydratedStorage.build(
-    storageDirectory: kIsWeb
-        ? HydratedStorageDirectory.web
-        : HydratedStorageDirectory((await getApplicationDocumentsDirectory()).path),
+    storageDirectory:
+        kIsWeb
+            ? HydratedStorageDirectory.web
+            : HydratedStorageDirectory(
+              (await getApplicationDocumentsDirectory()).path,
+            ),
   );
 
   // Initialize Firebase
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   // Initialize app dependencies (e.g., get it, ...)
   await initializeDependencies();
@@ -58,31 +59,34 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => ThemeCubit()),
-        BlocProvider(create: (context) => AuthenticationBloc()..add(AppStarted())),
+        BlocProvider(
+          create: (context) => AuthenticationBloc()..add(AppStarted()),
+        ),
         BlocProvider(create: (context) => HomeBloc()),
       ],
       child: BlocBuilder<ThemeCubit, ThemeMode>(
-        builder: (context, mode) => MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Cinema Booking',
-          theme: AppTheme.lightTheme,
-          darkTheme: AppTheme.darkTheme,
-          themeMode: mode,
-          onGenerateRoute: AppRouter.generateRoute,
-          home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
-            builder: (context, state) {
-              if (state is Uninitialized) {
-                return SplashPage();
-              } else if (state is Unauthenticated) {
-                return LoginScreen();
-              } else if (state is Authenticated) {
-                return HomeScreen();
-              }
+        builder:
+            (context, mode) => MaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: 'Cinema Booking',
+              theme: AppTheme.lightTheme,
+              darkTheme: AppTheme.darkTheme,
+              themeMode: mode,
+              onGenerateRoute: AppRouter.generateRoute,
+              home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
+                builder: (context, state) {
+                  if (state is Uninitialized) {
+                    return SplashPage();
+                  } else if (state is Unauthenticated) {
+                    return LoginScreen();
+                  } else if (state is Authenticated) {
+                    return HomeScreen();
+                  }
 
-              return Center(child: Text('Unhandled State $state'));
-            },
-          ),
-        ),
+                  return Center(child: Text('Unhandled State $state'));
+                },
+              ),
+            ),
       ),
     );
   }

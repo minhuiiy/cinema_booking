@@ -35,16 +35,16 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     LoginSubmitEmailPasswordEvent event,
     Emitter<LoginState> emit,
   ) async {
-    LogHelper.logDebug(tag: "LoginBloc", message: 'Start _onLoginSubmitEmailPasswordEvent');
+    LogHelper.logDebug(
+      tag: "LoginBloc",
+      message: 'Start _onLoginSubmitEmailPasswordEvent',
+    );
     try {
       emit(LoginState.loading()); // Emit loading state while processing login.
 
       // Call authentication use case.
       var isSignedIn = await sl<SigninUseCase>().call(
-        params: SigninUserReq(
-          email: event.email,
-          password: event.password,
-        ),
+        params: SigninUserReq(email: event.email, password: event.password),
       );
 
       // Handle authentication result.
@@ -57,7 +57,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         },
       );
     } catch (e) {
-      LogHelper.logError(tag: "LoginBloc", message: 'Error _onLoginSubmitEmailPasswordEvent: $e');
+      LogHelper.logError(
+        tag: "LoginBloc",
+        message: 'Error _onLoginSubmitEmailPasswordEvent: $e',
+      );
       emit(LoginState.failure()); // Emit failure state in case of an exception.
     }
   }
@@ -81,6 +84,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     Emitter<LoginState> emit,
   ) async {
     await Future.delayed(const Duration(milliseconds: 300)); // Debounce input
-    emit(state.update(isPasswordValid: Validators.isValidPassword(event.password)));
+    emit(
+      state.update(isPasswordValid: Validators.isValidPassword(event.password)),
+    );
   }
 }

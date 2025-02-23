@@ -14,7 +14,7 @@ class RecommendedMoviesState extends Equatable {
 }
 
 class RecommendedMoviesLoaded extends RecommendedMoviesState {
-  final List<MovieEntity> movies;
+  final List<MovieDetailEntity> movies;
 
   const RecommendedMoviesLoaded(this.movies);
 

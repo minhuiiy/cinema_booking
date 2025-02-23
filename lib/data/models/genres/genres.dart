@@ -17,14 +17,10 @@ class GenresModel {
   List<String>? listMovie;
   String? icon;
 
-  GenresModel({
-    this.id,
-    this.name,
-    this.listMovie,
-    this.icon,
-  });
+  GenresModel({this.id, this.name, this.listMovie, this.icon});
 
-  factory GenresModel.fromJson(Map<String, dynamic> json) => _$GenresModelFromJson(json);
+  factory GenresModel.fromJson(Map<String, dynamic> json) =>
+      _$GenresModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$GenresModelToJson(this);
 

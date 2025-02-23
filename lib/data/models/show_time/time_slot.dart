@@ -15,16 +15,12 @@ class TimeSlotModel {
   @JsonKey(name: "showtime_id")
   String? showtimeId;
   String? time;
-  String? active;
+  bool active;
 
-  TimeSlotModel({
-    this.id,
-    this.showtimeId,
-    this.time,
-    this.active,
-  });
+  TimeSlotModel({this.id, this.showtimeId, this.time, this.active = false});
 
-  factory TimeSlotModel.fromJson(Map<String, dynamic> json) => _$TimeSlotModelFromJson(json);
+  factory TimeSlotModel.fromJson(Map<String, dynamic> json) =>
+      _$TimeSlotModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$TimeSlotModelToJson(this);
 }
@@ -35,7 +31,7 @@ extension TimeSlotModelMapper on TimeSlotModel {
       id: id ?? "",
       showtimeId: showtimeId ?? "",
       time: time ?? "",
-      active: active ?? "",
+      active: active,
     );
   }
 }

@@ -29,7 +29,8 @@ class SeatRowModel {
     this.booked,
   });
 
-  factory SeatRowModel.fromJson(Map<String, dynamic> json) => _$SeatRowModelFromJson(json);
+  factory SeatRowModel.fromJson(Map<String, dynamic> json) =>
+      _$SeatRowModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$SeatRowModelToJson(this);
 
@@ -124,7 +125,7 @@ class SeatRowModel {
       count: 11,
       offs: [],
       booked: [2, 3, 4, 5, 6, 7],
-    )
+    ),
   ];
 }
 
@@ -132,7 +133,7 @@ extension SeatRowModelMapper on SeatRowModel {
   SeatRowEntity toEntity() {
     return SeatRowEntity(
       rowId: rowId ?? "",
-      count: count ?? 00,
+      count: count ?? 0,
       offs: offs != null ? List<int>.from(offs!) : [],
       booked: booked != null ? List<int>.from(booked!) : [],
       id: id ?? "",

@@ -31,7 +31,16 @@ class MovieEntity extends Equatable {
   });
 
   @override
-  List<Object> get props => [id, name, thumb, trailer, releaseDate, rate, votes, duration];
+  List<Object> get props => [
+    id,
+    name,
+    thumb,
+    trailer,
+    releaseDate,
+    rate,
+    votes,
+    duration,
+  ];
 }
 
 extension MovieEntityX on MovieEntity {

@@ -62,22 +62,10 @@ class _HomeScreenState extends State<HomeScreen> {
         onTap: _onItemTapped,
         elevation: 0,
         items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home, size: 28),
-            label: "Home",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search, size: 28),
-            label: "Search",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite, size: 28),
-            label: "Favorites",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle, size: 28),
-            label: "Profile",
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.home, size: 28), label: "Home"),
+          BottomNavigationBarItem(icon: Icon(Icons.search, size: 28), label: "Search"),
+          BottomNavigationBarItem(icon: Icon(Icons.favorite, size: 28), label: "Favorites"),
+          BottomNavigationBarItem(icon: Icon(Icons.account_circle, size: 28), label: "Profile"),
         ],
       ),
     );
@@ -101,10 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: AppColors.darkBackground,
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
-                  children: <Widget>[
-                    WidgetHomeToolbar(),
-                    _buildContent(state),
-                  ],
+                  children: <Widget>[WidgetHomeToolbar(), _buildContent(state)],
                 ),
               ),
               bottomNavigationBar: _buildBottomNavigationBar(),
@@ -142,23 +127,11 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       );
     } else if (state is HomeLoading) {
-      return Expanded(
-        child: Center(
-          child: CircularProgressIndicator(),
-        ),
-      );
+      return Expanded(child: Center(child: CircularProgressIndicator()));
     } else if (state is HomeNotLoaded) {
-      return Expanded(
-        child: Center(
-          child: Text('Cannot load data'),
-        ),
-      );
+      return Expanded(child: Center(child: Text('Cannot load data')));
     } else {
-      return Expanded(
-        child: Center(
-          child: Text('Unknown state'),
-        ),
-      );
+      return Expanded(child: Center(child: Text('Unknown state')));
     }
   }
 }
