@@ -12,9 +12,9 @@ import 'package:cinema_booking/presentation/book_seat_slot/book_seat_slot_screen
 import 'package:cinema_booking/presentation/book_seat_type/book_seat_type_screen.dart';
 import 'package:cinema_booking/presentation/booking_time_slot/book_time_slot_main.dart';
 import 'package:cinema_booking/presentation/home/home_main.dart';
-import 'package:cinema_booking/presentation/login/pages/login.dart';
-import 'package:cinema_booking/presentation/login/pages/register.dart';
-import 'package:cinema_booking/presentation/movie/movie_detail_info.dart';
+import 'package:cinema_booking/presentation/login/login.dart';
+import 'package:cinema_booking/presentation/register/register.dart';
+import 'package:cinema_booking/presentation/movie_detail/movie_detail_info.dart';
 import 'package:cinema_booking/presentation/splash/splash.dart';
 import 'package:flutter/material.dart';
 

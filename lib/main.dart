@@ -10,7 +10,7 @@ import 'package:cinema_booking/core/configs/theme/app_theme.dart';
 import 'package:cinema_booking/firebase_options.dart';
 import 'package:cinema_booking/presentation/home/bloc/home_bloc.dart';
 import 'package:cinema_booking/presentation/home/home_main.dart';
-import 'package:cinema_booking/presentation/login/pages/login.dart';
+import 'package:cinema_booking/presentation/login/login.dart';
 import 'package:cinema_booking/presentation/router.dart';
 
 import 'package:cinema_booking/presentation/splash/splash.dart';
