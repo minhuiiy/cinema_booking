@@ -1,0 +1,1 @@
+enum BookingTimeSlotSortBy { distance, name }

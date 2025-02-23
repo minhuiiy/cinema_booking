@@ -34,10 +34,7 @@ class FooterSection extends StatelessWidget {
                     fontWeight: FontWeight.w400,
                   ),
                 ),
-                SvgPicture.asset(
-                  AppVectors.flutterIcon,
-                  height: 17,
-                ),
+                SvgPicture.asset(AppVectors.flutterIcon, height: 17),
                 Text(
                   ' Flutter with ',
                   style: TextStyle(
@@ -46,11 +43,7 @@ class FooterSection extends StatelessWidget {
                     fontWeight: FontWeight.w400,
                   ),
                 ),
-                Icon(
-                  Icons.favorite,
-                  size: 17,
-                  color: Colors.red,
-                ),
+                Icon(Icons.favorite, size: 17, color: Colors.red),
                 Text(
                   ' Love',
                   style: TextStyle(

@@ -7,29 +7,32 @@
 import 'package:cinema_booking/domain/entities/auth/user.dart';
 
 class UserModel {
-  String? email;
-  String? fullName;
-  String? imageURL;
+  String email;
+  String fullName;
+  String gender;
+  int age;
 
   UserModel({
-    this.email,
-    this.fullName,
-    this.imageURL,
+    required this.email,
+    required this.fullName,
+    required this.age,
+    required this.gender,
   });
 
-  UserModel.fromJson(Map<String, dynamic> data) {
-    email = data['email'];
-    fullName = data['name'];
-    imageURL = data['imageURL'];
-  }
+  UserModel.fromJson(Map<String, dynamic> data)
+    : email = data['email'],
+      fullName = data['full_Name'],
+      gender = data['gender'],
+      age = data['age'] ?? 10;
 }
 
 extension UserModelX on UserModel {
   UserEntity toEntity() {
     return UserEntity(
-      email: email!,
-      fullName: fullName!,
-      imageURL: imageURL!,
+      email: email,
+      fullName: fullName,
+      age: age,
+      gender: gender,
     );
   }
 }

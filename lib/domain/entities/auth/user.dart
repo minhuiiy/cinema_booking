@@ -4,14 +4,21 @@
  * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
  */
 
-class UserEntity {
-  String? imageURL;
-  String? fullName;
-  String? email;
+import 'package:equatable/equatable.dart';
 
-  UserEntity({
-    this.imageURL,
-    this.fullName,
-    this.email,
+class UserEntity extends Equatable {
+  final String email;
+  final String fullName;
+  final String gender;
+  final int age;
+
+  const UserEntity({
+    required this.email,
+    required this.fullName,
+    required this.age,
+    required this.gender,
   });
+
+  @override
+  List<Object> get props => [email, fullName, gender, age];
 }

@@ -12,4 +12,12 @@ class AppImages {
   static const String chooseAuthBG = '${basePath}choose_auth_bg.png';
   static const String logo = '${basePath}logo.png';
   static const String logoCT = '${basePath}cinema_ticket_logo.png';
+
+  static const String avatar = '${basePath}me.jpeg';
+  static const String boyAvatar = '${basePath}man.jpg';
+  static const String girlAvatar = '${basePath}girl.jpg';
+
+  static const String seatKing = '${basePath}seat_king.png';
+  static const String seatQueen = '${basePath}seat_queen.png';
+  static const String seatJack = '${basePath}seat_jack.png';
 }

@@ -92,10 +92,7 @@ class _SplashPageState extends State<SplashPage> {
   Widget _logoWidget() {
     return Align(
       alignment: const Alignment(0, -0.7),
-      child: Image.asset(
-        AppImages.logo,
-        fit: BoxFit.cover,
-      ),
+      child: Image.asset(AppImages.logo, fit: BoxFit.cover),
     );
   }
 
@@ -104,10 +101,7 @@ class _SplashPageState extends State<SplashPage> {
       alignment: const Alignment(0, 0.3),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25),
-        child: Image.asset(
-          AppImages.logoCT,
-          fit: BoxFit.cover,
-        ),
+        child: Image.asset(AppImages.logoCT, fit: BoxFit.cover),
       ),
     );
   }

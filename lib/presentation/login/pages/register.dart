@@ -1,5 +1,6 @@
 import 'package:cinema_booking/common/bloc/authentication/authentication_bloc.dart';
 import 'package:cinema_booking/common/widgets/button/basic_app_button.dart';
+import 'package:cinema_booking/core/configs/assets/app_images.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:cinema_booking/presentation/login/bloc/register_bloc.dart';
@@ -92,10 +93,7 @@ class _SignupPageState extends State<SignupPage> {
               const SnackBar(
                 content: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('Registering Failure'),
-                    Icon(Icons.error),
-                  ],
+                  children: [Text('Registering Failure'), Icon(Icons.error)],
                 ),
                 backgroundColor: Colors.red,
               ),
@@ -114,7 +112,7 @@ class _SignupPageState extends State<SignupPage> {
             TextButton(
               onPressed: () {},
               child: Text("Skip", style: AppFont.kNormalTextStyleWhite),
-            )
+            ),
           ],
         ),
         body: Padding(
@@ -123,9 +121,9 @@ class _SignupPageState extends State<SignupPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Row(children: [
-                  Text("ABOUT ME", style: AppFont.kTitleTextStyle),
-                ]),
+                Row(
+                  children: [Text("ABOUT ME", style: AppFont.kTitleTextStyle)],
+                ),
                 const SizedBox(height: 25),
                 _textField("Email", _email),
                 const SizedBox(height: 20),
@@ -182,28 +180,36 @@ class _SignupPageState extends State<SignupPage> {
   Widget _genderSelection() {
     return Column(
       children: [
-        Row(children: [
-          RichText(
-            text: TextSpan(
-              style: AppFont.kNormalTextStyleWhite,
-              children: [
-                TextSpan(text: "Gender:    ", style: AppFont.kMiniTitleTextStyleWhite),
-                TextSpan(
-                  text: selectedGender,
-                  style: AppFont.kMiniTitleTextStyleWhite.copyWith(
-                    color: selectedGender == "Male" ? AppColors.blue : AppColors.pink,
+        Row(
+          children: [
+            RichText(
+              text: TextSpan(
+                style: AppFont.kNormalTextStyleWhite,
+                children: [
+                  TextSpan(
+                    text: "Gender:    ",
+                    style: AppFont.kMiniTitleTextStyleWhite,
                   ),
-                ),
-              ],
+                  TextSpan(
+                    text: selectedGender,
+                    style: AppFont.kMiniTitleTextStyleWhite.copyWith(
+                      color:
+                          selectedGender == "Male"
+                              ? AppColors.blue
+                              : AppColors.pink,
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ]),
+          ],
+        ),
         const SizedBox(height: 35),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            _genderAvatar('Male', 'assets/images/man.jpg'),
-            _genderAvatar('Female', 'assets/images/girl.jpg'),
+            _genderAvatar('Male', AppImages.boyAvatar),
+            _genderAvatar('Female', AppImages.girlAvatar),
           ],
         ),
       ],
@@ -230,9 +236,7 @@ class _SignupPageState extends State<SignupPage> {
   Widget _ageSelection() {
     return Column(
       children: [
-        Row(children: [
-          Text("Age:", style: AppFont.kMiniTitleTextStyleWhite),
-        ]),
+        Row(children: [Text("Age:", style: AppFont.kMiniTitleTextStyleWhite)]),
         const SizedBox(height: 15),
         AgeSelector(onAgeSelected: updateAge),
       ],
@@ -245,14 +249,20 @@ class _SignupPageState extends State<SignupPage> {
 
   void _onPasswordChanged() {
     context.read<RegisterBloc>().add(
-          PasswordChanged(password: _password.text, confirmPassword: _confirmPassword.text),
-        );
+      PasswordChanged(
+        password: _password.text,
+        confirmPassword: _confirmPassword.text,
+      ),
+    );
   }
 
   void _onConfirmPasswordChanged() {
     context.read<RegisterBloc>().add(
-          ConfirmPasswordChanged(password: _password.text, confirmPassword: _confirmPassword.text),
-        );
+      ConfirmPasswordChanged(
+        password: _password.text,
+        confirmPassword: _confirmPassword.text,
+      ),
+    );
   }
 
   void _onNameChanged() {
@@ -261,15 +271,15 @@ class _SignupPageState extends State<SignupPage> {
 
   void _onFormSubmitted() {
     context.read<RegisterBloc>().add(
-          Submitted(
-            email: _email.text,
-            password: _password.text,
-            confirmPassword: _confirmPassword.text,
-            displayName: _fullName.text,
-            age: selectedAge,
-            gender: selectedGender,
-          ),
-        );
+      Submitted(
+        email: _email.text,
+        password: _password.text,
+        confirmPassword: _confirmPassword.text,
+        displayName: _fullName.text,
+        age: selectedAge,
+        gender: selectedGender,
+      ),
+    );
   }
 
   @override

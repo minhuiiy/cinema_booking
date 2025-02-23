@@ -37,23 +37,33 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   /// Validates the password strength and checks if it matches the confirmation password.
   void _onPasswordChanged(PasswordChanged event, Emitter<RegisterState> emit) {
     final isPasswordValid = Validators.isValidPassword(event.password);
-    final isMatched = event.confirmPassword.isEmpty || event.password == event.confirmPassword;
+    final isMatched =
+        event.confirmPassword.isEmpty ||
+        event.password == event.confirmPassword;
 
-    emit(state.update(
-      isPasswordValid: isPasswordValid,
-      isConfirmPasswordValid: isMatched,
-    ));
+    emit(
+      state.update(
+        isPasswordValid: isPasswordValid,
+        isConfirmPasswordValid: isMatched,
+      ),
+    );
   }
 
   /// Handles changes in confirm password input.
   /// Ensures that it matches the original password.
-  void _onConfirmPasswordChanged(ConfirmPasswordChanged event, Emitter<RegisterState> emit) {
-    final isConfirmPasswordValid = Validators.isValidPassword(event.confirmPassword);
-    final isMatched = event.password.isEmpty || event.password == event.confirmPassword;
+  void _onConfirmPasswordChanged(
+    ConfirmPasswordChanged event,
+    Emitter<RegisterState> emit,
+  ) {
+    final isConfirmPasswordValid = Validators.isValidPassword(
+      event.confirmPassword,
+    );
+    final isMatched =
+        event.password.isEmpty || event.password == event.confirmPassword;
 
-    emit(state.update(
-      isConfirmPasswordValid: isConfirmPasswordValid && isMatched,
-    ));
+    emit(
+      state.update(isConfirmPasswordValid: isConfirmPasswordValid && isMatched),
+    );
   }
 
   /// Handles changes in name input.
@@ -66,7 +76,10 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   /// - Validates all fields.
   /// - If valid, sends a registration request.
   /// - Emits loading, success, or failure states accordingly.
-  Future<void> _onFormSubmitted(Submitted event, Emitter<RegisterState> emit) async {
+  Future<void> _onFormSubmitted(
+    Submitted event,
+    Emitter<RegisterState> emit,
+  ) async {
     // Validate form inputs
     final isValidEmail = Validators.isValidEmail(event.email);
     final isValidName = Validators.isValidName(event.displayName);
@@ -88,11 +101,12 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
 
       var result = await sl<SignupUseCase>().call(
         params: CreateUserReq(
-            email: event.email,
-            fullName: event.displayName,
-            password: event.password,
-            age: event.age,
-            gender: event.gender),
+          email: event.email,
+          fullName: event.displayName,
+          password: event.password,
+          age: event.age,
+          gender: event.gender,
+        ),
       );
 
       result.fold(

@@ -17,11 +17,13 @@ class SimpleBlocObserver extends BlocObserver {
   void onEvent(Bloc bloc, Object? event) {
     super.onEvent(bloc, event);
 
-    log('\n'
-        '--------------------------------\n'
-        '📌 Bloc  : ${bloc.runtimeType} \n'
-        '⚡ Event : ${event.toString()} \n'
-        '--------------------------------\n');
+    log(
+      '\n'
+      '--------------------------------\n'
+      '📌 Bloc  : ${bloc.runtimeType} \n'
+      '⚡ Event : ${event.toString()} \n'
+      '--------------------------------\n',
+    );
   }
 
   /// Called whenever an error occurs in any Bloc.
@@ -30,16 +32,17 @@ class SimpleBlocObserver extends BlocObserver {
     super.onError(bloc, error, stackTrace);
 
     log(
-        '🚨🚨🚨\n'
-        '════════════════════════════════════════\n'
-        '               BLOC ERROR               \n'
-        '════════════════════════════════════════\n'
-        '📌 Bloc   : ${bloc.runtimeType}         \n'
-        '❌ Error  : $error                      \n'
-        '🔍 StackTrace:\n$stackTrace             \n'
-        '════════════════════════════════════════\n',
-        error: error,
-        stackTrace: stackTrace);
+      '🚨🚨🚨\n'
+      '════════════════════════════════════════\n'
+      '               BLOC ERROR               \n'
+      '════════════════════════════════════════\n'
+      '📌 Bloc   : ${bloc.runtimeType}         \n'
+      '❌ Error  : $error                      \n'
+      '🔍 StackTrace:\n$stackTrace             \n'
+      '════════════════════════════════════════\n',
+      error: error,
+      stackTrace: stackTrace,
+    );
   }
 
   /// Called whenever a state transition occurs in any Bloc.
@@ -47,14 +50,16 @@ class SimpleBlocObserver extends BlocObserver {
   void onTransition(Bloc bloc, Transition transition) {
     super.onTransition(bloc, transition);
 
-    log('\n'
-        '════════════════════════════════════════\n'
-        '         BLOC STATE TRANSITION          \n'
-        '════════════════════════════════════════\n'
-        'Bloc: ${bloc.runtimeType}               \n'
-        '----------------------------------------\n'
-        '▶ FROM: ${transition.currentState}      \n'
-        '▶ TO:   ${transition.nextState}         \n'
-        '════════════════════════════════════════\n');
+    log(
+      '\n'
+      '════════════════════════════════════════\n'
+      '         BLOC STATE TRANSITION          \n'
+      '════════════════════════════════════════\n'
+      'Bloc: ${bloc.runtimeType}               \n'
+      '----------------------------------------\n'
+      '▶ FROM: ${transition.currentState}      \n'
+      '▶ TO:   ${transition.nextState}         \n'
+      '════════════════════════════════════════\n',
+    );
   }
 }

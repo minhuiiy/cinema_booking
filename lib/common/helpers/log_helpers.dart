@@ -10,11 +10,21 @@ import 'package:flutter/foundation.dart';
 class LogHelper {
   static const String _prefix = "cinema-booking";
 
+  /// ANSI color codes for better log readability
+  static const String _colorDebug = "\x1B[36m"; // Cyan
+  static const String _colorInfo = "\x1B[34m"; // Blue
+  static const String _colorWarning = "\x1B[33m"; // Yellow
+  static const String _colorError = "\x1B[31m"; // Red
+  static const String _colorReset = "\x1B[0m"; // Reset color
+
   static void logDebug({required String tag, required String message}) =>
-      _log("DEBUG", tag, message);
-  static void logInfo({required String tag, required String message}) => _log("INFO", tag, message);
+      _log("DEBUG", tag, message, _colorDebug);
+
+  static void logInfo({required String tag, required String message}) =>
+      _log("ℹINFO", tag, message, _colorInfo);
+
   static void logWarning({required String tag, required String message}) =>
-      _log("WARNING", tag, message);
+      _log("WARNING", tag, message, _colorWarning);
 
   static void logError({
     required String tag,
@@ -22,14 +32,19 @@ class LogHelper {
     dynamic error,
     StackTrace? stackTrace,
   }) {
-    _log("ERROR", tag, message);
-    if (kDebugMode && error != null) print("$_prefix [ERROR] $tag: Error: $error");
-    if (stackTrace != null && kDebugMode) print("$_prefix [ERROR] $tag: StackTrace: $stackTrace");
+    _log("ERROR", tag, message, _colorError);
+    if (kDebugMode && error != null) {
+      print("$_colorError$_prefix [ERROR] $tag: $error$_colorReset");
+    }
+    if (kDebugMode && stackTrace != null) {
+      print("$_colorError$_prefix [STACKTRACE] $tag:\n$stackTrace$_colorReset");
+    }
   }
 
-  static void _log(String level, String tag, String message) {
+  static void _log(String level, String tag, String message, String color) {
     if (kDebugMode) {
-      print("$_prefix [$level] $tag: $message");
+      final timestamp = DateTime.now().toIso8601String();
+      print("$color$_prefix [$level] [$timestamp] $tag: $message$_colorReset");
     }
   }
 }

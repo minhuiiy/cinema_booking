@@ -26,10 +26,16 @@ class BasicAppButton extends StatelessWidget {
       height: height,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: isEnabled ? AppColors.red : AppColors.grey, // Disabled state color
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          backgroundColor:
+              isEnabled
+                  ? AppColors.red
+                  : AppColors.grey, // Disabled state color
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
         ),
-        onPressed: isEnabled ? onPressed : null, // Disable button when not enabled
+        onPressed:
+            isEnabled ? onPressed : null, // Disable button when not enabled
         child: Text(
           title,
           style: TextStyle(

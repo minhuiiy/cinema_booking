@@ -69,9 +69,7 @@ class _GetStartedPageState extends State<GetStartedPage> {
   Widget _logoWidget() {
     return Align(
       alignment: Alignment(0, -0.6),
-      child: Image.asset(
-        AppImages.logo,
-      ),
+      child: Image.asset(AppImages.logo),
     );
   }
 
@@ -86,7 +84,10 @@ class _GetStartedPageState extends State<GetStartedPage> {
             'Cinema Booking',
             style: TextStyle(
               fontWeight: FontWeight.w900,
-              color: context.isDarkMode ? AppColors.white : AppColors.darkBackground,
+              color:
+                  context.isDarkMode
+                      ? AppColors.white
+                      : AppColors.darkBackground,
               fontSize: 32,
             ),
           ),
@@ -96,7 +97,10 @@ class _GetStartedPageState extends State<GetStartedPage> {
             'connecting users with the best options effortlessly.',
             style: TextStyle(
               fontWeight: FontWeight.w500,
-              color: context.isDarkMode ? AppColors.greyDark : AppColors.darkBackground,
+              color:
+                  context.isDarkMode
+                      ? AppColors.greyDark
+                      : AppColors.darkBackground,
               fontSize: 16,
             ),
             textAlign: TextAlign.center,

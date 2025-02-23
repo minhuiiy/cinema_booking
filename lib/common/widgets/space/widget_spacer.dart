@@ -10,17 +10,10 @@ class WidgetSpacer extends StatelessWidget {
   final double height;
   final double width;
 
-  const WidgetSpacer({
-    super.key,
-    this.height = 16,
-    this.width = 0,
-  });
+  const WidgetSpacer({super.key, this.height = 16, this.width = 0});
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: height,
-      width: width,
-    );
+    return SizedBox(height: height, width: width);
   }
 }
