@@ -8,6 +8,7 @@
 import 'package:cinema_booking/domain/entities/movies/movies.dart';
 import 'package:cinema_booking/domain/entities/response/home.dart';
 import 'package:cinema_booking/presentation/all_movies/sc_all_movies.dart';
+import 'package:cinema_booking/presentation/all_tickets/screen_all_tickets.dart';
 import 'package:cinema_booking/presentation/booking_seat_slot/book_seat_slot_screen.dart';
 import 'package:cinema_booking/presentation/booking_seat_type/book_seat_type_screen.dart';
 import 'package:cinema_booking/presentation/booking_time_slot/book_time_slot_main.dart';
@@ -28,6 +29,7 @@ class AppRouter {
   static const String ALL_MOVIES = '/allMovies';
   static const String BOOK_SEAT_TYPE = '/bookSeatType';
   static const String BOOK_SEAT_SLOT = '/bookSeatSlot';
+  static const String LIST_TICKETS = '/listTickets';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -56,9 +58,13 @@ class AppRouter {
 
       case BOOK_SEAT_TYPE:
         return MaterialPageRoute(builder: (_) => BookSeatTypeScreen());
+
       case BOOK_SEAT_SLOT:
         final args = settings.arguments as ScreenArguments;
         return MaterialPageRoute(builder: (_) => BookSeatSlotScreen(args: args));
+
+      case LIST_TICKETS:
+        return MaterialPageRoute(builder: (_) => ListTicketsScreen());
 
       default:
         return MaterialPageRoute(
