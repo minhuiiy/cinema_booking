@@ -1,7 +1,7 @@
 import 'package:cinema_booking/domain/entities/booking/booking_time_slot.dart';
 import 'package:cinema_booking/domain/entities/movies/movies.dart';
 import 'package:cinema_booking/domain/entities/show_time/time_slot.dart';
-import 'package:cinema_booking/presentation/book_seat_slot/model/item_grid_seat_slot_vm.dart';
+import 'package:cinema_booking/presentation/booking_seat_slot/model/item_grid_seat_slot_vm.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'book_seat_slot_state.freezed.dart';

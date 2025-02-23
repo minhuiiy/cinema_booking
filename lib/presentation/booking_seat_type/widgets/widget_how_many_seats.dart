@@ -5,7 +5,7 @@ import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:cinema_booking/core/enum/type_seat.dart';
 import 'package:cinema_booking/data/models/seats/seat_type.dart';
 import 'package:cinema_booking/domain/entities/seats/seat_type.dart';
-import 'package:cinema_booking/presentation/book_seat_type/bloc/book_seat_type_bloc.dart';
+import 'package:cinema_booking/presentation/booking_seat_type/bloc/book_seat_type_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -40,10 +40,7 @@ class _WidgetHowManySeatsState extends State<WidgetHowManySeats> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
           WidgetSpacer(height: 34),
-          Text(
-            'How many seats?',
-            style: AppFont.medium_white_22.copyWith(letterSpacing: 1.2),
-          ),
+          Text('How many seats?', style: AppFont.medium_white_22.copyWith(letterSpacing: 1.2)),
           WidgetSpacer(height: 37),
 
           Image.asset(_selectedSeatTypeImage, height: 100.57),
@@ -59,8 +56,7 @@ class _WidgetHowManySeatsState extends State<WidgetHowManySeats> {
 
 /// WidgetSeatTypePicker
 class WidgetSeatTypePicker extends StatefulWidget {
-  final List<SeatTypeEntity> seatTypes =
-      SeatTypesModel.SAMPLE_DATA.toEntities();
+  final List<SeatTypeEntity> seatTypes = SeatTypesModel.SAMPLE_DATA.toEntities();
 
   final Function(String) onSeatTypeChanged;
 
@@ -84,9 +80,7 @@ class _WidgetSeatTypePickerState extends State<WidgetSeatTypePicker> {
         crossAxisSpacing: 14,
         mainAxisSpacing: 14,
         childAspectRatio: 3 / 4,
-        children: <Widget>[
-          for (final seatType in widget.seatTypes) _buildItemSeatType(seatType),
-        ],
+        children: <Widget>[for (final seatType in widget.seatTypes) _buildItemSeatType(seatType)],
       ),
     );
   }
@@ -104,13 +98,8 @@ class _WidgetSeatTypePickerState extends State<WidgetSeatTypePicker> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: isSelected ? AppColors.green : Colors.black54,
-          border: Border.all(
-            color: isSelected ? Colors.greenAccent : Colors.grey.shade700,
-          ),
-          boxShadow:
-              isSelected
-                  ? [BoxShadow(color: Colors.greenAccent, blurRadius: 10)]
-                  : [],
+          border: Border.all(color: isSelected ? Colors.greenAccent : Colors.grey.shade700),
+          boxShadow: isSelected ? [BoxShadow(color: Colors.greenAccent, blurRadius: 10)] : [],
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -118,15 +107,10 @@ class _WidgetSeatTypePickerState extends State<WidgetSeatTypePicker> {
             Text(seatType.name, style: AppFont.medium_white_14),
             Text(
               '\$${seatType.price}',
-              style: AppFont.semibold_white_16.copyWith(
-                color: Colors.yellowAccent,
-              ),
+              style: AppFont.semibold_white_16.copyWith(color: Colors.yellowAccent),
             ),
             WidgetSpacer(height: 10),
-            Text(
-              index == 0 ? 'Filling fast' : 'Available',
-              style: AppFont.regular_white_12,
-            ),
+            Text(index == 0 ? 'Filling fast' : 'Available', style: AppFont.regular_white_12),
           ],
         ),
       ),
@@ -200,11 +184,7 @@ class _WidgetNumberSeatPickerState extends State<WidgetNumberSeatPicker> {
                   color: boxColor,
                   borderRadius: BorderRadius.circular(6),
                   boxShadow:
-                      isSelected
-                          ? [
-                            BoxShadow(color: Colors.greenAccent, blurRadius: 8),
-                          ]
-                          : [],
+                      isSelected ? [BoxShadow(color: Colors.greenAccent, blurRadius: 8)] : [],
                 ),
                 child: Center(
                   child: Text(
@@ -226,8 +206,6 @@ class _WidgetNumberSeatPickerState extends State<WidgetNumberSeatPicker> {
       _selectedIndex = index;
     });
 
-    BlocProvider.of<BookSeatTypeBloc>(
-      context,
-    ).add(ClickHowManySeat(seatCount: index + 1));
+    BlocProvider.of<BookSeatTypeBloc>(context).add(ClickHowManySeat(seatCount: index + 1));
   }
 }
