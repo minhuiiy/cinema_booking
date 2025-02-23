@@ -3,8 +3,8 @@ import 'package:cinema_booking/common/widgets/button/basic_app_button.dart';
 import 'package:cinema_booking/core/configs/assets/app_images.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
-import 'package:cinema_booking/presentation/login/bloc/register_bloc.dart';
-import 'package:cinema_booking/presentation/login/widgets/age_selector.dart';
+import 'package:cinema_booking/presentation/register/bloc/register_bloc.dart';
+import 'package:cinema_booking/presentation/register/widgets/age_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,10 +13,7 @@ class RegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => RegisterBloc(),
-      child: const SignupPage(),
-    );
+    return BlocProvider(create: (context) => RegisterBloc(), child: const SignupPage());
   }
 }
 
@@ -72,10 +69,7 @@ class _SignupPageState extends State<SignupPage> {
               const SnackBar(
                 content: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('Registering ... '),
-                    CircularProgressIndicator(),
-                  ],
+                  children: [Text('Registering ... '), CircularProgressIndicator()],
                 ),
               ),
             );
@@ -109,10 +103,7 @@ class _SignupPageState extends State<SignupPage> {
             onPressed: () => Navigator.pop(context),
           ),
           actions: [
-            TextButton(
-              onPressed: () {},
-              child: Text("Skip", style: AppFont.kNormalTextStyleWhite),
-            ),
+            TextButton(onPressed: () {}, child: Text("Skip", style: AppFont.kNormalTextStyleWhite)),
           ],
         ),
         body: Padding(
@@ -121,9 +112,7 @@ class _SignupPageState extends State<SignupPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Row(
-                  children: [Text("ABOUT ME", style: AppFont.kTitleTextStyle)],
-                ),
+                Row(children: [Text("ABOUT ME", style: AppFont.kTitleTextStyle)]),
                 const SizedBox(height: 25),
                 _textField("Email", _email),
                 const SizedBox(height: 20),
@@ -167,12 +156,8 @@ class _SignupPageState extends State<SignupPage> {
         labelStyle: AppFont.kNormalTextStyleWhite,
         floatingLabelBehavior: FloatingLabelBehavior.auto,
         contentPadding: EdgeInsets.zero,
-        enabledBorder: const UnderlineInputBorder(
-          borderSide: BorderSide(color: Colors.white),
-        ),
-        focusedBorder: const UnderlineInputBorder(
-          borderSide: BorderSide(color: Colors.white),
-        ),
+        enabledBorder: const UnderlineInputBorder(borderSide: BorderSide(color: Colors.white)),
+        focusedBorder: const UnderlineInputBorder(borderSide: BorderSide(color: Colors.white)),
       ),
     );
   }
@@ -186,17 +171,11 @@ class _SignupPageState extends State<SignupPage> {
               text: TextSpan(
                 style: AppFont.kNormalTextStyleWhite,
                 children: [
-                  TextSpan(
-                    text: "Gender:    ",
-                    style: AppFont.kMiniTitleTextStyleWhite,
-                  ),
+                  TextSpan(text: "Gender:    ", style: AppFont.kMiniTitleTextStyleWhite),
                   TextSpan(
                     text: selectedGender,
                     style: AppFont.kMiniTitleTextStyleWhite.copyWith(
-                      color:
-                          selectedGender == "Male"
-                              ? AppColors.blue
-                              : AppColors.pink,
+                      color: selectedGender == "Male" ? AppColors.blue : AppColors.pink,
                     ),
                   ),
                 ],
@@ -223,11 +202,7 @@ class _SignupPageState extends State<SignupPage> {
         radius: 30,
         backgroundColor: selectedGender == gender ? Colors.red : Colors.white12,
         child: ClipOval(
-          child: SizedBox(
-            width: 60,
-            height: 60,
-            child: Image.asset(imagePath, fit: BoxFit.cover),
-          ),
+          child: SizedBox(width: 60, height: 60, child: Image.asset(imagePath, fit: BoxFit.cover)),
         ),
       ),
     );
@@ -249,19 +224,13 @@ class _SignupPageState extends State<SignupPage> {
 
   void _onPasswordChanged() {
     context.read<RegisterBloc>().add(
-      PasswordChanged(
-        password: _password.text,
-        confirmPassword: _confirmPassword.text,
-      ),
+      PasswordChanged(password: _password.text, confirmPassword: _confirmPassword.text),
     );
   }
 
   void _onConfirmPasswordChanged() {
     context.read<RegisterBloc>().add(
-      ConfirmPasswordChanged(
-        password: _password.text,
-        confirmPassword: _confirmPassword.text,
-      ),
+      ConfirmPasswordChanged(password: _password.text, confirmPassword: _confirmPassword.text),
     );
   }
 

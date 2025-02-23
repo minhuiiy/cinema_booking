@@ -10,7 +10,7 @@ import 'package:cinema_booking/core/configs/theme/app_theme.dart';
 import 'package:cinema_booking/firebase_options.dart';
 import 'package:cinema_booking/presentation/home/bloc/home_bloc.dart';
 import 'package:cinema_booking/presentation/home/home_main.dart';
-import 'package:cinema_booking/presentation/login/pages/login.dart';
+import 'package:cinema_booking/presentation/login/login.dart';
 import 'package:cinema_booking/presentation/router.dart';
 
 import 'package:cinema_booking/presentation/splash/splash.dart';
@@ -34,9 +34,7 @@ Future<void> main() async {
     storageDirectory:
         kIsWeb
             ? HydratedStorageDirectory.web
-            : HydratedStorageDirectory(
-              (await getApplicationDocumentsDirectory()).path,
-            ),
+            : HydratedStorageDirectory((await getApplicationDocumentsDirectory()).path),
   );
 
   // Initialize Firebase
@@ -59,9 +57,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => ThemeCubit()),
-        BlocProvider(
-          create: (context) => AuthenticationBloc()..add(AppStarted()),
-        ),
+        BlocProvider(create: (context) => AuthenticationBloc()..add(AppStarted())),
         BlocProvider(create: (context) => HomeBloc()),
       ],
       child: BlocBuilder<ThemeCubit, ThemeMode>(
