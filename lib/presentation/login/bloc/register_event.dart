@@ -31,7 +31,10 @@ class PasswordChanged extends RegisterEvent {
   final String password;
   final String confirmPassword;
 
-  const PasswordChanged({required this.password, required this.confirmPassword});
+  const PasswordChanged({
+    required this.password,
+    required this.confirmPassword,
+  });
 
   @override
   List<Object> get props => [];
@@ -46,7 +49,10 @@ class ConfirmPasswordChanged extends RegisterEvent {
   final String password;
   final String confirmPassword;
 
-  const ConfirmPasswordChanged({required this.password, required this.confirmPassword});
+  const ConfirmPasswordChanged({
+    required this.password,
+    required this.confirmPassword,
+  });
 
   @override
   List<Object> get props => [];
@@ -89,7 +95,14 @@ class Submitted extends RegisterEvent {
   });
 
   @override
-  List<Object> get props => [email, password, confirmPassword, displayName, age, gender];
+  List<Object> get props => [
+    email,
+    password,
+    confirmPassword,
+    displayName,
+    age,
+    gender,
+  ];
 
   @override
   String toString() {

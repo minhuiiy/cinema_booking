@@ -12,7 +12,8 @@ class WidgetMovieReview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String textReviews = "${movie.totalReviews.formatDecimalThousand()} reviews";
+    String textReviews =
+        "${movie.totalReviews.formatDecimalThousand()} reviews";
     String authorAvatar = movie.latestReviews.avatar;
     String authorName = movie.latestReviews.author;
     String content = movie.latestReviews.content;
@@ -22,7 +23,10 @@ class WidgetMovieReview extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 18),
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [Colors.black.withValues(alpha: 0.9), Colors.black.withValues(alpha: 0.7)],
+          colors: [
+            Colors.black.withValues(alpha: 0.9),
+            Colors.black.withValues(alpha: 0.7),
+          ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
@@ -56,7 +60,9 @@ class WidgetMovieReview extends StatelessWidget {
                 },
                 child: Text(
                   'Write yours >',
-                  style: AppFont.medium_white_12.copyWith(color: AppColors.defaultColor),
+                  style: AppFont.medium_white_12.copyWith(
+                    color: AppColors.defaultColor,
+                  ),
                   textAlign: TextAlign.right,
                 ),
               ),
@@ -103,10 +109,7 @@ class WidgetMovieReview extends StatelessWidget {
                     // Author Name & Date
                     Row(
                       children: <Widget>[
-                        Text(
-                          authorName,
-                          style: AppFont.semibold_white_16,
-                        ),
+                        Text(authorName, style: AppFont.semibold_white_16),
                         WidgetSpacer(width: 8),
                         Text(
                           textDate,
@@ -169,7 +172,8 @@ class _ExpandableReviewTextState extends State<ExpandableReviewText> {
             widget.content,
             style: TextStyle(color: Colors.white, fontSize: 14),
           ),
-          crossFadeState: isExpanded ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+          crossFadeState:
+              isExpanded ? CrossFadeState.showSecond : CrossFadeState.showFirst,
         ),
       ),
     );

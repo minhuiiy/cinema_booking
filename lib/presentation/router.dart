@@ -5,13 +5,12 @@
  */
 
 // ignore_for_file: constant_identifier_names
-import 'package:cinema_booking/common/helpers/log_helpers.dart';
 import 'package:cinema_booking/domain/entities/movies/movies.dart';
 import 'package:cinema_booking/domain/entities/response/home.dart';
 import 'package:cinema_booking/presentation/all_movies/sc_all_movies.dart';
-import 'package:cinema_booking/presentation/booking/book_seat_slot/sc_book_seat_slot.dart';
-import 'package:cinema_booking/presentation/booking/book_seat_type/sc_book_seat_type.dart';
-import 'package:cinema_booking/presentation/booking/book_time_slot_main.dart';
+import 'package:cinema_booking/presentation/book_seat_slot/book_seat_slot_screen.dart';
+import 'package:cinema_booking/presentation/book_seat_type/book_seat_type_screen.dart';
+import 'package:cinema_booking/presentation/booking_time_slot/book_time_slot_main.dart';
 import 'package:cinema_booking/presentation/home/home_main.dart';
 import 'package:cinema_booking/presentation/login/pages/login.dart';
 import 'package:cinema_booking/presentation/login/pages/register.dart';
@@ -46,11 +45,15 @@ class AppRouter {
 
       case BOOK_TIME_SLOT:
         var movie = settings.arguments as MovieEntity;
-        return MaterialPageRoute(builder: (_) => BookTimeSlotScreen(movie: movie));
+        return MaterialPageRoute(
+          builder: (_) => BookTimeSlotScreen(movie: movie),
+        );
 
       case MOVIE:
         var movieDetail = settings.arguments as MovieDetailEntity;
-        return MaterialPageRoute(builder: (_) => MovieInfoScreen(movie: movieDetail));
+        return MaterialPageRoute(
+          builder: (_) => MovieInfoScreen(movie: movieDetail),
+        );
 
       case ALL_MOVIES:
         return MaterialPageRoute(builder: (_) => AllMoviesScreen());
@@ -59,15 +62,18 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => BookSeatTypeScreen());
       case BOOK_SEAT_SLOT:
         final args = settings.arguments as ScreenArguments;
-        return MaterialPageRoute(builder: (_) => BookSeatSlotScreen(args: args));
+        return MaterialPageRoute(
+          builder: (_) => BookSeatSlotScreen(args: args),
+        );
 
       default:
         return MaterialPageRoute(
-          builder: (_) => Scaffold(
-            body: Center(
-              child: Text('No route defined for ${settings.name}'),
-            ),
-          ),
+          builder:
+              (_) => Scaffold(
+                body: Center(
+                  child: Text('No route defined for ${settings.name}'),
+                ),
+              ),
         );
     }
   }

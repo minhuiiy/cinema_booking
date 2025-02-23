@@ -1,7 +1,5 @@
 import 'package:cinema_booking/common/helpers/log_helpers.dart';
 import 'package:cinema_booking/core/enum/sort_movie.dart';
-import 'package:cinema_booking/data/models/response/all_movie_by_type_response.dart';
-import 'package:cinema_booking/domain/entities/movies/movies.dart';
 import 'package:cinema_booking/domain/entities/response/all_mobie_by_type.dart';
 import 'package:cinema_booking/domain/entities/response/home.dart';
 import 'package:cinema_booking/domain/usecase/all_movie/get_all_movie.dart';
@@ -25,12 +23,18 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
   }
 
   // Hàm xử lý sự kiện OpenScreen
-  Future<void> _onOpenScreen(OpenScreen event, Emitter<AllMoviesState> emit) async {
+  Future<void> _onOpenScreen(
+    OpenScreen event,
+    Emitter<AllMoviesState> emit,
+  ) async {
     LogHelper.logDebug(tag: "AllMoviesBloc", message: "_onOpenScreen start");
     emit(UpdateToolbarState(movieSearchField: false));
     try {
       // emit(DisplayListMovies.loading());
-      LogHelper.logDebug(tag: "AllMoviesBloc", message: "Fetching data for all movies...");
+      LogHelper.logDebug(
+        tag: "AllMoviesBloc",
+        message: "Fetching data for all movies...",
+      );
       var response = await sl<GetAllMoviesDataUseCase>().call();
 
       response.fold(
@@ -40,7 +44,9 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
         (data) async {
           if (data is AllMoviesEntity) {
             LogHelper.logDebug(
-              tag: '' "AllMoviesBloc",
+              tag:
+                  ''
+                  "AllMoviesBloc",
               message: "Data fetched successfully + ${response.toString()}",
             );
             var ok = DisplayListMovies.data(_metaFromResponse(data));
@@ -52,46 +58,76 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
         },
       );
     } catch (e) {
-      LogHelper.logError(tag: "AllMoviesBloc", message: "Error fetching data: $e");
+      LogHelper.logError(
+        tag: "AllMoviesBloc",
+        message: "Error fetching data: $e",
+      );
       emit(DisplayListMovies.error(e.toString()));
     }
   }
 
   // Hàm xử lý sự kiện ClickIconSearch
-  Future<void> _onClickIconSearch(ClickIconSearch event, Emitter<AllMoviesState> emit) async {
-    LogHelper.logDebug(tag: "AllMoviesBloc", message: "Search icon clicked, movieing search field");
+  Future<void> _onClickIconSearch(
+    ClickIconSearch event,
+    Emitter<AllMoviesState> emit,
+  ) async {
+    LogHelper.logDebug(
+      tag: "AllMoviesBloc",
+      message: "Search icon clicked, movieing search field",
+    );
     emit(UpdateToolbarState(movieSearchField: true));
   }
 
   // Hàm xử lý sự kiện ClickCloseSearch
-  Future<void> _onClickCloseSearch(ClickCloseSearch event, Emitter<AllMoviesState> emit) async {
+  Future<void> _onClickCloseSearch(
+    ClickCloseSearch event,
+    Emitter<AllMoviesState> emit,
+  ) async {
     LogHelper.logDebug(tag: "AllMoviesBloc", message: "Closing search field");
     emit(UpdateToolbarState(movieSearchField: false));
     await _mapSearchQueryChangedToState('', emit);
   }
 
   // Hàm xử lý thay đổi truy vấn tìm kiếm
-  Future<void> _onSearchQueryChanged(SearchQueryChanged event, Emitter<AllMoviesState> emit) async {
-    LogHelper.logDebug(tag: "AllMoviesBloc", message: "Search query changed: ${event.keyword}");
+  Future<void> _onSearchQueryChanged(
+    SearchQueryChanged event,
+    Emitter<AllMoviesState> emit,
+  ) async {
+    LogHelper.logDebug(
+      tag: "AllMoviesBloc",
+      message: "Search query changed: ${event.keyword}",
+    );
     await _debouncedSearchQueryChanged(event.keyword, emit);
   }
 
   // Hàm debounce cho tìm kiếm
-  Future<void> _debouncedSearchQueryChanged(String keyword, Emitter<AllMoviesState> emit) async {
-    LogHelper.logDebug(tag: "AllMoviesBloc", message: "Debouncing search query...");
+  Future<void> _debouncedSearchQueryChanged(
+    String keyword,
+    Emitter<AllMoviesState> emit,
+  ) async {
+    LogHelper.logDebug(
+      tag: "AllMoviesBloc",
+      message: "Debouncing search query...",
+    );
     await Future.delayed(Duration(milliseconds: 400));
     await _mapSearchQueryChangedToState(keyword, emit);
   }
 
   // Hàm xử lý thay đổi truy vấn tìm kiếm
-  Future<void> _mapSearchQueryChangedToState(String keyword, Emitter<AllMoviesState> emit) async {
+  Future<void> _mapSearchQueryChangedToState(
+    String keyword,
+    Emitter<AllMoviesState> emit,
+  ) async {
     LogHelper.logDebug(
       tag: "AllMoviesBloc",
       message: "Updating search results for query: $keyword",
     );
     // emit(DisplayListMovies.loading());
     try {
-      LogHelper.logDebug(tag: "AllMoviesBloc", message: "Fetching data for all movies...");
+      LogHelper.logDebug(
+        tag: "AllMoviesBloc",
+        message: "Fetching data for all movies...",
+      );
       var response = await sl<GetAllMoviesDataUseCase>().call();
 
       response.fold(
@@ -113,7 +149,8 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
               message: "AllMoviesEntity success",
             );
             bool query(MovieDetailEntity movie) =>
-                keyword.isEmpty || movie.detail.name.toLowerCase().contains(keyword.toLowerCase());
+                keyword.isEmpty ||
+                movie.detail.name.toLowerCase().contains(keyword.toLowerCase());
 
             data.nowMovieing = data.nowMovieing.where(query).toList();
             data.comingSoon = data.comingSoon.where(query).toList();
@@ -128,40 +165,53 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
 
             emit(DisplayListMovies.data(meta));
           } else {
-            LogHelper.logDebug(
-              tag: "AllMoviesBloc",
-              message: "error",
-            );
+            LogHelper.logDebug(tag: "AllMoviesBloc", message: "error");
             emit(DisplayListMovies.error("Invalid response type"));
           }
         },
       );
     } catch (e) {
-      LogHelper.logError(tag: "AllMoviesBloc", message: "Error filtering search results: $e");
+      LogHelper.logError(
+        tag: "AllMoviesBloc",
+        message: "Error filtering search results: $e",
+      );
       emit(DisplayListMovies.error(e.toString()));
     }
   }
 
   // Hàm xử lý sự kiện ClickIconSort
-  Future<void> _onClickIconSort(ClickIconSort event, Emitter<AllMoviesState> emit) async {
+  Future<void> _onClickIconSort(
+    ClickIconSort event,
+    Emitter<AllMoviesState> emit,
+  ) async {
     LogHelper.logDebug(tag: "AllMoviesBloc", message: "Sort icon clicked");
     emit(OpenSortOption(isOpen: true, movieSortBy: movieSortBy));
   }
 
   // Hàm xử lý sự kiện SortByChanged
-  Future<void> _onSortByChanged(SortByChanged event, Emitter<AllMoviesState> emit) async {
-    LogHelper.logDebug(tag: "AllMoviesBloc", message: "Sorting by: ${event.movieSortBy}");
+  Future<void> _onSortByChanged(
+    SortByChanged event,
+    Emitter<AllMoviesState> emit,
+  ) async {
+    LogHelper.logDebug(
+      tag: "AllMoviesBloc",
+      message: "Sorting by: ${event.movieSortBy}",
+    );
     movieSortBy = event.movieSortBy;
     emit(UpdateToolbarState(movieSearchField: false));
     await _mapSearchQueryChangedToState('', emit);
   }
 
   Meta _metaFromResponse(AllMoviesEntity response) {
-    var sortBy;
+    int Function(MovieDetailEntity a, MovieDetailEntity b) sortBy;
     if (movieSortBy == MovieSoftBy.name) {
-      sortBy = (MovieDetailEntity a, MovieDetailEntity b) => a.detail.name.compareTo(b.detail.name);
+      sortBy =
+          (MovieDetailEntity a, MovieDetailEntity b) =>
+              a.detail.name.compareTo(b.detail.name);
     } else {
-      sortBy = (MovieDetailEntity a, MovieDetailEntity b) => b.detail.rate.compareTo(a.detail.rate);
+      sortBy =
+          (MovieDetailEntity a, MovieDetailEntity b) =>
+              b.detail.rate.compareTo(a.detail.rate);
     }
 
     response.nowMovieing.sort(sortBy);
@@ -181,7 +231,11 @@ class Meta {
   final List<MovieDetailEntity> comingSoon;
   final List<MovieDetailEntity> exclusive;
 
-  Meta({required this.nowMovieing, required this.comingSoon, required this.exclusive});
+  Meta({
+    required this.nowMovieing,
+    required this.comingSoon,
+    required this.exclusive,
+  });
 
   @override
   String toString() {

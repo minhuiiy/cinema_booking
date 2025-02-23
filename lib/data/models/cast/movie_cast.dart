@@ -17,14 +17,10 @@ class MovieCastModel {
   String? name;
   String? photo;
 
-  MovieCastModel({
-    this.id,
-    this.movieId,
-    this.name,
-    this.photo,
-  });
+  MovieCastModel({this.id, this.movieId, this.name, this.photo});
 
-  factory MovieCastModel.fromJson(Map<String, dynamic> json) => _$MovieCastModelFromJson(json);
+  factory MovieCastModel.fromJson(Map<String, dynamic> json) =>
+      _$MovieCastModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$MovieCastModelToJson(this);
 

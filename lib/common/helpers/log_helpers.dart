@@ -33,7 +33,9 @@ class LogHelper {
     StackTrace? stackTrace,
   }) {
     _log("ERROR", tag, message, _colorError);
-    if (kDebugMode && error != null) print("$_colorError$_prefix [ERROR] $tag: $error$_colorReset");
+    if (kDebugMode && error != null) {
+      print("$_colorError$_prefix [ERROR] $tag: $error$_colorReset");
+    }
     if (kDebugMode && stackTrace != null) {
       print("$_colorError$_prefix [STACKTRACE] $tag:\n$stackTrace$_colorReset");
     }

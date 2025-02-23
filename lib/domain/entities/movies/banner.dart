@@ -10,10 +10,7 @@ class BannerEntity extends Equatable {
   final String id;
   final String url;
 
-  const BannerEntity({
-    required this.id,
-    required this.url,
-  });
+  const BannerEntity({required this.id, required this.url});
 
   @override
   String toString() {

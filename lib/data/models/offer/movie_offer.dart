@@ -17,14 +17,10 @@ class MovieOfferModel {
   String? title;
   String? content;
 
-  MovieOfferModel({
-    this.id,
-    this.type,
-    this.title,
-    this.content,
-  });
+  MovieOfferModel({this.id, this.type, this.title, this.content});
 
-  factory MovieOfferModel.fromJson(Map<String, dynamic> json) => _$MovieOfferModelFromJson(json);
+  factory MovieOfferModel.fromJson(Map<String, dynamic> json) =>
+      _$MovieOfferModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$MovieOfferModelToJson(this);
 

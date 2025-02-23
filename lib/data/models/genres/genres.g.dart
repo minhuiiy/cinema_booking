@@ -7,13 +7,12 @@ part of 'genres.dart';
 // **************************************************************************
 
 GenresModel _$GenresModelFromJson(Map<String, dynamic> json) => GenresModel(
-      id: json['id'] as String?,
-      name: json['name'] as String?,
-      listMovie: (json['list_movie'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
-      icon: json['icon'] as String?,
-    );
+  id: json['id'] as String?,
+  name: json['name'] as String?,
+  listMovie:
+      (json['list_movie'] as List<dynamic>?)?.map((e) => e as String).toList(),
+  icon: json['icon'] as String?,
+);
 
 Map<String, dynamic> _$GenresModelToJson(GenresModel instance) =>
     <String, dynamic>{

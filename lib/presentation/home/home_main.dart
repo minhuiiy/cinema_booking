@@ -90,8 +90,12 @@ class _HomeScreenState extends State<HomeScreen> {
       providers: [
         BlocProvider(create: (context) => HomeBannerBloc(homeBloc: homeBloc)),
         BlocProvider(create: (context) => HomeGenresBloc(homeBloc: homeBloc)),
-        BlocProvider(create: (context) => RecommendedMoviesBloc(homeBloc: homeBloc)),
-        BlocProvider(create: (context) => HomeMoviesGenresBloc(homeBloc: homeBloc)),
+        BlocProvider(
+          create: (context) => RecommendedMoviesBloc(homeBloc: homeBloc),
+        ),
+        BlocProvider(
+          create: (context) => HomeMoviesGenresBloc(homeBloc: homeBloc),
+        ),
       ],
       child: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
@@ -101,10 +105,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: AppColors.darkBackground,
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
-                  children: <Widget>[
-                    WidgetHomeToolbar(),
-                    _buildContent(state),
-                  ],
+                  children: <Widget>[WidgetHomeToolbar(), _buildContent(state)],
                 ),
               ),
               bottomNavigationBar: _buildBottomNavigationBar(),
@@ -142,23 +143,11 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       );
     } else if (state is HomeLoading) {
-      return Expanded(
-        child: Center(
-          child: CircularProgressIndicator(),
-        ),
-      );
+      return Expanded(child: Center(child: CircularProgressIndicator()));
     } else if (state is HomeNotLoaded) {
-      return Expanded(
-        child: Center(
-          child: Text('Cannot load data'),
-        ),
-      );
+      return Expanded(child: Center(child: Text('Cannot load data')));
     } else {
-      return Expanded(
-        child: Center(
-          child: Text('Unknown state'),
-        ),
-      );
+      return Expanded(child: Center(child: Text('Unknown state')));
     }
   }
 }

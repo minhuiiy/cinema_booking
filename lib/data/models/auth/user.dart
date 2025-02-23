@@ -20,10 +20,10 @@ class UserModel {
   });
 
   UserModel.fromJson(Map<String, dynamic> data)
-      : email = data['email'],
-        fullName = data['full_Name'],
-        gender = data['gender'],
-        age = data['age'] ?? 10;
+    : email = data['email'],
+      fullName = data['full_Name'],
+      gender = data['gender'],
+      age = data['age'] ?? 10;
 }
 
 extension UserModelX on UserModel {

@@ -10,8 +10,5 @@ class MovieByGenresEntity {
   final String genresId;
   final List<MovieDetailEntity> movies;
 
-  MovieByGenresEntity({
-    required this.genresId,
-    required this.movies,
-  });
+  MovieByGenresEntity({required this.genresId, required this.movies});
 }

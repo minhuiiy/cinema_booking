@@ -30,6 +30,8 @@ extension FormatNumber on int {
 extension FormatDate on int {
   // ignore: non_constant_identifier_names
   String MMM_dd_yyyy() {
-    return DateFormat("MMM dd, yyyy").format(DateTime.fromMillisecondsSinceEpoch(this * 1000));
+    return DateFormat(
+      "MMM dd, yyyy",
+    ).format(DateTime.fromMillisecondsSinceEpoch(this * 1000));
   }
 }

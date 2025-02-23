@@ -45,7 +45,10 @@ class LoginSubmitEmailPasswordEvent extends LoginEvent {
   final String email;
   final String password;
 
-  const LoginSubmitEmailPasswordEvent({required this.email, required this.password});
+  const LoginSubmitEmailPasswordEvent({
+    required this.email,
+    required this.password,
+  });
 
   @override
   List<Object> get props => [email, password];

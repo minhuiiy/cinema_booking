@@ -74,6 +74,7 @@ Future<void> initializeDependencies() async {
   // Booking time and ticket cinema
   sl.registerSingleton<BookTimeSlotRepository>(BookTimeSlotRepositoryImpl());
   sl.registerSingleton<SeatSlotRepository>(RemoteSeatSlotRepository());
+
   sl.registerSingleton<MockBookTimeSlotService>(MockBookTimeSlotServiceImpl());
   sl.registerSingleton<RemoteBookTimeSlotService>(RemoteBookTimeSlotServiceImpl());
   sl.registerSingleton<SessionService>(SessionServiceImpl(pref: LocalPref()));

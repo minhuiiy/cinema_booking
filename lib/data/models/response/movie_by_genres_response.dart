@@ -19,10 +19,7 @@ class MovieByGenresResponse {
 
   List<MovieDetailResponse>? movies;
 
-  MovieByGenresResponse({
-    this.genresId,
-    this.movies,
-  });
+  MovieByGenresResponse({this.genresId, this.movies});
 
   factory MovieByGenresResponse.fromJson(Map<String, dynamic> json) =>
       _$MovieByGenresResponseFromJson(json);

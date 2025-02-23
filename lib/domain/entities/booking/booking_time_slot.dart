@@ -7,11 +7,7 @@ class BookTimeSlotEntity {
   final List<TimeSlotEntity> timeSlots;
   final List<String>? tami;
 
-  BookTimeSlotEntity({
-    required this.cine,
-    required this.timeSlots,
-    this.tami,
-  });
+  BookTimeSlotEntity({required this.cine, required this.timeSlots, this.tami});
 }
 
 extension BookTimeSlotEntityX on BookTimeSlotEntity {

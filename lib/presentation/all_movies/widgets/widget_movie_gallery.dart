@@ -3,7 +3,7 @@ import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:cinema_booking/domain/entities/response/home.dart';
 import 'package:cinema_booking/presentation/all_movies/bloc/all_movies_bloc.dart';
-import 'package:cinema_booking/presentation/all_movies/list_movies/widget_list_movies.dart';
+import 'package:cinema_booking/presentation/all_movies/widgets/widget_list_movies.dart';
 import 'package:flutter/material.dart';
 
 class WidgetMovieGallery extends StatefulWidget {
@@ -22,10 +22,7 @@ class _WidgetMovieGalleryState extends State<WidgetMovieGallery>
 
   @override
   void initState() {
-    _controller = TabController(
-      length: 3,
-      vsync: this,
-    );
+    _controller = TabController(length: 3, vsync: this);
 
     _controller.addListener(() {
       setState(() {
@@ -50,14 +47,16 @@ class _WidgetMovieGalleryState extends State<WidgetMovieGallery>
               _listMoviesToContent(widget.meta.exclusive),
             ],
           ),
-        )
+        ),
       ],
     );
   }
 
   Widget _listMoviesToContent(List<MovieDetailEntity> movies) {
     if (movies.isNotEmpty) {
-      return WidgetListMovie(movies.map((movie) => ItemMovieVM.fromMovie(movie)).toList());
+      return WidgetListMovie(
+        movies.map((movie) => ItemMovieVM.fromMovie(movie)).toList(),
+      );
     } else {
       return Center(
         child: Padding(
@@ -79,7 +78,10 @@ class _WidgetMovieGalleryState extends State<WidgetMovieGallery>
           Tab(text: 'Exclusive'),
         ],
         labelColor: Colors.purpleAccent,
-        labelStyle: AppFont.medium_default.copyWith(fontSize: 16, fontWeight: FontWeight.bold),
+        labelStyle: AppFont.medium_default.copyWith(
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+        ),
         unselectedLabelColor: Colors.grey.shade500,
         unselectedLabelStyle: AppFont.regular_gray1_12.copyWith(fontSize: 14),
         indicatorSize: TabBarIndicatorSize.label,

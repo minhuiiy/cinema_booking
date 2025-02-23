@@ -4,11 +4,4 @@
  * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
  */
 
-import 'package:json_annotation/json_annotation.dart';
-
-enum TypeOffer {
-  @JsonValue("red")
-  red,
-  @JsonValue("green")
-  green
-}
+enum TypeOffer { red, green }

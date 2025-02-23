@@ -24,27 +24,28 @@ class _WidgetHomeMoviesGenresState extends State<WidgetHomeMoviesGenres> {
     return BlocBuilder<HomeMoviesGenresBloc, HomeMoviesGenresState>(
       builder: (context, state) {
         if (state is MoviesByGenresLoaded) {
-          LogHelper.logDebug(tag: "WidgetHomeMoviesGenres", message: "MoviesByGenresLoaded");
+          LogHelper.logDebug(
+            tag: "WidgetHomeMoviesGenres",
+            message: "MoviesByGenresLoaded",
+          );
 
           final list = state.list;
 
           return ListView.separated(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemBuilder: (context, index) {
-                final mapEntry = list[index];
-                final genres = mapEntry.key;
-                final movies = mapEntry.value;
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index) {
+              final mapEntry = list[index];
+              final genres = mapEntry.key;
+              final movies = mapEntry.value;
 
-                return WidgetHomeEvents(
-                  genres: genres,
-                  movies: movies,
-                );
-              },
-              separatorBuilder: (context, index) {
-                return WidgetSpacer(height: 20);
-              },
-              itemCount: list.length);
+              return WidgetHomeEvents(genres: genres, movies: movies);
+            },
+            separatorBuilder: (context, index) {
+              return WidgetSpacer(height: 20);
+            },
+            itemCount: list.length,
+          );
         } else {
           LogHelper.logError(tag: "WidgetHomeMoviesGenres", message: "fail");
           return Container();

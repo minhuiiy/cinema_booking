@@ -64,9 +64,7 @@ class _WidgetVideoPlayerState extends State<WidgetVideoPlayer> {
             _isPlayerReady = true;
           },
         ),
-        BasicBackButton(
-          padding: const EdgeInsets.only(left: 20, top: 20),
-        ),
+        BasicBackButton(padding: const EdgeInsets.only(left: 20, top: 20)),
       ],
     );
   }

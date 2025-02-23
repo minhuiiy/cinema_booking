@@ -11,8 +11,9 @@ import 'package:cinema_booking/service_locator.dart';
 
 // UseCase to fetch all movies by type
 class GetAllMoviesByTypeUseCase {
-  Future<Either<String, List<BookingTimeSlotByCinemaResponse>>> call(
-      {required String movieId}) async {
+  Future<Either<String, List<BookingTimeSlotByCinemaResponse>>> call({
+    required String movieId,
+  }) async {
     return await sl<BookTimeSlotRepository>().getAllMoviesByType(movieId);
   }
 }

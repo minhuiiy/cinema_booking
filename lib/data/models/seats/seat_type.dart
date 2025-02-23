@@ -1,4 +1,5 @@
 import 'package:cinema_booking/common/helpers/json_converter.dart';
+import 'package:cinema_booking/core/enum/type_seat.dart';
 import 'package:cinema_booking/data/models/seats/seat_row.dart';
 import 'package:cinema_booking/domain/entities/seats/seat_type.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -13,6 +14,7 @@ class SeatTypesModel {
   String? name;
 
   @StringAsDoubleConverter()
+  @JsonKey(name: "price")
   double? price;
 
   @JsonKey(name: "seat_type", defaultValue: TypeSeat.jack)
@@ -22,20 +24,16 @@ class SeatTypesModel {
   @JsonKey(name: "seat_rows")
   List<SeatRowModel> seatRows;
 
-  SeatTypesModel(
-    this.name,
-    this.price,
-    this.type,
-    this.seatRows,
-  );
+  SeatTypesModel(this.name, this.price, this.type, this.seatRows);
 
-  factory SeatTypesModel.fromJson(Map<String, dynamic> json) => _$SeatTypesModelFromJson(json);
+  factory SeatTypesModel.fromJson(Map<String, dynamic> json) =>
+      _$SeatTypesModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$SeatTypesModelToJson(this);
 
   @override
   String toString() {
-    return 'SeatType{name: $name}';
+    return 'SeatTypesModel{id: $id, name: $name, price: $price, type: $type, seatRows: ${seatRows.map((row) => row.toString()).toList()}}';
   }
 
   static final List<SeatTypesModel> SAMPLE_DATA = [
@@ -43,15 +41,6 @@ class SeatTypesModel {
     SeatTypesModel('Queen', 100.0, TypeSeat.queen, SeatRowModel.SAMPLE_QUEEN),
     SeatTypesModel('Jack', 80.0, TypeSeat.jack, SeatRowModel.SAMPLE_JACK),
   ];
-}
-
-enum TypeSeat {
-  @JsonValue("king")
-  king,
-  @JsonValue("queen")
-  queen,
-  @JsonValue("jack")
-  jack,
 }
 
 extension TypeSeatoText on TypeSeat {
@@ -74,6 +63,7 @@ extension SeatTypesModelMapper on SeatTypesModel {
       name: name ?? "",
       price: price ?? 0,
       type: type,
+      seatRows: seatRows.map((row) => row.toEntity()).toList(),
     );
   }
 }

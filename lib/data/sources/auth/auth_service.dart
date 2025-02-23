@@ -26,8 +26,8 @@ class AuthServiceImpl extends AuthService {
   final GoogleSignIn _googleSignIn;
 
   AuthServiceImpl({FirebaseAuth? firebaseAuth, GoogleSignIn? googleSignIn})
-      : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance,
-        _googleSignIn = googleSignIn ?? GoogleSignIn();
+    : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance,
+      _googleSignIn = googleSignIn ?? GoogleSignIn();
 
   @override
   Future<Either<String, String>> signin(SigninUserReq signinUserReq) async {
@@ -45,10 +45,11 @@ class AuthServiceImpl extends AuthService {
   @override
   Future<Either<String, String>> signup(CreateUserReq createUserReq) async {
     try {
-      UserCredential userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
-        email: createUserReq.email,
-        password: createUserReq.password,
-      );
+      UserCredential userCredential = await _firebaseAuth
+          .createUserWithEmailAndPassword(
+            email: createUserReq.email,
+            password: createUserReq.password,
+          );
 
       String uid = userCredential.user!.uid;
 
@@ -59,7 +60,8 @@ class AuthServiceImpl extends AuthService {
         'fullName': createUserReq.fullName,
         'age': createUserReq.age,
         'gender': createUserReq.gender,
-        'createdAt': FieldValue.serverTimestamp(), // Store account creation timestamp
+        'createdAt':
+            FieldValue.serverTimestamp(), // Store account creation timestamp
       });
 
       return const Right('Signup was Successful');
@@ -71,10 +73,7 @@ class AuthServiceImpl extends AuthService {
   @override
   Future<Either<String, String>> signOut() async {
     try {
-      await Future.wait([
-        _firebaseAuth.signOut(),
-        _googleSignIn.signOut(),
-      ]);
+      await Future.wait([_firebaseAuth.signOut(), _googleSignIn.signOut()]);
       return const Right('Signout was successful');
     } catch (e) {
       return Left('Error signing out');
@@ -98,9 +97,12 @@ class AuthServiceImpl extends AuthService {
       if (googleUser == null) {
         return Left('Google sign-in cancelled');
       }
-      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
       final AuthCredential credential = GoogleAuthProvider.credential(
-          idToken: googleAuth.idToken, accessToken: googleAuth.accessToken);
+        idToken: googleAuth.idToken,
+        accessToken: googleAuth.accessToken,
+      );
 
       await _firebaseAuth.signInWithCredential(credential);
       return const Right('Google sign-in was successful');

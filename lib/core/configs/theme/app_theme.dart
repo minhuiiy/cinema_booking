@@ -40,13 +40,8 @@ class AppTheme {
       style: ElevatedButton.styleFrom(
         elevation: 0,
         backgroundColor: AppColors.primary,
-        textStyle: const TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-        ),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30),
-        ),
+        textStyle: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       ),
     ),
   );
@@ -66,30 +61,19 @@ class AppTheme {
       contentPadding: const EdgeInsets.all(30),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(30),
-        borderSide: const BorderSide(
-          color: AppColors.white,
-          width: 0.4,
-        ),
+        borderSide: const BorderSide(color: AppColors.white, width: 0.4),
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(30),
-        borderSide: const BorderSide(
-          color: AppColors.white,
-          width: 0.4,
-        ),
+        borderSide: const BorderSide(color: AppColors.white, width: 0.4),
       ),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         elevation: 0,
         backgroundColor: AppColors.primary,
-        textStyle: const TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-        ),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30),
-        ),
+        textStyle: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       ),
     ),
   );

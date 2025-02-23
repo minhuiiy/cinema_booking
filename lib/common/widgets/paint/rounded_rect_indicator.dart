@@ -24,9 +24,10 @@ class _RectPainter extends BoxPainter {
   final indicatorPaddingBottom = 4.0;
 
   _RectPainter(Color color, this.radius, this.padding, this.weight)
-      : _paint = Paint()
-          ..color = color
-          ..isAntiAlias = true;
+    : _paint =
+          Paint()
+            ..color = color
+            ..isAntiAlias = true;
 
   @override
   void paint(Canvas canvas, Offset offset, ImageConfiguration cfg) {
@@ -42,11 +43,16 @@ class _RectPainter extends BoxPainter {
     left = left + offset.dx + padding;
     right = right + offset.dx - padding;
 
-    var rect = RRect.fromLTRBAndCorners(left, top, right, bottom,
-        topLeft: Radius.circular(radius),
-        bottomLeft: Radius.circular(radius),
-        bottomRight: Radius.circular(radius),
-        topRight: Radius.circular(radius));
+    var rect = RRect.fromLTRBAndCorners(
+      left,
+      top,
+      right,
+      bottom,
+      topLeft: Radius.circular(radius),
+      bottomLeft: Radius.circular(radius),
+      bottomRight: Radius.circular(radius),
+      topRight: Radius.circular(radius),
+    );
     canvas.drawRRect(rect, _paint);
   }
 }
