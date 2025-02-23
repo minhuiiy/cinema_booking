@@ -1,12 +1,18 @@
-import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
+/*
+ * @ Author: Chung Nguyen Thanh <chunhthanhde.dev@gmail.com>
+ * @ Created: 2025-12-23 12:22:22
+ * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
+ */
+
 import 'package:cinema_booking/core/configs/assets/app_vectors.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:cinema_booking/common/bloc/authentication/authentication_bloc.dart';
 import 'package:cinema_booking/presentation/login/bloc/login_bloc.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 
 class WidgetSignInForm extends StatefulWidget {
   const WidgetSignInForm({super.key});
@@ -21,7 +27,6 @@ class _WidgetSignInFormState extends State<WidgetSignInForm> {
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-
   bool get isPopulated =>
       _emailController.text.isNotEmpty && _passwordController.text.isNotEmpty;
 
@@ -64,37 +69,55 @@ class _WidgetSignInFormState extends State<WidgetSignInForm> {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                color: AppColors.black.withValues(
-                  alpha: 0.70,
-                ), // Dark mode card
+                borderRadius: BorderRadius.circular(20),
+                gradient: LinearGradient(
+                  colors: [Colors.black87, Colors.black54],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.5),
+                    blurRadius: 10,
+                    spreadRadius: 1,
+                  ),
+                ],
               ),
               child: Form(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    _buildTextField("Email", _emailController, Icons.email),
-                    const WidgetSpacer(height: 14),
+                    WidgetSpacer(height: 14),
+                    _buildTextDash("Form"),
+                    WidgetSpacer(height: 20),
+                    _buildTextField(
+                      "Email",
+                      _emailController,
+                      Icons.email,
+                      isPassword: false,
+                    ),
+                    WidgetSpacer(height: 14),
                     _buildTextField(
                       "Password",
                       _passwordController,
                       Icons.lock,
                       isPassword: true,
                     ),
-                    const WidgetSpacer(height: 10),
+                    WidgetSpacer(height: 10),
                     Align(
                       alignment: Alignment.centerRight,
                       child: Text(
-                        'Forgot password?',
+                        "Forgot password?",
                         style: AppFont.kNormalTextStyleGrey.copyWith(
                           color: Colors.orangeAccent,
                         ),
                       ),
                     ),
-                    const WidgetSpacer(height: 35),
+                    WidgetSpacer(height: 30),
                     _buildButtonLogin(state),
-                    const WidgetSpacer(height: 30),
-                    _buildTextOr(),
-                    const WidgetSpacer(height: 20),
+                    WidgetSpacer(height: 20),
+                    _buildTextDash("Or"),
+                    WidgetSpacer(height: 20),
                     _buildSocialLogin(),
                   ],
                 ),
@@ -113,113 +136,138 @@ class _WidgetSignInFormState extends State<WidgetSignInForm> {
     bool isPassword = false,
   }) {
     return Container(
-      height: 60, // Increased height for better centering
-      padding: const EdgeInsets.symmetric(horizontal: 15),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: AppColors.white.withValues(
-          alpha: 0.10,
-        ), // Dark transparent input fields
-      ),
-      child: Center(
-        child: TextFormField(
-          onChanged: (value) {
-            _loginBloc.add(LoginEmailChanged(email: value));
-          },
-          autovalidateMode: AutovalidateMode.onUserInteraction,
-          validator: (_) {
-            return isPassword
-                ? !_loginBloc.state.isPasswordValid
-                    ? 'Invalid Password'
-                    : null
-                : !_loginBloc.state.isEmailValid
-                ? 'Invalid Email'
-                : null;
-          },
-          maxLines: 1,
-          keyboardType: TextInputType.text,
-          textAlign: TextAlign.left,
-          controller: controller,
-          obscureText: isPassword,
-          style: AppFont.kNormalTextStyleWhite,
-          textAlignVertical:
-              TextAlignVertical.center, // Centers text inside field
-          decoration: InputDecoration(
-            labelText: hint, // Floating label text
-            labelStyle: AppFont.kNormalTextStyleGrey.copyWith(fontSize: 16),
-            floatingLabelBehavior:
-                FloatingLabelBehavior.auto, // Always show label
-            alignLabelWithHint: true, // Aligns label correctly
-            contentPadding: const EdgeInsets.symmetric(
-              vertical: 15,
-            ), // Centers hint
-            border: InputBorder.none,
-            prefixIcon: Icon(
-              icon,
-              color: Colors.white70,
-            ), // Add an icon inside input
+        borderRadius: BorderRadius.circular(
+          12,
+        ), // Rounded corners for smooth UI
+        border: Border.all(
+          color: AppColors.white.withValues(alpha: 0.3),
+          width: 1,
+        ), // Subtle border for elegance
+        gradient: LinearGradient(
+          colors: [
+            Color(0xFF1E1E1E),
+            Color(0xFF3A3A3A),
+          ], // Dark gradient for a cinematic look
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black45,
+            blurRadius: 8,
+            spreadRadius: 2,
+            offset: Offset(2, 4), // Soft shadow effect
           ),
+        ],
+      ),
+      child: TextFormField(
+        onChanged: (value) {
+          if (!isPassword) {
+            _loginBloc.add(LoginEmailChanged(email: value));
+          } else {
+            _loginBloc.add(LoginPasswordChanged(password: value));
+          }
+        },
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        validator: (_) {
+          return isPassword
+              ? !_loginBloc.state.isPasswordValid
+                  ? 'Invalid Password'
+                  : null
+              : !_loginBloc.state.isEmailValid
+              ? 'Invalid Email'
+              : null;
+        },
+        maxLines: 1,
+        keyboardType: TextInputType.text,
+        textAlign: TextAlign.left,
+        controller: controller,
+        obscureText: isPassword,
+        style: AppFont.kNormalTextStyleWhite,
+        textAlignVertical:
+            TextAlignVertical.center, // Centers text inside field
+        decoration: InputDecoration(
+          hintText: hint,
+          hintStyle: AppFont.kNormalTextStyleWhite.copyWith(fontSize: 15),
+          labelStyle: AppFont.kNormalTextStyleGrey.copyWith(fontSize: 16),
+          floatingLabelBehavior:
+              FloatingLabelBehavior.auto, // Always show label
+          alignLabelWithHint: true, // Aligns label correctly
+          contentPadding: const EdgeInsets.symmetric(
+            vertical: 15,
+          ), // Centers hint
+          border: InputBorder.none,
+          prefixIcon: Icon(icon, color: AppColors.defaultColor),
         ),
       ),
     );
   }
 
   Widget _buildButtonLogin(LoginState state) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: SizedBox(
-        width: double.infinity,
-        height: 50,
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            backgroundColor:
-                isRegisterButtonEnabled()
-                    ? AppColors.red
-                    : AppColors.primary, // Movie-themed red button
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
+    return SizedBox(
+      width: double.infinity,
+      height: 50,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(30),
+        onTap: () {
+          if (isRegisterButtonEnabled()) {
+            _loginBloc.add(
+              LoginSubmitEmailPasswordEvent(
+                email: _emailController.text,
+                password: _passwordController.text,
+              ),
+            );
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Invalid Form'),
+                backgroundColor: Colors.red,
+              ),
+            );
+          }
+        },
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30),
+            gradient: LinearGradient(
+              colors: [Color(0xFF9C27B0), Color(0xFFE91E63)],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
             ),
           ),
-          onPressed: () {
-            if (isRegisterButtonEnabled()) {
-              _loginBloc.add(
-                LoginSubmitEmailPasswordEvent(
-                  email: _emailController.text,
-                  password: _passwordController.text,
-                ),
-              );
-            }
-          },
+          alignment: Alignment.center,
           child: Text(
-            'LOGIN',
-            style: AppFont.kNormalBoldTextStyleWhite.copyWith(
-              fontSize: 18,
-              color:
-                  isRegisterButtonEnabled()
-                      ? AppColors.textLight
-                      : AppColors.black,
-            ),
+            "LOGIN",
+            style: AppFont.kNormalBoldTextStyleWhite.copyWith(fontSize: 18),
           ),
         ),
       ),
     );
   }
 
-  Widget _buildTextOr() {
-    return Stack(
-      children: <Widget>[
-        Align(
-          alignment: Alignment.center,
-          child: Divider(color: Colors.white24),
-        ),
-        Align(
-          alignment: Alignment.center,
+  Widget _buildTextDash(String text) {
+    return Row(
+      children: [
+        Expanded(child: Divider(color: Colors.white24, thickness: 1)),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 12),
           child: Container(
-            color: Colors.black,
-            padding: const EdgeInsets.symmetric(horizontal: 12),
-            child: Text('Or', style: AppFont.kNormalTextStyleGrey),
+            color: Colors.transparent, // Đặt màu nền để che phần Divider bị cắt
+            padding: EdgeInsets.symmetric(
+              horizontal: 8,
+              vertical: 2,
+            ), // Thêm padding cho đẹp
+            child: Text(
+              text,
+              style: AppFont.kNormalTextStyleGrey.copyWith(
+                fontSize: 14,
+              ), // Tăng font size nếu cần
+            ),
           ),
         ),
+        Expanded(child: Divider(color: Colors.white24, thickness: 1)),
       ],
     );
   }
@@ -238,7 +286,7 @@ class _WidgetSignInFormState extends State<WidgetSignInForm> {
           icon: SvgPicture.asset(AppVectors.iconGoogle, height: 30),
           onPressed: () {},
         ),
-        const SizedBox(width: 20),
+        SizedBox(width: 20),
         IconButton(
           icon: SvgPicture.asset(AppVectors.iconFacebook, height: 30),
           onPressed: () {},

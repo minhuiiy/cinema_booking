@@ -1,5 +1,5 @@
+import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:flutter/material.dart';
-import 'package:cinema_booking/core/configs/theme/app_color.dart';
 
 class BasicAppButton extends StatelessWidget {
   final VoidCallback onPressed;
@@ -24,24 +24,39 @@ class BasicAppButton extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       height: height,
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor:
-              isEnabled
-                  ? AppColors.red
-                  : AppColors.grey, // Disabled state color
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
+      child: InkWell(
+        onTap: isEnabled ? onPressed : null,
+        borderRadius: BorderRadius.circular(30),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30),
+            gradient:
+                isEnabled
+                    ? LinearGradient(
+                      colors: [Color(0xFF9C27B0), Color(0xFFE91E63)],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    )
+                    : LinearGradient(
+                      colors: [Colors.grey.shade400, Colors.grey.shade600],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black45,
+                blurRadius: 6,
+                offset: Offset(2, 4),
+              ),
+            ],
           ),
-        ),
-        onPressed:
-            isEnabled ? onPressed : null, // Disable button when not enabled
-        child: Text(
-          title,
-          style: TextStyle(
-            fontWeight: weight,
-            color: Colors.white, // Ensured proper contrast
-            fontSize: textSize,
+          alignment: Alignment.center,
+          child: Text(
+            title,
+            style: AppFont.kNormalBoldTextStyleWhite.copyWith(
+              fontSize: textSize,
+              fontWeight: weight,
+            ),
           ),
         ),
       ),

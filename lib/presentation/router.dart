@@ -45,11 +45,15 @@ class AppRouter {
 
       case BOOK_TIME_SLOT:
         var movie = settings.arguments as MovieEntity;
-        return MaterialPageRoute(builder: (_) => BookTimeSlotScreen(movie: movie));
+        return MaterialPageRoute(
+          builder: (_) => BookTimeSlotScreen(movie: movie),
+        );
 
       case MOVIE:
         var movieDetail = settings.arguments as MovieDetailEntity;
-        return MaterialPageRoute(builder: (_) => MovieInfoScreen(movie: movieDetail));
+        return MaterialPageRoute(
+          builder: (_) => MovieInfoScreen(movie: movieDetail),
+        );
 
       case ALL_MOVIES:
         return MaterialPageRoute(builder: (_) => AllMoviesScreen());
@@ -58,12 +62,18 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => BookSeatTypeScreen());
       case BOOK_SEAT_SLOT:
         final args = settings.arguments as ScreenArguments;
-        return MaterialPageRoute(builder: (_) => BookSeatSlotScreen(args: args));
+        return MaterialPageRoute(
+          builder: (_) => BookSeatSlotScreen(args: args),
+        );
 
       default:
         return MaterialPageRoute(
           builder:
-              (_) => Scaffold(body: Center(child: Text('No route defined for ${settings.name}'))),
+              (_) => Scaffold(
+                body: Center(
+                  child: Text('No route defined for ${settings.name}'),
+                ),
+              ),
         );
     }
   }

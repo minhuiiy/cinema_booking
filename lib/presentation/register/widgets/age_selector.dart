@@ -58,7 +58,8 @@ class _AgeSelectorState extends State<AgeSelector> {
               "$age",
               style: AppFont.kMiniTitleTextStyleWhite.copyWith(
                 fontSize: isSelected ? 24 : 18, // Enlarge selected age
-                color: isSelected ? AppColors.red : AppColors.textLight,
+                color:
+                    isSelected ? AppColors.defaultColor : AppColors.textLight,
                 fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
               ),
             ),

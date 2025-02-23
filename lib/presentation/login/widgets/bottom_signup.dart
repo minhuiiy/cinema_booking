@@ -18,7 +18,10 @@ class WidgetBottomSignUp extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Text('Don\'t have an account ?', style: AppFont.kNormalTextStyleWhite),
+          Text(
+            'Don\'t have an account ?  ',
+            style: AppFont.kNormalTextStyleWhite,
+          ),
           Flexible(
             child: GestureDetector(
               onTap: () {
@@ -30,12 +33,15 @@ class WidgetBottomSignUp extends StatelessWidget {
                   'Sign up',
                   style: AppFont.kNormalBoldTextStyleWhite.copyWith(
                     decoration: TextDecoration.underline,
+                    fontSize: 17,
                   ),
                 ),
               ),
             ),
           ),
-          Flexible(child: Text('Here', style: AppFont.kNormalBoldTextStyleWhite)),
+          Flexible(
+            child: Text('here.', style: AppFont.kNormalBoldTextStyleWhite),
+          ),
         ],
       ),
     );
