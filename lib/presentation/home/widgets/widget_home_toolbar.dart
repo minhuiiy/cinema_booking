@@ -82,7 +82,7 @@ class _WidgetHomeToolbarState extends State<WidgetHomeToolbar> with TickerProvid
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 15),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       color: AppColors.darkBackground,
       height: 70,
       child: Row(children: <Widget>[_buildAvatarAndName(), _buildNotificationIcon()]),
