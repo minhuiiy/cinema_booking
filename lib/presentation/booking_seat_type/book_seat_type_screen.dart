@@ -1,15 +1,14 @@
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
-import 'package:cinema_booking/domain/entities/booking/booking_time_slot.dart';
-import 'package:cinema_booking/presentation/booking_time_slot/widgets/widget_cinema_timeslot.dart';
-import 'package:cinema_booking/presentation/booking_time_slot/widgets/widget_empty.dart';
-import 'package:cinema_booking/presentation/booking_time_slot/widgets/widget_toolbar.dart';
-import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
+import 'package:cinema_booking/domain/entities/booking/booking_time_slot.dart';
 import 'package:cinema_booking/presentation/booking_seat_slot/book_seat_slot_screen.dart';
 import 'package:cinema_booking/presentation/booking_seat_type/bloc/book_seat_type_bloc.dart';
 import 'package:cinema_booking/presentation/booking_seat_type/bloc/book_seat_type_state.dart';
 import 'package:cinema_booking/presentation/booking_seat_type/widgets/widget_how_many_seats.dart';
 import 'package:cinema_booking/presentation/booking_time_slot/book_time_slot_main.dart';
+import 'package:cinema_booking/presentation/booking_time_slot/widgets/widget_cinema_timeslot.dart';
+import 'package:cinema_booking/presentation/booking_time_slot/widgets/widget_empty.dart';
+import 'package:cinema_booking/presentation/booking_time_slot/widgets/widget_toolbar.dart';
 import 'package:cinema_booking/presentation/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -42,14 +41,10 @@ class _BookSeatTypeScreenState extends State<BookSeatTypeScreen> {
 
             if (state.movie != null && state.bookTimeSlot != null) {
               BookTimeSlotEntity bookTimeSlot = state.bookTimeSlot!;
-              int selectedIndex = bookTimeSlot.timeSlots.indexOf(
-                state.selectedTimeSlot!,
-              );
+              int selectedIndex = bookTimeSlot.timeSlots.indexOf(state.selectedTimeSlot!);
               String movieName = state.movie!.name;
 
-              _itemCineTimeSlot = ItemCineTimeSlot.fromBookTimeSlot(
-                bookTimeSlot: bookTimeSlot,
-              );
+              _itemCineTimeSlot = ItemCineTimeSlot.fromBookTimeSlot(bookTimeSlot: bookTimeSlot);
 
               return Scaffold(
                 body: Stack(
@@ -107,17 +102,12 @@ class _BookSeatTypeScreenState extends State<BookSeatTypeScreen> {
             ),
           ),
           onPressed: () {
-            BlocProvider.of<BookSeatTypeBloc>(
-              _blocContext,
-            ).add(ClickSelectSeats());
+            BlocProvider.of<BookSeatTypeBloc>(_blocContext).add(ClickSelectSeats());
           },
           child: Ink(
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [
-                  Color(0xFF9C27B0),
-                  Color(0xFFE91E63),
-                ], // Gradient effect
+                colors: [Color(0xFF9C27B0), Color(0xFFE91E63)], // Gradient effect
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),
@@ -127,8 +117,8 @@ class _BookSeatTypeScreenState extends State<BookSeatTypeScreen> {
               alignment: Alignment.center,
               constraints: BoxConstraints(minHeight: 54),
               child: Text(
-                'Select seats',
-                style: AppFont.medium_white_16.copyWith(
+                'SELECT SEATS',
+                style: AppFont.semibold_white_18.copyWith(
                   fontWeight: FontWeight.bold,
                   letterSpacing: 1.2,
                 ),
@@ -144,13 +134,8 @@ class _BookSeatTypeScreenState extends State<BookSeatTypeScreen> {
     Navigator.pushNamed(
       context,
       AppRouter.BOOK_SEAT_SLOT,
-      arguments: ScreenArguments(
-        seatCount: state.seatCount,
-        seatType: state.selectedSeatType,
-      ),
+      arguments: ScreenArguments(seatCount: state.seatCount, seatType: state.selectedSeatType),
     );
-    BlocProvider.of<BookSeatTypeBloc>(
-      _blocContext,
-    ).add(OpenedBookSeatSlotScreen());
+    BlocProvider.of<BookSeatTypeBloc>(_blocContext).add(OpenedBookSeatSlotScreen());
   }
 }

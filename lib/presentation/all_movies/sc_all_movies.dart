@@ -16,8 +16,6 @@ class AllMoviesScreen extends StatefulWidget {
 }
 
 class _AllMoviesScreenState extends State<AllMoviesScreen> {
-  // Khởi tạo LogHelper
-
   @override
   Widget build(BuildContext context) {
     LogHelper.debug(tag: "AllMoviesScreen", message: "Building AllMoviesScreen...");

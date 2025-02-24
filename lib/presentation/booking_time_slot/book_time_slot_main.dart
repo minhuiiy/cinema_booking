@@ -29,12 +29,7 @@ class BookTimeSlotScreen extends StatelessWidget {
             children: <Widget>[
               WidgetSearchSortToolbar(title: movie.name),
               Expanded(
-                child: Stack(
-                  children: <Widget>[
-                    _buildListCineTimeSlot(),
-                    _buildBtnToday(),
-                  ],
-                ),
+                child: Stack(children: <Widget>[_buildListCineTimeSlot(), _buildBtnToday()]),
               ),
             ],
           ),
@@ -93,51 +88,15 @@ class BookTimeSlotScreen extends StatelessWidget {
       right: 0,
       left: 0,
       child: CinematicBottomBar(
-        dateText: "Today, 14 NOV",
-        formatText: "Tamil, 3D",
+        dateText: "Today, 22 APR",
+        formatText: "Hanoi, 3D",
         onDateTap: () {
-          // openCineDatePicker();
+          //TODO: openCineDatePicker();
         },
         onFormatTap: () {
-          // openCineDatePicker();
+          //TODO: openCineDatePicker();
         },
       ),
-
-      //       Container(
-      //         height: 56,
-      //         padding: EdgeInsets.only(left: 20),
-      // //        width: MediaQuery.of(_context).size.width,
-      //         color: AppColors.blue,
-      //         child: Row(
-      //           children: <Widget>[
-      //             Expanded(
-      //               child: GestureDetector(
-      //                 onTap: () {
-      //                   // openCineDatePicker();
-      //                 },
-      //                 child: Row(
-      //                   children: <Widget>[
-      //                     Icon(Icons.calendar_today, color: AppColors.white, size: 14),
-      //                     WidgetSpacer(width: 6),
-      //                     Text('Today, 14 NOV', style: AppFont.regular_white_14),
-      //                     WidgetSpacer(width: 4),
-      //                     Icon(Icons.keyboard_arrow_down, color: AppColors.white, size: 12)
-      //                   ],
-      //                 ),
-      //               ),
-      //             ),
-      //             Expanded(
-      //               child: Row(
-      //                 children: <Widget>[
-      //                   Text('Tamil, 3D', style: AppFont.regular_white_14),
-      //                   WidgetSpacer(width: 4),
-      //                   Icon(Icons.keyboard_arrow_down, color: AppColors.white, size: 10)
-      //                 ],
-      //               ),
-      //             )
-      //           ],
-      //         ),
-      //       ),
     );
   }
 
@@ -146,16 +105,6 @@ class BookTimeSlotScreen extends StatelessWidget {
     BlocProvider.of<BookTimeSlotBloc>(context).add(OpenedBookSeatTypeScreen());
     Navigator.pushNamed(context, AppRouter.BOOK_SEAT_TYPE);
   }
-
-  // void openCineDatePicker() {
-  //   movieModalBottomSheet(
-  //     backgroundColor: Colors.transparent,
-  //     context: _context,
-  //     builder: (context) {
-  //       return CineDatePickerScreen();
-  //     },
-  //   );
-  // }
 }
 
 class ItemCineTimeSlot {

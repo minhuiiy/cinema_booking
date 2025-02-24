@@ -28,20 +28,31 @@ class _WidgetItemGridSeatSlotState extends State<WidgetItemGridSeatSlot> {
   Widget build(BuildContext context) {
     itemGridSeatSlotVM = widget.itemGridSeatSlotVM;
 
-    return Container(
-      color: AppColors.white,
-      padding: EdgeInsets.all(20),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            itemGridSeatSlotVM.seatTypeName,
-            style: AppFont.regular_gray4_12,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: Container(
+        decoration: BoxDecoration(
+          color: AppColors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
           ),
-          WidgetSpacer(height: 14),
-          _buildSlotGrid(),
-        ],
+        ),
+        padding: EdgeInsets.fromLTRB(20, 20, 20, 5),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(itemGridSeatSlotVM.seatTypeName, style: AppFont.regular_gray4_12),
+            WidgetSpacer(height: 14),
+            _buildSlotGrid(),
+            WidgetSpacer(height: 10),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 3),
+              child: Divider(color: AppColors.gray1, thickness: 2),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -100,12 +111,7 @@ class _WidgetItemGridSeatSlotState extends State<WidgetItemGridSeatSlot> {
                   border: Border.all(color: itemBorderColor, width: 1),
                   boxShadow:
                       itemSeatSlotVM.isSelected
-                          ? [
-                            BoxShadow(
-                              color: Colors.purpleAccent,
-                              blurRadius: 8,
-                            ),
-                          ]
+                          ? [BoxShadow(color: Colors.purpleAccent, blurRadius: 8)]
                           : [],
                 ),
                 //            child: Center(child: Text('${seatRow.rowId}${i + 1}')),
