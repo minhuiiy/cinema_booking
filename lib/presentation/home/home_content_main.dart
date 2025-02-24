@@ -41,12 +41,8 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
       providers: [
         BlocProvider(create: (context) => HomeBannerBloc(homeBloc: homeBloc)),
         BlocProvider(create: (context) => HomeGenresBloc(homeBloc: homeBloc)),
-        BlocProvider(
-          create: (context) => RecommendedMoviesBloc(homeBloc: homeBloc),
-        ),
-        BlocProvider(
-          create: (context) => HomeMoviesGenresBloc(homeBloc: homeBloc),
-        ),
+        BlocProvider(create: (context) => RecommendedMoviesBloc(homeBloc: homeBloc)),
+        BlocProvider(create: (context) => HomeMoviesGenresBloc(homeBloc: homeBloc)),
       ],
       child: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
