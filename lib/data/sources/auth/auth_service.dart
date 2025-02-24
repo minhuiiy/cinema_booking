@@ -4,8 +4,12 @@
  * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
  */
 
+import 'package:cinema_booking/common/helpers/log_helpers.dart';
 import 'package:cinema_booking/data/models/auth/create_user_req.dart';
+import 'package:cinema_booking/data/models/auth/edit_user_req.dart';
 import 'package:cinema_booking/data/models/auth/signin_user_req.dart';
+import 'package:cinema_booking/data/models/auth/user.dart';
+import 'package:cinema_booking/domain/entities/auth/user.dart';
 import 'package:cinema_booking/service_locator.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
@@ -16,7 +20,8 @@ abstract class AuthService {
   Future<Either<String, String>> signup(CreateUserReq createUserReq);
   Future<Either<String, String>> signin(SigninUserReq signinUserReq);
   Future<Either<String, String>> signOut();
-  Future<Either<String, String>> getUser();
+  Future<Either<String, UserEntity>> getUser();
+  Future<Either<String, String>> editUserInfo(EditUserReq edit);
   Future<Either<String, String>> signInWithGoogle();
   Future<bool> isSignedIn();
 }
@@ -47,7 +52,7 @@ class AuthServiceImpl extends AuthService {
     try {
       UserCredential userCredential = await _firebaseAuth
           .createUserWithEmailAndPassword(
-            email: createUserReq.email,
+            email: createUserReq.email!,
             password: createUserReq.password,
           );
 
@@ -71,6 +76,33 @@ class AuthServiceImpl extends AuthService {
   }
 
   @override
+  Future<Either<String, String>> editUserInfo(EditUserReq edit) async {
+    try {
+      final user = _firebaseAuth.currentUser;
+      if (user != null && edit.email == user.email && edit.password != null) {
+        await user.updatePassword(edit.password!);
+      }
+
+      String uid = user!.uid;
+
+      // Save user data to Firestore
+      await firestore.collection('users').doc(uid).set({
+        'uid': uid,
+        'email': edit.email,
+        'fullName': edit.fullName,
+        'age': edit.age,
+        'gender': edit.gender,
+        'createdAt':
+            FieldValue.serverTimestamp(), // Store account creation timestamp
+      });
+
+      return const Right('Update was Successful');
+    } catch (e) {
+      return Left('Update Fails');
+    }
+  }
+
+  @override
   Future<Either<String, String>> signOut() async {
     try {
       await Future.wait([_firebaseAuth.signOut(), _googleSignIn.signOut()]);
@@ -81,12 +113,35 @@ class AuthServiceImpl extends AuthService {
   }
 
   @override
-  Future<Either<String, String>> getUser() async {
-    final currentUser = _firebaseAuth.currentUser;
-    if (currentUser != null) {
-      return Right(currentUser.displayName ?? 'No Display Name');
-    } else {
-      return Left('No user found');
+  Future<Either<String, UserEntity>> getUser() async {
+    try {
+      final currentUser = _firebaseAuth.currentUser;
+      if (currentUser != null) {
+        DocumentSnapshot userDoc =
+            await firestore.collection('users').doc(currentUser.uid).get();
+
+        if (userDoc.exists && userDoc.data() != null) {
+          UserModel userModel = UserModel.fromJson(
+            userDoc.data() as Map<String, dynamic>,
+          );
+          LogHelper.debug(
+            tag: "AuthService",
+            message: 'userDoc data: ${userDoc.data().toString()}',
+          );
+
+          LogHelper.debug(
+            tag: "AuthService",
+            message: 'userModel data: ${userModel.toString()}',
+          );
+          return Right(userModel.toEntity()); // Return user model
+        } else {
+          return Left('User data not found in Firestore');
+        }
+      } else {
+        return Left('No user is currently signed in');
+      }
+    } catch (e) {
+      return Left('Error retrieving user data: ${e.toString()}');
     }
   }
 

@@ -9,7 +9,8 @@ import 'package:cinema_booking/common/bloc/theme/theme_cubit.dart';
 import 'package:cinema_booking/core/configs/theme/app_theme.dart';
 import 'package:cinema_booking/firebase_options.dart';
 import 'package:cinema_booking/presentation/home/bloc/home_bloc.dart';
-import 'package:cinema_booking/presentation/home/home_main.dart';
+import 'package:cinema_booking/presentation/home/home.dart';
+import 'package:cinema_booking/presentation/home/home_content_main.dart';
 import 'package:cinema_booking/presentation/login/login.dart';
 import 'package:cinema_booking/presentation/router.dart';
 

@@ -12,7 +12,7 @@ class HomeServiceImpl extends HomeService {
   @override
   Future<Either> getHomeData() async {
     try {
-      LogHelper.logDebug(
+      LogHelper.debug(
         tag: "HomeService",
         message: "Making API request to fetch home data",
       );
@@ -21,7 +21,7 @@ class HomeServiceImpl extends HomeService {
 
       return right(homeData.toEntity());
     } catch (e) {
-      LogHelper.logError(
+      LogHelper.error(
         tag: "HomeService",
         message: "Error occurred while fetching home data: $e",
       );

@@ -44,7 +44,7 @@ class HttpLogInterceptor extends InterceptorsWrapper {
     }
 
     if (logMessage.isNotEmpty) {
-      LogHelper.logInfo(tag: "HttpLogInterceptor", message: logMessage);
+      LogHelper.info(tag: "HttpLogInterceptor", message: logMessage);
     }
 
     handler.next(options);
@@ -53,7 +53,7 @@ class HttpLogInterceptor extends InterceptorsWrapper {
   /// Intercepts and logs the HTTP response details.
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
-    LogHelper.logDebug(
+    LogHelper.debug(
       tag: "HttpLogInterceptor",
       message:
           "statusCode=${response.statusCode}\n"
@@ -66,7 +66,7 @@ class HttpLogInterceptor extends InterceptorsWrapper {
   /// Intercepts and logs any errors occurring during the HTTP request.
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
-    LogHelper.logError(
+    LogHelper.error(
       tag: "HttpLogInterceptor",
       message:
           "onError: $err\n"
@@ -86,7 +86,7 @@ class AuthInterceptor extends Interceptor {
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
-    LogHelper.logDebug(
+    LogHelper.debug(
       tag: "AuthInterceptor",
       message: "Adding Authorization token...",
     );
@@ -101,7 +101,7 @@ class AuthInterceptor extends Interceptor {
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
-    LogHelper.logDebug(
+    LogHelper.debug(
       tag: "AuthInterceptor",
       message:
           "Response received: ${response.statusCode}", // Log HTTP response status.
@@ -112,14 +112,14 @@ class AuthInterceptor extends Interceptor {
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) async {
-    LogHelper.logDebug(
+    LogHelper.debug(
       tag: "AuthInterceptor",
       message: "Error occurred: ${err.response?.statusCode}",
     );
 
     if (err.response?.statusCode == 401) {
       // Check if the error is due to token expiration.
-      LogHelper.logDebug(
+      LogHelper.debug(
         tag: "AuthInterceptor",
         message: "Token expired, refreshing token...",
       );
@@ -133,7 +133,7 @@ class AuthInterceptor extends Interceptor {
           return handler.resolve(retryRequest);
         }
       } catch (e) {
-        LogHelper.logError(
+        LogHelper.error(
           tag: "AuthInterceptor",
           message: "Refresh token failed: $e",
         );

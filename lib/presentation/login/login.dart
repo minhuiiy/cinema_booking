@@ -31,7 +31,10 @@ class LoginScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Stack(
               children: [
-                Align(alignment: Alignment.topRight, child: SvgPicture.asset(AppVectors.unionTop)),
+                Align(
+                  alignment: Alignment.topRight,
+                  child: SvgPicture.asset(AppVectors.unionTop),
+                ),
                 Align(
                   alignment: Alignment.bottomRight,
                   child: SvgPicture.asset(AppVectors.unionBottom),
@@ -46,7 +49,10 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                Align(alignment: Alignment.center, child: Image.asset(AppImages.logo)),
+                Align(
+                  alignment: Alignment.center,
+                  child: Image.asset(AppImages.logo),
+                ),
                 SingleChildScrollView(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,

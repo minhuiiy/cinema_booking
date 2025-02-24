@@ -20,7 +20,10 @@ class AllTicketsServiceImpl extends AllTicketsService {
   @override
   Future<Either<String, List<Ticket>>> getAllTicketsData() async {
     try {
-      var listMap = await DbHelper.db.query(TABLE_NAME, orderBy: '$COL_BOOK_TIME DESC');
+      var listMap = await DbHelper.db.query(
+        TABLE_NAME,
+        orderBy: '$COL_BOOK_TIME DESC',
+      );
 
       return right(listMap.map((jsonRaw) => Ticket.fromJson(jsonRaw)).toList());
     } catch (e) {

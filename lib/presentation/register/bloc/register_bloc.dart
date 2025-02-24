@@ -6,7 +6,7 @@
 
 import 'package:cinema_booking/common/helpers/is_valid.dart';
 import 'package:cinema_booking/data/models/auth/create_user_req.dart';
-import 'package:cinema_booking/domain/usecase/auth/signup.dart';
+import 'package:cinema_booking/domain/usecase/user/signup.dart';
 import 'package:cinema_booking/service_locator.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

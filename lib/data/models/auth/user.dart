@@ -7,10 +7,10 @@
 import 'package:cinema_booking/domain/entities/auth/user.dart';
 
 class UserModel {
-  String email;
-  String fullName;
-  String gender;
-  int age;
+  String? email;
+  String? fullName;
+  String? gender;
+  int? age;
 
   UserModel({
     required this.email,
@@ -21,18 +21,23 @@ class UserModel {
 
   UserModel.fromJson(Map<String, dynamic> data)
     : email = data['email'],
-      fullName = data['full_Name'],
+      fullName = data['fullName'],
       gender = data['gender'],
-      age = data['age'] ?? 10;
+      age = data['age'] ?? 18;
+
+  @override
+  String toString() {
+    return 'UserModel{email: $email, fullName: $fullName, gender: $gender, age: $age}';
+  }
 }
 
 extension UserModelX on UserModel {
   UserEntity toEntity() {
     return UserEntity(
-      email: email,
-      fullName: fullName,
-      age: age,
-      gender: gender,
+      email: email ?? "",
+      fullName: fullName ?? "",
+      age: age ?? 18,
+      gender: gender ?? "male",
     );
   }
 }
