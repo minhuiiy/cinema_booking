@@ -5,6 +5,7 @@
  */
 
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
+import 'package:cinema_booking/common/widgets/texts/gradient_text.dart';
 import 'package:cinema_booking/core/configs/assets/app_images.dart';
 import 'package:cinema_booking/core/configs/assets/app_vectors.dart';
 
@@ -30,10 +31,7 @@ class LoginScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Stack(
               children: [
-                Align(
-                  alignment: Alignment.topRight,
-                  child: SvgPicture.asset(AppVectors.unionTop),
-                ),
+                Align(alignment: Alignment.topRight, child: SvgPicture.asset(AppVectors.unionTop)),
                 Align(
                   alignment: Alignment.bottomRight,
                   child: SvgPicture.asset(AppVectors.unionBottom),
@@ -48,10 +46,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                Align(
-                  alignment: Alignment.center,
-                  child: Image.asset(AppImages.logo),
-                ),
+                Align(alignment: Alignment.center, child: Image.asset(AppImages.logo)),
                 SingleChildScrollView(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -62,9 +57,9 @@ class LoginScreen extends StatelessWidget {
                         padding: const EdgeInsets.only(right: 40),
                         child: Align(
                           alignment: Alignment.centerRight,
-                          child: Text(
-                            'SIGN IN',
-                            style: AppFont.kTitleTextStyle.copyWith(
+                          child: GradientText(
+                            text: "SIGN IN",
+                            textStyle: AppFont.kTitleTextStyle.copyWith(
                               fontSize: 45,
                               fontFamily: 'Oswald',
                             ),

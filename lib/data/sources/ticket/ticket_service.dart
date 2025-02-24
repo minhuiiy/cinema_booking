@@ -8,12 +8,12 @@ abstract class AllTicketsService {
 }
 
 class AllTicketsServiceImpl extends AllTicketsService {
-  static final TABLE_NAME = "my_ticket";
+  static final TABLE_NAME = "tickets";
 
   static final COL_ID = "id";
-  static final COL_SHOW_NAME = "show_name";
-  static final COL_SHOW_BANNER = "show_banner";
-  static final COL_SHOW_TIME_SLOT = "show_time_slot";
+  static final COL_SHOW_NAME = "movie_name";
+  static final COL_SHOW_BANNER = "movie_banner";
+  static final COL_SHOW_TIME_SLOT = "movie_time_slot";
   static final COL_BOOK_TIME = "book_time";
   static final COL_CINE_NAME = "cine_name";
   static final COL_SEAT = "seat";

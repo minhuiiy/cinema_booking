@@ -24,13 +24,16 @@ mixin _$ListTicketsState {
   /// Create a copy of ListTicketsState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ListTicketsStateCopyWith<ListTicketsState> get copyWith => throw _privateConstructorUsedError;
+  $ListTicketsStateCopyWith<ListTicketsState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $ListTicketsStateCopyWith<$Res> {
-  factory $ListTicketsStateCopyWith(ListTicketsState value, $Res Function(ListTicketsState) then) =
-      _$ListTicketsStateCopyWithImpl<$Res, ListTicketsState>;
+  factory $ListTicketsStateCopyWith(
+    ListTicketsState value,
+    $Res Function(ListTicketsState) then,
+  ) = _$ListTicketsStateCopyWithImpl<$Res, ListTicketsState>;
   @useResult
   $Res call({bool isLoading, List<Ticket> data, String? msg});
 }
@@ -49,7 +52,11 @@ class _$ListTicketsStateCopyWithImpl<$Res, $Val extends ListTicketsState>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? isLoading = null, Object? data = null, Object? msg = freezed}) {
+  $Res call({
+    Object? isLoading = null,
+    Object? data = null,
+    Object? msg = freezed,
+  }) {
     return _then(
       _value.copyWith(
             isLoading:
@@ -74,7 +81,8 @@ class _$ListTicketsStateCopyWithImpl<$Res, $Val extends ListTicketsState>
 }
 
 /// @nodoc
-abstract class _$$ListTicketsStateImplCopyWith<$Res> implements $ListTicketsStateCopyWith<$Res> {
+abstract class _$$ListTicketsStateImplCopyWith<$Res>
+    implements $ListTicketsStateCopyWith<$Res> {
   factory _$$ListTicketsStateImplCopyWith(
     _$ListTicketsStateImpl value,
     $Res Function(_$ListTicketsStateImpl) then,
@@ -97,7 +105,11 @@ class __$$ListTicketsStateImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? isLoading = null, Object? data = null, Object? msg = freezed}) {
+  $Res call({
+    Object? isLoading = null,
+    Object? data = null,
+    Object? msg = freezed,
+  }) {
     return _then(
       _$ListTicketsStateImpl(
         isLoading:
@@ -122,7 +134,9 @@ class __$$ListTicketsStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ListTicketsStateImpl with DiagnosticableTreeMixin implements _ListTicketsState {
+class _$ListTicketsStateImpl
+    with DiagnosticableTreeMixin
+    implements _ListTicketsState {
   const _$ListTicketsStateImpl({
     this.isLoading = true,
     final List<Ticket> data = const [],
@@ -164,14 +178,19 @@ class _$ListTicketsStateImpl with DiagnosticableTreeMixin implements _ListTicket
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ListTicketsStateImpl &&
-            (identical(other.isLoading, isLoading) || other.isLoading == isLoading) &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading) &&
             const DeepCollectionEquality().equals(other._data, _data) &&
             (identical(other.msg, msg) || other.msg == msg));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, isLoading, const DeepCollectionEquality().hash(_data), msg);
+  int get hashCode => Object.hash(
+    runtimeType,
+    isLoading,
+    const DeepCollectionEquality().hash(_data),
+    msg,
+  );
 
   /// Create a copy of ListTicketsState
   /// with the given fields replaced by the non-null parameter values.
@@ -179,7 +198,10 @@ class _$ListTicketsStateImpl with DiagnosticableTreeMixin implements _ListTicket
   @override
   @pragma('vm:prefer-inline')
   _$$ListTicketsStateImplCopyWith<_$ListTicketsStateImpl> get copyWith =>
-      __$$ListTicketsStateImplCopyWithImpl<_$ListTicketsStateImpl>(this, _$identity);
+      __$$ListTicketsStateImplCopyWithImpl<_$ListTicketsStateImpl>(
+        this,
+        _$identity,
+      );
 }
 
 abstract class _ListTicketsState implements ListTicketsState {
