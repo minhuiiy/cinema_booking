@@ -19,8 +19,7 @@ class UserInfoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create:
-          (context) => UserInfoBloc()..add(LoadUserInfo()), // Provide the Bloc
+      create: (context) => UserInfoBloc()..add(LoadUserInfo()), // Provide the Bloc
       child: const UserInfoPage(), // Ensure UserInfoPage has access to the Bloc
     );
   }
@@ -48,10 +47,6 @@ class _UserInfoPageState extends State<UserInfoPage> {
       _confirmPassword.text.isNotEmpty &&
       _fullName.text.isNotEmpty;
 
-  bool isUserInfoButtonEnabled(UserInfoState state) {
-    return state.isFormValid && isPopulated && !state.isSubmitting;
-  }
-
   void updateAge(int age) {
     setState(() {
       selectedAge = age;
@@ -67,52 +62,43 @@ class _UserInfoPageState extends State<UserInfoPage> {
   Widget build(BuildContext context) {
     return BlocListener<UserInfoBloc, UserInfoState>(
       listener: (context, state) {
-        print(state.toString());
-        if (state.isSuccess) {
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(
-              const SnackBar(
-                content: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('UserInfo update success'),
-                    Icon(Icons.error),
-                  ],
+        if (state is UserInfoEdit) {
+          if (state.isSuccess) {
+            ScaffoldMessenger.of(context)
+              ..hideCurrentSnackBar()
+              ..showSnackBar(
+                const SnackBar(
+                  content: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [Text('UserInfo update success'), Icon(Icons.error)],
+                  ),
+                  backgroundColor: Colors.green,
                 ),
-                backgroundColor: Colors.green,
-              ),
-            );
-        }
+              );
+          }
 
-        if (state.isFailure) {
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(
-              const SnackBar(
-                content: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('UserInfo update Failure'),
-                    Icon(Icons.error),
-                  ],
+          if (state.isFailure) {
+            ScaffoldMessenger.of(context)
+              ..hideCurrentSnackBar()
+              ..showSnackBar(
+                const SnackBar(
+                  content: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [Text('UserInfo update Failure'), Icon(Icons.error)],
+                  ),
+                  backgroundColor: Colors.red,
                 ),
-                backgroundColor: Colors.red,
-              ),
-            );
+              );
+          }
         }
       },
       child: BlocBuilder<UserInfoBloc, UserInfoState>(
         builder: (context, state) {
-          if (state.userInfo == null) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('UserInfo fetching ... '),
-                CircularProgressIndicator(),
-              ],
-            );
-          } else {
+          if (state is UserInfoLoading) {
+            return Center(child: CircularProgressIndicator());
+          }
+
+          if (state is UserInfoEdit) {
             return Scaffold(
               backgroundColor: AppColors.darkBackground,
               appBar: AppBar(
@@ -145,10 +131,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
                       child: Opacity(
                         opacity: 0.3,
                         child: ImageFiltered(
-                          imageFilter: ImageFilter.blur(
-                            sigmaX: 5,
-                            sigmaY: 5,
-                          ), // Làm mờ ảnh
+                          imageFilter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
                           child: Image.asset(
                             AppImages.ticket,
                             width: MediaQuery.of(context).size.width * 0.4,
@@ -175,37 +158,23 @@ class _UserInfoPageState extends State<UserInfoPage> {
                             children: [
                               GradientText(
                                 text: "ABOUT ME",
-                                textStyle: AppFont.kTitleTextStyle.copyWith(
-                                  fontFamily: 'Oswald',
-                                ),
+                                textStyle: AppFont.kTitleTextStyle.copyWith(fontFamily: 'Oswald'),
                               ),
                               WidgetSpacer(width: 10),
                             ],
                           ),
                           const WidgetSpacer(height: 25),
-                          _textField(
-                            "Email",
-                            _email,
-                            state.userInfo?.email ?? "",
-                          ),
+                          _textField("Email", _email, state.userInfo.email),
                           const WidgetSpacer(height: 20),
-                          _textField(
-                            "Full Name",
-                            _fullName,
-                            state.userInfo?.fullName ?? "",
-                          ),
+                          _textField("Full Name", _fullName, state.userInfo.fullName),
                           const WidgetSpacer(height: 20),
                           _textField("Password", _password, "Password"),
                           const WidgetSpacer(height: 20),
-                          _textField(
-                            "Confirm Password",
-                            _confirmPassword,
-                            "Confirm Password",
-                          ),
+                          _textField("Confirm Password", _confirmPassword, "Confirm Password"),
                           const WidgetSpacer(height: 30),
                           _genderSelection(state),
                           const WidgetSpacer(height: 20),
-                          _ageSelection(state.userInfo!.age),
+                          _ageSelection(state.userInfo.age),
                           const WidgetSpacer(height: 35),
                           Align(
                             alignment: Alignment.bottomCenter,
@@ -226,16 +195,14 @@ class _UserInfoPageState extends State<UserInfoPage> {
               ),
             );
           }
+
+          return Container();
         },
       ),
     );
   }
 
-  Widget _textField(
-    String label,
-    TextEditingController controller,
-    String fetchInfo,
-  ) {
+  Widget _textField(String label, TextEditingController controller, String fetchInfo) {
     return TextField(
       controller: controller,
       style: AppFont.kNormalTextStyleWhite,
@@ -256,7 +223,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
     );
   }
 
-  Widget _genderSelection(UserInfoState state) {
+  Widget _genderSelection(UserInfoEdit state) {
     return Column(
       children: [
         Row(
@@ -265,16 +232,13 @@ class _UserInfoPageState extends State<UserInfoPage> {
               text: TextSpan(
                 style: AppFont.kNormalTextStyleWhite,
                 children: [
-                  TextSpan(
-                    text: "Gender:    ",
-                    style: AppFont.kMiniTitleTextStyleWhite,
-                  ),
+                  TextSpan(text: "Gender:    ", style: AppFont.kMiniTitleTextStyleWhite),
                   TextSpan(
                     text: selectedGender,
                     style: AppFont.kMiniTitleTextStyleWhite.copyWith(
                       color:
                           selectedGender == ""
-                              ? (state.userInfo?.gender ?? "Male") == "Male"
+                              ? (state.userInfo.gender) == "Male"
                                   ? AppColors.blue
                                   : AppColors.defaultColor
                               : selectedGender == "Male"
@@ -299,7 +263,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
     );
   }
 
-  Widget _genderAvatar(String gender, String imagePath, UserInfoState state) {
+  Widget _genderAvatar(String gender, String imagePath, UserInfoEdit state) {
     return GestureDetector(
       onTap: () => setState(() => selectedGender = gender),
       child: AnimatedContainer(
@@ -310,7 +274,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
           border: Border.all(
             color:
                 selectedGender == ""
-                    ? (state.userInfo?.gender ?? "Male") == gender
+                    ? (state.userInfo.gender) == gender
                         ? AppColors.defaultColor
                         : Colors.white24
                     : (selectedGender == gender)
@@ -338,16 +302,15 @@ class _UserInfoPageState extends State<UserInfoPage> {
     );
   }
 
-  void _onFormSubmitted(UserInfoState state) {
+  void _onFormSubmitted(UserInfoEdit state) {
     BlocProvider.of<UserInfoBloc>(context).add(
       Submitted(
-        email: _email.text.isEmpty ? state.userInfo!.email : _email.text,
+        email: _email.text.isEmpty ? state.userInfo.email : _email.text,
         password: _password.text,
         confirmPassword: _confirmPassword.text,
-        displayName:
-            _fullName.text.isEmpty ? state.userInfo!.fullName : _fullName.text,
+        displayName: _fullName.text.isEmpty ? state.userInfo.fullName : _fullName.text,
         age: selectedAge,
-        gender: selectedGender,
+        gender: selectedGender == "" ? state.userInfo.gender : selectedGender,
       ),
     );
   }

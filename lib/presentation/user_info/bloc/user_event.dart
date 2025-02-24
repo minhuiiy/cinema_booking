@@ -20,42 +20,6 @@ class LoadUserInfo extends UserInfoEvent {
   List<Object> get props => [];
 }
 
-class PasswordChanged extends UserInfoEvent {
-  final String password;
-  final String confirmPassword;
-
-  const PasswordChanged({
-    required this.password,
-    required this.confirmPassword,
-  });
-
-  @override
-  List<Object> get props => [];
-
-  @override
-  String toString() {
-    return 'PasswordChanged{password: $password, confirmPassword: $confirmPassword}';
-  }
-}
-
-class ConfirmPasswordChanged extends UserInfoEvent {
-  final String password;
-  final String confirmPassword;
-
-  const ConfirmPasswordChanged({
-    required this.password,
-    required this.confirmPassword,
-  });
-
-  @override
-  List<Object> get props => [];
-
-  @override
-  String toString() {
-    return 'ConfirmPasswordChanged{password: $password, confirmPassword: $confirmPassword}';
-  }
-}
-
 class Submitted extends UserInfoEvent {
   final String email;
   final String? password;

@@ -5,6 +5,7 @@
  */
 
 import 'package:cinema_booking/common/helpers/is_valid.dart';
+import 'package:cinema_booking/common/helpers/log_helpers.dart';
 import 'package:cinema_booking/data/models/auth/edit_user_req.dart';
 import 'package:cinema_booking/domain/entities/auth/user.dart';
 import 'package:cinema_booking/domain/usecase/user/edit_user_info.dart';
@@ -18,97 +19,64 @@ part 'user_state.dart';
 
 class UserInfoBloc extends Bloc<UserInfoEvent, UserInfoState> {
   /// Initializes the bloc with an empty state.
-  UserInfoBloc() : super(UserInfoState.empty()) {
+  UserInfoBloc() : super(UserInfoLoading()) {
     on<LoadUserInfo>(_loadUserInfo);
-    on<PasswordChanged>(_onPasswordChanged);
-    on<ConfirmPasswordChanged>(_onConfirmPasswordChanged);
     on<Submitted>(_onFormSubmitted);
   }
 
   /// Load UserInfo from FireBase
-  Future<void> _loadUserInfo(
-    LoadUserInfo event,
-    Emitter<UserInfoState> emit,
-  ) async {
+  Future<void> _loadUserInfo(LoadUserInfo event, Emitter<UserInfoState> emit) async {
     var response = await sl<GetUserUseCase>().call();
 
     response.fold(
       (l) {
-        emit(UserInfoState.failure());
+        emit(UserInfoLoadingFail());
       },
       (r) {
-        emit(state.loadUserInfo(userInfo: r));
+        emit(UserInfoEdit(userInfo: r, isFailure: false, isSuccess: false));
       },
     );
   }
 
-  /// Handles changes in password input.
-  /// Validates the password strength and checks if it matches the confirmation password.
-  void _onPasswordChanged(PasswordChanged event, Emitter<UserInfoState> emit) {
-    final isPasswordValid = Validators.isValidPassword(event.password);
-    final isMatched =
-        event.confirmPassword.isEmpty ||
-        event.password == event.confirmPassword;
-
-    emit(
-      state.update(
-        isPasswordValid: isPasswordValid,
-        isConfirmPasswordValid: isMatched,
-      ),
-    );
-  }
-
-  /// Handles changes in confirm password input.
-  /// Ensures that it matches the original password.
-  void _onConfirmPasswordChanged(
-    ConfirmPasswordChanged event,
-    Emitter<UserInfoState> emit,
-  ) {
-    final isConfirmPasswordValid = Validators.isValidPassword(
-      event.confirmPassword,
-    );
-    final isMatched =
-        event.password.isEmpty || event.password == event.confirmPassword;
-
-    emit(
-      state.update(isConfirmPasswordValid: isConfirmPasswordValid && isMatched),
-    );
-  }
-
-  Future<void> _onFormSubmitted(
-    Submitted event,
-    Emitter<UserInfoState> emit,
-  ) async {
-    // Validate form inputs
+  Future<void> _onFormSubmitted(Submitted event, Emitter<UserInfoState> emit) async {
+    final bool hasPassword = event.password != null && event.password!.isNotEmpty;
     final isValidEmail = Validators.isValidEmail(event.email);
     final isValidName = Validators.isValidName(event.displayName);
-    final bool hasPassword =
-        event.password != null && event.password!.isNotEmpty;
 
-    bool isValidPassword = true;
     bool isMatched = true;
+    bool isConfirmPasswordValid = true;
 
     if (hasPassword) {
-      isValidPassword = Validators.isValidPassword(event.password!);
+      isConfirmPasswordValid = Validators.isValidPassword(event.password!);
       isMatched = event.password == event.confirmPassword;
     }
 
-    // Update state with validation results
-    final newState = state.update(
-      isEmailValid: isValidEmail,
-      isNameValid: isValidName,
-      isPasswordValid: isValidPassword,
-      isConfirmPasswordValid: isMatched,
+    // Kiểm tra nếu state không phải `UserInfoEdit`, tạo một `UserInfoEdit.empty`
+    UserEntity user =
+        state is UserInfoEdit
+            ? (state as UserInfoEdit).userInfo
+            : UserEntity(email: "", fullName: "", age: 18, gender: "Male");
+
+    // Nếu form không hợp lệ, dừng lại
+    if (!isConfirmPasswordValid || !isValidName || !isValidEmail || !isMatched) {
+      LogHelper.debug(
+        tag: "_onFormSubmitted",
+        message:
+            "Invalid form isConfirmPasswordValid: $isConfirmPasswordValid, isValidName: $isValidName, isValidEmail: $isValidEmail, hasPassword: $hasPassword, isMatched: $isMatched",
+      );
+      emit(UserInfoEdit.failure(user));
+      return;
+    }
+
+    user = UserEntity(
+      email: event.email,
+      fullName: event.displayName,
+      gender: event.gender,
+      age: event.age,
     );
 
-    emit(newState);
+    emit(UserInfoLoading());
 
-    // If form is invalid, stop execution
-    if (!newState.isFormValid) return;
-
-    emit(UserInfoState.loading());
-
-    // Determine which use case to call (EditUserInfoUseCase if password exists, otherwise SignupUseCase)
     var result =
         await (hasPassword
             ? sl<EditUserInfoUseCase>().call(
@@ -129,9 +97,6 @@ class UserInfoBloc extends Bloc<UserInfoEvent, UserInfoState> {
               ),
             ));
 
-    result.fold(
-      (l) => emit(UserInfoState.failure()),
-      (r) => emit(UserInfoState.success()),
-    );
+    result.fold((l) => emit(UserInfoEdit.failure(user)), (r) => emit(UserInfoEdit.success(user)));
   }
 }
