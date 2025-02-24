@@ -24,7 +24,7 @@ class _WidgetHomeMoviesGenresState extends State<WidgetHomeMoviesGenres> {
     return BlocBuilder<HomeMoviesGenresBloc, HomeMoviesGenresState>(
       builder: (context, state) {
         if (state is MoviesByGenresLoaded) {
-          LogHelper.logDebug(
+          LogHelper.debug(
             tag: "WidgetHomeMoviesGenres",
             message: "MoviesByGenresLoaded",
           );
@@ -47,7 +47,7 @@ class _WidgetHomeMoviesGenresState extends State<WidgetHomeMoviesGenres> {
             itemCount: list.length,
           );
         } else {
-          LogHelper.logError(tag: "WidgetHomeMoviesGenres", message: "fail");
+          LogHelper.error(tag: "WidgetHomeMoviesGenres", message: "fail");
           return Container();
         }
       },

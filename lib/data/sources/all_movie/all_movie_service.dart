@@ -11,18 +11,18 @@ abstract class AllMoviesService {
 class AllMoviesServiceImpl extends AllMoviesService {
   @override
   Future<Either> getAllMoviesData() async {
-    LogHelper.logDebug(
+    LogHelper.debug(
       tag: "AllMovieRepository",
       message: "getAllMovieData start ",
     );
 
     try {
-      LogHelper.logDebug(
+      LogHelper.debug(
         tag: "AllMovieRepository",
         message: "Making API request to fetch allMovies data",
       );
       final client = RestClient(localDio);
-      LogHelper.logDebug(
+      LogHelper.debug(
         tag: "AllMovieRepository",
         message: "Making API request to getAllMovieData",
       );
@@ -30,7 +30,7 @@ class AllMoviesServiceImpl extends AllMoviesService {
           await client.getAllMoviesByType();
 
       // Log the actual response for debugging
-      LogHelper.logDebug(
+      LogHelper.debug(
         tag: "AllMovieRepository",
         message:
             "Received allMovies data: ${allMoviesData.toEntity().toString()}",
@@ -38,11 +38,11 @@ class AllMoviesServiceImpl extends AllMoviesService {
 
       return right(allMoviesData.toEntity());
     } catch (e, stackTrace) {
-      LogHelper.logError(
+      LogHelper.error(
         tag: "AllMovieRepository",
         message: "Error occurred while fetching allMovies data: $e",
       );
-      LogHelper.logError(
+      LogHelper.error(
         tag: "AllMovieRepository",
         message: "Stack trace: $stackTrace",
       );

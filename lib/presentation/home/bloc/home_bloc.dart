@@ -16,7 +16,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   Future<void> _onLoadHome(LoadHome event, Emitter<HomeState> emit) async {
     try {
-      LogHelper.logDebug(tag: "HomeBloc", message: "_onLoadHome start ");
+      LogHelper.debug(tag: "HomeBloc", message: "_onLoadHome start ");
       final response = await sl<GetHomeDataUseCase>().call();
 
       response.fold(

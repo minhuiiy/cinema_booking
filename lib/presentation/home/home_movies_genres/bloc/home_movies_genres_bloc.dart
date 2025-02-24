@@ -26,7 +26,7 @@ class HomeMoviesGenresBloc
     on<DisplayMoviesByGenres>(_onDisplayMoviesByGenres);
 
     if (homeBloc.state is HomeLoaded) {
-      LogHelper.logDebug(tag: "HomeMoviesGenresBloc", message: 'HomeLoaded');
+      LogHelper.debug(tag: "HomeMoviesGenresBloc", message: 'HomeLoaded');
       final state = homeBloc.state as HomeLoaded;
       add(DisplayMoviesByGenres(state.homeState));
     } else {
@@ -46,7 +46,7 @@ class HomeMoviesGenresBloc
 
     final homeResponse = event.homeResponse;
 
-    LogHelper.logDebug(
+    LogHelper.debug(
       tag: "_onDisplayMoviesByGenres",
       message: "check data: ${homeResponse.genres}",
     );

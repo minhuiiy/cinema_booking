@@ -5,6 +5,7 @@
  */
 
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
+import 'package:cinema_booking/common/widgets/texts/gradient_text.dart';
 import 'package:cinema_booking/core/configs/assets/app_images.dart';
 import 'package:cinema_booking/core/configs/assets/app_vectors.dart';
 
@@ -62,9 +63,9 @@ class LoginScreen extends StatelessWidget {
                         padding: const EdgeInsets.only(right: 40),
                         child: Align(
                           alignment: Alignment.centerRight,
-                          child: Text(
-                            'SIGN IN',
-                            style: AppFont.kTitleTextStyle.copyWith(
+                          child: GradientText(
+                            text: "SIGN IN",
+                            textStyle: AppFont.kTitleTextStyle.copyWith(
                               fontSize: 45,
                               fontFamily: 'Oswald',
                             ),

@@ -90,7 +90,7 @@ class SessionServiceImpl extends SessionService {
   Future<Either<String, MovieModel?>> getMovie() async {
     try {
       String? jsonData = await pref.getString(DATA_CONST.CACHE_SHOW);
-      LogHelper.logDebug(
+      LogHelper.debug(
         tag: "getMovie SessionServiceImpl",
         message: "jsonData: $jsonData",
       );

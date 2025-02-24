@@ -19,7 +19,7 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    LogHelper.logDebug(
+    LogHelper.debug(
       tag: "AllMoviesScreen",
       message: "Building AllMoviesScreen...",
     );
@@ -39,7 +39,7 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
   }
 
   Widget _buildContent() {
-    LogHelper.logDebug(
+    LogHelper.debug(
       tag: "AllMoviesScreen",
       message: "Building content for AllMoviesScreen...",
     );
@@ -49,7 +49,7 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
       },
       listener: (context, state) {
         if (state is OpenSortOption) {
-          LogHelper.logDebug(
+          LogHelper.debug(
             tag: "AllMoviesScreen",
             message: "Sorting options opened",
           );
@@ -60,10 +60,10 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
         return current is! UpdateToolbarState && current is! OpenSortOption;
       },
       builder: (context, state) {
-        LogHelper.logDebug(tag: "AllMoviesScreen", message: "state: $state");
+        LogHelper.debug(tag: "AllMoviesScreen", message: "state: $state");
         if (state is DisplayListMovies) {
           if (state.loading) {
-            LogHelper.logDebug(
+            LogHelper.debug(
               tag: "AllMoviesScreen",
               message: "Loading data for display...",
             );
@@ -71,7 +71,7 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
           }
 
           if (state.msg != null) {
-            LogHelper.logDebug(
+            LogHelper.debug(
               tag: "AllMoviesScreen",
               message: "Displaying error message: ${state.msg}",
             );
@@ -84,7 +84,7 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
           }
 
           if (state.meta != null) {
-            LogHelper.logDebug(
+            LogHelper.debug(
               tag: "AllMoviesScreen",
               message: "Displaying movie gallery with meta data",
             );
@@ -93,7 +93,7 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
 
           return Container();
         } else {
-          LogHelper.logDebug(
+          LogHelper.debug(
             tag: "AllMoviesScreen",
             message: "No relevant state to display.",
           );
@@ -107,7 +107,7 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
     BuildContext context,
     MovieSoftBy movieSortBy,
   ) async {
-    LogHelper.logDebug(
+    LogHelper.debug(
       tag: "AllMoviesScreen",
       message: "Opening sort options dialog with current sortBy: $movieSortBy",
     );
@@ -123,7 +123,7 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
                 value: MovieSoftBy.ratting,
                 groupValue: movieSortBy,
                 onChanged: (value) {
-                  LogHelper.logDebug(
+                  LogHelper.debug(
                     tag: "AllMoviesScreen",
                     message: "Sorting by Rating",
                   );
@@ -137,7 +137,7 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
                 value: MovieSoftBy.name,
                 groupValue: movieSortBy,
                 onChanged: (value) {
-                  LogHelper.logDebug(
+                  LogHelper.debug(
                     tag: "AllMoviesScreen",
                     message: "Sorting by Name",
                   );
@@ -150,7 +150,7 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
       },
     )) {
       case MovieSoftBy.name:
-        LogHelper.logDebug(
+        LogHelper.debug(
           tag: "AllMoviesScreen",
           message: "Sorting by NAME selected",
         );
@@ -159,7 +159,7 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
         ).add(SortByChanged(MovieSoftBy.name));
         break;
       case MovieSoftBy.ratting:
-        LogHelper.logDebug(
+        LogHelper.debug(
           tag: "AllMoviesScreen",
           message: "Sorting by RATING selected",
         );
@@ -168,7 +168,7 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
         ).add(SortByChanged(MovieSoftBy.ratting));
         break;
       case null:
-        LogHelper.logDebug(
+        LogHelper.debug(
           tag: "AllMoviesScreen",
           message: "No sort option selected",
         );

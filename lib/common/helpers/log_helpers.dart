@@ -17,16 +17,16 @@ class LogHelper {
   static const String _colorError = "\x1B[31m"; // Red
   static const String _colorReset = "\x1B[0m"; // Reset color
 
-  static void logDebug({required String tag, required String message}) =>
+  static void debug({required String tag, required String message}) =>
       _log("DEBUG", tag, message, _colorDebug);
 
-  static void logInfo({required String tag, required String message}) =>
+  static void info({required String tag, required String message}) =>
       _log("ℹINFO", tag, message, _colorInfo);
 
-  static void logWarning({required String tag, required String message}) =>
+  static void warning({required String tag, required String message}) =>
       _log("WARNING", tag, message, _colorWarning);
 
-  static void logError({
+  static void error({
     required String tag,
     required String message,
     dynamic error,

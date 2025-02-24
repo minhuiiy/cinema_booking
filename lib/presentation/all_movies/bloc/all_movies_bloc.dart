@@ -27,11 +27,11 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
     OpenScreen event,
     Emitter<AllMoviesState> emit,
   ) async {
-    LogHelper.logDebug(tag: "AllMoviesBloc", message: "_onOpenScreen start");
+    LogHelper.debug(tag: "AllMoviesBloc", message: "_onOpenScreen start");
     emit(UpdateToolbarState(movieSearchField: false));
     try {
       // emit(DisplayListMovies.loading());
-      LogHelper.logDebug(
+      LogHelper.debug(
         tag: "AllMoviesBloc",
         message: "Fetching data for all movies...",
       );
@@ -43,7 +43,7 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
         },
         (data) async {
           if (data is AllMoviesEntity) {
-            LogHelper.logDebug(
+            LogHelper.debug(
               tag:
                   ''
                   "AllMoviesBloc",
@@ -51,17 +51,14 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
             );
             var ok = DisplayListMovies.data(_metaFromResponse(data));
             emit(ok);
-            LogHelper.logDebug(tag: "AllMoviesBloc", message: "emit(ok)");
+            LogHelper.debug(tag: "AllMoviesBloc", message: "emit(ok)");
           } else {
             emit(DisplayListMovies.error("Invalid response type"));
           }
         },
       );
     } catch (e) {
-      LogHelper.logError(
-        tag: "AllMoviesBloc",
-        message: "Error fetching data: $e",
-      );
+      LogHelper.error(tag: "AllMoviesBloc", message: "Error fetching data: $e");
       emit(DisplayListMovies.error(e.toString()));
     }
   }
@@ -71,7 +68,7 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
     ClickIconSearch event,
     Emitter<AllMoviesState> emit,
   ) async {
-    LogHelper.logDebug(
+    LogHelper.debug(
       tag: "AllMoviesBloc",
       message: "Search icon clicked, movieing search field",
     );
@@ -83,7 +80,7 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
     ClickCloseSearch event,
     Emitter<AllMoviesState> emit,
   ) async {
-    LogHelper.logDebug(tag: "AllMoviesBloc", message: "Closing search field");
+    LogHelper.debug(tag: "AllMoviesBloc", message: "Closing search field");
     emit(UpdateToolbarState(movieSearchField: false));
     await _mapSearchQueryChangedToState('', emit);
   }
@@ -93,7 +90,7 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
     SearchQueryChanged event,
     Emitter<AllMoviesState> emit,
   ) async {
-    LogHelper.logDebug(
+    LogHelper.debug(
       tag: "AllMoviesBloc",
       message: "Search query changed: ${event.keyword}",
     );
@@ -105,7 +102,7 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
     String keyword,
     Emitter<AllMoviesState> emit,
   ) async {
-    LogHelper.logDebug(
+    LogHelper.debug(
       tag: "AllMoviesBloc",
       message: "Debouncing search query...",
     );
@@ -118,13 +115,13 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
     String keyword,
     Emitter<AllMoviesState> emit,
   ) async {
-    LogHelper.logDebug(
+    LogHelper.debug(
       tag: "AllMoviesBloc",
       message: "Updating search results for query: $keyword",
     );
     // emit(DisplayListMovies.loading());
     try {
-      LogHelper.logDebug(
+      LogHelper.debug(
         tag: "AllMoviesBloc",
         message: "Fetching data for all movies...",
       );
@@ -132,19 +129,19 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
 
       response.fold(
         (l) {
-          LogHelper.logDebug(
+          LogHelper.debug(
             tag: "AllMoviesBloc",
             message: "Fetching data for all movies... error: $l",
           );
           emit(DisplayListMovies.error(l.toString()));
         },
         (data) async {
-          LogHelper.logDebug(
+          LogHelper.debug(
             tag: "AllMoviesBloc",
             message: "Fetching data for all movies... data: $data",
           );
           if (data is AllMoviesEntity) {
-            LogHelper.logDebug(
+            LogHelper.debug(
               tag: "AllMoviesBloc",
               message: "AllMoviesEntity success",
             );
@@ -158,20 +155,20 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
 
             final meta = _metaFromResponse(data);
 
-            LogHelper.logDebug(
+            LogHelper.debug(
               tag: "AllMoviesBloc",
               message: "AllMoviesEntity success meta: $meta",
             );
 
             emit(DisplayListMovies.data(meta));
           } else {
-            LogHelper.logDebug(tag: "AllMoviesBloc", message: "error");
+            LogHelper.debug(tag: "AllMoviesBloc", message: "error");
             emit(DisplayListMovies.error("Invalid response type"));
           }
         },
       );
     } catch (e) {
-      LogHelper.logError(
+      LogHelper.error(
         tag: "AllMoviesBloc",
         message: "Error filtering search results: $e",
       );
@@ -184,7 +181,7 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
     ClickIconSort event,
     Emitter<AllMoviesState> emit,
   ) async {
-    LogHelper.logDebug(tag: "AllMoviesBloc", message: "Sort icon clicked");
+    LogHelper.debug(tag: "AllMoviesBloc", message: "Sort icon clicked");
     emit(OpenSortOption(isOpen: true, movieSortBy: movieSortBy));
   }
 
@@ -193,7 +190,7 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
     SortByChanged event,
     Emitter<AllMoviesState> emit,
   ) async {
-    LogHelper.logDebug(
+    LogHelper.debug(
       tag: "AllMoviesBloc",
       message: "Sorting by: ${event.movieSortBy}",
     );

@@ -37,20 +37,31 @@ class WidgetItemListTicker extends StatelessWidget {
       height: itemHeight,
       child: Row(
         children: [
-          Image.network(banner, width: 108, height: itemHeight, fit: BoxFit.cover),
+          Image.network(
+            banner,
+            width: 108,
+            height: itemHeight,
+            fit: BoxFit.cover,
+          ),
           WidgetSpacer(width: 16),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(movieName, style: AppFont.medium_black2_16.copyWith(fontSize: 16)),
+                Text(
+                  movieName,
+                  style: AppFont.medium_black2_16.copyWith(fontSize: 16),
+                ),
                 WidgetSpacer(height: 2),
                 Text(timeSlot, style: AppFont.medium.copyWith(fontSize: 14)),
                 WidgetSpacer(height: 2),
                 Text(
                   cineName,
-                  style: AppFont.medium.copyWith(color: AppColors.gray6, fontSize: 10),
+                  style: AppFont.medium.copyWith(
+                    color: AppColors.gray6,
+                    fontSize: 10,
+                  ),
                 ),
               ],
             ),

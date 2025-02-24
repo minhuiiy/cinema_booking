@@ -34,7 +34,7 @@ class BookTimeSlotBloc extends Bloc<BookTimeSlotEvent, BookTimeSlotState> {
     OpenScreen event,
     Emitter<BookTimeSlotState> emit,
   ) async {
-    LogHelper.logDebug(tag: 'OpenScreen', message: 'movieId: $movieId');
+    LogHelper.debug(tag: 'OpenScreen', message: 'movieId: $movieId');
     try {
       final response = await sl<GetAllMoviesByTypeUseCase>().call(
         movieId: movieId,
@@ -43,7 +43,7 @@ class BookTimeSlotBloc extends Bloc<BookTimeSlotEvent, BookTimeSlotState> {
       response.fold(
         (error) {
           // emit(BookTimeSlotError(error));
-          LogHelper.logError(
+          LogHelper.error(
             tag: 'OpenScreen Error',
             message: "BookTimeSlotBloc $error",
           );
@@ -54,7 +54,7 @@ class BookTimeSlotBloc extends Bloc<BookTimeSlotEvent, BookTimeSlotState> {
             list: _toBookTimeSlots(data),
           );
           emit(updatedState);
-          LogHelper.logInfo(
+          LogHelper.info(
             tag: 'OpenScreen Success',
             message: 'Data loaded successfully',
           );
@@ -62,7 +62,7 @@ class BookTimeSlotBloc extends Bloc<BookTimeSlotEvent, BookTimeSlotState> {
       );
     } catch (e) {
       emit(state.copyWith(msg: e.toString()));
-      LogHelper.logError(
+      LogHelper.error(
         tag: 'OpenScreen Error',
         message: 'Failed to load movies: $e',
       );
@@ -73,13 +73,13 @@ class BookTimeSlotBloc extends Bloc<BookTimeSlotEvent, BookTimeSlotState> {
     ClickIconSearch event,
     Emitter<BookTimeSlotState> emit,
   ) {
-    LogHelper.logDebug(tag: 'ClickIconSearch', message: 'Search icon clicked');
+    LogHelper.debug(tag: 'ClickIconSearch', message: 'Search icon clicked');
     final updatedState = state.copyWith(
       isLoading: false,
       movieSearchField: true,
     );
     emit(updatedState);
-    LogHelper.logInfo(
+    LogHelper.info(
       tag: 'ClickIconSearch Success',
       message: 'Search field is movien',
     );
@@ -89,13 +89,10 @@ class BookTimeSlotBloc extends Bloc<BookTimeSlotEvent, BookTimeSlotState> {
     ClickCloseSearch event,
     Emitter<BookTimeSlotState> emit,
   ) async {
-    LogHelper.logDebug(
-      tag: 'ClickCloseSearch',
-      message: 'Closing search field',
-    );
+    LogHelper.debug(tag: 'ClickCloseSearch', message: 'Closing search field');
     final updatedState = state.copyWith(movieSearchField: false);
     emit(updatedState);
-    LogHelper.logInfo(
+    LogHelper.info(
       tag: 'ClickCloseSearch Success',
       message: 'Search field closed',
     );
@@ -107,7 +104,7 @@ class BookTimeSlotBloc extends Bloc<BookTimeSlotEvent, BookTimeSlotState> {
     SearchQueryChanged event,
     Emitter<BookTimeSlotState> emit,
   ) async {
-    LogHelper.logDebug(
+    LogHelper.debug(
       tag: 'SearchQueryChanged',
       message: 'Keyword: ${event.keyword}',
     );
@@ -121,7 +118,7 @@ class BookTimeSlotBloc extends Bloc<BookTimeSlotEvent, BookTimeSlotState> {
       response.fold(
         (error) {
           // emit(BookTimeSlotError(error));
-          LogHelper.logError(
+          LogHelper.error(
             tag: 'OpenScreen Error',
             message: "_onSearchQueryChanged $error",
           );
@@ -135,7 +132,7 @@ class BookTimeSlotBloc extends Bloc<BookTimeSlotEvent, BookTimeSlotState> {
             list: _toBookTimeSlots(result),
           );
           emit(updatedState);
-          LogHelper.logInfo(
+          LogHelper.info(
             tag: 'OpenScreen Success',
             message: 'Data loaded successfully',
           );
@@ -143,7 +140,7 @@ class BookTimeSlotBloc extends Bloc<BookTimeSlotEvent, BookTimeSlotState> {
       );
     } catch (e) {
       emit(state.copyWith(msg: e.toString()));
-      LogHelper.logError(
+      LogHelper.error(
         tag: 'SearchQueryChanged Error',
         message: 'Failed to search for query: $e',
       );
@@ -154,7 +151,7 @@ class BookTimeSlotBloc extends Bloc<BookTimeSlotEvent, BookTimeSlotState> {
     SelectTimeSlot event,
     Emitter<BookTimeSlotState> emit,
   ) async {
-    LogHelper.logDebug(
+    LogHelper.debug(
       tag: 'SelectTimeSlot',
       message: 'Selected timeSlot: ${event.selectedTimeSlot},',
     );
@@ -166,7 +163,7 @@ class BookTimeSlotBloc extends Bloc<BookTimeSlotEvent, BookTimeSlotState> {
     final updatedState = state.copyWith(isOpenBookSeatTypeScreen: true);
     emit(updatedState);
 
-    LogHelper.logInfo(
+    LogHelper.info(
       tag: 'SelectTimeSlot Success',
       message: 'Selected timeSlot cached, opening seat screen',
     );
@@ -176,13 +173,13 @@ class BookTimeSlotBloc extends Bloc<BookTimeSlotEvent, BookTimeSlotState> {
     OpenedBookSeatTypeScreen event,
     Emitter<BookTimeSlotState> emit,
   ) {
-    LogHelper.logDebug(
+    LogHelper.debug(
       tag: 'OpenedBookSeatTypeScreen',
       message: 'Opening Book Seat Type screen',
     );
     final updatedState = state.copyWith(isOpenBookSeatTypeScreen: false);
     emit(updatedState);
-    LogHelper.logInfo(
+    LogHelper.info(
       tag: 'OpenedBookSeatTypeScreen Success',
       message: 'Book Seat Type screen closed',
     );

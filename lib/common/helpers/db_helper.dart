@@ -29,7 +29,7 @@ class DbHelper {
       '"$COL_BOOK_TIME" INTEGER, "$COL_CINE_NAME" TEXT, "$COL_SEAT" TEXT );',
     );
 
-    LogHelper.logDebug(tag: "DbHelper", message: '_onCreate. version $version');
+    LogHelper.debug(tag: "DbHelper", message: '_onCreate. version $version');
   }
 
   static Future init() async {
@@ -41,7 +41,7 @@ class DbHelper {
     );
 
     var result = await sl<AllTicketsService>().getAllTicketsData();
-    LogHelper.logDebug(tag: "DbHelper", message: result.toString());
+    LogHelper.debug(tag: "DbHelper", message: result.toString());
   }
 
   static Database get db => _db;
