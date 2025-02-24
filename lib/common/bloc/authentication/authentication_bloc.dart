@@ -5,7 +5,7 @@
  */
 
 import 'package:cinema_booking/common/helpers/db_helper.dart';
-import 'package:cinema_booking/domain/usecase/auth/get_user.dart';
+import 'package:cinema_booking/domain/usecase/user/get_user.dart';
 import 'package:cinema_booking/domain/usecase/authentication/is_signed_in.dart';
 import 'package:cinema_booking/service_locator.dart';
 import 'package:equatable/equatable.dart';
@@ -44,7 +44,7 @@ class AuthenticationBloc
       await DbHelper.init();
 
       // for splash screen loading
-      await Future.delayed(Duration(seconds: 2));
+      // await Future.delayed(Duration(seconds: 2));
 
       if (isSignedIn) {
         // Emit the `Authenticated` state with the user's name
