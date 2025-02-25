@@ -42,13 +42,7 @@ class BasicAppButton extends StatelessWidget {
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                     ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black45,
-                blurRadius: 6,
-                offset: Offset(2, 4),
-              ),
-            ],
+            boxShadow: [BoxShadow(color: Colors.black45, blurRadius: 6, offset: Offset(2, 4))],
           ),
           alignment: Alignment.center,
           child: Text(

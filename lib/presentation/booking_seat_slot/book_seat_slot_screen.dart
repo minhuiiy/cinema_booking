@@ -1,4 +1,4 @@
-import 'package:cinema_booking/common/widgets/snackbar/my_snackbar.dart';
+import 'package:cinema_booking/common/widgets/snackbar/custom_snackbar.dart';
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:cinema_booking/core/enum/type_seat.dart';
@@ -193,7 +193,7 @@ class _BookSeatSlotScreenState extends State<BookSeatSlotScreen> {
     if (state.isOpenPaymentMethod) {
       bloc.add(OpenedPaymentMethodScreen());
 
-      CustomSnackBar.success(context, "Pay success with \$${state.totalPrice}");
+      CustomSnackBar.success(context, msg: "Pay success with \$${state.totalPrice}");
 
       // TODO: create PaymentMethodScreen
     }

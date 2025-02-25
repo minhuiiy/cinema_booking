@@ -8,21 +8,12 @@ abstract class AllTicketsService {
 }
 
 class AllTicketsServiceImpl extends AllTicketsService {
-  static final TABLE_NAME = "tickets";
-
-  static final COL_ID = "id";
-  static final COL_SHOW_NAME = "movie_name";
-  static final COL_SHOW_BANNER = "movie_banner";
-  static final COL_SHOW_TIME_SLOT = "movie_time_slot";
-  static final COL_BOOK_TIME = "book_time";
-  static final COL_CINE_NAME = "cine_name";
-  static final COL_SEAT = "seat";
   @override
   Future<Either<String, List<Ticket>>> getAllTicketsData() async {
     try {
       var listMap = await DbHelper.db.query(
-        TABLE_NAME,
-        orderBy: '$COL_BOOK_TIME DESC',
+        DbHelper.TABLE_NAME,
+        orderBy: '$DbHelper.COL_BOOK_TIME DESC',
       );
 
       return right(listMap.map((jsonRaw) => Ticket.fromJson(jsonRaw)).toList());
@@ -34,7 +25,7 @@ class AllTicketsServiceImpl extends AllTicketsService {
   @override
   Future<Either> createTicket(Ticket ticket) async {
     try {
-      return right(DbHelper.db.insert(TABLE_NAME, ticket.toJson()));
+      return right(DbHelper.db.insert(DbHelper.TABLE_NAME, ticket.toJson()));
     } catch (e) {
       return const Left('An error occurred, Please try again.');
     }

@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:cinema_booking/common/widgets/button/basic_app_button.dart';
+import 'package:cinema_booking/common/widgets/snackbar/custom_snackbar.dart';
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
 import 'package:cinema_booking/common/widgets/texts/gradient_text.dart';
 import 'package:cinema_booking/core/configs/assets/app_images.dart';
@@ -64,31 +65,11 @@ class _UserInfoPageState extends State<UserInfoPage> {
       listener: (context, state) {
         if (state is UserInfoEdit) {
           if (state.isSuccess) {
-            ScaffoldMessenger.of(context)
-              ..hideCurrentSnackBar()
-              ..showSnackBar(
-                const SnackBar(
-                  content: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [Text('UserInfo update success'), Icon(Icons.error)],
-                  ),
-                  backgroundColor: Colors.green,
-                ),
-              );
+            CustomSnackBar.success(context, msg: "UserInfo update success");
           }
 
           if (state.isFailure) {
-            ScaffoldMessenger.of(context)
-              ..hideCurrentSnackBar()
-              ..showSnackBar(
-                const SnackBar(
-                  content: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [Text('UserInfo update Failure'), Icon(Icons.error)],
-                  ),
-                  backgroundColor: Colors.red,
-                ),
-              );
+            CustomSnackBar.failure(context, msg: "UserInfo update Failure");
           }
         }
       },

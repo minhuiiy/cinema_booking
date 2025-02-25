@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:cinema_booking/common/bloc/authentication/authentication_bloc.dart';
 import 'package:cinema_booking/common/widgets/button/basic_app_button.dart';
+import 'package:cinema_booking/common/widgets/snackbar/custom_snackbar.dart';
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
 import 'package:cinema_booking/common/widgets/texts/gradient_text.dart';
 import 'package:cinema_booking/core/configs/assets/app_images.dart';
@@ -19,10 +20,7 @@ class RegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => RegisterBloc(),
-      child: const SignupPage(),
-    );
+    return BlocProvider(create: (context) => RegisterBloc(), child: const SignupPage());
   }
 }
 
@@ -72,19 +70,7 @@ class _SignupPageState extends State<SignupPage> {
     return BlocListener<RegisterBloc, RegisterState>(
       listener: (context, state) {
         if (state.isSubmitting) {
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(
-              const SnackBar(
-                content: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('Registering ... '),
-                    CircularProgressIndicator(),
-                  ],
-                ),
-              ),
-            );
+          CustomSnackBar.showLoading(context, msg: "Registering ...");
         }
 
         if (state.isSuccess) {
@@ -93,17 +79,7 @@ class _SignupPageState extends State<SignupPage> {
         }
 
         if (state.isFailure) {
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(
-              const SnackBar(
-                content: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [Text('Registering Failure'), Icon(Icons.error)],
-                ),
-                backgroundColor: Colors.red,
-              ),
-            );
+          CustomSnackBar.failure(context, msg: "Registering Failure");
         }
       },
       child: Scaffold(
@@ -115,20 +91,14 @@ class _SignupPageState extends State<SignupPage> {
             onPressed: () => Navigator.pop(context),
           ),
           actions: [
-            TextButton(
-              onPressed: () {},
-              child: Text("Skip", style: AppFont.kNormalTextStyleWhite),
-            ),
+            TextButton(onPressed: () {}, child: Text("Skip", style: AppFont.kNormalTextStyleWhite)),
           ],
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30),
           child: Stack(
             children: [
-              Align(
-                alignment: Alignment.topRight,
-                child: SvgPicture.asset(AppVectors.unionTop),
-              ),
+              Align(alignment: Alignment.topRight, child: SvgPicture.asset(AppVectors.unionTop)),
               Align(
                 alignment: Alignment.bottomRight,
                 child: SvgPicture.asset(AppVectors.unionBottom),
@@ -138,10 +108,7 @@ class _SignupPageState extends State<SignupPage> {
                 child: Opacity(
                   opacity: 0.3,
                   child: ImageFiltered(
-                    imageFilter: ImageFilter.blur(
-                      sigmaX: 5,
-                      sigmaY: 5,
-                    ), // Làm mờ ảnh
+                    imageFilter: ImageFilter.blur(sigmaX: 5, sigmaY: 5), // Làm mờ ảnh
                     child: Image.asset(
                       AppImages.ticket,
                       width: MediaQuery.of(context).size.width * 0.4,
@@ -168,9 +135,7 @@ class _SignupPageState extends State<SignupPage> {
                       children: [
                         GradientText(
                           text: "REGISTER ME",
-                          textStyle: AppFont.kTitleTextStyle.copyWith(
-                            fontFamily: 'Oswald',
-                          ),
+                          textStyle: AppFont.kTitleTextStyle.copyWith(fontFamily: 'Oswald'),
                         ),
                         WidgetSpacer(width: 10),
                       ],
@@ -239,17 +204,11 @@ class _SignupPageState extends State<SignupPage> {
               text: TextSpan(
                 style: AppFont.kNormalTextStyleWhite,
                 children: [
-                  TextSpan(
-                    text: "Gender:    ",
-                    style: AppFont.kMiniTitleTextStyleWhite,
-                  ),
+                  TextSpan(text: "Gender:    ", style: AppFont.kMiniTitleTextStyleWhite),
                   TextSpan(
                     text: selectedGender,
                     style: AppFont.kMiniTitleTextStyleWhite.copyWith(
-                      color:
-                          selectedGender == "Male"
-                              ? AppColors.blue
-                              : AppColors.pink,
+                      color: selectedGender == "Male" ? AppColors.blue : AppColors.pink,
                     ),
                   ),
                 ],
@@ -278,10 +237,7 @@ class _SignupPageState extends State<SignupPage> {
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           border: Border.all(
-            color:
-                selectedGender == gender
-                    ? AppColors.defaultColor
-                    : Colors.white24,
+            color: selectedGender == gender ? AppColors.defaultColor : Colors.white24,
             width: 3,
           ),
         ),
@@ -310,19 +266,13 @@ class _SignupPageState extends State<SignupPage> {
 
   void _onPasswordChanged() {
     context.read<RegisterBloc>().add(
-      PasswordChanged(
-        password: _password.text,
-        confirmPassword: _confirmPassword.text,
-      ),
+      PasswordChanged(password: _password.text, confirmPassword: _confirmPassword.text),
     );
   }
 
   void _onConfirmPasswordChanged() {
     context.read<RegisterBloc>().add(
-      ConfirmPasswordChanged(
-        password: _password.text,
-        confirmPassword: _confirmPassword.text,
-      ),
+      ConfirmPasswordChanged(password: _password.text, confirmPassword: _confirmPassword.text),
     );
   }
 

@@ -1,8 +1,10 @@
 /*
  * @ Author: Chung Nguyen Thanh <chunhthanhde.dev@gmail.com>
- * @ Created: 2024-12-17 21:05:06
+ * @ Created: 2025-02-17 21:05:06
  * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
  */
+
+// ignore_for_file: non_constant_identifier_names
 
 import 'package:cinema_booking/common/helpers/log_helpers.dart';
 import 'package:cinema_booking/data/sources/ticket/ticket_service.dart';
@@ -11,7 +13,6 @@ import 'package:sqflite/sqflite.dart';
 
 class DbHelper {
   static final TABLE_NAME = "tickets";
-
   static final COL_ID = "id";
   static final COL_SHOW_NAME = "movie_name";
   static final COL_SHOW_BANNER = "movie_banner";
