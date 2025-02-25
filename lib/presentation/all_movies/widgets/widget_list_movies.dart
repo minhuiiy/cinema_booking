@@ -47,10 +47,10 @@ class WidgetListMovie extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: 0.3),
-              blurRadius: 8,
-              spreadRadius: -2,
-              offset: Offset(0, 6),
+              color: Colors.black.withValues(alpha: .5),
+              blurRadius: 12,
+              spreadRadius: -3,
+              offset: Offset(0, 8),
             ),
           ],
         ),
@@ -65,6 +65,19 @@ class WidgetListMovie extends StatelessWidget {
                 height: double.infinity,
                 fit: BoxFit.cover,
               ),
+
+              Positioned.fill(
+                child: Container(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [Colors.transparent, Colors.black..withValues(alpha: 0.8)],
+                    ),
+                  ),
+                ),
+              ),
+
               Positioned(
                 bottom: 10,
                 left: 8,
@@ -74,16 +87,32 @@ class WidgetListMovie extends StatelessWidget {
                   children: [
                     Text(
                       movie.title,
-                      style: AppFont.medium_white_16,
+                      style: AppFont.medium_white_16.copyWith(
+                        fontWeight: FontWeight.bold,
+                        shadows: [
+                          Shadow(
+                            blurRadius: 5,
+                            color: Colors.black..withValues(alpha: 0.8),
+                            offset: Offset(1, 1),
+                          ),
+                        ],
+                      ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
                     WidgetSpacer(height: 4),
+
                     Row(
                       children: [
-                        Icon(Icons.favorite, color: Colors.pinkAccent, size: 16),
+                        Icon(Icons.favorite, color: AppColors.defaultColor, size: 16),
                         WidgetSpacer(width: 4),
-                        Text('${movie.likePercent} %', style: AppFont.regular_white_12),
+                        Text(
+                          '${movie.likePercent} %',
+                          style: AppFont.regular_white_12.copyWith(
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white70,
+                          ),
+                        ),
                       ],
                     ),
                   ],

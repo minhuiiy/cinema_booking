@@ -139,7 +139,7 @@ class CinematicBookTicketButton extends StatelessWidget {
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.pinkAccent.withValues(alpha: 0.5),
+              color: AppColors.defaultColor.withValues(alpha: 0.5),
               blurRadius: 20,
               spreadRadius: -2,
               offset: Offset(0, 5),

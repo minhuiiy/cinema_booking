@@ -5,7 +5,6 @@
  */
 
 import 'package:cinema_booking/common/widgets/paint/rounded_rect_indicator.dart';
-import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:cinema_booking/domain/entities/response/home.dart';
 import 'package:cinema_booking/presentation/all_movies/bloc/all_movies_bloc.dart';

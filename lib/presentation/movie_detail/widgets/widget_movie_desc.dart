@@ -74,7 +74,7 @@ class WidgetMovieDesc extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Icon(Icons.favorite, size: 20, color: Colors.pinkAccent),
+            Icon(Icons.favorite, size: 20, color: AppColors.defaultColor),
             WidgetSpacer(width: 4),
             Text(textRating, style: AppFont.medium_white_16),
           ],
