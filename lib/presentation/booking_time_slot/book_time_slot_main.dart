@@ -88,7 +88,7 @@ class BookTimeSlotScreen extends StatelessWidget {
       right: 0,
       left: 0,
       child: CinematicBottomBar(
-        dateText: "Today, 22 APR",
+        dateText: "Today, 22 Apr",
         formatText: "Hanoi, 3D",
         onDateTap: () {
           //TODO: openCineDatePicker();

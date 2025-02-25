@@ -189,7 +189,7 @@ class BookSeatSlotBloc extends Bloc<BookSeatSlotEvent, BookSeatSlotState> {
   void _onClickButtonPay(ClickButtonPay event, Emitter<BookSeatSlotState> emit) {
     LogHelper.info(tag: 'BookSeatSlotBloc', message: 'Button Pay clicked');
     final ticket = Ticket(
-      0,
+      DateTime.now().millisecondsSinceEpoch,
       state.movie!.name,
       state.movie!.thumb,
       state.selectedTimeSlot!.time,

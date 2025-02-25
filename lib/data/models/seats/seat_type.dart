@@ -26,8 +26,7 @@ class SeatTypesModel {
 
   SeatTypesModel(this.name, this.price, this.type, this.seatRows);
 
-  factory SeatTypesModel.fromJson(Map<String, dynamic> json) =>
-      _$SeatTypesModelFromJson(json);
+  factory SeatTypesModel.fromJson(Map<String, dynamic> json) => _$SeatTypesModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$SeatTypesModelToJson(this);
 
@@ -37,9 +36,9 @@ class SeatTypesModel {
   }
 
   static final List<SeatTypesModel> SAMPLE_DATA = [
-    SeatTypesModel('King', 120.0, TypeSeat.king, SeatRowModel.SAMPLE_KING),
-    SeatTypesModel('Queen', 100.0, TypeSeat.queen, SeatRowModel.SAMPLE_QUEEN),
-    SeatTypesModel('Jack', 80.0, TypeSeat.jack, SeatRowModel.SAMPLE_JACK),
+    SeatTypesModel('King', 280.0, TypeSeat.king, SeatRowModel.SAMPLE_KING),
+    SeatTypesModel('Queen', 150.0, TypeSeat.queen, SeatRowModel.SAMPLE_QUEEN),
+    SeatTypesModel('Jack', 100.0, TypeSeat.jack, SeatRowModel.SAMPLE_JACK),
   ];
 }
 

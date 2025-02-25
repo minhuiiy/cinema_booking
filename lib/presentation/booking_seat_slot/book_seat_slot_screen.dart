@@ -3,9 +3,7 @@ import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:cinema_booking/core/enum/type_seat.dart';
 import 'package:cinema_booking/data/models/seats/seat_type.dart';
-import 'package:cinema_booking/data/models/ticket/ticket.dart';
 import 'package:cinema_booking/domain/entities/booking/booking_time_slot.dart';
-import 'package:cinema_booking/domain/usecase/tickets/create_ticket.dart';
 import 'package:cinema_booking/presentation/booking_seat_slot/bloc/book_seat_slot_bloc.dart';
 import 'package:cinema_booking/presentation/booking_seat_slot/bloc/book_seat_slot_state.dart';
 import 'package:cinema_booking/presentation/booking_seat_slot/widgets/widget_cine_screen.dart';
@@ -16,7 +14,6 @@ import 'package:cinema_booking/presentation/booking_time_slot/widgets/widget_emp
 import 'package:cinema_booking/presentation/booking_time_slot/widgets/widget_loading.dart';
 import 'package:cinema_booking/presentation/booking_time_slot/widgets/widget_screen_message.dart';
 import 'package:cinema_booking/presentation/booking_time_slot/widgets/widget_toolbar.dart';
-import 'package:cinema_booking/service_locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -195,6 +192,8 @@ class _BookSeatSlotScreenState extends State<BookSeatSlotScreen> {
 
     if (state.isOpenPaymentMethod) {
       bloc.add(OpenedPaymentMethodScreen());
+
+      CustomSnackBar.success(context, "Pay success with \$${state.totalPrice}");
 
       // TODO: create PaymentMethodScreen
     }
