@@ -6,6 +6,8 @@
 
 import 'package:json_annotation/json_annotation.dart';
 
+/// JSON converter that handles conversion between JSON values and double.
+/// It converts a JSON string to a double, or returns the double if already provided.
 class StringAsDoubleConverter implements JsonConverter<double, Object> {
   const StringAsDoubleConverter();
 
@@ -14,6 +16,10 @@ class StringAsDoubleConverter implements JsonConverter<double, Object> {
     return object;
   }
 
+  /// Converts a JSON value to a double.
+  /// If the JSON value is a String, it parses it into a double.
+  /// If the JSON value is already a double, it returns the value.
+  /// Throws an exception if the value cannot be converted.
   @override
   double fromJson(Object json) {
     if (json is String) {

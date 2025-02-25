@@ -8,6 +8,9 @@ import 'package:cinema_booking/core/usecase/usecase.dart';
 import 'package:cinema_booking/domain/repository/Authentication/Authentication.dart';
 import 'package:cinema_booking/service_locator.dart';
 
+///
+/// Check is need to signin
+///
 class IsSignedInUsecase implements UseCase<bool, String> {
   @override
   Future<bool> call({String? params}) async {

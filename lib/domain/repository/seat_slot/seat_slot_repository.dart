@@ -15,7 +15,7 @@ abstract class SeatSlotRepository {
 class MockSeatSlotRepository extends SeatSlotRepository {
   @override
   Future<List<SeatTypesModel>> getListSeatSlotBySeatTypes() {
-    return Future.value(SeatTypesModel.SAMPLE_DATA);
+    return Future.value(SeatTypesModel.mockData);
   }
 }
 

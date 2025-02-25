@@ -32,6 +32,12 @@ class SeatTypesModel {
 
   SeatTypesModel(this.name, this.price, this.type, this.seatRows);
 
+  static final List<SeatTypesModel> mockData = [
+    SeatTypesModel('King', 280.0, TypeSeat.king, SeatRowModel.sampleSeatSlotKing),
+    SeatTypesModel('Queen', 150.0, TypeSeat.queen, SeatRowModel.sampleSeatSlotQueen),
+    SeatTypesModel('Jack', 100.0, TypeSeat.jack, SeatRowModel.sampleSeatSlotJack),
+  ];
+
   factory SeatTypesModel.fromJson(Map<String, dynamic> json) => _$SeatTypesModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$SeatTypesModelToJson(this);
@@ -40,12 +46,6 @@ class SeatTypesModel {
   String toString() {
     return 'SeatTypesModel{id: $id, name: $name, price: $price, type: $type, seatRows: ${seatRows.map((row) => row.toString()).toList()}}';
   }
-
-  static final List<SeatTypesModel> SAMPLE_DATA = [
-    SeatTypesModel('King', 280.0, TypeSeat.king, SeatRowModel.SAMPLE_KING),
-    SeatTypesModel('Queen', 150.0, TypeSeat.queen, SeatRowModel.SAMPLE_QUEEN),
-    SeatTypesModel('Jack', 100.0, TypeSeat.jack, SeatRowModel.SAMPLE_JACK),
-  ];
 }
 
 extension TypeSeatoText on TypeSeat {

@@ -4,7 +4,7 @@
  * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
  */
 
-import 'package:cinema_booking/common/helpers/db_helper.dart';
+import 'package:cinema_booking/core/local/db_helper.dart';
 import 'package:cinema_booking/data/models/ticket/ticket.dart';
 import 'package:dartz/dartz.dart';
 
@@ -24,7 +24,7 @@ class AllTicketsServiceImpl extends AllTicketsService {
 
       return right(listMap.map((jsonRaw) => Ticket.fromJson(jsonRaw)).toList());
     } catch (e) {
-      return const Left('An error occurred, Please try again.');
+      return const Left('An error occurred in getAllTicketsData, Please try again.');
     }
   }
 
@@ -33,7 +33,7 @@ class AllTicketsServiceImpl extends AllTicketsService {
     try {
       return right(DbHelper.db.insert(DbHelper.TABLE_NAME, ticket.toJson()));
     } catch (e) {
-      return const Left('An error occurred, Please try again.');
+      return const Left('An error occurred in createTicket, Please try again.');
     }
   }
 }

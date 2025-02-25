@@ -14,6 +14,9 @@ import 'package:retrofit/retrofit.dart';
 
 part 'rest_client.g.dart';
 
+///
+/// API of Application
+///
 @RestApi(baseUrl: AppUrls.baseUrl)
 abstract class RestClient {
   factory RestClient(Dio dio, {String? baseUrl}) = _RestClient;

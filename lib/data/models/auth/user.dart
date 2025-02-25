@@ -12,12 +12,7 @@ class UserModel {
   String? gender;
   int? age;
 
-  UserModel({
-    required this.email,
-    required this.fullName,
-    required this.age,
-    required this.gender,
-  });
+  UserModel({required this.email, required this.fullName, required this.age, required this.gender});
 
   UserModel.fromJson(Map<String, dynamic> data)
     : email = data['email'],

@@ -6,6 +6,9 @@
 
 import 'package:flutter/material.dart';
 
+///
+/// Rounded rect indicator decoration in the bottom of the widget
+///
 class RoundedRectIndicator extends Decoration {
   final BoxPainter _painter;
 

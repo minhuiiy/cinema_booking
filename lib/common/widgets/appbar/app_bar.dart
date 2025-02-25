@@ -8,6 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:cinema_booking/common/helpers/is_dark_mode.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 
+///
+/// Basic app bar with back button and title
+///
 class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget title;
   final Widget action;

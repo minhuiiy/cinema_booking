@@ -222,7 +222,7 @@ class _SignupPageState extends State<SignupPage> {
             ),
           ],
         ),
-        const SizedBox(height: 35),
+        const WidgetSpacer(height: 35),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -260,7 +260,7 @@ class _SignupPageState extends State<SignupPage> {
     return Column(
       children: [
         Row(children: [Text("Age:", style: AppFont.medium_white_22)]),
-        const SizedBox(height: 15),
+        const WidgetSpacer(height: 15),
         AgeSelector(onAgeSelected: updateAge),
       ],
     );

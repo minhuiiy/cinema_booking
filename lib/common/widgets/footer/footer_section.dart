@@ -4,12 +4,16 @@
  * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
  */
 
+import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
 import 'package:cinema_booking/core/configs/assets/app_vectors.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+///
+/// Footer section with developer information of Splash screen
+///
 class FooterSection extends StatelessWidget {
   const FooterSection({super.key});
 
@@ -54,7 +58,7 @@ class FooterSection extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 4),
+            const WidgetSpacer(height: 4),
             RichText(
               text: TextSpan(
                 text: 'Developer by ',

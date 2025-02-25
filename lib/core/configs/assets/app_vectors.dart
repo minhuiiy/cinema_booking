@@ -4,6 +4,9 @@
  * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
  */
 
+///
+/// vector link of App
+///
 class AppVectors {
   static const String basePath = "assets/vectors/";
   static const String format = '.svg';

@@ -6,6 +6,10 @@
 
 import 'package:flutter/material.dart';
 
+///
+/// Widget spacer replace for SizedBox
+///
+
 class WidgetSpacer extends StatelessWidget {
   final double height;
   final double width;

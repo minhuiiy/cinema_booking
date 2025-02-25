@@ -18,7 +18,7 @@ class MovieInfoRepositoryImpl extends MovieInfoRepository {
 
   @override
   Future<Either> getMovieInfoData() {
-    // TODO: implement getMovieInfoData
+    // TODO: implement getMovieInfoData from SQL Lite
     throw UnimplementedError();
   }
 }

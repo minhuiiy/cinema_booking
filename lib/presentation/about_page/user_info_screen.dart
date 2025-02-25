@@ -235,7 +235,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
             ),
           ],
         ),
-        const SizedBox(height: 35),
+        const WidgetSpacer(height: 35),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -280,7 +280,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
     return Column(
       children: [
         Row(children: [Text("Age:", style: AppFont.medium_white_22)]),
-        const SizedBox(height: 15),
+        const WidgetSpacer(height: 15),
         AgeSelector(onAgeSelected: updateAge, age: age),
       ],
     );

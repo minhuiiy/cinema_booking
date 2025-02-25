@@ -21,21 +21,21 @@ class MockBookTimeSlotServiceImpl extends MockBookTimeSlotService {
   static List<BookingTimeSlotByCinemaResponse> getMockData() {
     final response1 = BookingTimeSlotByCinemaResponse(
       id: "1",
-      cine: CinemaModel.SAMPLE_DATA[0],
+      cine: CinemaModel.mockData[0],
       timeSlots: [],
       tami: ['3D', '2D'],
     );
 
     final response2 = BookingTimeSlotByCinemaResponse(
       id: "2",
-      cine: CinemaModel.SAMPLE_DATA[1],
+      cine: CinemaModel.mockData[1],
       timeSlots: [],
       tami: ['3D'],
     );
 
     final response3 = BookingTimeSlotByCinemaResponse(
       id: "3",
-      cine: CinemaModel.SAMPLE_DATA[2],
+      cine: CinemaModel.mockData[2],
       timeSlots: [],
       tami: ['2D'],
     );

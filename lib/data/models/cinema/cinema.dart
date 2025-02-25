@@ -31,17 +31,7 @@ class CinemaModel {
     this.lng,
   });
 
-  factory CinemaModel.fromJson(Map<String, dynamic> json) =>
-      _$CinemaModelFromJson(json);
-
-  Map<String, dynamic> toJson() => _$CinemaModelToJson(this);
-
-  @override
-  String toString() {
-    return 'Cine{id: $id, name: $name, address: $address, rating: $rating, distance: $distance, photo: $photo, lat: $lat, lng: $lng}';
-  }
-
-  static List<CinemaModel> SAMPLE_DATA = [
+  static List<CinemaModel> mockData = [
     CinemaModel(
       id: 'Arasan Cinemas A/C 2K Dolby',
       name: 'Arasan Cinemas A/C 2K Dolby',
@@ -113,6 +103,15 @@ class CinemaModel {
       lng: 105.8132952,
     ),
   ];
+
+  factory CinemaModel.fromJson(Map<String, dynamic> json) => _$CinemaModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CinemaModelToJson(this);
+
+  @override
+  String toString() {
+    return 'Cine{id: $id, name: $name, address: $address, rating: $rating, distance: $distance, photo: $photo, lat: $lat, lng: $lng}';
+  }
 }
 
 extension CinemaModelX on CinemaModel {

@@ -7,6 +7,9 @@
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:flutter/material.dart';
 
+///
+/// Custom snackbar for showing loading, success, failure for app
+///
 class CustomSnackBar {
   static void showLoading(BuildContext context, {String msg = "Processing..."}) {
     ScaffoldMessenger.of(context)

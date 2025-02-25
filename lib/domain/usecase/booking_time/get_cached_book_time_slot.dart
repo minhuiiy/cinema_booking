@@ -9,7 +9,9 @@ import 'package:cinema_booking/domain/repository/booking_time/book_time_slot.dar
 import 'package:dartz/dartz.dart';
 import 'package:cinema_booking/service_locator.dart';
 
-// UseCase to get a cached book time slot
+///
+/// UseCase to get a cached book time slot
+///
 class GetCachedBookTimeSlotUseCase {
   Future<Either<String, BookTimeSlotEntity?>> call() async {
     return await sl<BookTimeSlotRepository>().getBookTimeSlot();

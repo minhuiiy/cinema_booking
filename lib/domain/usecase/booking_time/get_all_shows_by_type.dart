@@ -9,7 +9,9 @@ import 'package:cinema_booking/domain/repository/booking_time/book_time_slot.dar
 import 'package:dartz/dartz.dart';
 import 'package:cinema_booking/service_locator.dart';
 
-// UseCase to fetch all movies by type
+///
+/// UseCase to fetch all movies by type
+///
 class GetAllMoviesByTypeUseCase {
   Future<Either<String, List<BookingTimeSlotByCinemaResponse>>> call({
     required String movieId,

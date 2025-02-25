@@ -7,6 +7,9 @@
 import 'package:flutter/material.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 
+///
+/// TODO: Change Theme function
+///
 class AppTheme {
   static final lightTheme = ThemeData(
     primaryColor: AppColors.primary,

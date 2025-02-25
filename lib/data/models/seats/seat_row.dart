@@ -22,16 +22,7 @@ class SeatRowModel {
 
   SeatRowModel({this.id, this.rowId, this.seatId, this.count, this.offs, this.booked});
 
-  factory SeatRowModel.fromJson(Map<String, dynamic> json) => _$SeatRowModelFromJson(json);
-
-  Map<String, dynamic> toJson() => _$SeatRowModelToJson(this);
-
-  @override
-  String toString() {
-    return 'SeatRow{rowId: $rowId}';
-  }
-
-  static final List<SeatRowModel> SAMPLE_KING = [
+  static final List<SeatRowModel> sampleSeatSlotKing = [
     SeatRowModel(
       id: 'mock_data',
       seatId: 'mock_data',
@@ -43,7 +34,7 @@ class SeatRowModel {
     SeatRowModel(id: 'mock_data', seatId: 'mock_data', rowId: 'J', count: 11, offs: [], booked: []),
   ];
 
-  static final List<SeatRowModel> SAMPLE_QUEEN = [
+  static final List<SeatRowModel> sampleSeatSlotQueen = [
     SeatRowModel(
       id: 'mock_data',
       seatId: 'mock_data',
@@ -70,7 +61,7 @@ class SeatRowModel {
     ),
   ];
 
-  static final List<SeatRowModel> SAMPLE_JACK = [
+  static final List<SeatRowModel> sampleSeatSlotJack = [
     SeatRowModel(
       id: 'mock_data',
       seatId: 'mock_data',
@@ -112,6 +103,15 @@ class SeatRowModel {
       booked: [2, 3, 4, 5, 6, 7],
     ),
   ];
+
+  factory SeatRowModel.fromJson(Map<String, dynamic> json) => _$SeatRowModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SeatRowModelToJson(this);
+
+  @override
+  String toString() {
+    return 'SeatRow{rowId: $rowId}';
+  }
 }
 
 extension SeatRowModelMapper on SeatRowModel {

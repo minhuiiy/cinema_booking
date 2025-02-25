@@ -5,6 +5,7 @@
  */
 
 import 'dart:ui';
+import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:flutter/material.dart';
 
@@ -95,7 +96,7 @@ class CinematicBottomBar extends StatelessWidget {
         child: Row(
           children: <Widget>[
             Icon(icon, color: Colors.white, size: 16),
-            SizedBox(width: 6),
+            WidgetSpacer(width: 6),
             Text(
               text,
               style: TextStyle(
@@ -105,7 +106,7 @@ class CinematicBottomBar extends StatelessWidget {
                 letterSpacing: 0.5,
               ),
             ),
-            SizedBox(width: 6),
+            WidgetSpacer(width: 6),
             Icon(Icons.keyboard_arrow_down, color: Colors.white, size: 14),
           ],
         ),

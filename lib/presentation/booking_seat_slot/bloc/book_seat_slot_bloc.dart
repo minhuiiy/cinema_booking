@@ -197,7 +197,7 @@ class BookSeatSlotBloc extends Bloc<BookSeatSlotEvent, BookSeatSlotState> {
 
   double calculateTotalPrice() {
     final totalPrice =
-        SeatTypesModel.SAMPLE_DATA.firstWhere((type) => type.type == selectedSeatType).price! *
+        SeatTypesModel.mockData.firstWhere((type) => type.type == selectedSeatType).price! *
         getSelectedSeatSlotId().length;
     LogHelper.info(tag: 'BookSeatSlotBloc', message: 'Total price calculated: $totalPrice');
     return totalPrice;

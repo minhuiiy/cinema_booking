@@ -9,6 +9,9 @@ import 'package:cinema_booking/domain/repository/home/home.dart';
 import 'package:cinema_booking/service_locator.dart';
 import 'package:dartz/dartz.dart';
 
+///
+/// Get All Data for the Main home screen
+///
 class GetHomeDataUseCase implements UseCase<Either, dynamic> {
   @override
   Future<Either> call({params}) async {

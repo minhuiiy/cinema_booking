@@ -6,7 +6,6 @@
 
 import 'dart:convert';
 
-import 'package:cinema_booking/common/helpers/log_helpers.dart';
 import 'package:cinema_booking/core/local/pref.dart';
 import 'package:cinema_booking/data/models/booking/booking_time_slot.dart';
 import 'package:cinema_booking/data/models/movies/movies.dart';

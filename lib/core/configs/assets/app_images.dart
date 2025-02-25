@@ -4,6 +4,9 @@
  * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
  */
 
+///
+/// image link of App
+///
 class AppImages {
   static const String basePath = "assets/images/";
 

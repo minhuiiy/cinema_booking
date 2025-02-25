@@ -11,6 +11,9 @@ import 'package:cinema_booking/core/usecase/usecase.dart';
 import 'package:cinema_booking/domain/repository/auth/auth.dart';
 import 'package:cinema_booking/service_locator.dart';
 
+///
+/// update info
+///
 class EditUserInfoUseCase implements UseCase<Either, EditUserReq> {
   @override
   Future<Either> call({EditUserReq? params}) async {

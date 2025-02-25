@@ -8,6 +8,9 @@ import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:flutter/material.dart';
 
+///
+///  Basic app button with gradient background
+///
 class BasicAppButton extends StatelessWidget {
   final VoidCallback onPressed;
   final String title;

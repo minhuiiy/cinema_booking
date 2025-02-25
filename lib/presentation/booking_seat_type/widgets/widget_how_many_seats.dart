@@ -62,7 +62,7 @@ class _WidgetHowManySeatsState extends State<WidgetHowManySeats> {
 
 /// WidgetSeatTypePicker
 class WidgetSeatTypePicker extends StatefulWidget {
-  final List<SeatTypeEntity> seatTypes = SeatTypesModel.SAMPLE_DATA.toEntities();
+  final List<SeatTypeEntity> seatTypes = SeatTypesModel.mockData.toEntities();
 
   final Function(String) onSeatTypeChanged;
 

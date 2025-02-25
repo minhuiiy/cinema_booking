@@ -149,7 +149,7 @@ class CinematicBookTicketButton extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Icon(Icons.event_seat, color: Colors.white, size: 22), // Sofa Icon
-              SizedBox(width: 8),
+              WidgetSpacer(width: 8),
               Text(
                 'BOOK SEATS',
                 style: TextStyle(

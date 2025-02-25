@@ -7,6 +7,9 @@
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:flutter/material.dart';
 
+///
+/// Widget to display gradient text
+///
 class GradientText extends StatelessWidget {
   final String text;
   final TextStyle textStyle;

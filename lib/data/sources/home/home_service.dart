@@ -22,7 +22,7 @@ class HomeServiceImpl extends HomeService {
 
       return right(homeData.toEntity());
     } catch (e) {
-      return const Left('An error occurred, Please try again.');
+      return const Left('An error occurred in getHomeData, Please try again.');
     }
   }
 }

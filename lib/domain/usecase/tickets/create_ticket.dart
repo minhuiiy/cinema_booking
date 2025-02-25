@@ -9,6 +9,9 @@ import 'package:dartz/dartz.dart';
 import 'package:cinema_booking/core/usecase/usecase.dart';
 import 'package:cinema_booking/service_locator.dart';
 
+///
+/// Save a ticket in SQL when user buy a ticket
+///
 class CreateTicketUseCase implements UseCase<Either, dynamic> {
   @override
   Future<Either> call({params}) async {

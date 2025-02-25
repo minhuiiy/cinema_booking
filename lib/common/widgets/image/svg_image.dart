@@ -7,6 +7,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+///
+///  A widget that displays an SVG image from the provided `path` have different color
+///
 class MySvgImage extends StatelessWidget {
   final String path;
   final double width;
@@ -34,6 +37,7 @@ class MySvgImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // TODO: icon color should be dynamic
     return applyColorFilter
         ? SvgPicture.asset(path, width: width, height: height)
         : SvgPicture.asset(path, width: width, height: height);

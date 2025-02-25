@@ -4,6 +4,7 @@
  * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
  */
 
+import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:cinema_booking/core/enum/sort_movie.dart';
@@ -99,7 +100,7 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text('Sort by', style: AppFont.semibold_white.copyWith(fontSize: 22)),
-                const SizedBox(height: 10),
+                const WidgetSpacer(height: 10),
                 _buildSortOption(context, '⭐ Rating', MovieSoftBy.ratting, movieSortBy),
                 _buildSortOption(context, '🎬 Name', MovieSoftBy.name, movieSortBy),
               ],
@@ -157,7 +158,7 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
               isSelected ? Icons.radio_button_checked : Icons.radio_button_unchecked,
               color: isSelected ? AppColors.defaultColor : Colors.white70,
             ),
-            const SizedBox(width: 12),
+            const WidgetSpacer(width: 12),
             Text(
               title,
               style: AppFont.regular_white_14.copyWith(
