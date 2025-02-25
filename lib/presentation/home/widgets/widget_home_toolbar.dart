@@ -1,10 +1,10 @@
 import 'dart:async';
+
 import 'package:cinema_booking/common/bloc/authentication/authentication_bloc.dart';
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
 import 'package:cinema_booking/core/configs/assets/app_images.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
-import 'package:cinema_booking/presentation/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -145,8 +145,7 @@ class _WidgetHomeToolbarState extends State<WidgetHomeToolbar> with TickerProvid
         Text('Chung Nguyen Thanh', style: AppFont.medium_white_16.copyWith(fontSize: 15)),
         GestureDetector(
           onTap: () {
-            Navigator.of(context).pushNamed(AppRouter.LIST_TICKETS);
-            // _clickSignOut();
+            _clickSignOut();
           },
           child: Opacity(
             opacity: 0.5,
