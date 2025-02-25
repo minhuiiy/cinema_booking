@@ -21,4 +21,6 @@ class AppImages {
   static const String seatQueen = '${basePath}seat_queen.png';
   static const String seatJack = '${basePath}seat_jack.png';
   static const String ticket = '${basePath}ticket.png';
+
+  static const String cinemas = '${basePath}ic_nearby_theatre.png';
 }
