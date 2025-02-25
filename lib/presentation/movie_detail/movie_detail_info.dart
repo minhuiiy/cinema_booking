@@ -6,6 +6,7 @@
 
 import 'package:cinema_booking/common/helpers/log_helpers.dart';
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
+import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/domain/entities/response/home.dart';
 import 'package:cinema_booking/presentation/movie_detail/bloc/movie_details_bloc.dart';
 import 'package:cinema_booking/presentation/movie_detail/widgets/widget_movie_casts.dart';
@@ -132,7 +133,7 @@ class CinematicBookTicketButton extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
           gradient: LinearGradient(
-            colors: [Color(0xFF9C27B0), Color(0xFFE91E63)], // Purple to Pink gradient
+            colors: AppColors.linearColor, // Purple to Pink gradient
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),

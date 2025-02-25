@@ -52,4 +52,5 @@ class AppColors {
     Color(0xFF310559), // #310559
     Color(0xFFC012A0), // #C012A0
   ];
+  static const List<Color> linearColor = [Color(0xFF9C27B0), Color(0xFFE91E63)];
 }

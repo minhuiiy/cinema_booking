@@ -4,6 +4,7 @@
  * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
  */
 
+import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:flutter/material.dart';
 
 class GradientText extends StatelessWidget {
@@ -17,7 +18,7 @@ class GradientText extends StatelessWidget {
     return ShaderMask(
       shaderCallback:
           (bounds) => LinearGradient(
-            colors: [Color(0xFF9C27B0), Color(0xFFE91E63)],
+            colors: AppColors.linearColor,
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ).createShader(bounds),

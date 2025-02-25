@@ -44,7 +44,7 @@ class CurveScreenPainter extends CustomPainter {
     var paint =
         Paint()
           ..shader = LinearGradient(
-            colors: [Color(0xFF9C27B0), Color(0xFFE91E63)],
+            colors: AppColors.linearColor,
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
           ).createShader(Rect.fromLTWH(0, 0, size.width, size.height))

@@ -196,7 +196,7 @@ class _WidgetSignInFormState extends State<WidgetSignInForm> {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
             gradient: LinearGradient(
-              colors: [Color(0xFF9C27B0), Color(0xFFE91E63)],
+              colors: AppColors.linearColor,
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),

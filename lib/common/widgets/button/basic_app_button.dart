@@ -4,6 +4,7 @@
  * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
  */
 
+import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:flutter/material.dart';
 
@@ -39,7 +40,7 @@ class BasicAppButton extends StatelessWidget {
             gradient:
                 isEnabled
                     ? LinearGradient(
-                      colors: [Color(0xFF9C27B0), Color(0xFFE91E63)],
+                      colors: AppColors.linearColor,
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                     )

@@ -7,6 +7,7 @@
 import 'package:cinema_booking/common/widgets/image/svg_image.dart';
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
 import 'package:cinema_booking/core/configs/assets/app_vectors.dart';
+import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:flutter/material.dart';
 
@@ -24,7 +25,7 @@ class WidgetToolbar extends StatelessWidget {
       height: 55,
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [Color(0xFF9C27B0), Color(0xFFE91E63)],
+          colors: AppColors.linearColor,
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),

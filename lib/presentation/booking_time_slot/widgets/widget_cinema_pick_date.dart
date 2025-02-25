@@ -5,6 +5,7 @@
  */
 
 import 'dart:ui';
+import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:flutter/material.dart';
 
 class CinematicBottomBar extends StatelessWidget {
@@ -34,7 +35,7 @@ class CinematicBottomBar extends StatelessWidget {
           color: Colors.black.withValues(alpha: 0.6), // Semi-transparent background
           borderRadius: BorderRadius.vertical(top: Radius.circular(14)),
           gradient: LinearGradient(
-            colors: [Color(0xFF9C27B0), Color(0xFFE91E63)],
+            colors: AppColors.linearColor,
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),

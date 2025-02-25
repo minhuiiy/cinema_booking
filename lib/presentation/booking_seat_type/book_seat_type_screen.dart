@@ -5,6 +5,7 @@
  */
 
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
+import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:cinema_booking/domain/entities/booking/booking_time_slot.dart';
 import 'package:cinema_booking/presentation/booking_seat_slot/book_seat_slot_screen.dart';
@@ -113,7 +114,7 @@ class _BookSeatTypeScreenState extends State<BookSeatTypeScreen> {
           child: Ink(
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [Color(0xFF9C27B0), Color(0xFFE91E63)], // Gradient effect
+                colors: AppColors.linearColor, // Gradient effect
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),

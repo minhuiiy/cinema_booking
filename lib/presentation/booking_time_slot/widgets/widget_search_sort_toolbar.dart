@@ -9,6 +9,7 @@ import 'dart:async';
 import 'package:cinema_booking/common/widgets/image/svg_image.dart';
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
 import 'package:cinema_booking/core/configs/assets/app_vectors.dart';
+import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:cinema_booking/presentation/booking_time_slot/bloc/book_time_slot_bloc.dart';
 import 'package:cinema_booking/presentation/booking_time_slot/bloc/book_time_slot_state.dart';
@@ -57,7 +58,7 @@ class _WidgetSearchSortToolbarState extends State<WidgetSearchSortToolbar> {
           height: 60,
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [Color(0xFF9C27B0), Color(0xFFE91E63)],
+              colors: AppColors.linearColor,
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
