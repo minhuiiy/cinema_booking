@@ -39,67 +39,46 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
         },
         (data) async {
           if (data is AllMoviesEntity) {
-            emit(DisplayListMovies.data(_metaFromResponse(data)));
+            emit(DisplayListMovies.data(_allMovieFromResponse(data)));
           } else {
             emit(DisplayListMovies.error("Invalid response type"));
           }
         },
       );
     } catch (e) {
-      LogHelper.error(tag: "AllMoviesBloc", message: "Error fetching data: $e");
       emit(DisplayListMovies.error(e.toString()));
     }
   }
 
-  // Hàm xử lý sự kiện ClickIconSearch
   Future<void> _onClickIconSearch(ClickIconSearch event, Emitter<AllMoviesState> emit) async {
-    LogHelper.debug(tag: "AllMoviesBloc", message: "Search icon clicked, movieing search field");
     emit(UpdateToolbarState(movieSearchField: true));
   }
 
-  // Hàm xử lý sự kiện ClickCloseSearch
   Future<void> _onClickCloseSearch(ClickCloseSearch event, Emitter<AllMoviesState> emit) async {
-    LogHelper.debug(tag: "AllMoviesBloc", message: "Closing search field");
     emit(UpdateToolbarState(movieSearchField: false));
     await _mapSearchQueryChangedToState('', emit);
   }
 
-  // Hàm xử lý thay đổi truy vấn tìm kiếm
   Future<void> _onSearchQueryChanged(SearchQueryChanged event, Emitter<AllMoviesState> emit) async {
     LogHelper.debug(tag: "AllMoviesBloc", message: "Search query changed: ${event.keyword}");
     await _debouncedSearchQueryChanged(event.keyword, emit);
   }
 
-  // Hàm debounce cho tìm kiếm
   Future<void> _debouncedSearchQueryChanged(String keyword, Emitter<AllMoviesState> emit) async {
-    LogHelper.debug(tag: "AllMoviesBloc", message: "Debouncing search query...");
     await Future.delayed(Duration(milliseconds: 400));
     await _mapSearchQueryChangedToState(keyword, emit);
   }
 
-  // Hàm xử lý thay đổi truy vấn tìm kiếm
   Future<void> _mapSearchQueryChangedToState(String keyword, Emitter<AllMoviesState> emit) async {
-    LogHelper.debug(tag: "AllMoviesBloc", message: "Updating search results for query: $keyword");
-    // emit(DisplayListMovies.loading());
     try {
-      LogHelper.debug(tag: "AllMoviesBloc", message: "Fetching data for all movies...");
       var response = await sl<GetAllMoviesDataUseCase>().call();
 
       response.fold(
         (l) {
-          LogHelper.debug(
-            tag: "AllMoviesBloc",
-            message: "Fetching data for all movies... error: $l",
-          );
           emit(DisplayListMovies.error(l.toString()));
         },
         (data) async {
-          LogHelper.debug(
-            tag: "AllMoviesBloc",
-            message: "Fetching data for all movies... data: $data",
-          );
           if (data is AllMoviesEntity) {
-            LogHelper.debug(tag: "AllMoviesBloc", message: "AllMoviesEntity success");
             bool query(MovieDetailEntity movie) =>
                 keyword.isEmpty || movie.detail.name.toLowerCase().contains(keyword.toLowerCase());
 
@@ -107,30 +86,28 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
             data.comingSoon = data.comingSoon.where(query).toList();
             data.exclusive = data.exclusive.where(query).toList();
 
-            final meta = _metaFromResponse(data);
+            final allMovie = _allMovieFromResponse(data);
 
-            LogHelper.debug(tag: "AllMoviesBloc", message: "AllMoviesEntity success meta: $meta");
+            LogHelper.debug(
+              tag: "AllMoviesBloc",
+              message: "AllMoviesEntity success allMovie: $allMovie",
+            );
 
-            emit(DisplayListMovies.data(meta));
+            emit(DisplayListMovies.data(allMovie));
           } else {
-            LogHelper.debug(tag: "AllMoviesBloc", message: "error");
             emit(DisplayListMovies.error("Invalid response type"));
           }
         },
       );
     } catch (e) {
-      LogHelper.error(tag: "AllMoviesBloc", message: "Error filtering search results: $e");
       emit(DisplayListMovies.error(e.toString()));
     }
   }
 
-  // Hàm xử lý sự kiện ClickIconSort
   Future<void> _onClickIconSort(ClickIconSort event, Emitter<AllMoviesState> emit) async {
-    LogHelper.debug(tag: "AllMoviesBloc", message: "Sort icon clicked");
     emit(OpenSortOption(isOpen: true, movieSortBy: movieSortBy));
   }
 
-  // Hàm xử lý sự kiện SortByChanged
   Future<void> _onSortByChanged(SortByChanged event, Emitter<AllMoviesState> emit) async {
     LogHelper.debug(tag: "AllMoviesBloc", message: "Sorting by: ${event.movieSortBy}");
     movieSortBy = event.movieSortBy;
@@ -138,7 +115,7 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
     await _mapSearchQueryChangedToState('', emit);
   }
 
-  AllMoviesEntity _metaFromResponse(AllMoviesEntity response) {
+  AllMoviesEntity _allMovieFromResponse(AllMoviesEntity response) {
     int Function(MovieDetailEntity a, MovieDetailEntity b) sortBy;
     if (movieSortBy == MovieSoftBy.name) {
       sortBy = (MovieDetailEntity a, MovieDetailEntity b) => a.detail.name.compareTo(b.detail.name);

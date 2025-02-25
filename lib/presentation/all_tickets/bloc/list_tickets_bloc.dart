@@ -33,7 +33,6 @@ class ListTicketsBloc extends Bloc<ListTicketsEvent, ListTicketsState> {
 
       data.fold(
         (error) {
-          LogHelper.error(tag: 'ListTicketsBloc Error', message: " $error");
           emit(state.copyWith(isLoading: false, msg: error.toString()));
         },
         (data) {

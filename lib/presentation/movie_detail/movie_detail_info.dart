@@ -110,9 +110,7 @@ class MovieInfoScreen extends StatelessWidget {
   // }
 
   void openBookCineTimeSlot(BuildContext context) {
-    LogHelper.debug(tag: "openBookCineTimeSlot", message: "start");
     // BlocProvider.of<MovieDetailsBloc>(context).add(OpenedBookTimeSlotScreen());
-    LogHelper.debug(tag: "openBookCineTimeSlot", message: "BlocProvider Done");
     Navigator.pushNamed(context, AppRouter.BOOK_TIME_SLOT, arguments: movie.detail);
   }
 }

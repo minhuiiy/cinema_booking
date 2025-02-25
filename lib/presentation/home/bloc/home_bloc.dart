@@ -4,7 +4,6 @@
  * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
  */
 
-import 'package:cinema_booking/common/helpers/log_helpers.dart';
 import 'package:cinema_booking/domain/entities/response/home.dart';
 import 'package:cinema_booking/domain/usecase/home/get_home_data.dart';
 import 'package:cinema_booking/service_locator.dart';
@@ -22,7 +21,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   Future<void> _onLoadHome(LoadHome event, Emitter<HomeState> emit) async {
     try {
-      LogHelper.debug(tag: "HomeBloc", message: "_onLoadHome start ");
       final response = await sl<GetHomeDataUseCase>().call();
 
       response.fold(

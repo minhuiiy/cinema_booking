@@ -23,11 +23,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 part 'book_time_slot_event.dart';
 
 class BookTimeSlotBloc extends Bloc<BookTimeSlotEvent, BookTimeSlotState> {
-  // Must be passed via constructor
   String movieId = "";
 
   BookTimeSlotBloc() : super(const BookTimeSlotState(isLoading: true)) {
-    // Định nghĩa các sự kiện
     on<OpenScreen>(_onOpenScreen);
     on<ClickIconSearch>(_onClickIconSearch);
     on<ClickCloseSearch>(_onClickCloseSearch);
@@ -37,39 +35,31 @@ class BookTimeSlotBloc extends Bloc<BookTimeSlotEvent, BookTimeSlotState> {
   }
 
   Future<void> _onOpenScreen(OpenScreen event, Emitter<BookTimeSlotState> emit) async {
-    LogHelper.debug(tag: 'OpenScreen', message: 'movieId: $movieId');
     try {
       final response = await sl<GetAllMoviesByTypeUseCase>().call(movieId: movieId);
 
       response.fold(
         (error) {
-          // emit(BookTimeSlotError(error));
           LogHelper.error(tag: 'OpenScreen Error', message: "BookTimeSlotBloc $error");
         },
         (data) {
           final updatedState = state.copyWith(isLoading: false, list: _toBookTimeSlots(data));
           emit(updatedState);
-          LogHelper.info(tag: 'OpenScreen Success', message: 'Data loaded successfully');
         },
       );
     } catch (e) {
       emit(state.copyWith(msg: e.toString()));
-      LogHelper.error(tag: 'OpenScreen Error', message: 'Failed to load movies: $e');
     }
   }
 
   void _onClickIconSearch(ClickIconSearch event, Emitter<BookTimeSlotState> emit) {
-    LogHelper.debug(tag: 'ClickIconSearch', message: 'Search icon clicked');
     final updatedState = state.copyWith(isLoading: false, movieSearchField: true);
     emit(updatedState);
-    LogHelper.info(tag: 'ClickIconSearch Success', message: 'Search field is movien');
   }
 
   void _onClickCloseSearch(ClickCloseSearch event, Emitter<BookTimeSlotState> emit) async {
-    LogHelper.debug(tag: 'ClickCloseSearch', message: 'Closing search field');
     final updatedState = state.copyWith(movieSearchField: false);
     emit(updatedState);
-    LogHelper.info(tag: 'ClickCloseSearch Success', message: 'Search field closed');
 
     await _onSearchQueryChanged(SearchQueryChanged(keyword: ""), emit);
   }
@@ -95,43 +85,27 @@ class BookTimeSlotBloc extends Bloc<BookTimeSlotEvent, BookTimeSlotState> {
 
           final updatedState = state.copyWith(isLoading: false, list: _toBookTimeSlots(result));
           emit(updatedState);
-          LogHelper.info(tag: 'OpenScreen Success', message: 'Data loaded successfully');
         },
       );
     } catch (e) {
       emit(state.copyWith(msg: e.toString()));
-      LogHelper.error(tag: 'SearchQueryChanged Error', message: 'Failed to search for query: $e');
     }
   }
 
   Future<void> _onSelectTimeSlot(SelectTimeSlot event, Emitter<BookTimeSlotState> emit) async {
-    LogHelper.debug(
-      tag: 'SelectTimeSlot',
-      message: 'Selected timeSlot: ${event.selectedTimeSlot},',
-    );
     await sl<CacheSelectedTimeSlotUseCase>().call(timeSlot: event.selectedTimeSlot);
     await sl<CacheBookTimeSlotUseCase>().call(bookTimeSlot: event.bookTimeSlot);
 
     final updatedState = state.copyWith(isOpenBookSeatTypeScreen: true);
     emit(updatedState);
-
-    LogHelper.info(
-      tag: 'SelectTimeSlot Success',
-      message: 'Selected timeSlot cached, opening seat screen',
-    );
   }
 
   void _onOpenedBookSeatTypeScreen(
     OpenedBookSeatTypeScreen event,
     Emitter<BookTimeSlotState> emit,
   ) {
-    LogHelper.debug(tag: 'OpenedBookSeatTypeScreen', message: 'Opening Book Seat Type screen');
     final updatedState = state.copyWith(isOpenBookSeatTypeScreen: false);
     emit(updatedState);
-    LogHelper.info(
-      tag: 'OpenedBookSeatTypeScreen Success',
-      message: 'Book Seat Type screen closed',
-    );
   }
 
   // Filtering logic for BookTimeSlotEntity data

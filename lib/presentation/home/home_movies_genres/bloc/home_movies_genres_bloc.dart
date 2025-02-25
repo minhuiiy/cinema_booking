@@ -16,17 +16,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 part 'home_movies_genres_event.dart';
 part 'home_movies_genres_state.dart';
 
-class HomeMoviesGenresBloc
-    extends Bloc<HomeMoviesGenresEvent, HomeMoviesGenresState> {
+class HomeMoviesGenresBloc extends Bloc<HomeMoviesGenresEvent, HomeMoviesGenresState> {
   final HomeBloc homeBloc;
   late StreamSubscription subscription;
 
-  HomeMoviesGenresBloc({required this.homeBloc})
-    : super(MoviesByGenresNotLoaded()) {
+  HomeMoviesGenresBloc({required this.homeBloc}) : super(MoviesByGenresNotLoaded()) {
     on<DisplayMoviesByGenres>(_onDisplayMoviesByGenres);
 
     if (homeBloc.state is HomeLoaded) {
-      LogHelper.debug(tag: "HomeMoviesGenresBloc", message: 'HomeLoaded');
       final state = homeBloc.state as HomeLoaded;
       add(DisplayMoviesByGenres(state.homeState));
     } else {
@@ -46,10 +43,6 @@ class HomeMoviesGenresBloc
 
     final homeResponse = event.homeResponse;
 
-    LogHelper.debug(
-      tag: "_onDisplayMoviesByGenres",
-      message: "check data: ${homeResponse.genres}",
-    );
     for (var data in homeResponse.movieByGenres) {
       final genres = homeResponse.genres.firstWhere((genres) {
         return genres.id == data.genresId;

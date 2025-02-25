@@ -65,7 +65,6 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
 
   Widget _buildContent(HomeState state) {
     if (state is HomeLoaded) {
-      LogHelper.debug(tag: "HomeContentScreen", message: "HomeLoaded");
       return Expanded(
         child: RefreshIndicator(
           onRefresh: () async {

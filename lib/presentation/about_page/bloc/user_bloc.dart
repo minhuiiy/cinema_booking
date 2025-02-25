@@ -5,7 +5,6 @@
  */
 
 import 'package:cinema_booking/common/helpers/is_valid.dart';
-import 'package:cinema_booking/common/helpers/log_helpers.dart';
 import 'package:cinema_booking/data/models/auth/edit_user_req.dart';
 import 'package:cinema_booking/domain/entities/auth/user.dart';
 import 'package:cinema_booking/domain/usecase/user/edit_user_info.dart';
@@ -59,11 +58,6 @@ class UserInfoBloc extends Bloc<UserInfoEvent, UserInfoState> {
 
     // Nếu form không hợp lệ, dừng lại
     if (!isConfirmPasswordValid || !isValidName || !isValidEmail || !isMatched) {
-      LogHelper.debug(
-        tag: "_onFormSubmitted",
-        message:
-            "Invalid form isConfirmPasswordValid: $isConfirmPasswordValid, isValidName: $isValidName, isValidEmail: $isValidEmail, hasPassword: $hasPassword, isMatched: $isMatched",
-      );
       emit(UserInfoEdit.failure(user));
       return;
     }

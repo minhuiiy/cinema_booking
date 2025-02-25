@@ -29,12 +29,8 @@ class AllMoviesServiceImpl extends AllMoviesService {
       );
 
       return right(allMoviesData.toEntity());
-    } catch (e, stackTrace) {
-      LogHelper.error(
-        tag: "AllMovieRepository",
-        message: "Error occurred while fetching allMovies data: $e Stack trace: $stackTrace",
-      );
-      return const Left('An error occurred, Please try again.');
+    } catch (e) {
+      return const Left("An error occurred in getAllMoviesData, Please try again ");
     }
   }
 }

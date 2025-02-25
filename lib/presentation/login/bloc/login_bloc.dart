@@ -35,10 +35,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     LoginSubmitEmailPasswordEvent event,
     Emitter<LoginState> emit,
   ) async {
-    LogHelper.debug(
-      tag: "LoginBloc",
-      message: 'Start _onLoginSubmitEmailPasswordEvent',
-    );
+    LogHelper.debug(tag: "LoginBloc", message: 'Start _onLoginSubmitEmailPasswordEvent');
     try {
       emit(LoginState.loading()); // Emit loading state while processing login.
 
@@ -57,10 +54,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         },
       );
     } catch (e) {
-      LogHelper.error(
-        tag: "LoginBloc",
-        message: 'Error _onLoginSubmitEmailPasswordEvent: $e',
-      );
+      LogHelper.error(tag: "LoginBloc", message: 'Error _onLoginSubmitEmailPasswordEvent: $e');
       emit(LoginState.failure()); // Emit failure state in case of an exception.
     }
   }
@@ -68,10 +62,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   /// Handles changes in the email input field.
   /// - Uses a debounce delay of **300ms** to prevent excessive state updates.
   /// - Validates the email format and updates the state.
-  Future<void> _onLoginEmailChanged(
-    LoginEmailChanged event,
-    Emitter<LoginState> emit,
-  ) async {
+  Future<void> _onLoginEmailChanged(LoginEmailChanged event, Emitter<LoginState> emit) async {
     await Future.delayed(const Duration(milliseconds: 300)); // Debounce input
     emit(state.update(isEmailValid: Validators.isValidEmail(event.email)));
   }
@@ -79,13 +70,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   /// Handles changes in the password input field.
   /// - Uses a debounce delay of **300ms** for better performance.
   /// - Validates the password format and updates the state.
-  Future<void> _onLoginPasswordChanged(
-    LoginPasswordChanged event,
-    Emitter<LoginState> emit,
-  ) async {
+  Future<void> _onLoginPasswordChanged(LoginPasswordChanged event, Emitter<LoginState> emit) async {
     await Future.delayed(const Duration(milliseconds: 300)); // Debounce input
-    emit(
-      state.update(isPasswordValid: Validators.isValidPassword(event.password)),
-    );
+    emit(state.update(isPasswordValid: Validators.isValidPassword(event.password)));
   }
 }
