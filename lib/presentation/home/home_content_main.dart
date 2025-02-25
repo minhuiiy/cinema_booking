@@ -14,6 +14,7 @@ import 'package:cinema_booking/presentation/home/home_genres/bloc/home_genres_bl
 import 'package:cinema_booking/presentation/home/home_genres/widget_home_categories.dart';
 import 'package:cinema_booking/presentation/home/home_movies_genres/bloc/home_movies_genres_bloc.dart';
 import 'package:cinema_booking/presentation/home/home_movies_genres/widget_home_movies_genres.dart';
+import 'package:cinema_booking/presentation/home/nearby_cinema/widget_nearby_cinema.dart';
 import 'package:cinema_booking/presentation/home/recommended_movies/bloc/recommended_movies_bloc.dart';
 import 'package:cinema_booking/presentation/home/recommended_movies/widget_recommended_movies.dart';
 import 'package:cinema_booking/presentation/home/widgets/widget_home_toolbar.dart';
@@ -80,8 +81,8 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
               WidgetSpacer(height: 20),
               WidgetRecommendedMovies(),
               WidgetSpacer(height: 20),
-              // WidgetNearbyCine(),
-              // WidgetSpacer(height: 30),
+              WidgetNearbyCine(),
+              WidgetSpacer(height: 30),
               WidgetHomeMoviesGenres(),
               WidgetSpacer(height: 20),
             ],
