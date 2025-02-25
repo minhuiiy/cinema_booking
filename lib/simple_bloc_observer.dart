@@ -23,8 +23,8 @@ class SimpleBlocObserver extends BlocObserver {
 
     if (kDebugMode) {
       print(
-        '\n'
-        '$blue--------------------------------\n'
+        '$blue\n'
+        '--------------------------------\n'
         'Bloc  : ${bloc.runtimeType}     \n'
         'Event : ${event.toString()}     \n'
         '--------------------------------$reset\n',
@@ -39,8 +39,8 @@ class SimpleBlocObserver extends BlocObserver {
 
     if (kDebugMode) {
       print(
-        '\n'
-        '$red$bold════════════════════════════════════════\n'
+        '$red$bold\n'
+        '════════════════════════════════════════\n'
         '               BLOC ERROR               \n'
         '════════════════════════════════════════\n'
         'Bloc   : ${bloc.runtimeType}          \n\n'
@@ -51,24 +51,24 @@ class SimpleBlocObserver extends BlocObserver {
     }
 
     /// Called whenever a state transition occurs in any Bloc.
-    @override
-    void onTransition(Bloc bloc, Transition transition) {
-      super.onTransition(bloc, transition);
+    // @override
+    // void onTransition(Bloc bloc, Transition transition) {
+    //   super.onTransition(bloc, transition);
 
-      // LogHelper.info(
-      //   tag: "onTransition",
-      //   message:
-      //       '\n'
-      //       '════════════════════════════════════════\n'
-      //       '         BLOC STATE TRANSITION          \n'
-      //       '════════════════════════════════════════\n'
-      //       'Bloc: ${bloc.runtimeType}               \n'
-      //       '----------------------------------------\n'
-      //       '▶ FROM: ${transition.currentState}      \n'
-      //       '▶ TO:   ${transition.nextState}         \n'
-      //       '════════════════════════════════════════\n'
-      //       '\n',
-      // );
-    }
+    //   LogHelper.info(
+    //     tag: "onTransition",
+    //     message:
+    //         '\n'
+    //         '════════════════════════════════════════\n'
+    //         '         BLOC STATE TRANSITION          \n'
+    //         '════════════════════════════════════════\n'
+    //         'Bloc: ${bloc.runtimeType}               \n'
+    //         '----------------------------------------\n'
+    //         '▶ FROM: ${transition.currentState}      \n'
+    //         '▶ TO:   ${transition.nextState}         \n'
+    //         '════════════════════════════════════════\n'
+    //         '\n',
+    //   );
+    // }
   }
 }
