@@ -7,8 +7,6 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:cinema_booking/common/helpers/log_helpers.dart';
-import 'package:cinema_booking/data/sources/ticket/ticket_service.dart';
-import 'package:cinema_booking/service_locator.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DbHelper {
@@ -41,8 +39,9 @@ class DbHelper {
       onCreate: _onCreate,
     );
 
-    var result = await sl<AllTicketsService>().getAllTicketsData();
-    LogHelper.debug(tag: "DbHelper", message: result.toString());
+    // var result = await sl<AllTicketsService>().getAllTicketsData();
+
+    // LogHelper.debug(tag: "DbHelper", message: result.toString());
   }
 
   static Database get db => _db;

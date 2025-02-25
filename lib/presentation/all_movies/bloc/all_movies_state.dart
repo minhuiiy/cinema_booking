@@ -12,7 +12,7 @@ class AllMoviesState extends Equatable {
 }
 
 class DisplayListMovies extends AllMoviesState {
-  final Meta? meta;
+  final AllMoviesEntity? meta;
   final bool loading;
   final String? msg;
 
@@ -22,7 +22,7 @@ class DisplayListMovies extends AllMoviesState {
     return DisplayListMovies(msg: null, meta: null, loading: true);
   }
 
-  factory DisplayListMovies.data(Meta meta) {
+  factory DisplayListMovies.data(AllMoviesEntity meta) {
     return DisplayListMovies(msg: null, meta: meta, loading: false);
   }
 

@@ -50,11 +50,10 @@ class AuthServiceImpl extends AuthService {
   @override
   Future<Either<String, String>> signup(CreateUserReq createUserReq) async {
     try {
-      UserCredential userCredential = await _firebaseAuth
-          .createUserWithEmailAndPassword(
-            email: createUserReq.email!,
-            password: createUserReq.password,
-          );
+      UserCredential userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
+        email: createUserReq.email!,
+        password: createUserReq.password,
+      );
 
       String uid = userCredential.user!.uid;
 
@@ -65,8 +64,7 @@ class AuthServiceImpl extends AuthService {
         'fullName': createUserReq.fullName,
         'age': createUserReq.age,
         'gender': createUserReq.gender,
-        'createdAt':
-            FieldValue.serverTimestamp(), // Store account creation timestamp
+        'createdAt': FieldValue.serverTimestamp(), // Store account creation timestamp
       });
 
       return const Right('Signup was Successful');
@@ -92,8 +90,7 @@ class AuthServiceImpl extends AuthService {
         'fullName': edit.fullName,
         'age': edit.age,
         'gender': edit.gender,
-        'createdAt':
-            FieldValue.serverTimestamp(), // Store account creation timestamp
+        'createdAt': FieldValue.serverTimestamp(), // Store account creation timestamp
       });
 
       return const Right('Update was Successful');
@@ -117,22 +114,11 @@ class AuthServiceImpl extends AuthService {
     try {
       final currentUser = _firebaseAuth.currentUser;
       if (currentUser != null) {
-        DocumentSnapshot userDoc =
-            await firestore.collection('users').doc(currentUser.uid).get();
+        DocumentSnapshot userDoc = await firestore.collection('users').doc(currentUser.uid).get();
 
         if (userDoc.exists && userDoc.data() != null) {
-          UserModel userModel = UserModel.fromJson(
-            userDoc.data() as Map<String, dynamic>,
-          );
-          LogHelper.debug(
-            tag: "AuthService",
-            message: 'userDoc data: ${userDoc.data().toString()}',
-          );
+          UserModel userModel = UserModel.fromJson(userDoc.data() as Map<String, dynamic>);
 
-          LogHelper.debug(
-            tag: "AuthService",
-            message: 'userModel data: ${userModel.toString()}',
-          );
           return Right(userModel.toEntity()); // Return user model
         } else {
           return Left('User data not found in Firestore');
@@ -152,8 +138,7 @@ class AuthServiceImpl extends AuthService {
       if (googleUser == null) {
         return Left('Google sign-in cancelled');
       }
-      final GoogleSignInAuthentication googleAuth =
-          await googleUser.authentication;
+      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
       final AuthCredential credential = GoogleAuthProvider.credential(
         idToken: googleAuth.idToken,
         accessToken: googleAuth.accessToken,

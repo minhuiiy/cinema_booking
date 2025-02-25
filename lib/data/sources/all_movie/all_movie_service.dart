@@ -17,15 +17,9 @@ abstract class AllMoviesService {
 class AllMoviesServiceImpl extends AllMoviesService {
   @override
   Future<Either> getAllMoviesData() async {
-    LogHelper.debug(tag: "AllMovieRepository", message: "getAllMovieData start ");
-
     try {
-      LogHelper.debug(
-        tag: "AllMovieRepository",
-        message: "Making API request to fetch allMovies data",
-      );
       final client = RestClient(localDio);
-      LogHelper.debug(tag: "AllMovieRepository", message: "Making API request to getAllMovieData");
+
       final AllMoviesModelResponse allMoviesData = await client.getAllMoviesByType();
 
       // Log the actual response for debugging
@@ -38,9 +32,8 @@ class AllMoviesServiceImpl extends AllMoviesService {
     } catch (e, stackTrace) {
       LogHelper.error(
         tag: "AllMovieRepository",
-        message: "Error occurred while fetching allMovies data: $e",
+        message: "Error occurred while fetching allMovies data: $e Stack trace: $stackTrace",
       );
-      LogHelper.error(tag: "AllMovieRepository", message: "Stack trace: $stackTrace");
       return const Left('An error occurred, Please try again.');
     }
   }

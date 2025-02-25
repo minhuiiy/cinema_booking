@@ -15,6 +15,8 @@ class AllMoviesEntity {
 
   @override
   String toString() {
-    return 'AllMoviesByTypeResponse{nowMovieing: $nowMovieing, comingSoon: $comingSoon, exclusive: $exclusive}';
+    return 'AllMoviesEntity(nowMovieing: ${nowMovieing.map((movie) => movie.toString()).join(", ")}, '
+        'comingSoon: ${comingSoon.map((movie) => movie.toString()).join(", ")}, '
+        'exclusive: ${exclusive.map((movie) => movie.toString()).join(", ")})';
   }
 }

@@ -4,7 +4,6 @@
  * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
  */
 
-import 'package:cinema_booking/common/helpers/log_helpers.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:cinema_booking/core/enum/sort_movie.dart';
@@ -24,7 +23,6 @@ class AllMoviesScreen extends StatefulWidget {
 class _AllMoviesScreenState extends State<AllMoviesScreen> {
   @override
   Widget build(BuildContext context) {
-    LogHelper.debug(tag: "AllMoviesScreen", message: "Building AllMoviesScreen...");
     return SafeArea(
       child: Scaffold(
         body: BlocProvider<AllMoviesBloc>(
@@ -38,14 +36,12 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
   }
 
   Widget _buildContent() {
-    LogHelper.debug(tag: "AllMoviesScreen", message: "Building content for AllMoviesScreen...");
     return BlocConsumer<AllMoviesBloc, AllMoviesState>(
       listenWhen: (prev, current) {
         return current is OpenSortOption;
       },
       listener: (context, state) {
         if (state is OpenSortOption) {
-          LogHelper.debug(tag: "AllMoviesScreen", message: "Sorting options opened");
           _openSortByOptions(context, state.movieSortBy);
         }
       },
@@ -53,18 +49,12 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
         return current is! UpdateToolbarState && current is! OpenSortOption;
       },
       builder: (context, state) {
-        LogHelper.debug(tag: "AllMoviesScreen", message: "state: $state");
         if (state is DisplayListMovies) {
           if (state.loading) {
-            LogHelper.debug(tag: "AllMoviesScreen", message: "Loading data for display...");
             return Center(child: CircularProgressIndicator());
           }
 
           if (state.msg != null) {
-            LogHelper.debug(
-              tag: "AllMoviesScreen",
-              message: "Displaying error message: ${state.msg}",
-            );
             return Center(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 32),
@@ -74,16 +64,11 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
           }
 
           if (state.meta != null) {
-            LogHelper.debug(
-              tag: "AllMoviesScreen",
-              message: "Displaying movie gallery with meta data",
-            );
             return WidgetMovieGallery(meta: state.meta!);
           }
 
           return Container();
         } else {
-          LogHelper.debug(tag: "AllMoviesScreen", message: "No relevant state to display.");
           return Container();
         }
       },
@@ -91,11 +76,6 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
   }
 
   Future<void> _openSortByOptions(BuildContext context, MovieSoftBy movieSortBy) async {
-    LogHelper.debug(
-      tag: "AllMoviesScreen",
-      message: "Opening sort options dialog with current sortBy: $movieSortBy",
-    );
-
     switch (await showDialog<MovieSoftBy>(
       context: context,
       barrierDismissible: true, // Allow tapping outside to close
@@ -129,15 +109,12 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
       },
     )) {
       case MovieSoftBy.name:
-        LogHelper.debug(tag: "AllMoviesScreen", message: "Sorting by NAME selected");
         BlocProvider.of<AllMoviesBloc>(context).add(SortByChanged(MovieSoftBy.name));
         break;
       case MovieSoftBy.ratting:
-        LogHelper.debug(tag: "AllMoviesScreen", message: "Sorting by RATING selected");
         BlocProvider.of<AllMoviesBloc>(context).add(SortByChanged(MovieSoftBy.ratting));
         break;
       case null:
-        LogHelper.debug(tag: "AllMoviesScreen", message: "No sort option selected");
     }
   }
 

@@ -28,13 +28,9 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
     on<SortByChanged>(_onSortByChanged);
   }
 
-  // Hàm xử lý sự kiện OpenScreen
   Future<void> _onOpenScreen(OpenScreen event, Emitter<AllMoviesState> emit) async {
-    LogHelper.debug(tag: "AllMoviesBloc", message: "_onOpenScreen start");
     emit(UpdateToolbarState(movieSearchField: false));
     try {
-      // emit(DisplayListMovies.loading());
-      LogHelper.debug(tag: "AllMoviesBloc", message: "Fetching data for all movies...");
       var response = await sl<GetAllMoviesDataUseCase>().call();
 
       response.fold(
@@ -43,15 +39,7 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
         },
         (data) async {
           if (data is AllMoviesEntity) {
-            LogHelper.debug(
-              tag:
-                  ''
-                  "AllMoviesBloc",
-              message: "Data fetched successfully + ${response.toString()}",
-            );
-            var ok = DisplayListMovies.data(_metaFromResponse(data));
-            emit(ok);
-            LogHelper.debug(tag: "AllMoviesBloc", message: "emit(ok)");
+            emit(DisplayListMovies.data(_metaFromResponse(data)));
           } else {
             emit(DisplayListMovies.error("Invalid response type"));
           }
@@ -150,7 +138,7 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
     await _mapSearchQueryChangedToState('', emit);
   }
 
-  Meta _metaFromResponse(AllMoviesEntity response) {
+  AllMoviesEntity _metaFromResponse(AllMoviesEntity response) {
     int Function(MovieDetailEntity a, MovieDetailEntity b) sortBy;
     if (movieSortBy == MovieSoftBy.name) {
       sortBy = (MovieDetailEntity a, MovieDetailEntity b) => a.detail.name.compareTo(b.detail.name);
@@ -162,25 +150,10 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
     response.comingSoon.sort(sortBy);
     response.exclusive.sort(sortBy);
 
-    return Meta(
+    return AllMoviesEntity(
       nowMovieing: response.nowMovieing,
       comingSoon: response.comingSoon,
       exclusive: response.exclusive,
     );
-  }
-}
-
-class Meta {
-  final List<MovieDetailEntity> nowMovieing;
-  final List<MovieDetailEntity> comingSoon;
-  final List<MovieDetailEntity> exclusive;
-
-  Meta({required this.nowMovieing, required this.comingSoon, required this.exclusive});
-
-  @override
-  String toString() {
-    return 'Meta(nowMovieing: ${nowMovieing.map((movie) => movie.toString()).join(", ")}, '
-        'comingSoon: ${comingSoon.map((movie) => movie.toString()).join(", ")}, '
-        'exclusive: ${exclusive.map((movie) => movie.toString()).join(", ")})';
   }
 }

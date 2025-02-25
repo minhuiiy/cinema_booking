@@ -102,7 +102,7 @@ class _WidgetItemGridSeatSlotState extends State<WidgetItemGridSeatSlot> {
             }
 
             if (itemSeatSlotVM.isSelected) {
-              itemBgColor = Colors.purpleAccent;
+              itemBgColor = AppColors.defaultColor;
               itemBorderColor = Colors.white;
             }
 
@@ -117,7 +117,7 @@ class _WidgetItemGridSeatSlotState extends State<WidgetItemGridSeatSlot> {
                   border: Border.all(color: itemBorderColor, width: 1),
                   boxShadow:
                       itemSeatSlotVM.isSelected
-                          ? [BoxShadow(color: Colors.purpleAccent, blurRadius: 8)]
+                          ? [BoxShadow(color: AppColors.defaultColor, blurRadius: 8)]
                           : [],
                 ),
                 //            child: Center(child: Text('${seatRow.rowId}${i + 1}')),

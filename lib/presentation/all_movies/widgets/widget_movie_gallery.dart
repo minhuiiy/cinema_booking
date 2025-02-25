@@ -5,14 +5,15 @@
  */
 
 import 'package:cinema_booking/common/widgets/paint/rounded_rect_indicator.dart';
+import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
+import 'package:cinema_booking/domain/entities/response/all_mobie_by_type.dart';
 import 'package:cinema_booking/domain/entities/response/home.dart';
-import 'package:cinema_booking/presentation/all_movies/bloc/all_movies_bloc.dart';
 import 'package:cinema_booking/presentation/all_movies/widgets/widget_list_movies.dart';
 import 'package:flutter/material.dart';
 
 class WidgetMovieGallery extends StatefulWidget {
-  final Meta meta;
+  final AllMoviesEntity meta;
 
   const WidgetMovieGallery({super.key, required this.meta});
 
@@ -76,13 +77,13 @@ class _WidgetMovieGalleryState extends State<WidgetMovieGallery>
       child: TabBar(
         controller: _controller,
         tabs: <Widget>[Tab(text: 'Now Showing'), Tab(text: 'Coming Soon'), Tab(text: 'Exclusive')],
-        labelColor: Colors.purpleAccent,
+        labelColor: AppColors.defaultColor,
         labelStyle: AppFont.medium_default.copyWith(fontSize: 16, fontWeight: FontWeight.bold),
         unselectedLabelColor: Colors.grey.shade500,
         unselectedLabelStyle: AppFont.regular_gray1_12.copyWith(fontSize: 14),
         indicatorSize: TabBarIndicatorSize.label,
         indicator: RoundedRectIndicator(
-          color: Colors.purpleAccent,
+          color: AppColors.defaultColor,
           radius: 4,
           padding: 24,
           weight: 4.0,
