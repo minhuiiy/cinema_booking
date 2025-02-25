@@ -36,11 +36,7 @@ class _WidgetRecommendedMoviesState extends State<WidgetRecommendedMovies> {
 
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              _buildHeader(),
-              WidgetSpacer(height: 5),
-              _buildListRecommendedMovies(),
-            ],
+            children: <Widget>[_buildHeader(), _buildListRecommendedMovies()],
           );
         } else {
           return Container();

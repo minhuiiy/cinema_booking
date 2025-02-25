@@ -44,6 +44,9 @@ Future<void> main() async {
   // Initialize app dependencies (e.g., get it, ...)
   await initializeDependencies();
 
+  // Custom log bloc observer
+  Bloc.observer = SimpleBlocObserver();
+
   runApp(const MyApp());
 }
 
@@ -52,8 +55,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Custom log bloc observer
-    Bloc.observer = SimpleBlocObserver(context);
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => ThemeCubit()),

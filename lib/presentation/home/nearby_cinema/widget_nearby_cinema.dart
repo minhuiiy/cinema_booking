@@ -37,9 +37,7 @@ class _WidgetNearbyCineState extends State<WidgetNearbyCine> {
             cines.clear();
             cines.addAll(state.cines);
 
-            return Column(
-              children: <Widget>[_buildHeader(), WidgetSpacer(height: 5), _buildGoogleMap()],
-            );
+            return Column(children: <Widget>[_buildHeader(), _buildGoogleMap()]);
           } else {
             return Container();
           }
