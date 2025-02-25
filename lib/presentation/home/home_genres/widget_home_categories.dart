@@ -36,10 +36,7 @@ class _WidgetHomeGenresState extends State<WidgetHomeGenres> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(
-                  'Movie Genres'.toUpperCase(),
-                  style: AppFont.medium_black2_18.copyWith(fontSize: 14),
-                ),
+                Text('Movie Genres'.toUpperCase(), style: AppFont.medium_white_14),
                 WidgetSpacer(height: 14),
                 _buildListgenres(),
               ],

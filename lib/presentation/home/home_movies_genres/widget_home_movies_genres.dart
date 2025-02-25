@@ -7,7 +7,7 @@
 import 'package:cinema_booking/common/helpers/log_helpers.dart';
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
 import 'package:cinema_booking/presentation/home/home_movies_genres/bloc/home_movies_genres_bloc.dart';
-import 'package:cinema_booking/presentation/home/widgets/widget_home_events.dart';
+import 'package:cinema_booking/presentation/home/home_movies_genres/widgets/widget_home_events.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -24,10 +24,7 @@ class _WidgetHomeMoviesGenresState extends State<WidgetHomeMoviesGenres> {
     return BlocBuilder<HomeMoviesGenresBloc, HomeMoviesGenresState>(
       builder: (context, state) {
         if (state is MoviesByGenresLoaded) {
-          LogHelper.debug(
-            tag: "WidgetHomeMoviesGenres",
-            message: "MoviesByGenresLoaded",
-          );
+          LogHelper.debug(tag: "WidgetHomeMoviesGenres", message: "MoviesByGenresLoaded");
 
           final list = state.list;
 

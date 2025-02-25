@@ -36,11 +36,7 @@ class _WidgetHomePostersState extends State<WidgetHomePosters> {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        _buildHeader(),
-        WidgetSpacer(height: 14),
-        _buildListPoster(),
-      ],
+      children: <Widget>[_buildHeader(), WidgetSpacer(height: 14), _buildListPoster()],
     );
   }
 
@@ -49,21 +45,13 @@ class _WidgetHomePostersState extends State<WidgetHomePosters> {
       padding: const EdgeInsets.only(left: 20),
       child: Row(
         children: [
-          MySvgImage(
-            path: widget.iconPath,
-            width: 20,
-            height: 20,
-            color: AppColors.black,
-          ),
+          MySvgImage(path: widget.iconPath, width: 20, height: 20, color: AppColors.black),
           WidgetSpacer(width: 6),
-          Text(widget.label, style: AppFont.medium_white_16),
+          Text(widget.label.toUpperCase(), style: AppFont.medium_white_14),
           Spacer(),
           TextButton(
             onPressed: () {},
-            child: Text(
-              "View All",
-              style: AppFont.medium_white_12.copyWith(color: AppColors.red),
-            ),
+            child: Text("View All", style: AppFont.medium_white_12.copyWith(color: AppColors.red)),
           ),
         ],
       ),
@@ -104,9 +92,7 @@ class _WidgetHomePostersState extends State<WidgetHomePosters> {
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
                   colors: [
-                    Colors.black.withValues(
-                      alpha: 0.80,
-                    ), // Dark fade on the left
+                    Colors.black.withValues(alpha: 0.80), // Dark fade on the left
                     Colors.transparent,
                   ],
                 ),
@@ -127,9 +113,7 @@ class _WidgetHomePostersState extends State<WidgetHomePosters> {
                   begin: Alignment.centerRight,
                   end: Alignment.centerLeft,
                   colors: [
-                    Colors.black.withValues(
-                      alpha: 0.80,
-                    ), // Dark fade on the right
+                    Colors.black.withValues(alpha: 0.80), // Dark fade on the right
                     Colors.transparent,
                   ],
                 ),
@@ -160,12 +144,7 @@ class WidgetItemPoster extends StatelessWidget {
           children: <Widget>[
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
-              child: ShimmerImage(
-                url: item.photo,
-                width: 180,
-                height: 120,
-                fit: BoxFit.cover,
-              ),
+              child: ShimmerImage(url: item.photo, width: 180, height: 120, fit: BoxFit.cover),
             ),
             WidgetSpacer(height: 4),
             Text(
