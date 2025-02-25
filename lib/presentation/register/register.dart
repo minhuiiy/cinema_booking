@@ -91,7 +91,7 @@ class _SignupPageState extends State<SignupPage> {
             onPressed: () => Navigator.pop(context),
           ),
           actions: [
-            TextButton(onPressed: () {}, child: Text("Skip", style: AppFont.kNormalTextStyleWhite)),
+            TextButton(onPressed: () {}, child: Text("Skip", style: AppFont.medium_white_18)),
           ],
         ),
         body: Padding(
@@ -135,7 +135,7 @@ class _SignupPageState extends State<SignupPage> {
                       children: [
                         GradientText(
                           text: "REGISTER ME",
-                          textStyle: AppFont.kTitleTextStyle.copyWith(fontFamily: 'Oswald'),
+                          textStyle: AppFont.semibold_white_30.copyWith(fontFamily: 'Oswald'),
                         ),
                         WidgetSpacer(width: 10),
                       ],
@@ -177,12 +177,12 @@ class _SignupPageState extends State<SignupPage> {
   Widget _textField(String label, TextEditingController controller) {
     return TextField(
       controller: controller,
-      style: AppFont.kNormalTextStyleWhite,
+      style: AppFont.medium_white_18,
       decoration: InputDecoration(
         hintText: label,
-        hintStyle: AppFont.kNormalTextStyleWhite,
+        hintStyle: AppFont.medium_white_18,
         labelText: label,
-        labelStyle: AppFont.kNormalTextStyleWhite,
+        labelStyle: AppFont.medium_white_18,
         floatingLabelBehavior: FloatingLabelBehavior.auto,
         contentPadding: EdgeInsets.zero,
         enabledBorder: const UnderlineInputBorder(
@@ -202,12 +202,12 @@ class _SignupPageState extends State<SignupPage> {
           children: [
             RichText(
               text: TextSpan(
-                style: AppFont.kNormalTextStyleWhite,
+                style: AppFont.medium_white_18,
                 children: [
-                  TextSpan(text: "Gender:    ", style: AppFont.kMiniTitleTextStyleWhite),
+                  TextSpan(text: "Gender:    ", style: AppFont.medium_white_22),
                   TextSpan(
                     text: selectedGender,
-                    style: AppFont.kMiniTitleTextStyleWhite.copyWith(
+                    style: AppFont.medium_white_22.copyWith(
                       color: selectedGender == "Male" ? AppColors.blue : AppColors.pink,
                     ),
                   ),
@@ -253,7 +253,7 @@ class _SignupPageState extends State<SignupPage> {
   Widget _ageSelection() {
     return Column(
       children: [
-        Row(children: [Text("Age:", style: AppFont.kMiniTitleTextStyleWhite)]),
+        Row(children: [Text("Age:", style: AppFont.medium_white_22)]),
         const SizedBox(height: 15),
         AgeSelector(onAgeSelected: updateAge),
       ],

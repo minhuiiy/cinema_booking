@@ -5,12 +5,5 @@
  */
 
 class AppUrls {
-  static const coverFireStorage =
-      'https://firebasestorage.googleapis.com/v0/b/spotify-flutter-4aa82.appspot.com/o/covers%2F';
-  static const songFireStorage =
-      'https://firebasestorage.googleapis.com/v0/b/spotify-flutter-4aa82.appspot.com/o/songs%2F';
-  static const temp = 'Son-Tung-';
-  static const mediaAlt = 'alt=media';
-  static const defaultAvatar =
-      'https://cdn-icons-png.flaticon.com/512/10542/10542486.png';
+  static const baseUrl = "https://3bf0d4a6-7d3c-4091-b2dc-bcc085520363.mock.pstmn.io";
 }

@@ -88,7 +88,7 @@ class _WidgetSignInFormState extends State<WidgetSignInForm> {
                       alignment: Alignment.centerRight,
                       child: Text(
                         "Forgot password?",
-                        style: AppFont.kNormalTextStyleGrey.copyWith(color: Colors.orangeAccent),
+                        style: AppFont.regular_gray1_14.copyWith(color: Colors.orangeAccent),
                       ),
                     ),
                     WidgetSpacer(height: 30),
@@ -158,12 +158,12 @@ class _WidgetSignInFormState extends State<WidgetSignInForm> {
         textAlign: TextAlign.left,
         controller: controller,
         obscureText: isPassword,
-        style: AppFont.kNormalTextStyleWhite,
+        style: AppFont.medium_white_18,
         textAlignVertical: TextAlignVertical.center, // Centers text inside field
         decoration: InputDecoration(
           hintText: hint,
-          hintStyle: AppFont.kNormalTextStyleWhite.copyWith(fontSize: 15),
-          labelStyle: AppFont.kNormalTextStyleGrey.copyWith(fontSize: 16),
+          hintStyle: AppFont.medium_white_18.copyWith(fontSize: 15),
+          labelStyle: AppFont.regular_gray1_14.copyWith(fontSize: 16),
           floatingLabelBehavior: FloatingLabelBehavior.auto, // Always show label
           alignLabelWithHint: true, // Aligns label correctly
           contentPadding: const EdgeInsets.symmetric(vertical: 15), // Centers hint
@@ -202,7 +202,7 @@ class _WidgetSignInFormState extends State<WidgetSignInForm> {
             ),
           ),
           alignment: Alignment.center,
-          child: Text("LOGIN", style: AppFont.kNormalBoldTextStyleWhite.copyWith(fontSize: 18)),
+          child: Text("LOGIN", style: AppFont.semibold_white_18.copyWith(fontSize: 18)),
         ),
       ),
     );
@@ -219,7 +219,7 @@ class _WidgetSignInFormState extends State<WidgetSignInForm> {
             padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2), // Thêm padding cho đẹp
             child: Text(
               text,
-              style: AppFont.kNormalTextStyleGrey.copyWith(fontSize: 14), // Tăng font size nếu cần
+              style: AppFont.regular_gray1_14.copyWith(fontSize: 14), // Tăng font size nếu cần
             ),
           ),
         ),

@@ -1,3 +1,9 @@
+/*
+ * @ Author: Chung Nguyen Thanh <chunhthanhde.dev@gmail.com>
+ * @ Created: 2024-12-24 08:46:47
+ * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
+ */
+
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:flutter/material.dart';
 
@@ -47,10 +53,7 @@ class BasicAppButton extends StatelessWidget {
           alignment: Alignment.center,
           child: Text(
             title,
-            style: AppFont.kNormalBoldTextStyleWhite.copyWith(
-              fontSize: textSize,
-              fontWeight: weight,
-            ),
+            style: AppFont.semibold_white_18.copyWith(fontSize: textSize, fontWeight: weight),
           ),
         ),
       ),

@@ -29,10 +29,7 @@ class _WidgetHomeGenresState extends State<WidgetHomeGenres> {
     return BlocBuilder<HomeGenresBloc, HomeGenresState>(
       builder: (context, state) {
         if (state is HomeGenresLoaded) {
-          items =
-              state.genres
-                  .map((genres) => ItemGenresVM.fromGenres(genres))
-                  .toList();
+          items = state.genres.map((genres) => ItemGenresVM.fromGenres(genres)).toList();
 
           return Padding(
             padding: const EdgeInsets.only(left: 20),
@@ -41,7 +38,7 @@ class _WidgetHomeGenresState extends State<WidgetHomeGenres> {
               children: <Widget>[
                 Text(
                   'Movie Genres'.toUpperCase(),
-                  style: AppFont.kNormalTextStyleBlack.copyWith(fontSize: 14),
+                  style: AppFont.medium_black2_18.copyWith(fontSize: 14),
                 ),
                 WidgetSpacer(height: 14),
                 _buildListgenres(),
@@ -95,19 +92,11 @@ class WidgetItemGenres extends StatelessWidget {
             width: 34,
             height: 34,
             child: Center(
-              child: MySvgImage(
-                path: item.image,
-                width: 28,
-                height: 28,
-                applyColorFilter: false,
-              ),
+              child: MySvgImage(path: item.image, width: 28, height: 28, applyColorFilter: false),
             ),
           ),
           WidgetSpacer(height: 4),
-          Text(
-            item.title,
-            style: AppFont.kNormalTextStyleGrey.copyWith(fontSize: 12),
-          ),
+          Text(item.title, style: AppFont.regular_gray1_14.copyWith(fontSize: 12)),
         ],
       ),
     );
