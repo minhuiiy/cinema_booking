@@ -63,7 +63,7 @@ class _WidgetHomeBannerState extends State<WidgetHomeBanner> {
                       begin: Alignment.bottomCenter,
                       end: Alignment.topCenter,
                       colors: [
-                        AppColors.darkBackground.withValues(alpha: 0.50),
+                        AppColors.darkBackground.withValues(alpha: 0.20),
                         Colors.transparent,
                       ],
                     ),
