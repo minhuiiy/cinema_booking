@@ -11,6 +11,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 /// A custom BlocObserver to monitor and log Bloc events, errors, and transitions.
 ///
 class SimpleBlocObserver extends BlocObserver {
+  static const String reset = '\x1B[0m';
+  static const String blue = '\x1B[34m';
+  static const String red = '\x1B[31m';
+  static const String bold = '\x1B[1m';
+
   /// Called whenever an event is added to any Bloc.
   @override
   void onEvent(Bloc bloc, Object? event) {
@@ -19,10 +24,10 @@ class SimpleBlocObserver extends BlocObserver {
     if (kDebugMode) {
       print(
         '\n'
-        '--------------------------------\n'
+        '$blue--------------------------------\n'
         'Bloc  : ${bloc.runtimeType}     \n'
         'Event : ${event.toString()}     \n'
-        '--------------------------------\n',
+        '--------------------------------$reset\n',
       );
     }
   }
@@ -35,13 +40,13 @@ class SimpleBlocObserver extends BlocObserver {
     if (kDebugMode) {
       print(
         '\n'
-        '════════════════════════════════════════\n'
+        '$red$bold════════════════════════════════════════\n'
         '               BLOC ERROR               \n'
         '════════════════════════════════════════\n'
         'Bloc   : ${bloc.runtimeType}          \n\n'
         'Error  : $error                         \n'
         'StackTrace:\n$stackTrace                \n'
-        '════════════════════════════════════════\n',
+        '════════════════════════════════════════$reset\n',
       );
     }
 
