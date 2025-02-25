@@ -118,10 +118,7 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(
-                  'Sort by',
-                  style: AppFont.semibold_white_18.copyWith(fontSize: 22, letterSpacing: 1.2),
-                ),
+                Text('Sort by', style: AppFont.semibold_white.copyWith(fontSize: 22)),
                 const SizedBox(height: 10),
                 _buildSortOption(context, '⭐ Rating', MovieSoftBy.ratting, movieSortBy),
                 _buildSortOption(context, '🎬 Name', MovieSoftBy.name, movieSortBy),

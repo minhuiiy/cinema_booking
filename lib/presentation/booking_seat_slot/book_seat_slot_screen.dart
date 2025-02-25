@@ -92,7 +92,7 @@ class _BookSeatSlotScreenState extends State<BookSeatSlotScreen> {
                       children: <Widget>[
                         WidgetToolbar(
                           title: movieName,
-                          actions: Text(textSeat, style: AppFont.medium_white_12),
+                          actions: Text(textSeat, style: AppFont.medium_white_14),
                         ),
                         Expanded(
                           child: SingleChildScrollView(
