@@ -24,7 +24,9 @@ class AllTicketsServiceImpl extends AllTicketsService {
 
       return right(listMap.map((jsonRaw) => Ticket.fromJson(jsonRaw)).toList());
     } catch (e) {
-      return const Left('An error occurred in getAllTicketsData, Please try again.');
+      return const Left(
+        'An error occurred in getAllTicketsData, Please try again.',
+      );
     }
   }
 

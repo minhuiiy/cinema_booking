@@ -35,7 +35,12 @@ class BookTimeSlotScreen extends StatelessWidget {
             children: <Widget>[
               WidgetSearchSortToolbar(title: movie.name),
               Expanded(
-                child: Stack(children: <Widget>[_buildListCineTimeSlot(), _buildBtnToday()]),
+                child: Stack(
+                  children: <Widget>[
+                    _buildListCineTimeSlot(),
+                    _buildBtnToday(),
+                  ],
+                ),
               ),
             ],
           ),

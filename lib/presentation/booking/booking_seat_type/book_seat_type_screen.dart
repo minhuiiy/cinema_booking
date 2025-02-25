@@ -48,10 +48,14 @@ class _BookSeatTypeScreenState extends State<BookSeatTypeScreen> {
 
             if (state.movie != null && state.bookTimeSlot != null) {
               BookTimeSlotEntity bookTimeSlot = state.bookTimeSlot!;
-              int selectedIndex = bookTimeSlot.timeSlots.indexOf(state.selectedTimeSlot!);
+              int selectedIndex = bookTimeSlot.timeSlots.indexOf(
+                state.selectedTimeSlot!,
+              );
               String movieName = state.movie!.name;
 
-              _itemCineTimeSlot = ItemCineTimeSlot.fromBookTimeSlot(bookTimeSlot: bookTimeSlot);
+              _itemCineTimeSlot = ItemCineTimeSlot.fromBookTimeSlot(
+                bookTimeSlot: bookTimeSlot,
+              );
 
               return Scaffold(
                 body: Stack(
@@ -109,7 +113,9 @@ class _BookSeatTypeScreenState extends State<BookSeatTypeScreen> {
             ),
           ),
           onPressed: () {
-            BlocProvider.of<BookSeatTypeBloc>(_blocContext).add(ClickSelectSeats());
+            BlocProvider.of<BookSeatTypeBloc>(
+              _blocContext,
+            ).add(ClickSelectSeats());
           },
           child: Ink(
             decoration: BoxDecoration(
@@ -141,8 +147,13 @@ class _BookSeatTypeScreenState extends State<BookSeatTypeScreen> {
     Navigator.pushNamed(
       context,
       AppRouter.BOOK_SEAT_SLOT,
-      arguments: ScreenArguments(seatCount: state.seatCount, seatType: state.selectedSeatType),
+      arguments: ScreenArguments(
+        seatCount: state.seatCount,
+        seatType: state.selectedSeatType,
+      ),
     );
-    BlocProvider.of<BookSeatTypeBloc>(_blocContext).add(OpenedBookSeatSlotScreen());
+    BlocProvider.of<BookSeatTypeBloc>(
+      _blocContext,
+    ).add(OpenedBookSeatSlotScreen());
   }
 }

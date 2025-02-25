@@ -78,10 +78,14 @@ class _BookSeatSlotScreenState extends State<BookSeatSlotScreen> {
                   state.bookTimeSlot != null &&
                   state.itemGridSeatSlotVMs.isNotEmpty) {
                 BookTimeSlotEntity bookTimeSlot = state.bookTimeSlot!;
-                int selectedIndex = bookTimeSlot.timeSlots.indexOf(state.selectedTimeSlot!);
+                int selectedIndex = bookTimeSlot.timeSlots.indexOf(
+                  state.selectedTimeSlot!,
+                );
                 String movieName = state.movie!.name;
 
-                _itemCineTimeSlot = ItemCineTimeSlot.fromBookTimeSlot(bookTimeSlot: bookTimeSlot);
+                _itemCineTimeSlot = ItemCineTimeSlot.fromBookTimeSlot(
+                  bookTimeSlot: bookTimeSlot,
+                );
 
                 String textSeat = '${state.selectedSeatIds.length} seats';
 
@@ -93,7 +97,10 @@ class _BookSeatSlotScreenState extends State<BookSeatSlotScreen> {
                       children: <Widget>[
                         WidgetToolbar(
                           title: movieName,
-                          actions: Text(textSeat, style: AppFont.medium_white_14),
+                          actions: Text(
+                            textSeat,
+                            style: AppFont.medium_white_14,
+                          ),
                         ),
                         Expanded(
                           child: SingleChildScrollView(
@@ -142,7 +149,9 @@ class _BookSeatSlotScreenState extends State<BookSeatSlotScreen> {
     List<Widget> widgets = [];
 
     for (var itemGridSeatSlotVM in state.itemGridSeatSlotVMs) {
-      widgets.add(WidgetItemGridSeatSlot(itemGridSeatSlotVM: itemGridSeatSlotVM));
+      widgets.add(
+        WidgetItemGridSeatSlot(itemGridSeatSlotVM: itemGridSeatSlotVM),
+      );
       widgets.add(WidgetSpacer(height: 14));
     }
 
@@ -168,8 +177,12 @@ class _BookSeatSlotScreenState extends State<BookSeatSlotScreen> {
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
               padding: EdgeInsets.symmetric(vertical: 14),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-              backgroundColor: Colors.transparent, // Set transparent so container's gradient shows
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30),
+              ),
+              backgroundColor:
+                  Colors
+                      .transparent, // Set transparent so container's gradient shows
               shadowColor: Colors.transparent,
               elevation: 0, // Removes shadow effect from the button itself
             ),
@@ -186,21 +199,33 @@ class _BookSeatSlotScreenState extends State<BookSeatSlotScreen> {
     );
   }
 
-  Future<void> _handleBlocListener(BuildContext context, BookSeatSlotState state) async {
+  Future<void> _handleBlocListener(
+    BuildContext context,
+    BookSeatSlotState state,
+  ) async {
     if (state.isReachedLimitSeatSlot) {
-      CustomSnackBar.failure(context, msg: "You reached ${widget.args.seatCount} seats");
+      CustomSnackBar.failure(
+        context,
+        msg: "You reached ${widget.args.seatCount} seats",
+      );
       bloc.add(DismissMessageReachedLimitSeatSlot());
     }
 
     if (state.isSelectWrongSeatType) {
-      CustomSnackBar.failure(context, msg: "Please select seat ${widget.args.seatType.toText()}");
+      CustomSnackBar.failure(
+        context,
+        msg: "Please select seat ${widget.args.seatType.toText()}",
+      );
       bloc.add(DismissMessageWrongSeatType());
     }
 
     if (state.isOpenPaymentMethod) {
       bloc.add(OpenedPaymentMethodScreen());
 
-      CustomSnackBar.success(context, msg: "Pay success with \$${state.totalPrice}");
+      CustomSnackBar.success(
+        context,
+        msg: "Pay success with \$${state.totalPrice}",
+      );
 
       // TODO: create PaymentMethodScreen
     }

@@ -26,7 +26,10 @@ class WidgetOffers extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [Colors.black.withValues(alpha: 0.9), Colors.black.withValues(alpha: 0.7)],
+          colors: [
+            Colors.black.withValues(alpha: 0.9),
+            Colors.black.withValues(alpha: 0.7),
+          ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
@@ -128,7 +131,12 @@ class WidgetGrabReward extends StatelessWidget {
                   borderRadius: BorderRadius.circular(4),
                 ),
                 child: Center(
-                  child: MySvgImage(path: iconPath, width: 16, height: 16, applyColorFilter: false),
+                  child: MySvgImage(
+                    path: iconPath,
+                    width: 16,
+                    height: 16,
+                    applyColorFilter: false,
+                  ),
                 ),
               ),
             ),
@@ -141,7 +149,9 @@ class WidgetGrabReward extends StatelessWidget {
                   Text(
                     title,
                     maxLines: 1,
-                    style: AppFont.oswald_regular_red2.copyWith(color: textColor),
+                    style: AppFont.oswald_regular_red2.copyWith(
+                      color: textColor,
+                    ),
                   ),
                   Text(content, style: AppFont.regular_gray4_10, maxLines: 2),
                 ],

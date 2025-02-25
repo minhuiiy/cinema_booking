@@ -33,7 +33,10 @@ class NearbyCineBloc extends Bloc<NearbyCineEvent, NearbyCineState> {
     }
   }
 
-  Future<void> _onDisplayNearbyCine(DisplayNearbyCine event, Emitter<NearbyCineState> emit) async {
+  Future<void> _onDisplayNearbyCine(
+    DisplayNearbyCine event,
+    Emitter<NearbyCineState> emit,
+  ) async {
     emit(NearbyCineLoaded(cines: event.cines));
   }
 

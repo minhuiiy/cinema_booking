@@ -27,7 +27,10 @@ class _AgeSelectorState extends State<AgeSelector> {
   @override
   void initState() {
     super.initState();
-    _pageController = PageController(viewportFraction: 0.2, initialPage: selectedAge - minAge);
+    _pageController = PageController(
+      viewportFraction: 0.2,
+      initialPage: selectedAge - minAge,
+    );
   }
 
   @override
@@ -61,7 +64,8 @@ class _AgeSelectorState extends State<AgeSelector> {
               "$age",
               style: AppFont.medium_white_22.copyWith(
                 fontSize: isSelected ? 24 : 18, // Enlarge selected age
-                color: isSelected ? AppColors.defaultColor : AppColors.textLight,
+                color:
+                    isSelected ? AppColors.defaultColor : AppColors.textLight,
                 fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
               ),
             ),

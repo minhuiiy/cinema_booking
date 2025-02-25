@@ -29,14 +29,18 @@ class _WidgetNearbyCineState extends State<WidgetNearbyCine> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<NearbyCineBloc>(
-      create: (context) => NearbyCineBloc(homeBloc: BlocProvider.of<HomeBloc>(context)),
+      create:
+          (context) =>
+              NearbyCineBloc(homeBloc: BlocProvider.of<HomeBloc>(context)),
       child: BlocBuilder<NearbyCineBloc, NearbyCineState>(
         builder: (context, state) {
           if (state is NearbyCineLoaded) {
             cines.clear();
             cines.addAll(state.cines);
 
-            return Column(children: <Widget>[_buildHeader(), _buildGoogleMap()]);
+            return Column(
+              children: <Widget>[_buildHeader(), _buildGoogleMap()],
+            );
           } else {
             return Container();
           }
@@ -56,7 +60,10 @@ class _WidgetNearbyCineState extends State<WidgetNearbyCine> {
             onPressed: () {
               _openAllCine();
             },
-            child: Text("View All", style: AppFont.medium_white_12.copyWith(color: AppColors.red)),
+            child: Text(
+              "View All",
+              style: AppFont.medium_white_12.copyWith(color: AppColors.red),
+            ),
           ),
         ],
       ),

@@ -30,7 +30,9 @@ class AppFont {
     color: AppColors.black,
   );
 
-  static final regular_default = regular.copyWith(color: AppColors.defaultColor);
+  static final regular_default = regular.copyWith(
+    color: AppColors.defaultColor,
+  );
   static final regular_default_10 = regular_default.copyWith(fontSize: 10);
   static final regular_default_12 = regular_default.copyWith(fontSize: 12);
 
@@ -43,9 +45,14 @@ class AppFont {
   static final regular_gray1 = regular.copyWith(color: AppColors.greyLight);
   static final regular_gray1_10 = regular_gray1.copyWith(fontSize: 10);
   static final regular_gray1_12 = regular_gray1.copyWith(fontSize: 12);
-  static final regular_gray1_14 = regular_gray1.copyWith(fontSize: 14, height: 1.5);
+  static final regular_gray1_14 = regular_gray1.copyWith(
+    fontSize: 14,
+    height: 1.5,
+  );
 
-  static final regular_gray1_50 = regular.copyWith(color: AppColors.greyLight.withAlpha(50));
+  static final regular_gray1_50 = regular.copyWith(
+    color: AppColors.greyLight.withAlpha(50),
+  );
   static final regular_gray1_50_9 = regular_gray1_50.copyWith(fontSize: 9);
   static final regular_gray1_50_12 = regular_gray1_50.copyWith(fontSize: 12);
 
@@ -60,7 +67,9 @@ class AppFont {
   static final regular_gray4_12 = regular_gray4.copyWith(fontSize: 12);
   static final regular_gray4_14 = regular_gray4.copyWith(fontSize: 14);
 
-  static final regular_gray4_40 = regular.copyWith(color: AppColors.gray4.withAlpha(40));
+  static final regular_gray4_40 = regular.copyWith(
+    color: AppColors.gray4.withAlpha(40),
+  );
   static final regular_gray4_40_12 = regular_gray4_40.copyWith(fontSize: 12);
 
   static final regular_gray5 = regular.copyWith(color: AppColors.gray5);
@@ -88,7 +97,9 @@ class AppFont {
   static final medium_default_14 = medium_default.copyWith(fontSize: 14);
   static final medium_default_16 = medium_default.copyWith(fontSize: 16);
 
-  static final medium_white_70 = medium.copyWith(color: AppColors.white.withAlpha(70));
+  static final medium_white_70 = medium.copyWith(
+    color: AppColors.white.withAlpha(70),
+  );
   static final medium_white_70_14 = medium_white_70.copyWith(fontSize: 14);
 
   static final medium_gray4 = medium.copyWith(color: AppColors.gray4);
@@ -111,8 +122,15 @@ class AppFont {
   static final semibold_white_30 = semibold_white.copyWith(fontSize: 30);
 
   // oswald
-  static final oswald_regular = TextStyle(fontFamily: 'Oswald', fontWeight: FontWeight.w400);
+  static final oswald_regular = TextStyle(
+    fontFamily: 'Oswald',
+    fontWeight: FontWeight.w400,
+  );
 
-  static final oswald_regular_red2 = oswald_regular.copyWith(color: AppColors.red2);
-  static final oswald_regular_red2_12 = oswald_regular_red2.copyWith(fontSize: 12);
+  static final oswald_regular_red2 = oswald_regular.copyWith(
+    color: AppColors.red2,
+  );
+  static final oswald_regular_red2_12 = oswald_regular_red2.copyWith(
+    fontSize: 12,
+  );
 }

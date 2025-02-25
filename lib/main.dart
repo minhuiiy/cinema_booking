@@ -33,7 +33,9 @@ Future<void> main() async {
     storageDirectory:
         kIsWeb
             ? HydratedStorageDirectory.web
-            : HydratedStorageDirectory((await getApplicationDocumentsDirectory()).path),
+            : HydratedStorageDirectory(
+              (await getApplicationDocumentsDirectory()).path,
+            ),
   );
 
   // Initialize Firebase
@@ -56,7 +58,9 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => ThemeCubit()),
-        BlocProvider(create: (context) => AuthenticationBloc()..add(AppStarted())),
+        BlocProvider(
+          create: (context) => AuthenticationBloc()..add(AppStarted()),
+        ),
         BlocProvider(create: (context) => HomeBloc()),
       ],
       child: BlocBuilder<ThemeCubit, ThemeMode>(

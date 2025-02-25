@@ -13,7 +13,9 @@ import 'package:cinema_booking/service_locator.dart';
 /// UseCase to cache a book time slot
 ///
 class CacheBookTimeSlotUseCase {
-  Future<Either<String, bool>> call({required BookTimeSlotEntity bookTimeSlot}) async {
+  Future<Either<String, bool>> call({
+    required BookTimeSlotEntity bookTimeSlot,
+  }) async {
     return await sl<BookTimeSlotRepository>().cacheBookTimeSlot(bookTimeSlot);
   }
 }

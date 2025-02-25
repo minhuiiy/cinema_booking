@@ -5,5 +5,6 @@
  */
 
 class AppUrls {
-  static const baseUrl = "https://3bf0d4a6-7d3c-4091-b2dc-bcc085520363.mock.pstmn.io";
+  static const baseUrl =
+      "https://3bf0d4a6-7d3c-4091-b2dc-bcc085520363.mock.pstmn.io";
 }

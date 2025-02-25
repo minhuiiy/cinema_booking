@@ -24,7 +24,10 @@ class DioProvider {
 /// HTTP interceptor to log requests, responses, and errors.
 class HttpLogInterceptor extends InterceptorsWrapper {
   @override
-  Future onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
+  Future onRequest(
+    RequestOptions options,
+    RequestInterceptorHandler handler,
+  ) async {
     String logMessage = "onRequest: ${options.uri}";
 
     if (options.data != null && options.data.toString().isNotEmpty) {
@@ -79,11 +82,18 @@ class AuthInterceptor extends Interceptor {
   String? _accessToken = "your_access_token";
 
   @override
-  Future onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
-    LogHelper.debug(tag: "AuthInterceptor", message: "Adding Authorization token...");
+  Future onRequest(
+    RequestOptions options,
+    RequestInterceptorHandler handler,
+  ) async {
+    LogHelper.debug(
+      tag: "AuthInterceptor",
+      message: "Adding Authorization token...",
+    );
 
     if (_accessToken != null) {
-      options.headers["Authorization"] = "Bearer $_accessToken"; // Attach token to request headers.
+      options.headers["Authorization"] =
+          "Bearer $_accessToken"; // Attach token to request headers.
     }
 
     handler.next(options);
@@ -93,7 +103,8 @@ class AuthInterceptor extends Interceptor {
   void onResponse(Response response, ResponseInterceptorHandler handler) {
     LogHelper.debug(
       tag: "AuthInterceptor",
-      message: "Response received: ${response.statusCode}", // Log HTTP response status.
+      message:
+          "Response received: ${response.statusCode}", // Log HTTP response status.
     );
 
     handler.next(response);
@@ -101,20 +112,31 @@ class AuthInterceptor extends Interceptor {
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) async {
-    LogHelper.debug(tag: "AuthInterceptor", message: "Error occurred: ${err.response?.statusCode}");
+    LogHelper.debug(
+      tag: "AuthInterceptor",
+      message: "Error occurred: ${err.response?.statusCode}",
+    );
 
     if (err.response?.statusCode == 401) {
       // Check if the error is due to token expiration.
-      LogHelper.debug(tag: "AuthInterceptor", message: "Token expired, refreshing token...");
+      LogHelper.debug(
+        tag: "AuthInterceptor",
+        message: "Token expired, refreshing token...",
+      );
 
       try {
         _accessToken = await _refreshToken(); // Refresh the token.
         if (_accessToken != null) {
-          final retryRequest = await _retryRequest(err.requestOptions); // Retry the failed request.
+          final retryRequest = await _retryRequest(
+            err.requestOptions,
+          ); // Retry the failed request.
           return handler.resolve(retryRequest);
         }
       } catch (e) {
-        LogHelper.error(tag: "AuthInterceptor", message: "Refresh token failed: $e");
+        LogHelper.error(
+          tag: "AuthInterceptor",
+          message: "Refresh token failed: $e",
+        );
       }
     }
 
@@ -124,7 +146,8 @@ class AuthInterceptor extends Interceptor {
   /// Retries the failed request with a new access token.
   Future<Response> _retryRequest(RequestOptions requestOptions) async {
     final dio = Dio();
-    requestOptions.headers["Authorization"] = "Bearer $_accessToken"; // Attach updated token.
+    requestOptions.headers["Authorization"] =
+        "Bearer $_accessToken"; // Attach updated token.
     return dio.fetch(requestOptions);
   }
 

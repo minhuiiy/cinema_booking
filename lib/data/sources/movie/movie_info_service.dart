@@ -30,7 +30,9 @@ class MovieInfoServiceImpl extends MovieInfoService {
   MovieInfoServiceImpl({required this.pref});
 
   @override
-  Future<Either<String, bool>> cacheBookTimeSlot(BookTimeSlotEntity bookTimeSlot) async {
+  Future<Either<String, bool>> cacheBookTimeSlot(
+    BookTimeSlotEntity bookTimeSlot,
+  ) async {
     try {
       bool result = await pref.saveString(
         DATA_CONST.CACHE_BOOK_TIME_SLOT,
@@ -56,7 +58,9 @@ class MovieInfoServiceImpl extends MovieInfoService {
   }
 
   @override
-  Future<Either<String, bool>> cacheSelectedTimeSlot(TimeSlotEntity timeSlot) async {
+  Future<Either<String, bool>> cacheSelectedTimeSlot(
+    TimeSlotEntity timeSlot,
+  ) async {
     try {
       bool result = await pref.saveString(
         DATA_CONST.CACHE_SELECTED_TIME_SLOT,
@@ -98,10 +102,13 @@ class MovieInfoServiceImpl extends MovieInfoService {
   @override
   Future<Either<String, TimeSlotEntity?>> getSelectedTimeSlot() async {
     try {
-      String? jsonData = await pref.getString(DATA_CONST.CACHE_SELECTED_TIME_SLOT);
+      String? jsonData = await pref.getString(
+        DATA_CONST.CACHE_SELECTED_TIME_SLOT,
+      );
       if (jsonData == null) return Right(null);
 
-      TimeSlotEntity timeSlot = TimeSlotModel.fromJson(json.decode(jsonData)).toEntity();
+      TimeSlotEntity timeSlot =
+          TimeSlotModel.fromJson(json.decode(jsonData)).toEntity();
       return Right(timeSlot);
     } catch (e) {
       return Left('Error retrieving selected time slot: ${e.toString()}');

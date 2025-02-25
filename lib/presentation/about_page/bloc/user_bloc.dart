@@ -24,7 +24,10 @@ class UserInfoBloc extends Bloc<UserInfoEvent, UserInfoState> {
   }
 
   /// Load UserInfo from FireBase
-  Future<void> _loadUserInfo(LoadUserInfo event, Emitter<UserInfoState> emit) async {
+  Future<void> _loadUserInfo(
+    LoadUserInfo event,
+    Emitter<UserInfoState> emit,
+  ) async {
     var response = await sl<GetUserUseCase>().call();
 
     response.fold(
@@ -37,8 +40,12 @@ class UserInfoBloc extends Bloc<UserInfoEvent, UserInfoState> {
     );
   }
 
-  Future<void> _onFormSubmitted(Submitted event, Emitter<UserInfoState> emit) async {
-    final bool hasPassword = event.password != null && event.password!.isNotEmpty;
+  Future<void> _onFormSubmitted(
+    Submitted event,
+    Emitter<UserInfoState> emit,
+  ) async {
+    final bool hasPassword =
+        event.password != null && event.password!.isNotEmpty;
     final isValidEmail = Validators.isValidEmail(event.email);
     final isValidName = Validators.isValidName(event.displayName);
 
@@ -55,7 +62,10 @@ class UserInfoBloc extends Bloc<UserInfoEvent, UserInfoState> {
             ? (state as UserInfoEdit).userInfo
             : UserEntity(email: "", fullName: "", age: 18, gender: "Male");
 
-    if (!isConfirmPasswordValid || !isValidName || !isValidEmail || !isMatched) {
+    if (!isConfirmPasswordValid ||
+        !isValidName ||
+        !isValidEmail ||
+        !isMatched) {
       emit(UserInfoEdit.failure(user));
       return;
     }
@@ -89,6 +99,9 @@ class UserInfoBloc extends Bloc<UserInfoEvent, UserInfoState> {
               ),
             ));
 
-    result.fold((l) => emit(UserInfoEdit.failure(user)), (r) => emit(UserInfoEdit.success(user)));
+    result.fold(
+      (l) => emit(UserInfoEdit.failure(user)),
+      (r) => emit(UserInfoEdit.success(user)),
+    );
   }
 }

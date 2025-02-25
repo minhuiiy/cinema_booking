@@ -28,7 +28,10 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
     on<SortByChanged>(_onSortByChanged);
   }
 
-  Future<void> _onOpenScreen(OpenScreen event, Emitter<AllMoviesState> emit) async {
+  Future<void> _onOpenScreen(
+    OpenScreen event,
+    Emitter<AllMoviesState> emit,
+  ) async {
     emit(UpdateToolbarState(movieSearchField: false));
     try {
       var response = await sl<GetAllMoviesDataUseCase>().call();
@@ -50,26 +53,44 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
     }
   }
 
-  Future<void> _onClickIconSearch(ClickIconSearch event, Emitter<AllMoviesState> emit) async {
+  Future<void> _onClickIconSearch(
+    ClickIconSearch event,
+    Emitter<AllMoviesState> emit,
+  ) async {
     emit(UpdateToolbarState(movieSearchField: true));
   }
 
-  Future<void> _onClickCloseSearch(ClickCloseSearch event, Emitter<AllMoviesState> emit) async {
+  Future<void> _onClickCloseSearch(
+    ClickCloseSearch event,
+    Emitter<AllMoviesState> emit,
+  ) async {
     emit(UpdateToolbarState(movieSearchField: false));
     await _mapSearchQueryChangedToState('', emit);
   }
 
-  Future<void> _onSearchQueryChanged(SearchQueryChanged event, Emitter<AllMoviesState> emit) async {
-    LogHelper.debug(tag: "AllMoviesBloc", message: "Search query changed: ${event.keyword}");
+  Future<void> _onSearchQueryChanged(
+    SearchQueryChanged event,
+    Emitter<AllMoviesState> emit,
+  ) async {
+    LogHelper.debug(
+      tag: "AllMoviesBloc",
+      message: "Search query changed: ${event.keyword}",
+    );
     await _debouncedSearchQueryChanged(event.keyword, emit);
   }
 
-  Future<void> _debouncedSearchQueryChanged(String keyword, Emitter<AllMoviesState> emit) async {
+  Future<void> _debouncedSearchQueryChanged(
+    String keyword,
+    Emitter<AllMoviesState> emit,
+  ) async {
     await Future.delayed(Duration(milliseconds: 400));
     await _mapSearchQueryChangedToState(keyword, emit);
   }
 
-  Future<void> _mapSearchQueryChangedToState(String keyword, Emitter<AllMoviesState> emit) async {
+  Future<void> _mapSearchQueryChangedToState(
+    String keyword,
+    Emitter<AllMoviesState> emit,
+  ) async {
     try {
       var response = await sl<GetAllMoviesDataUseCase>().call();
 
@@ -80,7 +101,8 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
         (data) async {
           if (data is AllMoviesEntity) {
             bool query(MovieDetailEntity movie) =>
-                keyword.isEmpty || movie.detail.name.toLowerCase().contains(keyword.toLowerCase());
+                keyword.isEmpty ||
+                movie.detail.name.toLowerCase().contains(keyword.toLowerCase());
 
             data.nowMovieing = data.nowMovieing.where(query).toList();
             data.comingSoon = data.comingSoon.where(query).toList();
@@ -104,12 +126,21 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
     }
   }
 
-  Future<void> _onClickIconSort(ClickIconSort event, Emitter<AllMoviesState> emit) async {
+  Future<void> _onClickIconSort(
+    ClickIconSort event,
+    Emitter<AllMoviesState> emit,
+  ) async {
     emit(OpenSortOption(isOpen: true, movieSortBy: movieSortBy));
   }
 
-  Future<void> _onSortByChanged(SortByChanged event, Emitter<AllMoviesState> emit) async {
-    LogHelper.debug(tag: "AllMoviesBloc", message: "Sorting by: ${event.movieSortBy}");
+  Future<void> _onSortByChanged(
+    SortByChanged event,
+    Emitter<AllMoviesState> emit,
+  ) async {
+    LogHelper.debug(
+      tag: "AllMoviesBloc",
+      message: "Sorting by: ${event.movieSortBy}",
+    );
     movieSortBy = event.movieSortBy;
     emit(UpdateToolbarState(movieSearchField: false));
     await _mapSearchQueryChangedToState('', emit);
@@ -118,9 +149,13 @@ class AllMoviesBloc extends Bloc<AllMoviesEvent, AllMoviesState> {
   AllMoviesEntity _allMovieFromResponse(AllMoviesEntity response) {
     int Function(MovieDetailEntity a, MovieDetailEntity b) sortBy;
     if (movieSortBy == MovieSoftBy.name) {
-      sortBy = (MovieDetailEntity a, MovieDetailEntity b) => a.detail.name.compareTo(b.detail.name);
+      sortBy =
+          (MovieDetailEntity a, MovieDetailEntity b) =>
+              a.detail.name.compareTo(b.detail.name);
     } else {
-      sortBy = (MovieDetailEntity a, MovieDetailEntity b) => b.detail.rate.compareTo(a.detail.rate);
+      sortBy =
+          (MovieDetailEntity a, MovieDetailEntity b) =>
+              b.detail.rate.compareTo(a.detail.rate);
     }
 
     response.nowMovieing.sort(sortBy);

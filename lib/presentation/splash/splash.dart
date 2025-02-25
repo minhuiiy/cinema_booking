@@ -37,7 +37,9 @@ class _SplashPageState extends State<SplashPage> {
             // TODO: need change to Router
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (BuildContext context) => const GetStartedPage()),
+              MaterialPageRoute(
+                builder: (BuildContext context) => const GetStartedPage(),
+              ),
             );
           }
         });
@@ -110,7 +112,10 @@ class _SplashPageState extends State<SplashPage> {
       child: Container(
         width: MediaQuery.of(context).size.width * 0.6,
         height: 10,
-        decoration: BoxDecoration(color: Colors.grey[300], borderRadius: BorderRadius.circular(20)),
+        decoration: BoxDecoration(
+          color: Colors.grey[300],
+          borderRadius: BorderRadius.circular(20),
+        ),
         child: Stack(
           children: [
             AnimatedContainer(

@@ -41,23 +41,32 @@ class BookSeatSlotBloc extends Bloc<BookSeatSlotEvent, BookSeatSlotState> {
     on<OpenScreen>(_onOpenScreen);
     on<ClickSelectSeatSlot>(_onClickSelectSeatSlot);
     on<DismissMessageWrongSeatType>(_onDismissMessageWrongSeatType);
-    on<DismissMessageReachedLimitSeatSlot>(_onDismissMessageReachedLimitSeatSlot);
+    on<DismissMessageReachedLimitSeatSlot>(
+      _onDismissMessageReachedLimitSeatSlot,
+    );
     on<ClickButtonPay>(_onClickButtonPay);
     on<OpenedPaymentMethodScreen>(_onOpenedPaymentMethodScreen);
   }
 
-  Future<void> _onOpenScreen(OpenScreen event, Emitter<BookSeatSlotState> emit) async {
+  Future<void> _onOpenScreen(
+    OpenScreen event,
+    Emitter<BookSeatSlotState> emit,
+  ) async {
     MovieEntity? movie;
     TimeSlotEntity? selectedTimeSlot;
     BookTimeSlotEntity? bookTimeSlot;
 
     final movieData = await sl<GetCachedMovieUseCase>().call();
-    final selectedTimeSlotData = await sl<GetCachedSelectedTimeSlotUseCase>().call();
+    final selectedTimeSlotData =
+        await sl<GetCachedSelectedTimeSlotUseCase>().call();
     final bookTimeSlotData = await sl<GetCachedBookTimeSlotUseCase>().call();
 
     movieData.fold(
       (error) {
-        LogHelper.error(tag: 'OpenScreen Error', message: "BookSeatSlotBloc movieData $error");
+        LogHelper.error(
+          tag: 'OpenScreen Error',
+          message: "BookSeatSlotBloc movieData $error",
+        );
       },
       (data) {
         movie = data;
@@ -161,7 +170,10 @@ class BookSeatSlotBloc extends Bloc<BookSeatSlotEvent, BookSeatSlotState> {
     emit(state.copyWith(isReachedLimitSeatSlot: false));
   }
 
-  void _onClickButtonPay(ClickButtonPay event, Emitter<BookSeatSlotState> emit) {
+  void _onClickButtonPay(
+    ClickButtonPay event,
+    Emitter<BookSeatSlotState> emit,
+  ) {
     final ticket = Ticket(
       DateTime.now().millisecondsSinceEpoch,
       state.movie!.name,
@@ -190,27 +202,37 @@ class BookSeatSlotBloc extends Bloc<BookSeatSlotEvent, BookSeatSlotState> {
   }
 
   List<String> getSelectedSeatSlotId() {
-    final selectedIds = selectedSeats.keys.where((key) => selectedSeats[key]!).toList();
+    final selectedIds =
+        selectedSeats.keys.where((key) => selectedSeats[key]!).toList();
 
     return selectedIds;
   }
 
   double calculateTotalPrice() {
     final totalPrice =
-        SeatTypesModel.mockData.firstWhere((type) => type.type == selectedSeatType).price! *
+        SeatTypesModel.mockData
+            .firstWhere((type) => type.type == selectedSeatType)
+            .price! *
         getSelectedSeatSlotId().length;
-    LogHelper.info(tag: 'BookSeatSlotBloc', message: 'Total price calculated: $totalPrice');
+    LogHelper.info(
+      tag: 'BookSeatSlotBloc',
+      message: 'Total price calculated: $totalPrice',
+    );
     return totalPrice;
   }
 
-  List<ItemGridSeatSlotVM> toItemGridSeatSlotVMs(List<SeatTypeEntity> seatSlotByTypes) {
+  List<ItemGridSeatSlotVM> toItemGridSeatSlotVMs(
+    List<SeatTypeEntity> seatSlotByTypes,
+  ) {
     return seatSlotByTypes.map((seatSlotType) {
-      final seatTypeName = '\$ ${seatSlotType.price} ${seatSlotType.type.toText().toUpperCase()}';
+      final seatTypeName =
+          '\$ ${seatSlotType.price} ${seatSlotType.type.toText().toUpperCase()}';
       final maxColumn = seatSlotType.seatRows![0].count + 1;
 
       LogHelper.info(
         tag: 'BookSeatSlotBloc',
-        message: 'Invalid seatTypeName: $seatTypeName ; SeatTypeModel: $seatSlotType',
+        message:
+            'Invalid seatTypeName: $seatTypeName ; SeatTypeModel: $seatSlotType',
       );
 
       return ItemGridSeatSlotVM(
@@ -221,7 +243,10 @@ class BookSeatSlotBloc extends Bloc<BookSeatSlotEvent, BookSeatSlotState> {
     }).toList();
   }
 
-  List<ItemSeatRowVM> _toItemSeatRowVMs(List<SeatRowEntity>? seatRows, TypeSeat seatType) {
+  List<ItemSeatRowVM> _toItemSeatRowVMs(
+    List<SeatRowEntity>? seatRows,
+    TypeSeat seatType,
+  ) {
     return seatRows!.map((seatRow) {
       final itemRowName = seatRow.rowId;
       return ItemSeatRowVM(
@@ -231,7 +256,11 @@ class BookSeatSlotBloc extends Bloc<BookSeatSlotEvent, BookSeatSlotState> {
     }).toList();
   }
 
-  List<ItemSeatSlotVM> _toItemSeatSlotVMs(SeatRowEntity seatRow, int count, TypeSeat seatType) {
+  List<ItemSeatSlotVM> _toItemSeatSlotVMs(
+    SeatRowEntity seatRow,
+    int count,
+    TypeSeat seatType,
+  ) {
     return Iterable<int>.generate(count).map((i) {
       final seatId = "${seatRow.rowId}$i";
       final isOff = seatRow.offs.contains(i);

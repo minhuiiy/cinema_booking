@@ -15,11 +15,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 part 'home_movies_genres_event.dart';
 part 'home_movies_genres_state.dart';
 
-class HomeMoviesGenresBloc extends Bloc<HomeMoviesGenresEvent, HomeMoviesGenresState> {
+class HomeMoviesGenresBloc
+    extends Bloc<HomeMoviesGenresEvent, HomeMoviesGenresState> {
   final HomeBloc homeBloc;
   late StreamSubscription subscription;
 
-  HomeMoviesGenresBloc({required this.homeBloc}) : super(MoviesByGenresNotLoaded()) {
+  HomeMoviesGenresBloc({required this.homeBloc})
+    : super(MoviesByGenresNotLoaded()) {
     on<DisplayMoviesByGenres>(_onDisplayMoviesByGenres);
 
     if (homeBloc.state is HomeLoaded) {

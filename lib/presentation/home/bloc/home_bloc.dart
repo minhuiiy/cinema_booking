@@ -36,7 +36,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     }
   }
 
-  Future<void> _onRefreshHome(RefreshHome event, Emitter<HomeState> emit) async {
+  Future<void> _onRefreshHome(
+    RefreshHome event,
+    Emitter<HomeState> emit,
+  ) async {
     emit(HomeLoading());
     add(LoadHome());
   }

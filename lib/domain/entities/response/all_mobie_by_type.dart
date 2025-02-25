@@ -11,7 +11,11 @@ class AllMoviesEntity {
   List<MovieDetailEntity> comingSoon;
   List<MovieDetailEntity> exclusive;
 
-  AllMoviesEntity({required this.nowMovieing, required this.comingSoon, required this.exclusive});
+  AllMoviesEntity({
+    required this.nowMovieing,
+    required this.comingSoon,
+    required this.exclusive,
+  });
 
   @override
   String toString() {

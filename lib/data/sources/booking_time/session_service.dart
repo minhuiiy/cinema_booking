@@ -13,7 +13,9 @@ import 'package:cinema_booking/data/models/show_time/time_slot.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class SessionService {
-  Future<Either<String, bool>> cacheBookTimeSlot(BookTimeSlotModel bookTimeSlot);
+  Future<Either<String, bool>> cacheBookTimeSlot(
+    BookTimeSlotModel bookTimeSlot,
+  );
   Future<Either<String, bool>> cacheMovie(MovieModel show);
   Future<Either<String, bool>> cacheSelectedTimeSlot(TimeSlotModel timeSlot);
   Future<Either<String, BookTimeSlotModel?>> getBookTimeSlot();
@@ -27,7 +29,9 @@ class SessionServiceImpl extends SessionService {
   SessionServiceImpl({required this.pref});
 
   @override
-  Future<Either<String, bool>> cacheBookTimeSlot(BookTimeSlotModel bookTimeSlot) async {
+  Future<Either<String, bool>> cacheBookTimeSlot(
+    BookTimeSlotModel bookTimeSlot,
+  ) async {
     try {
       bool result = await pref.saveString(
         DATA_CONST.CACHE_BOOK_TIME_SLOT,
@@ -42,7 +46,10 @@ class SessionServiceImpl extends SessionService {
   @override
   Future<Either<String, bool>> cacheMovie(MovieModel show) async {
     try {
-      bool result = await pref.saveString(DATA_CONST.CACHE_SHOW, json.encode(show.toJson()));
+      bool result = await pref.saveString(
+        DATA_CONST.CACHE_SHOW,
+        json.encode(show.toJson()),
+      );
       return Right(result);
     } catch (e) {
       return Left('Error saving show: ${e.toString()}');
@@ -50,7 +57,9 @@ class SessionServiceImpl extends SessionService {
   }
 
   @override
-  Future<Either<String, bool>> cacheSelectedTimeSlot(TimeSlotModel timeSlot) async {
+  Future<Either<String, bool>> cacheSelectedTimeSlot(
+    TimeSlotModel timeSlot,
+  ) async {
     try {
       bool result = await pref.saveString(
         DATA_CONST.CACHE_SELECTED_TIME_SLOT,
@@ -67,7 +76,9 @@ class SessionServiceImpl extends SessionService {
     try {
       String? jsonData = await pref.getString(DATA_CONST.CACHE_BOOK_TIME_SLOT);
 
-      BookTimeSlotModel bookTimeSlot = BookTimeSlotModel.fromJson(json.decode(jsonData));
+      BookTimeSlotModel bookTimeSlot = BookTimeSlotModel.fromJson(
+        json.decode(jsonData),
+      );
       return Right(bookTimeSlot);
     } catch (e) {
       return Left('Error retrieving book time slot: ${e.toString()}');
@@ -89,7 +100,9 @@ class SessionServiceImpl extends SessionService {
   @override
   Future<Either<String, TimeSlotModel?>> getSelectedTimeSlot() async {
     try {
-      String? jsonData = await pref.getString(DATA_CONST.CACHE_SELECTED_TIME_SLOT);
+      String? jsonData = await pref.getString(
+        DATA_CONST.CACHE_SELECTED_TIME_SLOT,
+      );
 
       TimeSlotModel timeSlot = TimeSlotModel.fromJson(json.decode(jsonData));
       return Right(timeSlot);

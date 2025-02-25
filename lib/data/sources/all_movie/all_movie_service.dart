@@ -20,17 +20,21 @@ class AllMoviesServiceImpl extends AllMoviesService {
     try {
       final client = RestClient(localDio);
 
-      final AllMoviesModelResponse allMoviesData = await client.getAllMoviesByType();
+      final AllMoviesModelResponse allMoviesData =
+          await client.getAllMoviesByType();
 
       // Log the actual response for debugging
       LogHelper.debug(
         tag: "AllMovieRepository",
-        message: "Received allMovies data: ${allMoviesData.toEntity().toString()}",
+        message:
+            "Received allMovies data: ${allMoviesData.toEntity().toString()}",
       );
 
       return right(allMoviesData.toEntity());
     } catch (e) {
-      return const Left("An error occurred in getAllMoviesData, Please try again ");
+      return const Left(
+        "An error occurred in getAllMoviesData, Please try again ",
+      );
     }
   }
 }

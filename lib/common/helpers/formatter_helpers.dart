@@ -48,6 +48,8 @@ extension FormatDate on int {
   String MMM_dd_yyyy() {
     // Multiply by 1000 to convert seconds to milliseconds,
     // then create a DateTime object and format it.
-    return DateFormat("MMM dd, yyyy").format(DateTime.fromMillisecondsSinceEpoch(this * 1000));
+    return DateFormat(
+      "MMM dd, yyyy",
+    ).format(DateTime.fromMillisecondsSinceEpoch(this * 1000));
   }
 }

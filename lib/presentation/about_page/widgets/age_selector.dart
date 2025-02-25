@@ -12,7 +12,11 @@ class AgeSelector extends StatefulWidget {
   final Function(int) onAgeSelected; // Callback function to send selected age
   final int age;
 
-  const AgeSelector({super.key, required this.onAgeSelected, required this.age});
+  const AgeSelector({
+    super.key,
+    required this.onAgeSelected,
+    required this.age,
+  });
 
   @override
   State<AgeSelector> createState() => _AgeSelectorState();
@@ -29,7 +33,10 @@ class _AgeSelectorState extends State<AgeSelector> {
   void initState() {
     super.initState();
     selectedAge = widget.age;
-    _pageController = PageController(viewportFraction: 0.2, initialPage: selectedAge - minAge);
+    _pageController = PageController(
+      viewportFraction: 0.2,
+      initialPage: selectedAge - minAge,
+    );
   }
 
   @override
@@ -63,7 +70,8 @@ class _AgeSelectorState extends State<AgeSelector> {
               "$age",
               style: AppFont.medium_white_22.copyWith(
                 fontSize: isSelected ? 24 : 18, // Enlarge selected age
-                color: isSelected ? AppColors.defaultColor : AppColors.textLight,
+                color:
+                    isSelected ? AppColors.defaultColor : AppColors.textLight,
                 fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
               ),
             ),

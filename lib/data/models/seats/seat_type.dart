@@ -33,12 +33,28 @@ class SeatTypesModel {
   SeatTypesModel(this.name, this.price, this.type, this.seatRows);
 
   static final List<SeatTypesModel> mockData = [
-    SeatTypesModel('King', 280.0, TypeSeat.king, SeatRowModel.sampleSeatSlotKing),
-    SeatTypesModel('Queen', 150.0, TypeSeat.queen, SeatRowModel.sampleSeatSlotQueen),
-    SeatTypesModel('Jack', 100.0, TypeSeat.jack, SeatRowModel.sampleSeatSlotJack),
+    SeatTypesModel(
+      'King',
+      280.0,
+      TypeSeat.king,
+      SeatRowModel.sampleSeatSlotKing,
+    ),
+    SeatTypesModel(
+      'Queen',
+      150.0,
+      TypeSeat.queen,
+      SeatRowModel.sampleSeatSlotQueen,
+    ),
+    SeatTypesModel(
+      'Jack',
+      100.0,
+      TypeSeat.jack,
+      SeatRowModel.sampleSeatSlotJack,
+    ),
   ];
 
-  factory SeatTypesModel.fromJson(Map<String, dynamic> json) => _$SeatTypesModelFromJson(json);
+  factory SeatTypesModel.fromJson(Map<String, dynamic> json) =>
+      _$SeatTypesModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$SeatTypesModelToJson(this);
 

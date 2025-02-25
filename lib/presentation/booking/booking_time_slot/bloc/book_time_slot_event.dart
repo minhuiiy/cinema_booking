@@ -64,7 +64,10 @@ class SelectTimeSlot extends BookTimeSlotEvent {
   final TimeSlotEntity selectedTimeSlot;
   final BookTimeSlotEntity bookTimeSlot;
 
-  const SelectTimeSlot({required this.selectedTimeSlot, required this.bookTimeSlot});
+  const SelectTimeSlot({
+    required this.selectedTimeSlot,
+    required this.bookTimeSlot,
+  });
 
   @override
   List<Object> get props => [selectedTimeSlot, bookTimeSlot];

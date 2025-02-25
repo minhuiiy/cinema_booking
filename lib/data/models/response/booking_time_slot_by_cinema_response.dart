@@ -29,5 +29,6 @@ class BookingTimeSlotByCinemaResponse {
   factory BookingTimeSlotByCinemaResponse.fromJson(Map<String, dynamic> json) =>
       _$BookingTimeSlotByCinemaResponseFromJson(json);
 
-  Map<String, dynamic> toJson() => _$BookingTimeSlotByCinemaResponseToJson(this);
+  Map<String, dynamic> toJson() =>
+      _$BookingTimeSlotByCinemaResponseToJson(this);
 }

@@ -21,7 +21,10 @@ class WidgetMovieDesc extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [Colors.black.withValues(alpha: 0.85), Colors.black.withValues(alpha: 0.6)],
+          colors: [
+            Colors.black.withValues(alpha: 0.85),
+            Colors.black.withValues(alpha: 0.6),
+          ],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         ),
@@ -137,7 +140,11 @@ class WidgetMovieDesc extends StatelessWidget {
         Icon(Icons.local_movies_outlined, color: Colors.white70, size: 16),
         WidgetSpacer(width: 6),
         Expanded(
-          child: Text(textTag, style: AppFont.regular_white_12, overflow: TextOverflow.ellipsis),
+          child: Text(
+            textTag,
+            style: AppFont.regular_white_12,
+            overflow: TextOverflow.ellipsis,
+          ),
         ),
       ],
     );

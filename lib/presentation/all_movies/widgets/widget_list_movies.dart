@@ -72,7 +72,10 @@ class WidgetListMovie extends StatelessWidget {
                     gradient: LinearGradient(
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
-                      colors: [Colors.transparent, Colors.black..withValues(alpha: 0.8)],
+                      colors: [
+                        Colors.transparent,
+                        Colors.black..withValues(alpha: 0.8),
+                      ],
                     ),
                   ),
                 ),
@@ -104,7 +107,11 @@ class WidgetListMovie extends StatelessWidget {
 
                     Row(
                       children: [
-                        Icon(Icons.favorite, color: AppColors.defaultColor, size: 16),
+                        Icon(
+                          Icons.favorite,
+                          color: AppColors.defaultColor,
+                          size: 16,
+                        ),
                         WidgetSpacer(width: 4),
                         Text(
                           '${movie.likePercent} %',

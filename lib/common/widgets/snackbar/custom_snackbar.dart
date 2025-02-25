@@ -11,7 +11,10 @@ import 'package:flutter/material.dart';
 /// Custom snackbar for showing loading, success, failure for app
 ///
 class CustomSnackBar {
-  static void showLoading(BuildContext context, {String msg = "Processing..."}) {
+  static void showLoading(
+    BuildContext context, {
+    String msg = "Processing...",
+  }) {
     ScaffoldMessenger.of(context)
       ..hideCurrentSnackBar()
       ..showSnackBar(
@@ -19,7 +22,9 @@ class CustomSnackBar {
           duration: Duration(seconds: 3),
           behavior: SnackBarBehavior.floating,
           backgroundColor: AppColors.darkBackground.withValues(alpha: .9),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
           content: Row(
             children: [
               CircularProgressIndicator(color: AppColors.defaultColor),
@@ -27,7 +32,10 @@ class CustomSnackBar {
               Expanded(
                 child: Text(
                   msg,
-                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ],
@@ -40,7 +48,10 @@ class CustomSnackBar {
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
   }
 
-  static void failure(BuildContext context, {String msg = "Something went wrong!"}) {
+  static void failure(
+    BuildContext context, {
+    String msg = "Something went wrong!",
+  }) {
     ScaffoldMessenger.of(context)
       ..hideCurrentSnackBar()
       ..showSnackBar(
@@ -48,7 +59,9 @@ class CustomSnackBar {
           duration: Duration(seconds: 3),
           behavior: SnackBarBehavior.floating,
           backgroundColor: Colors.redAccent.withValues(alpha: .9),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
           content: Row(
             children: [
               Icon(Icons.error_outline, color: Colors.white),
@@ -56,7 +69,10 @@ class CustomSnackBar {
               Expanded(
                 child: Text(
                   msg,
-                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ],
@@ -73,7 +89,9 @@ class CustomSnackBar {
           duration: Duration(seconds: 3),
           behavior: SnackBarBehavior.floating,
           backgroundColor: AppColors.green.withValues(alpha: .9),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
           content: Row(
             children: [
               Icon(Icons.check_circle, color: Colors.white),
@@ -81,7 +99,10 @@ class CustomSnackBar {
               Expanded(
                 child: Text(
                   msg,
-                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ],

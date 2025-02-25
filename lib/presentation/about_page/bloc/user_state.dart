@@ -21,7 +21,11 @@ class UserInfoEdit extends UserInfoState {
   final bool isSuccess;
   final bool isFailure;
 
-  const UserInfoEdit({required this.userInfo, this.isSuccess = false, this.isFailure = false});
+  const UserInfoEdit({
+    required this.userInfo,
+    this.isSuccess = false,
+    this.isFailure = false,
+  });
 
   /// Factory constructor for a failure state.
   factory UserInfoEdit.failure(UserEntity userInfo) {
@@ -34,7 +38,11 @@ class UserInfoEdit extends UserInfoState {
   }
 
   /// Creates a copy with updated values.
-  UserInfoEdit copyWith({UserEntity? userInfo, bool? isSuccess, bool? isFailure}) {
+  UserInfoEdit copyWith({
+    UserEntity? userInfo,
+    bool? isSuccess,
+    bool? isFailure,
+  }) {
     return UserInfoEdit(
       userInfo: userInfo ?? this.userInfo,
       isSuccess: isSuccess ?? this.isSuccess,

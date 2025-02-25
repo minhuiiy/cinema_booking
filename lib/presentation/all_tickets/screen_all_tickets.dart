@@ -28,7 +28,8 @@ class ListTicketsScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: BlocProvider(
-          create: (context) => ListTicketsBloc()..add(OpenScreenListTicketsEvent()),
+          create:
+              (context) => ListTicketsBloc()..add(OpenScreenListTicketsEvent()),
           child: BlocConsumer<ListTicketsBloc, ListTicketsState>(
             listener: (context, state) {},
             builder: (context, state) {
@@ -59,7 +60,10 @@ class ListTicketsScreen extends StatelessWidget {
           WidgetSpacer(height: 8),
           Text(
             'Save 30% off'.toUpperCase(),
-            style: AppFont.oswald_regular.copyWith(fontSize: 28, color: AppColors.defaultColor),
+            style: AppFont.oswald_regular.copyWith(
+              fontSize: 28,
+              color: AppColors.defaultColor,
+            ),
           ),
           WidgetSpacer(height: 4),
           Text(
