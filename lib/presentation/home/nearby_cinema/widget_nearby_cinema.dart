@@ -112,7 +112,7 @@ class _WidgetNearbyCineState extends State<WidgetNearbyCine> {
 
   Future<void> _createMarker(BuildContext context) async {
     final icon = await BitmapDescriptor.asset(
-      ImageConfiguration(size: Size(25, 25)),
+      ImageConfiguration(size: Size(18, 18)),
       AppImages.cinemas,
     );
 
