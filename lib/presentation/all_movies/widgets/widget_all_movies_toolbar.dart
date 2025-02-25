@@ -171,7 +171,7 @@ class _WidgetAllMoviesToolbarState extends State<WidgetAllMoviesToolbar> {
                     fontWeight: FontWeight.w400,
                   ),
                   border: InputBorder.none,
-                  contentPadding: EdgeInsets.symmetric(vertical: 12), // Fix: Proper padding
+                  contentPadding: EdgeInsets.symmetric(vertical: 12),
                 ),
               )
               : Text('Movies in coimbatore', style: AppFont.semibold_white_18),

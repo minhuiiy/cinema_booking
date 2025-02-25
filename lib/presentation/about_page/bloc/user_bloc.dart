@@ -50,13 +50,11 @@ class UserInfoBloc extends Bloc<UserInfoEvent, UserInfoState> {
       isMatched = event.password == event.confirmPassword;
     }
 
-    // Kiểm tra nếu state không phải `UserInfoEdit`, tạo một `UserInfoEdit.empty`
     UserEntity user =
         state is UserInfoEdit
             ? (state as UserInfoEdit).userInfo
             : UserEntity(email: "", fullName: "", age: 18, gender: "Male");
 
-    // Nếu form không hợp lệ, dừng lại
     if (!isConfirmPasswordValid || !isValidName || !isValidEmail || !isMatched) {
       emit(UserInfoEdit.failure(user));
       return;
