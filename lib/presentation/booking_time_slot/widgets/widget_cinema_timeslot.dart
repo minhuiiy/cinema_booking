@@ -175,7 +175,6 @@ class __WidgetTimeSlotState extends State<_WidgetTimeSlot> {
       timeColor = AppColors.timeSlotBorder;
     }
 
-    Color itemBg = widget.isSelected ? AppColors.green : AppColors.timeSlotBg;
     Color itemBorder = widget.isSelected ? Colors.transparent : AppColors.timeSlotBorder;
 
     if (widget.isSelected) {

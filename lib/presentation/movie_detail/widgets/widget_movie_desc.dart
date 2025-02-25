@@ -5,6 +5,7 @@
  */
 
 import 'package:cinema_booking/common/helpers/formatter_helpers.dart';
+import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
