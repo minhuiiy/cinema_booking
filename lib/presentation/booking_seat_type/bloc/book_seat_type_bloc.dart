@@ -1,3 +1,9 @@
+/*
+ * @ Author: Chung Nguyen Thanh <chunhthanhde.dev@gmail.com>
+ * @ Created: 2025-01-22 08:45:56
+ * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
+ */
+
 import 'dart:async';
 
 import 'package:cinema_booking/common/helpers/log_helpers.dart';
@@ -25,26 +31,19 @@ class BookSeatTypeBloc extends Bloc<BookSeatTypeEvent, BookSeatTypeState> {
     on<OpenedBookSeatSlotScreen>(_onOpenedBookSeatSlotScreen);
   }
 
-  Future<void> _onOpenScreen(
-    OpenScreen event,
-    Emitter<BookSeatTypeState> emit,
-  ) async {
+  Future<void> _onOpenScreen(OpenScreen event, Emitter<BookSeatTypeState> emit) async {
     try {
       MovieEntity? movie;
       TimeSlotEntity? selectedTimeSlot;
       BookTimeSlotEntity? bookTimeSlot;
 
       final movieData = await sl<GetCachedMovieUseCase>().call();
-      final selectedTimeSlotData =
-          await sl<GetCachedSelectedTimeSlotUseCase>().call();
+      final selectedTimeSlotData = await sl<GetCachedSelectedTimeSlotUseCase>().call();
       final bookTimeSlotData = await sl<GetCachedBookTimeSlotUseCase>().call();
 
       movieData.fold(
         (error) {
-          LogHelper.error(
-            tag: 'OpenScreen Error',
-            message: "BookSeatTypeBloc movieData $error",
-          );
+          LogHelper.error(tag: 'OpenScreen Error', message: "BookSeatTypeBloc movieData $error");
         },
         (data) {
           movie = data;
@@ -85,24 +84,15 @@ class BookSeatTypeBloc extends Bloc<BookSeatTypeEvent, BookSeatTypeState> {
     }
   }
 
-  void _onClickHowManySeat(
-    ClickHowManySeat event,
-    Emitter<BookSeatTypeState> emit,
-  ) {
+  void _onClickHowManySeat(ClickHowManySeat event, Emitter<BookSeatTypeState> emit) {
     emit(state.copyWith(seatCount: event.seatCount));
   }
 
-  void _onClickSelectSeatType(
-    ClickSelectSeatType event,
-    Emitter<BookSeatTypeState> emit,
-  ) {
+  void _onClickSelectSeatType(ClickSelectSeatType event, Emitter<BookSeatTypeState> emit) {
     emit(state.copyWith(selectedSeatType: event.selectedSeatType));
   }
 
-  void _onClickSelectSeats(
-    ClickSelectSeats event,
-    Emitter<BookSeatTypeState> emit,
-  ) {
+  void _onClickSelectSeats(ClickSelectSeats event, Emitter<BookSeatTypeState> emit) {
     emit(state.copyWith(isOpenBookSeatSlotScreen: true));
   }
 

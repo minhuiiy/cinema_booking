@@ -1,3 +1,9 @@
+/*
+ * @ Author: Chung Nguyen Thanh <chunhthanhde.dev@gmail.com>
+ * @ Created: 2024-12-21 21:28:06
+ * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
+ */
+
 import 'package:cinema_booking/domain/entities/movies/movies.dart';
 import 'package:cinema_booking/domain/usecase/movie/cache_movie_info_data.dart';
 import 'package:cinema_booking/service_locator.dart';
@@ -18,13 +24,8 @@ class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MovieDetailsState> {
     emit(InitialMovieDetailsState());
   }
 
-  Future<void> _onClickBtnBook(
-    ClickBtnBook event,
-    Emitter<MovieDetailsState> emit,
-  ) async {
-    var response = await sl<CacheMovieInfoDataUseCase>().call(
-      movie: event.movie,
-    );
+  Future<void> _onClickBtnBook(ClickBtnBook event, Emitter<MovieDetailsState> emit) async {
+    var response = await sl<CacheMovieInfoDataUseCase>().call(movie: event.movie);
 
     response.fold(
       (l) {

@@ -1,3 +1,9 @@
+/*
+ * @ Author: Chung Nguyen Thanh <chunhthanhde.dev@gmail.com>
+ * @ Created: 2025-02-22 08:39:35
+ * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
+ */
+
 import 'dart:async';
 
 import 'package:cinema_booking/common/helpers/log_helpers.dart';

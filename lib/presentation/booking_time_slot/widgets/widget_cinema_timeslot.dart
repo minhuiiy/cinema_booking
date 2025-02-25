@@ -1,3 +1,9 @@
+/*
+ * @ Author: Chung Nguyen Thanh <chunhthanhde.dev@gmail.com>
+ * @ Created: 2025-01-22 08:45:56
+ * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
+ */
+
 // ignore_for_file: must_be_immutable
 
 import 'package:cinema_booking/common/widgets/image/svg_image.dart';

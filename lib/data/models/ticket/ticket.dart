@@ -1,3 +1,9 @@
+/*
+ * @ Author: Chung Nguyen Thanh <chunhthanhde.dev@gmail.com>
+ * @ Created: 2025-02-18 08:46:47
+ * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
+ */
+
 import 'package:json_annotation/json_annotation.dart';
 import 'package:equatable/equatable.dart';
 

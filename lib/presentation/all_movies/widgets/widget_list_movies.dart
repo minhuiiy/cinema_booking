@@ -1,3 +1,9 @@
+/*
+ * @ Author: Chung Nguyen Thanh <chunhthanhde.dev@gmail.com>
+ * @ Created: 2024-12-25 08:45:56
+ * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
+ */
+
 import 'package:cinema_booking/common/widgets/image/shimmer_image.dart';
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
@@ -75,16 +81,9 @@ class WidgetListMovie extends StatelessWidget {
                     WidgetSpacer(height: 4),
                     Row(
                       children: [
-                        Icon(
-                          Icons.favorite,
-                          color: Colors.pinkAccent,
-                          size: 16,
-                        ),
+                        Icon(Icons.favorite, color: Colors.pinkAccent, size: 16),
                         WidgetSpacer(width: 4),
-                        Text(
-                          '${movie.likePercent} %',
-                          style: AppFont.regular_white_12,
-                        ),
+                        Text('${movie.likePercent} %', style: AppFont.regular_white_12),
                       ],
                     ),
                   ],

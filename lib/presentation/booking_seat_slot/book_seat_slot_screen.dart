@@ -1,3 +1,9 @@
+/*
+ * @ Author: Chung Nguyen Thanh <chunhthanhde.dev@gmail.com>
+ * @ Created: 2025-01-22 08:45:56
+ * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
+ */
+
 import 'package:cinema_booking/common/widgets/snackbar/custom_snackbar.dart';
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';

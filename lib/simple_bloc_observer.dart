@@ -6,12 +6,17 @@
 
 import 'dart:developer';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 ///
 /// A custom BlocObserver to monitor and log Bloc events, errors, and transitions.
 ///
 class SimpleBlocObserver extends BlocObserver {
+  final BuildContext context;
+
+  SimpleBlocObserver(this.context);
+
   /// Called whenever an event is added to any Bloc.
   @override
   void onEvent(Bloc bloc, Object? event) {

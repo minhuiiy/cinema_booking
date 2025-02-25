@@ -17,7 +17,7 @@ import 'package:cinema_booking/presentation/login/login.dart';
 import 'package:cinema_booking/presentation/register/register.dart';
 import 'package:cinema_booking/presentation/movie_detail/movie_detail_info.dart';
 import 'package:cinema_booking/presentation/splash/splash.dart';
-import 'package:cinema_booking/presentation/user_info/user_info_screen.dart';
+import 'package:cinema_booking/presentation/about_page/user_info_screen.dart';
 import 'package:flutter/material.dart';
 
 class AppRouter {
@@ -52,15 +52,11 @@ class AppRouter {
 
       case BOOK_TIME_SLOT:
         var movie = settings.arguments as MovieEntity;
-        return MaterialPageRoute(
-          builder: (_) => BookTimeSlotScreen(movie: movie),
-        );
+        return MaterialPageRoute(builder: (_) => BookTimeSlotScreen(movie: movie));
 
       case MOVIE:
         var movieDetail = settings.arguments as MovieDetailEntity;
-        return MaterialPageRoute(
-          builder: (_) => MovieInfoScreen(movie: movieDetail),
-        );
+        return MaterialPageRoute(builder: (_) => MovieInfoScreen(movie: movieDetail));
 
       case ALL_MOVIES:
         return MaterialPageRoute(builder: (_) => AllMoviesScreen());
@@ -70,9 +66,7 @@ class AppRouter {
 
       case BOOK_SEAT_SLOT:
         final args = settings.arguments as ScreenArguments;
-        return MaterialPageRoute(
-          builder: (_) => BookSeatSlotScreen(args: args),
-        );
+        return MaterialPageRoute(builder: (_) => BookSeatSlotScreen(args: args));
 
       case LIST_TICKETS:
         return MaterialPageRoute(builder: (_) => ListTicketsScreen());
@@ -80,11 +74,7 @@ class AppRouter {
       default:
         return MaterialPageRoute(
           builder:
-              (_) => Scaffold(
-                body: Center(
-                  child: Text('No route defined for ${settings.name}'),
-                ),
-              ),
+              (_) => Scaffold(body: Center(child: Text('No route defined for ${settings.name}'))),
         );
     }
   }

@@ -1,10 +1,10 @@
-// ignore_for_file: camel_case_types, constant_identifier_names
-
 /*
  * @ Author: Chung Nguyen Thanh <chunhthanhde.dev@gmail.com>
  * @ Created: 2025-12-13 10:36:32
  * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
  */
+
+// ignore_for_file: camel_case_types, constant_identifier_names
 
 import 'package:shared_preferences/shared_preferences.dart';
 

@@ -1,3 +1,9 @@
+/*
+ * @ Author: Chung Nguyen Thanh <chunhthanhde.dev@gmail.com>
+ * @ Created: 2025-02-22 08:39:35
+ * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
+ */
+
 import 'package:cinema_booking/common/helpers/formatter_helpers.dart';
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
@@ -10,14 +16,14 @@ class WidgetItemListTicker extends StatelessWidget {
 
   final Ticket ticket;
 
-  const WidgetItemListTicker(this.ticket);
+  const WidgetItemListTicker(this.ticket, {super.key});
 
   @override
   Widget build(BuildContext context) {
     String banner = ticket.movieBanner;
     String movieName = ticket.movieName;
     String timeSlot = ticket.movieTimeSlot;
-    String bookTime = (ticket.bookTime ~/ 1000).MMM_dd_yyyy();
+    (ticket.bookTime ~/ 1000).MMM_dd_yyyy();
     String cineName = ticket.cineName;
 
     //
@@ -37,31 +43,20 @@ class WidgetItemListTicker extends StatelessWidget {
       height: itemHeight,
       child: Row(
         children: [
-          Image.network(
-            banner,
-            width: 108,
-            height: itemHeight,
-            fit: BoxFit.cover,
-          ),
+          Image.network(banner, width: 108, height: itemHeight, fit: BoxFit.cover),
           WidgetSpacer(width: 16),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  movieName,
-                  style: AppFont.medium_black2_16.copyWith(fontSize: 16),
-                ),
+                Text(movieName, style: AppFont.medium_black2_16.copyWith(fontSize: 16)),
                 WidgetSpacer(height: 2),
                 Text(timeSlot, style: AppFont.medium.copyWith(fontSize: 14)),
                 WidgetSpacer(height: 2),
                 Text(
                   cineName,
-                  style: AppFont.medium.copyWith(
-                    color: AppColors.gray6,
-                    fontSize: 10,
-                  ),
+                  style: AppFont.medium.copyWith(color: AppColors.gray6, fontSize: 10),
                 ),
               ],
             ),

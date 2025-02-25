@@ -1,3 +1,9 @@
+/*
+ * @ Author: Chung Nguyen Thanh <chunhthanhde.dev@gmail.com>
+ * @ Created: 2024-12-24 08:46:47
+ * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
+ */
+
 import 'package:cinema_booking/data/models/cinema/cinema.dart';
 import 'package:cinema_booking/data/models/show_time/time_slot.dart';
 import 'package:cinema_booking/domain/entities/booking/booking_time_slot.dart';

@@ -1,3 +1,9 @@
+/*
+ * @ Author: Chung Nguyen Thanh <chunhthanhde.dev@gmail.com>
+ * @ Created: 2025-01-22 08:45:56
+ * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
+ */
+
 part of 'book_time_slot_bloc.dart';
 
 abstract class BookTimeSlotEvent extends Equatable {
@@ -58,10 +64,7 @@ class SelectTimeSlot extends BookTimeSlotEvent {
   final TimeSlotEntity selectedTimeSlot;
   final BookTimeSlotEntity bookTimeSlot;
 
-  const SelectTimeSlot({
-    required this.selectedTimeSlot,
-    required this.bookTimeSlot,
-  });
+  const SelectTimeSlot({required this.selectedTimeSlot, required this.bookTimeSlot});
 
   @override
   List<Object> get props => [selectedTimeSlot, bookTimeSlot];

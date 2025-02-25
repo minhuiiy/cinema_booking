@@ -1,3 +1,9 @@
+/*
+ * @ Author: Chung Nguyen Thanh <chunhthanhde.dev@gmail.com>
+ * @ Created: 2024-12-21 21:28:06
+ * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
+ */
+
 import 'package:cinema_booking/common/helpers/formatter_helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
@@ -14,10 +20,7 @@ class WidgetMovieDesc extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [
-            Colors.black.withValues(alpha: 0.85),
-            Colors.black.withValues(alpha: 0.6),
-          ],
+          colors: [Colors.black.withValues(alpha: 0.85), Colors.black.withValues(alpha: 0.6)],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         ),
@@ -133,11 +136,7 @@ class WidgetMovieDesc extends StatelessWidget {
         Icon(Icons.local_movies_outlined, color: Colors.white70, size: 16),
         WidgetSpacer(width: 6),
         Expanded(
-          child: Text(
-            textTag,
-            style: AppFont.regular_white_12,
-            overflow: TextOverflow.ellipsis,
-          ),
+          child: Text(textTag, style: AppFont.regular_white_12, overflow: TextOverflow.ellipsis),
         ),
       ],
     );

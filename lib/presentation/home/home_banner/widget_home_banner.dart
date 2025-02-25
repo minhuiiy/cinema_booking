@@ -1,3 +1,9 @@
+/*
+ * @ Author: Chung Nguyen Thanh <chunhthanhde.dev@gmail.com>
+ * @ Created: 2024-12-21 21:28:06
+ * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
+ */
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cinema_booking/common/widgets/image/shimmer_image.dart';
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
@@ -97,9 +103,7 @@ class _WidgetHomeBannerState extends State<WidgetHomeBanner> {
           margin: const EdgeInsets.symmetric(horizontal: 4),
           decoration: BoxDecoration(
             color:
-                currentIndex == index
-                    ? AppColors.white
-                    : AppColors.white.withValues(alpha: 0.30),
+                currentIndex == index ? AppColors.white : AppColors.white.withValues(alpha: 0.30),
             borderRadius: BorderRadius.circular(4),
           ),
         );

@@ -1,3 +1,9 @@
+/*
+ * @ Author: Chung Nguyen Thanh <chunhthanhde.dev@gmail.com>
+ * @ Created: 2025-01-24 08:46:47
+ * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
+ */
+
 import 'package:cinema_booking/data/models/cinema/cinema.dart';
 import 'package:cinema_booking/data/models/show_time/time_slot.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -23,6 +29,5 @@ class BookingTimeSlotByCinemaResponse {
   factory BookingTimeSlotByCinemaResponse.fromJson(Map<String, dynamic> json) =>
       _$BookingTimeSlotByCinemaResponseFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$BookingTimeSlotByCinemaResponseToJson(this);
+  Map<String, dynamic> toJson() => _$BookingTimeSlotByCinemaResponseToJson(this);
 }

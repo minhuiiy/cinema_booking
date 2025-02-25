@@ -1,3 +1,9 @@
+/*
+ * @ Author: Chung Nguyen Thanh <chunhthanhde.dev@gmail.com>
+ * @ Created: 2024-12-25 08:45:56
+ * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
+ */
+
 part of 'all_movies_bloc.dart';
 
 class AllMoviesState extends Equatable {
@@ -10,11 +16,7 @@ class DisplayListMovies extends AllMoviesState {
   final bool loading;
   final String? msg;
 
-  DisplayListMovies({
-    required this.meta,
-    required this.loading,
-    required this.msg,
-  });
+  DisplayListMovies({required this.meta, required this.loading, required this.msg});
 
   factory DisplayListMovies.loading() {
     return DisplayListMovies(msg: null, meta: null, loading: true);

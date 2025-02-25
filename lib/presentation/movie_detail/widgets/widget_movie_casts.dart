@@ -1,3 +1,9 @@
+/*
+ * @ Author: Chung Nguyen Thanh <chunhthanhde.dev@gmail.com>
+ * @ Created: 2024-12-21 21:28:06
+ * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
+ */
+
 import 'package:flutter/material.dart';
 import 'package:cinema_booking/common/widgets/scroll_list/hoz_list_view.dart';
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
@@ -12,17 +18,13 @@ class WidgetMovieCasts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<ItemCast> items =
-        casts.map((cast) => ItemCast.fromCast(cast)).toList();
+    List<ItemCast> items = casts.map((cast) => ItemCast.fromCast(cast)).toList();
 
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 18),
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [
-            Colors.black.withValues(alpha: .9),
-            Colors.black.withValues(alpha: 0.7),
-          ],
+          colors: [Colors.black.withValues(alpha: .9), Colors.black.withValues(alpha: 0.7)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
@@ -56,9 +58,7 @@ class WidgetMovieCasts extends StatelessWidget {
                 },
                 child: Text(
                   'View all >',
-                  style: AppFont.medium_white_12.copyWith(
-                    color: AppColors.defaultColor,
-                  ),
+                  style: AppFont.medium_white_12.copyWith(color: AppColors.defaultColor),
                   textAlign: TextAlign.right,
                 ),
               ),

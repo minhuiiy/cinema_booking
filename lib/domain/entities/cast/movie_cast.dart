@@ -3,6 +3,7 @@
  * @ Created: 2024-12-22 08:30:45
  * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
  */
+
 import 'package:cinema_booking/data/models/cast/movie_cast.dart';
 import 'package:equatable/equatable.dart';
 

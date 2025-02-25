@@ -34,4 +34,6 @@ class AppVectors {
   static const String iconMore = '${basePath}ic_more$format';
   static const String iconCineDot = '${basePath}ic_cine_dot$format';
   static const String iconClose = '${basePath}ic_close$format';
+
+  static const String iconCinema = '${basePath}ic_nearby_theatre$format';
 }

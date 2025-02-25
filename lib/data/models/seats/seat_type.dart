@@ -1,3 +1,9 @@
+/*
+ * @ Author: Chung Nguyen Thanh <chunhthanhde.dev@gmail.com>
+ * @ Created: 2024-12-22 08:30:45
+ * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
+ */
+
 import 'package:cinema_booking/common/helpers/json_converter.dart';
 import 'package:cinema_booking/core/enum/type_seat.dart';
 import 'package:cinema_booking/data/models/seats/seat_row.dart';

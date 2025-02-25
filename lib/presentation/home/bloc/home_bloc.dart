@@ -1,3 +1,9 @@
+/*
+ * @ Author: Chung Nguyen Thanh <chunhthanhde.dev@gmail.com>
+ * @ Created: 2024-12-02 08:39:35
+ * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
+ */
+
 import 'package:cinema_booking/common/helpers/log_helpers.dart';
 import 'package:cinema_booking/domain/entities/response/home.dart';
 import 'package:cinema_booking/domain/usecase/home/get_home_data.dart';
@@ -32,10 +38,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     }
   }
 
-  Future<void> _onRefreshHome(
-    RefreshHome event,
-    Emitter<HomeState> emit,
-  ) async {
+  Future<void> _onRefreshHome(RefreshHome event, Emitter<HomeState> emit) async {
     emit(HomeLoading());
     add(LoadHome());
   }

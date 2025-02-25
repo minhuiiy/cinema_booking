@@ -15,25 +15,16 @@ class AppTheme {
     fontFamily: 'Satoshi',
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
-      hintStyle: const TextStyle(
-        color: AppColors.greyDark,
-        fontWeight: FontWeight.w500,
-      ),
+      hintStyle: const TextStyle(color: AppColors.greyDark, fontWeight: FontWeight.w500),
       fillColor: Colors.transparent,
       contentPadding: const EdgeInsets.all(30),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(30),
-        borderSide: const BorderSide(
-          color: AppColors.darkBackground,
-          width: 0.4,
-        ),
+        borderSide: const BorderSide(color: AppColors.darkBackground, width: 0.4),
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(30),
-        borderSide: const BorderSide(
-          color: AppColors.darkBackground,
-          width: 0.4,
-        ),
+        borderSide: const BorderSide(color: AppColors.darkBackground, width: 0.4),
       ),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
@@ -53,10 +44,7 @@ class AppTheme {
     fontFamily: 'Satoshi',
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
-      hintStyle: const TextStyle(
-        color: AppColors.grey,
-        fontWeight: FontWeight.w500,
-      ),
+      hintStyle: const TextStyle(color: AppColors.grey, fontWeight: FontWeight.w500),
       fillColor: Colors.transparent,
       contentPadding: const EdgeInsets.all(30),
       border: OutlineInputBorder(

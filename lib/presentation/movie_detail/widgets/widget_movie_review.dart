@@ -1,3 +1,9 @@
+/*
+ * @ Author: Chung Nguyen Thanh <chunhthanhde.dev@gmail.com>
+ * @ Created: 2024-12-21 21:28:06
+ * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
+ */
+
 import 'package:flutter/material.dart';
 import 'package:cinema_booking/common/helpers/formatter_helpers.dart';
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
@@ -12,8 +18,7 @@ class WidgetMovieReview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String textReviews =
-        "${movie.totalReviews.formatDecimalThousand()} reviews";
+    String textReviews = "${movie.totalReviews.formatDecimalThousand()} reviews";
     String authorAvatar = movie.latestReviews.avatar;
     String authorName = movie.latestReviews.author;
     String content = movie.latestReviews.content;
@@ -23,10 +28,7 @@ class WidgetMovieReview extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 18),
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [
-            Colors.black.withValues(alpha: 0.9),
-            Colors.black.withValues(alpha: 0.7),
-          ],
+          colors: [Colors.black.withValues(alpha: 0.9), Colors.black.withValues(alpha: 0.7)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
@@ -60,9 +62,7 @@ class WidgetMovieReview extends StatelessWidget {
                 },
                 child: Text(
                   'Write yours >',
-                  style: AppFont.medium_white_12.copyWith(
-                    color: AppColors.defaultColor,
-                  ),
+                  style: AppFont.medium_white_12.copyWith(color: AppColors.defaultColor),
                   textAlign: TextAlign.right,
                 ),
               ),
@@ -90,12 +90,7 @@ class WidgetMovieReview extends StatelessWidget {
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(50),
-                  child: Image.network(
-                    authorAvatar,
-                    width: 36,
-                    height: 36,
-                    fit: BoxFit.cover,
-                  ),
+                  child: Image.network(authorAvatar, width: 36, height: 36, fit: BoxFit.cover),
                 ),
               ),
               WidgetSpacer(width: 12),
@@ -113,9 +108,7 @@ class WidgetMovieReview extends StatelessWidget {
                         WidgetSpacer(width: 8),
                         Text(
                           textDate,
-                          style: AppFont.regular_gray1_12.copyWith(
-                            fontStyle: FontStyle.italic,
-                          ),
+                          style: AppFont.regular_gray1_12.copyWith(fontStyle: FontStyle.italic),
                         ),
                       ],
                     ),
@@ -168,12 +161,8 @@ class _ExpandableReviewTextState extends State<ExpandableReviewText> {
             maxLines: 3,
             overflow: TextOverflow.ellipsis,
           ),
-          secondChild: Text(
-            widget.content,
-            style: TextStyle(color: Colors.white, fontSize: 14),
-          ),
-          crossFadeState:
-              isExpanded ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+          secondChild: Text(widget.content, style: TextStyle(color: Colors.white, fontSize: 14)),
+          crossFadeState: isExpanded ? CrossFadeState.showSecond : CrossFadeState.showFirst,
         ),
       ),
     );

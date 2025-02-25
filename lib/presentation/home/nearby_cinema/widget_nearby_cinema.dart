@@ -8,6 +8,7 @@ import 'dart:async';
 
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
 import 'package:cinema_booking/core/configs/assets/app_images.dart';
+import 'package:cinema_booking/core/configs/assets/app_vectors.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:cinema_booking/domain/entities/cinema/cinema.dart';
@@ -113,7 +114,7 @@ class _WidgetNearbyCineState extends State<WidgetNearbyCine> {
   Future<void> _createMarker(BuildContext context) async {
     final icon = await BitmapDescriptor.asset(
       ImageConfiguration(size: Size(18, 18)),
-      AppImages.cinemas,
+      AppVectors.iconCinema,
     );
 
     markers.clear();

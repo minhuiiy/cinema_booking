@@ -1,3 +1,9 @@
+/*
+ * @ Author: Chung Nguyen Thanh <chunhthanhde.dev@gmail.com>
+ * @ Created: 2025-01-25 08:39:35
+ * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
+ */
+
 import 'package:cinema_booking/common/helpers/db_helper.dart';
 import 'package:cinema_booking/data/models/ticket/ticket.dart';
 import 'package:dartz/dartz.dart';
