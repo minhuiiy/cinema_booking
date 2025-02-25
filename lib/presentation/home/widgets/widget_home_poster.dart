@@ -36,7 +36,7 @@ class _WidgetHomePostersState extends State<WidgetHomePosters> {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[_buildHeader(), _buildListPoster()],
+      children: <Widget>[_buildHeader(), WidgetSpacer(height: 2), _buildListPoster()],
     );
   }
 

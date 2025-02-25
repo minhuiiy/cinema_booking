@@ -80,29 +80,32 @@ class _WidgetNearbyCineState extends State<WidgetNearbyCine> {
   _buildGoogleMap() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: SizedBox(
-        height: 200,
-        child: GoogleMap(
-          mapType: MapType.normal,
-          initialCameraPosition: _kGooglePlex,
-          markers: Set<Marker>.of(markers.values),
-          onMapCreated: (GoogleMapController controller) {
-            _controller.complete(controller);
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: SizedBox(
+          height: 200,
+          child: GoogleMap(
+            mapType: MapType.normal,
+            initialCameraPosition: _kGooglePlex,
+            markers: Set<Marker>.of(markers.values),
+            onMapCreated: (GoogleMapController controller) {
+              _controller.complete(controller);
 
-            LatLng southwest = LatLng(20.994607, 105.786714);
-            LatLng northeast = LatLng(21.047550, 105.840251);
+              LatLng southwest = LatLng(20.994607, 105.786714);
+              LatLng northeast = LatLng(21.047550, 105.840251);
 
-            Future.delayed(Duration(seconds: 1), () {
-              controller.animateCamera(
-                CameraUpdate.newLatLngBounds(
-                  LatLngBounds(southwest: southwest, northeast: northeast),
-                  0,
-                ),
-              );
-            });
+              Future.delayed(Duration(seconds: 1), () {
+                controller.animateCamera(
+                  CameraUpdate.newLatLngBounds(
+                    LatLngBounds(southwest: southwest, northeast: northeast),
+                    0,
+                  ),
+                );
+              });
 
-            _createMarker(context);
-          },
+              _createMarker(context);
+            },
+          ),
         ),
       ),
     );

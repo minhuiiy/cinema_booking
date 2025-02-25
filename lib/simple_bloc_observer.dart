@@ -23,8 +23,7 @@ class SimpleBlocObserver extends BlocObserver {
           '--------------------------------\n'
           'Bloc  : ${bloc.runtimeType}     \n'
           'Event : ${event.toString()}     \n'
-          '--------------------------------\n'
-          '\n',
+          '--------------------------------\n',
     );
   }
 
@@ -43,8 +42,7 @@ class SimpleBlocObserver extends BlocObserver {
           'Bloc   : ${bloc.runtimeType}            \n'
           'Error  : $error                         \n'
           'StackTrace:\n$stackTrace                \n'
-          '════════════════════════════════════════\n'
-          '\n',
+          '════════════════════════════════════════\n',
       error: error,
       stackTrace: stackTrace,
     );
