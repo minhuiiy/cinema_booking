@@ -19,10 +19,10 @@ import 'package:cinema_booking/domain/usecase/booking_time/get_cached_book_time_
 import 'package:cinema_booking/domain/usecase/booking_time/get_cached_selected_time_slot.dart';
 import 'package:cinema_booking/domain/usecase/booking_time/get_cached_show.dart';
 import 'package:cinema_booking/domain/usecase/tickets/create_ticket.dart';
-import 'package:cinema_booking/presentation/booking_seat_slot/bloc/book_seat_slot_state.dart';
-import 'package:cinema_booking/presentation/booking_seat_slot/model/item_grid_seat_slot_vm.dart';
-import 'package:cinema_booking/presentation/booking_seat_slot/model/item_seat_row_vm.dart';
-import 'package:cinema_booking/presentation/booking_seat_slot/model/item_seat_slot_vm.dart';
+import 'package:cinema_booking/presentation/booking/booking_seat_slot/bloc/book_seat_slot_state.dart';
+import 'package:cinema_booking/presentation/booking/booking_seat_slot/model/item_grid_seat_slot_vm.dart';
+import 'package:cinema_booking/presentation/booking/booking_seat_slot/model/item_seat_row_vm.dart';
+import 'package:cinema_booking/presentation/booking/booking_seat_slot/model/item_seat_slot_vm.dart';
 import 'package:cinema_booking/service_locator.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

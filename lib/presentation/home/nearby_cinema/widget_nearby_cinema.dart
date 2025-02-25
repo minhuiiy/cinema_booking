@@ -6,7 +6,6 @@
 
 import 'dart:async';
 
-import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
 import 'package:cinema_booking/core/configs/assets/app_images.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';

@@ -6,7 +6,6 @@
 
 import 'dart:async';
 
-import 'package:cinema_booking/common/helpers/log_helpers.dart';
 import 'package:cinema_booking/domain/usecase/tickets/get_all_tickets.dart';
 import 'package:cinema_booking/presentation/all_tickets/bloc/list_tickets_state.dart';
 import 'package:equatable/equatable.dart';
@@ -17,11 +16,9 @@ part 'list_tickets_event.dart';
 
 class ListTicketsBloc extends Bloc<ListTicketsEvent, ListTicketsState> {
   ListTicketsBloc() : super(ListTicketsState()) {
-    // Đăng ký sự kiện OpenScreenListTicketsEvent để xử lý sự kiện này
     on<OpenScreenListTicketsEvent>(_onOpenScreenListTicketsEvent);
   }
 
-  // Hàm xử lý sự kiện OpenScreenListTicketsEvent
   Future<void> _onOpenScreenListTicketsEvent(
     OpenScreenListTicketsEvent event,
     Emitter<ListTicketsState> emit,

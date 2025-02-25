@@ -11,7 +11,7 @@ import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:cinema_booking/core/enum/type_seat.dart';
 import 'package:cinema_booking/data/models/seats/seat_type.dart';
 import 'package:cinema_booking/domain/entities/seats/seat_type.dart';
-import 'package:cinema_booking/presentation/booking_seat_type/bloc/book_seat_type_bloc.dart';
+import 'package:cinema_booking/presentation/booking/booking_seat_type/bloc/book_seat_type_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

@@ -4,7 +4,6 @@
  * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
  */
 
-import 'package:cinema_booking/common/helpers/log_helpers.dart';
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/presentation/home/bloc/home_bloc.dart';

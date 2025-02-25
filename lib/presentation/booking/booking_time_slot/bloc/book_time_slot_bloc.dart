@@ -14,7 +14,7 @@ import 'package:cinema_booking/domain/entities/show_time/time_slot.dart';
 import 'package:cinema_booking/domain/usecase/booking_time/cache_book_time_slot.dart';
 import 'package:cinema_booking/domain/usecase/booking_time/cache_selected_time_slot.dart';
 import 'package:cinema_booking/domain/usecase/booking_time/get_all_shows_by_type.dart';
-import 'package:cinema_booking/presentation/booking_time_slot/bloc/book_time_slot_state.dart';
+import 'package:cinema_booking/presentation/booking/booking_time_slot/bloc/book_time_slot_state.dart';
 import 'package:cinema_booking/core/enum/sort_booking_time_slot.dart';
 import 'package:cinema_booking/service_locator.dart';
 import 'package:equatable/equatable.dart';

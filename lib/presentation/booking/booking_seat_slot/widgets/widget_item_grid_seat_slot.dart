@@ -7,9 +7,9 @@
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
-import 'package:cinema_booking/presentation/booking_seat_slot/bloc/book_seat_slot_bloc.dart';
-import 'package:cinema_booking/presentation/booking_seat_slot/model/item_grid_seat_slot_vm.dart';
-import 'package:cinema_booking/presentation/booking_seat_slot/model/item_seat_slot_vm.dart';
+import 'package:cinema_booking/presentation/booking/booking_seat_slot/bloc/book_seat_slot_bloc.dart';
+import 'package:cinema_booking/presentation/booking/booking_seat_slot/model/item_grid_seat_slot_vm.dart';
+import 'package:cinema_booking/presentation/booking/booking_seat_slot/model/item_seat_slot_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

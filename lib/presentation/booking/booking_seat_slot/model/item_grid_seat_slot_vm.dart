@@ -4,7 +4,7 @@
  * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
  */
 
-import 'package:cinema_booking/presentation/booking_seat_slot/model/item_seat_row_vm.dart';
+import 'package:cinema_booking/presentation/booking/booking_seat_slot/model/item_seat_row_vm.dart';
 import 'package:equatable/equatable.dart';
 
 class ItemGridSeatSlotVM extends Equatable {

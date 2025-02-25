@@ -6,10 +6,9 @@
 
 import 'package:cinema_booking/common/widgets/image/svg_image.dart';
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
-import 'package:cinema_booking/core/configs/assets/app_vectors.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
-import 'package:cinema_booking/domain/entities/genres/genres.dart';
 import 'package:cinema_booking/presentation/home/home_genres/bloc/home_genres_bloc.dart';
+import 'package:cinema_booking/presentation/home/home_genres/model/item_genres.dart';
 import 'package:cinema_booking/presentation/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -101,16 +100,5 @@ class WidgetItemGenres extends StatelessWidget {
 
   void openAllMovies(BuildContext context) {
     Navigator.pushNamed(context, AppRouter.ALL_MOVIES);
-  }
-}
-
-class ItemGenresVM {
-  GenresEntity genres;
-  late String image;
-  late String title;
-
-  ItemGenresVM.fromGenres(this.genres) {
-    image = AppVectors.basePath + genres.icon.toString();
-    title = genres.name;
   }
 }

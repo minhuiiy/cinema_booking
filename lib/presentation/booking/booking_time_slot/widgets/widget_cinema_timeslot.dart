@@ -12,8 +12,8 @@ import 'package:cinema_booking/core/configs/assets/app_vectors.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:cinema_booking/domain/entities/show_time/time_slot.dart';
-import 'package:cinema_booking/presentation/booking_time_slot/bloc/book_time_slot_bloc.dart';
-import 'package:cinema_booking/presentation/booking_time_slot/book_time_slot_main.dart';
+import 'package:cinema_booking/presentation/booking/booking_time_slot/bloc/book_time_slot_bloc.dart';
+import 'package:cinema_booking/presentation/booking/model/item_time_slot.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -235,20 +235,4 @@ class __WidgetTimeSlotState extends State<_WidgetTimeSlot> {
       ),
     );
   }
-}
-
-class ItemTimeSlot {
-  String time;
-  int hour;
-  bool active = false;
-  bool selected = false;
-
-  late TimeSlotEntity timeSlot;
-
-  ItemTimeSlot({required this.time, required this.hour, required this.active});
-
-  ItemTimeSlot.fromTimeSlot({required this.timeSlot})
-    : time = timeSlot.time,
-      hour = timeSlot.hour,
-      active = timeSlot.active;
 }

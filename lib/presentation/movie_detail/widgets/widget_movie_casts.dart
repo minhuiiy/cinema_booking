@@ -4,6 +4,7 @@
  * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
  */
 
+import 'package:cinema_booking/presentation/movie_detail/model/item_cast.dart';
 import 'package:flutter/material.dart';
 import 'package:cinema_booking/common/widgets/scroll_list/hoz_list_view.dart';
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
@@ -125,17 +126,5 @@ class WidgetItemCast extends StatelessWidget {
         ),
       ],
     );
-  }
-}
-
-class ItemCast {
-  late String name;
-  late String photo;
-
-  ItemCast(this.name, this.photo);
-
-  ItemCast.fromCast(MovieCastEntity cast) {
-    name = cast.name;
-    photo = cast.photo;
   }
 }

@@ -11,8 +11,8 @@ import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
 import 'package:cinema_booking/core/configs/assets/app_vectors.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
-import 'package:cinema_booking/presentation/booking_time_slot/bloc/book_time_slot_bloc.dart';
-import 'package:cinema_booking/presentation/booking_time_slot/bloc/book_time_slot_state.dart';
+import 'package:cinema_booking/presentation/booking/booking_time_slot/bloc/book_time_slot_bloc.dart';
+import 'package:cinema_booking/presentation/booking/booking_time_slot/bloc/book_time_slot_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

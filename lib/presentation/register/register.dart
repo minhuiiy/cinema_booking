@@ -114,7 +114,7 @@ class _SignupPageState extends State<SignupPage> {
                 child: Opacity(
                   opacity: 0.3,
                   child: ImageFiltered(
-                    imageFilter: ImageFilter.blur(sigmaX: 5, sigmaY: 5), // Làm mờ ảnh
+                    imageFilter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
                     child: Image.asset(
                       AppImages.ticket,
                       width: MediaQuery.of(context).size.width * 0.4,

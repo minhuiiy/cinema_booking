@@ -215,12 +215,9 @@ class _WidgetSignInFormState extends State<WidgetSignInForm> {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 12),
           child: Container(
-            color: Colors.transparent, // Đặt màu nền để che phần Divider bị cắt
-            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2), // Thêm padding cho đẹp
-            child: Text(
-              text,
-              style: AppFont.regular_gray1_14.copyWith(fontSize: 14), // Tăng font size nếu cần
-            ),
+            color: Colors.transparent,
+            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+            child: Text(text, style: AppFont.regular_gray1_14.copyWith(fontSize: 14)),
           ),
         ),
         Expanded(child: Divider(color: Colors.white24, thickness: 1)),

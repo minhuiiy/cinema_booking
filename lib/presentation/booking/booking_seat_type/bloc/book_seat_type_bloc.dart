@@ -14,7 +14,7 @@ import 'package:cinema_booking/domain/entities/show_time/time_slot.dart';
 import 'package:cinema_booking/domain/usecase/booking_time/get_cached_book_time_slot.dart';
 import 'package:cinema_booking/domain/usecase/booking_time/get_cached_selected_time_slot.dart';
 import 'package:cinema_booking/domain/usecase/booking_time/get_cached_show.dart';
-import 'package:cinema_booking/presentation/booking_seat_type/bloc/book_seat_type_state.dart';
+import 'package:cinema_booking/presentation/booking/booking_seat_type/bloc/book_seat_type_state.dart';
 import 'package:cinema_booking/service_locator.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,7 +23,6 @@ part 'book_seat_type_event.dart';
 
 class BookSeatTypeBloc extends Bloc<BookSeatTypeEvent, BookSeatTypeState> {
   BookSeatTypeBloc() : super(const BookSeatTypeState()) {
-    // Định nghĩa các sự kiện
     on<OpenScreen>(_onOpenScreen);
     on<ClickHowManySeat>(_onClickHowManySeat);
     on<ClickSelectSeatType>(_onClickSelectSeatType);
