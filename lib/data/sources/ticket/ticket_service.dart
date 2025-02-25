@@ -19,7 +19,7 @@ class AllTicketsServiceImpl extends AllTicketsService {
     try {
       var listMap = await DbHelper.db.query(
         DbHelper.TABLE_NAME,
-        orderBy: '$DbHelper.COL_BOOK_TIME DESC',
+        orderBy: '${DbHelper.COL_BOOK_TIME} DESC',
       );
 
       return right(listMap.map((jsonRaw) => Ticket.fromJson(jsonRaw)).toList());
