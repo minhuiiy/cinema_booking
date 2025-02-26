@@ -33,9 +33,7 @@ Future<void> main() async {
     storageDirectory:
         kIsWeb
             ? HydratedStorageDirectory.web
-            : HydratedStorageDirectory(
-              (await getApplicationDocumentsDirectory()).path,
-            ),
+            : HydratedStorageDirectory((await getApplicationDocumentsDirectory()).path),
   );
 
   // Initialize Firebase
@@ -50,6 +48,19 @@ Future<void> main() async {
   runApp(const MyApp());
 }
 
+// (context, state) {
+//   return BlocBuilder<AuthenticationBloc, AuthenticationState>(
+//     builder: (context, state) {
+//       if (state is Unauthenticated) {
+//         return const LoginScreen();
+//       } else if (state is Authenticated) {
+//         return const HomeScreen();
+//       } else {
+//         return const SplashPage();
+//       }
+//     },
+//   );
+// },
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -58,33 +69,22 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => ThemeCubit()),
-        BlocProvider(
-          create: (context) => AuthenticationBloc()..add(AppStarted()),
-        ),
+        BlocProvider(create: (context) => AuthenticationBloc()..add(AppStarted())),
         BlocProvider(create: (context) => HomeBloc()),
       ],
       child: BlocBuilder<ThemeCubit, ThemeMode>(
         builder:
-            (context, mode) => MaterialApp(
-              debugShowCheckedModeBanner: false,
-              title: 'Cinema Booking',
-              theme: AppTheme.lightTheme,
-              darkTheme: AppTheme.darkTheme,
-              themeMode: mode,
-              onGenerateRoute: AppRouter.generateRoute,
-              home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
-                builder: (context, state) {
-                  if (state is Uninitialized) {
-                    return SplashPage();
-                  } else if (state is Unauthenticated) {
-                    return LoginScreen();
-                  } else if (state is Authenticated) {
-                    return HomeScreen();
-                  }
-
-                  return Center(child: Text('Unhandled State $state'));
-                },
-              ),
+            (context, mode) => BlocBuilder<AuthenticationBloc, AuthenticationState>(
+              builder: (context, state) {
+                return MaterialApp.router(
+                  debugShowCheckedModeBanner: false,
+                  title: 'Cinema Booking',
+                  theme: AppTheme.lightTheme,
+                  darkTheme: AppTheme.darkTheme,
+                  themeMode: mode,
+                  routerConfig: appRouter,
+                );
+              },
             ),
       ),
     );

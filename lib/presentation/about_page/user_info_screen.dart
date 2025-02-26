@@ -19,6 +19,7 @@ import 'package:cinema_booking/presentation/about_page/widgets/age_selector.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 class UserInfoScreen extends StatelessWidget {
   const UserInfoScreen({super.key});
@@ -26,8 +27,7 @@ class UserInfoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create:
-          (context) => UserInfoBloc()..add(LoadUserInfo()), // Provide the Bloc
+      create: (context) => UserInfoBloc()..add(LoadUserInfo()), // Provide the Bloc
       child: const UserInfoPage(), // Ensure UserInfoPage has access to the Bloc
     );
   }
@@ -93,13 +93,10 @@ class _UserInfoPageState extends State<UserInfoPage> {
                 backgroundColor: AppColors.darkBackground,
                 leading: IconButton(
                   icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
-                  onPressed: () => Navigator.pop(context),
+                  onPressed: () => context.pop(),
                 ),
                 actions: [
-                  TextButton(
-                    onPressed: () {},
-                    child: Text("Skip", style: AppFont.medium_white_18),
-                  ),
+                  TextButton(onPressed: () {}, child: Text("Skip", style: AppFont.medium_white_18)),
                 ],
               ),
               body: Padding(
@@ -146,9 +143,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
                             children: [
                               GradientText(
                                 text: "ABOUT ME",
-                                textStyle: AppFont.semibold_white_30.copyWith(
-                                  fontFamily: 'Oswald',
-                                ),
+                                textStyle: AppFont.semibold_white_30.copyWith(fontFamily: 'Oswald'),
                               ),
                               WidgetSpacer(width: 10),
                             ],
@@ -156,19 +151,11 @@ class _UserInfoPageState extends State<UserInfoPage> {
                           const WidgetSpacer(height: 25),
                           _textField("Email", _email, state.userInfo.email),
                           const WidgetSpacer(height: 20),
-                          _textField(
-                            "Full Name",
-                            _fullName,
-                            state.userInfo.fullName,
-                          ),
+                          _textField("Full Name", _fullName, state.userInfo.fullName),
                           const WidgetSpacer(height: 20),
                           _textField("Password", _password, "Password"),
                           const WidgetSpacer(height: 20),
-                          _textField(
-                            "Confirm Password",
-                            _confirmPassword,
-                            "Confirm Password",
-                          ),
+                          _textField("Confirm Password", _confirmPassword, "Confirm Password"),
                           const WidgetSpacer(height: 30),
                           _genderSelection(state),
                           const WidgetSpacer(height: 20),
@@ -200,11 +187,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
     );
   }
 
-  Widget _textField(
-    String label,
-    TextEditingController controller,
-    String fetchInfo,
-  ) {
+  Widget _textField(String label, TextEditingController controller, String fetchInfo) {
     return TextField(
       controller: controller,
       style: AppFont.medium_white_18,
@@ -310,8 +293,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
         email: _email.text.isEmpty ? state.userInfo.email : _email.text,
         password: _password.text,
         confirmPassword: _confirmPassword.text,
-        displayName:
-            _fullName.text.isEmpty ? state.userInfo.fullName : _fullName.text,
+        displayName: _fullName.text.isEmpty ? state.userInfo.fullName : _fullName.text,
         age: selectedAge,
         gender: selectedGender == "" ? state.userInfo.gender : selectedGender,
       ),

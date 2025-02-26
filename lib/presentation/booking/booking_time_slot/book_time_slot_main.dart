@@ -19,6 +19,7 @@ import 'package:cinema_booking/presentation/booking/booking_time_slot/widgets/wi
 import 'package:cinema_booking/presentation/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class BookTimeSlotScreen extends StatelessWidget {
   final MovieEntity movie;
@@ -35,12 +36,7 @@ class BookTimeSlotScreen extends StatelessWidget {
             children: <Widget>[
               WidgetSearchSortToolbar(title: movie.name),
               Expanded(
-                child: Stack(
-                  children: <Widget>[
-                    _buildListCineTimeSlot(),
-                    _buildBtnToday(),
-                  ],
-                ),
+                child: Stack(children: <Widget>[_buildListCineTimeSlot(), _buildBtnToday()]),
               ),
             ],
           ),
@@ -114,6 +110,6 @@ class BookTimeSlotScreen extends StatelessWidget {
   _openBookSeatTypeScreen(BuildContext context) {
     // TODO:
     BlocProvider.of<BookTimeSlotBloc>(context).add(OpenedBookSeatTypeScreen());
-    Navigator.pushNamed(context, AppRouter.BOOK_SEAT_TYPE);
+    context.go('/bookSeatType');
   }
 }

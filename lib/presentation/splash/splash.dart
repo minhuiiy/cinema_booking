@@ -10,6 +10,7 @@ import 'package:cinema_booking/presentation/intro/get_started.dart';
 import 'package:cinema_booking/common/widgets/footer/footer_section.dart';
 import 'package:flutter/material.dart';
 import 'package:cinema_booking/core/configs/assets/app_images.dart';
+import 'package:go_router/go_router.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -35,12 +36,7 @@ class _SplashPageState extends State<SplashPage> {
           if (_progress >= 2 && mounted) {
             timer.cancel();
             // TODO: need change to Router
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (BuildContext context) => const GetStartedPage(),
-              ),
-            );
+            context.go('/get-started');
           }
         });
       }
@@ -112,10 +108,7 @@ class _SplashPageState extends State<SplashPage> {
       child: Container(
         width: MediaQuery.of(context).size.width * 0.6,
         height: 10,
-        decoration: BoxDecoration(
-          color: Colors.grey[300],
-          borderRadius: BorderRadius.circular(20),
-        ),
+        decoration: BoxDecoration(color: Colors.grey[300], borderRadius: BorderRadius.circular(20)),
         child: Stack(
           children: [
             AnimatedContainer(

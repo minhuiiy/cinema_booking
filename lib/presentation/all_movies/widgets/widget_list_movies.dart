@@ -8,9 +8,11 @@ import 'package:cinema_booking/common/widgets/image/shimmer_image.dart';
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
+import 'package:cinema_booking/core/constants/responsive_breakpoints.dart';
 import 'package:cinema_booking/domain/entities/response/home.dart';
 import 'package:cinema_booking/presentation/router.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class WidgetListMovie extends StatelessWidget {
   final List<ItemMovieVM> items;
@@ -19,11 +21,13 @@ class WidgetListMovie extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    bool isDesktop = screenWidth > kTabletBreakpoint;
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 8, vertical: 12),
       child: GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
+          crossAxisCount: isDesktop ? 4 : 2,
           crossAxisSpacing: 12,
           mainAxisSpacing: 16,
           childAspectRatio: 0.65,
@@ -72,10 +76,7 @@ class WidgetListMovie extends StatelessWidget {
                     gradient: LinearGradient(
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
-                      colors: [
-                        Colors.transparent,
-                        Colors.black..withValues(alpha: 0.8),
-                      ],
+                      colors: [Colors.transparent, Colors.black..withValues(alpha: 0.8)],
                     ),
                   ),
                 ),
@@ -107,11 +108,7 @@ class WidgetListMovie extends StatelessWidget {
 
                     Row(
                       children: [
-                        Icon(
-                          Icons.favorite,
-                          color: AppColors.defaultColor,
-                          size: 16,
-                        ),
+                        Icon(Icons.favorite, color: AppColors.defaultColor, size: 16),
                         WidgetSpacer(width: 4),
                         Text(
                           '${movie.likePercent} %',
@@ -133,7 +130,7 @@ class WidgetListMovie extends StatelessWidget {
   }
 
   void openMovieDetails(MovieDetailEntity movie, BuildContext context) {
-    Navigator.pushNamed(context, AppRouter.MOVIE, arguments: movie);
+    context.go('/movie', extra: movie);
   }
 }
 

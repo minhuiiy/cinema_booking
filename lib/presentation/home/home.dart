@@ -12,6 +12,7 @@ import 'package:cinema_booking/presentation/home/home_content_main.dart';
 import 'package:cinema_booking/presentation/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -33,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _onItemTapped(int index) {
     if (index == 3) {
-      Navigator.pushNamed(context, AppRouter.USER);
+      context.go('/user');
     } else {
       setState(() {
         _selectedIndex = index;
@@ -67,22 +68,10 @@ class _HomeScreenState extends State<HomeScreen> {
         onTap: _onItemTapped,
         elevation: 0,
         items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home, size: 28),
-            label: "Home",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search, size: 28),
-            label: "Search",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite, size: 28),
-            label: "Favorites",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle, size: 28),
-            label: "Profile",
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.home, size: 28), label: "Home"),
+          BottomNavigationBarItem(icon: Icon(Icons.search, size: 28), label: "Search"),
+          BottomNavigationBarItem(icon: Icon(Icons.favorite, size: 28), label: "Favorites"),
+          BottomNavigationBarItem(icon: Icon(Icons.account_circle, size: 28), label: "Profile"),
         ],
       ),
     );

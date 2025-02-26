@@ -7,6 +7,7 @@
 import 'package:cinema_booking/common/widgets/image/svg_image.dart';
 import 'package:cinema_booking/core/configs/assets/app_vectors.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 ///
 /// Basic back button
@@ -14,16 +15,13 @@ import 'package:flutter/material.dart';
 class BasicBackButton extends StatelessWidget {
   final EdgeInsets padding;
 
-  const BasicBackButton({
-    super.key,
-    this.padding = const EdgeInsets.only(left: 12, right: 10),
-  });
+  const BasicBackButton({super.key, this.padding = const EdgeInsets.only(left: 12, right: 10)});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pop(context);
+        context.pop();
       },
       child: Padding(
         padding: padding,

@@ -10,9 +10,11 @@ import 'package:cinema_booking/common/widgets/scroll_list/hoz_list_view.dart';
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
+import 'package:cinema_booking/core/constants/responsive_breakpoints.dart';
 import 'package:cinema_booking/domain/entities/response/home.dart';
 import 'package:cinema_booking/presentation/router.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class WidgetHomePosters extends StatefulWidget {
   final List<ItemPosterVM> items;
@@ -34,12 +36,13 @@ class _WidgetHomePostersState extends State<WidgetHomePosters> {
   String directionNow = "";
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         _buildHeader(),
-        WidgetSpacer(height: 2),
-        _buildListPoster(),
+        screenWidth > kTabletBreakpoint ? WidgetSpacer(height: 10) : WidgetSpacer(height: 2),
+        _buildListPoster(screenWidth),
       ],
     );
   }
@@ -49,28 +52,20 @@ class _WidgetHomePostersState extends State<WidgetHomePosters> {
       padding: const EdgeInsets.only(left: 20),
       child: Row(
         children: [
-          MySvgImage(
-            path: widget.iconPath,
-            width: 20,
-            height: 20,
-            color: AppColors.black,
-          ),
+          MySvgImage(path: widget.iconPath, width: 20, height: 20, color: AppColors.black),
           WidgetSpacer(width: 6),
           Text(widget.label.toUpperCase(), style: AppFont.medium_white_14),
           Spacer(),
           TextButton(
             onPressed: () {},
-            child: Text(
-              "View All",
-              style: AppFont.medium_white_12.copyWith(color: AppColors.red),
-            ),
+            child: Text("View All", style: AppFont.medium_white_12.copyWith(color: AppColors.red)),
           ),
         ],
       ),
     );
   }
 
-  _buildListPoster() {
+  _buildListPoster(double screenWidth) {
     return Stack(
       children: [
         WrapContentHozListView(
@@ -97,16 +92,14 @@ class _WidgetHomePostersState extends State<WidgetHomePosters> {
             left: 0,
             top: 0,
             bottom: 0,
-            width: 50, // Adjust width as needed
+            width: screenWidth > kTabletBreakpoint ? 150 : 50, // Adjust width as needed
             child: Container(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
                   colors: [
-                    Colors.black.withValues(
-                      alpha: 0.80,
-                    ), // Dark fade on the left
+                    Colors.black.withValues(alpha: 0.80), // Dark fade on the left
                     Colors.transparent,
                   ],
                 ),
@@ -120,16 +113,14 @@ class _WidgetHomePostersState extends State<WidgetHomePosters> {
             right: 0,
             top: 0,
             bottom: 0,
-            width: 50, // Adjust width as needed
+            width: screenWidth > kTabletBreakpoint ? 150 : 50, // Adjust width as needed
             child: Container(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.centerRight,
                   end: Alignment.centerLeft,
                   colors: [
-                    Colors.black.withValues(
-                      alpha: 0.80,
-                    ), // Dark fade on the right
+                    Colors.black.withValues(alpha: 0.80), // Dark fade on the right
                     Colors.transparent,
                   ],
                 ),
@@ -148,12 +139,13 @@ class WidgetItemPoster extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: () {
         openMovieDetails(item.movie, context);
       },
       child: SizedBox(
-        width: 180,
+        width: screenWidth > kTabletBreakpoint ? 325 : 180,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
@@ -162,8 +154,8 @@ class WidgetItemPoster extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
               child: ShimmerImage(
                 url: item.photo,
-                width: 180,
-                height: 120,
+                width: screenWidth > kTabletBreakpoint ? 400 : 180,
+                height: screenWidth > kTabletBreakpoint ? 200 : 120,
                 fit: BoxFit.cover,
               ),
             ),
@@ -183,7 +175,7 @@ class WidgetItemPoster extends StatelessWidget {
   }
 
   void openMovieDetails(MovieDetailEntity movie, BuildContext context) {
-    Navigator.pushNamed(context, AppRouter.MOVIE, arguments: movie);
+    context.go('/movie', extra: movie);
   }
 }
 

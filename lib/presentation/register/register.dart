@@ -20,16 +20,14 @@ import 'package:cinema_booking/presentation/register/widgets/age_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => RegisterBloc(),
-      child: const SignupPage(),
-    );
+    return BlocProvider(create: (context) => RegisterBloc(), child: const SignupPage());
   }
 }
 
@@ -84,7 +82,7 @@ class _SignupPageState extends State<SignupPage> {
 
         if (state.isSuccess) {
           BlocProvider.of<AuthenticationBloc>(context).add(LoggedIn());
-          Navigator.of(context).pop();
+          context.pop();
         }
 
         if (state.isFailure) {
@@ -97,23 +95,17 @@ class _SignupPageState extends State<SignupPage> {
           backgroundColor: AppColors.darkBackground,
           leading: IconButton(
             icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => context.pop(),
           ),
           actions: [
-            TextButton(
-              onPressed: () {},
-              child: Text("Skip", style: AppFont.medium_white_18),
-            ),
+            TextButton(onPressed: () {}, child: Text("Skip", style: AppFont.medium_white_18)),
           ],
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30),
           child: Stack(
             children: [
-              Align(
-                alignment: Alignment.topRight,
-                child: SvgPicture.asset(AppVectors.unionTop),
-              ),
+              Align(alignment: Alignment.topRight, child: SvgPicture.asset(AppVectors.unionTop)),
               Align(
                 alignment: Alignment.bottomRight,
                 child: SvgPicture.asset(AppVectors.unionBottom),
@@ -150,9 +142,7 @@ class _SignupPageState extends State<SignupPage> {
                       children: [
                         GradientText(
                           text: "REGISTER ME",
-                          textStyle: AppFont.semibold_white_30.copyWith(
-                            fontFamily: 'Oswald',
-                          ),
+                          textStyle: AppFont.semibold_white_30.copyWith(fontFamily: 'Oswald'),
                         ),
                         WidgetSpacer(width: 10),
                       ],
@@ -225,10 +215,7 @@ class _SignupPageState extends State<SignupPage> {
                   TextSpan(
                     text: selectedGender,
                     style: AppFont.medium_white_22.copyWith(
-                      color:
-                          selectedGender == "Male"
-                              ? AppColors.blue
-                              : AppColors.pink,
+                      color: selectedGender == "Male" ? AppColors.blue : AppColors.pink,
                     ),
                   ),
                 ],
@@ -257,10 +244,7 @@ class _SignupPageState extends State<SignupPage> {
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           border: Border.all(
-            color:
-                selectedGender == gender
-                    ? AppColors.defaultColor
-                    : Colors.white24,
+            color: selectedGender == gender ? AppColors.defaultColor : Colors.white24,
             width: 3,
           ),
         ),
@@ -289,19 +273,13 @@ class _SignupPageState extends State<SignupPage> {
 
   void _onPasswordChanged() {
     context.read<RegisterBloc>().add(
-      PasswordChanged(
-        password: _password.text,
-        confirmPassword: _confirmPassword.text,
-      ),
+      PasswordChanged(password: _password.text, confirmPassword: _confirmPassword.text),
     );
   }
 
   void _onConfirmPasswordChanged() {
     context.read<RegisterBloc>().add(
-      ConfirmPasswordChanged(
-        password: _password.text,
-        confirmPassword: _confirmPassword.text,
-      ),
+      ConfirmPasswordChanged(password: _password.text, confirmPassword: _confirmPassword.text),
     );
   }
 

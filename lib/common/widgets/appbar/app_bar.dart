@@ -7,6 +7,7 @@
 import 'package:flutter/material.dart';
 import 'package:cinema_booking/common/helpers/is_dark_mode.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
+import 'package:go_router/go_router.dart';
 
 ///
 /// Basic app bar with back button and title
@@ -38,7 +39,7 @@ class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {
               ? null
               : IconButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  context.pop();
                 },
                 icon: Container(
                   height: 50,
@@ -53,8 +54,7 @@ class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {
                   child: Icon(
                     Icons.arrow_back_ios_new,
                     size: 20,
-                    color:
-                        context.isDarkMode ? AppColors.white : AppColors.black,
+                    color: context.isDarkMode ? AppColors.white : AppColors.black,
                   ),
                 ),
               ),

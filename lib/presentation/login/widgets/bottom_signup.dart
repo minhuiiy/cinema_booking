@@ -5,8 +5,9 @@
  */
 
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
-import 'package:cinema_booking/presentation/router.dart';
+
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class WidgetBottomSignUp extends StatelessWidget {
   const WidgetBottomSignUp({super.key});
@@ -22,7 +23,7 @@ class WidgetBottomSignUp extends StatelessWidget {
           Flexible(
             child: GestureDetector(
               onTap: () {
-                Navigator.pushNamed(context, AppRouter.REGISTER);
+                context.go('/register');
               },
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 4),

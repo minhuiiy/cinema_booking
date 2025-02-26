@@ -4,12 +4,12 @@
  * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
  */
 
-import 'package:cinema_booking/common/widgets/image/svg_image.dart';
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
+import 'package:cinema_booking/core/constants/responsive_breakpoints.dart';
 import 'package:cinema_booking/presentation/home/home_genres/bloc/home_genres_bloc.dart';
 import 'package:cinema_booking/presentation/home/home_genres/model/item_genres.dart';
-import 'package:cinema_booking/presentation/router.dart';
+import 'package:cinema_booking/presentation/home/home_genres/widgets/widget_item_genres.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -28,20 +28,14 @@ class _WidgetHomeGenresState extends State<WidgetHomeGenres> {
     return BlocBuilder<HomeGenresBloc, HomeGenresState>(
       builder: (context, state) {
         if (state is HomeGenresLoaded) {
-          items =
-              state.genres
-                  .map((genres) => ItemGenresVM.fromGenres(genres))
-                  .toList();
+          items = state.genres.map((genres) => ItemGenresVM.fromGenres(genres)).toList();
 
           return Padding(
             padding: const EdgeInsets.only(left: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(
-                  'Movie Genres'.toUpperCase(),
-                  style: AppFont.medium_white_14,
-                ),
+                Text('Movie Genres'.toUpperCase(), style: AppFont.medium_white_14),
                 WidgetSpacer(height: 14),
                 _buildListgenres(),
               ],
@@ -55,8 +49,9 @@ class _WidgetHomeGenresState extends State<WidgetHomeGenres> {
   }
 
   _buildListgenres() {
+    double screenWidth = MediaQuery.of(context).size.width;
     return SizedBox(
-      height: 58,
+      height: screenWidth > kTabletBreakpoint ? 80 : 58,
       child: Padding(
         padding: const EdgeInsets.only(right: 20),
         child: ListView.separated(
@@ -74,45 +69,5 @@ class _WidgetHomeGenresState extends State<WidgetHomeGenres> {
         ),
       ),
     );
-  }
-}
-
-class WidgetItemGenres extends StatelessWidget {
-  final ItemGenresVM item;
-
-  const WidgetItemGenres({required this.item, super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        openAllMovies(context);
-      },
-      child: Column(
-        children: <Widget>[
-          SizedBox(
-            width: 34,
-            height: 34,
-            child: Center(
-              child: MySvgImage(
-                path: item.image,
-                width: 28,
-                height: 28,
-                applyColorFilter: false,
-              ),
-            ),
-          ),
-          WidgetSpacer(height: 4),
-          Text(
-            item.title,
-            style: AppFont.regular_gray1_14.copyWith(fontSize: 12),
-          ),
-        ],
-      ),
-    );
-  }
-
-  void openAllMovies(BuildContext context) {
-    Navigator.pushNamed(context, AppRouter.ALL_MOVIES);
   }
 }

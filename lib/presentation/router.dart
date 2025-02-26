@@ -1,91 +1,98 @@
-/*
- * @ Author: Chung Nguyen Thanh <chunhthanhde.dev@gmail.com>
- * @ Created: 2024-12-17 21:30:56
- * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
- */
-
-// ignore_for_file: constant_identifier_names
+import 'package:cinema_booking/common/bloc/authentication/authentication_bloc.dart';
 import 'package:cinema_booking/domain/entities/movies/movies.dart';
 import 'package:cinema_booking/domain/entities/response/home.dart';
+import 'package:cinema_booking/presentation/about_page/user_info_screen.dart';
 import 'package:cinema_booking/presentation/all_movies/sc_all_movies.dart';
 import 'package:cinema_booking/presentation/all_tickets/screen_all_tickets.dart';
 import 'package:cinema_booking/presentation/booking/booking_seat_slot/book_seat_slot_screen.dart';
 import 'package:cinema_booking/presentation/booking/booking_seat_type/book_seat_type_screen.dart';
 import 'package:cinema_booking/presentation/booking/booking_time_slot/book_time_slot_main.dart';
-import 'package:cinema_booking/presentation/home/home_content_main.dart';
+import 'package:cinema_booking/presentation/auth_guard.dart';
+import 'package:cinema_booking/presentation/home/home.dart';
+import 'package:cinema_booking/presentation/intro/get_started.dart';
 import 'package:cinema_booking/presentation/login/login.dart';
-import 'package:cinema_booking/presentation/register/register.dart';
 import 'package:cinema_booking/presentation/movie_detail/movie_detail_info.dart';
+import 'package:cinema_booking/presentation/register/register.dart';
 import 'package:cinema_booking/presentation/splash/splash.dart';
-import 'package:cinema_booking/presentation/about_page/user_info_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
-class AppRouter {
-  static const String HOME = '/';
-  static const String SPLASH = '/splash';
-  static const String LOGIN = '/login';
-  static const String REGISTER = '/register';
-  static const String USER = '/user';
-  static const String MOVIE = '/movie';
-  static const String BOOK_TIME_SLOT = '/bookTimeSlot';
-  static const String ALL_MOVIES = '/allMovies';
-  static const String BOOK_SEAT_TYPE = '/bookSeatType';
-  static const String BOOK_SEAT_SLOT = '/bookSeatSlot';
-  static const String LIST_TICKETS = '/listTickets';
+/// **GoRouter**
+final GoRouter appRouter = GoRouter(
+  routerNeglect: false,
+  initialLocation: '/home',
+  routes: [
+    GoRoute(path: '/splash', builder: (context, state) => const SplashPage()),
+    GoRoute(path: '/get-started', builder: (context, state) => const GetStartedPage()),
+    GoRoute(path: '/login', builder: (context, state) => const LoginScreen()),
+    GoRoute(path: '/register', builder: (context, state) => const RegisterScreen()),
 
-  static Route<dynamic> generateRoute(RouteSettings settings) {
-    switch (settings.name) {
-      case HOME:
-        return MaterialPageRoute(builder: (_) => HomeContentScreen());
-
-      case SPLASH:
-        return MaterialPageRoute(builder: (_) => SplashPage());
-
-      case LOGIN:
-        return MaterialPageRoute(builder: (_) => LoginScreen());
-
-      case REGISTER:
-        return MaterialPageRoute(builder: (_) => RegisterScreen());
-
-      case USER:
-        return MaterialPageRoute(builder: (_) => UserInfoScreen());
-
-      case BOOK_TIME_SLOT:
-        var movie = settings.arguments as MovieEntity;
-        return MaterialPageRoute(
-          builder: (_) => BookTimeSlotScreen(movie: movie),
+    // **Bọc màn hình cần bảo vệ trong AuthGuard**
+    GoRoute(
+      path: '/home',
+      builder: (context, state) {
+        return BlocBuilder<AuthenticationBloc, AuthenticationState>(
+          builder: (context, state) {
+            if (state is Unauthenticated) {
+              return const LoginScreen();
+            } else if (state is Authenticated) {
+              return const HomeScreen();
+            } else {
+              return const SplashPage();
+            }
+          },
         );
-
-      case MOVIE:
-        var movieDetail = settings.arguments as MovieDetailEntity;
-        return MaterialPageRoute(
-          builder: (_) => MovieInfoScreen(movie: movieDetail),
+      },
+    ),
+    GoRoute(path: '/user', builder: (context, state) => const AuthGuard(child: UserInfoScreen())),
+    GoRoute(
+      path: '/allMovies',
+      builder: (context, state) => const AuthGuard(child: AllMoviesScreen()),
+    ),
+    GoRoute(
+      path: '/listTickets',
+      builder: (context, state) => const AuthGuard(child: ListTicketsScreen()),
+    ),
+    GoRoute(
+      path: '/bookSeatType',
+      builder: (context, state) => const AuthGuard(child: BookSeatTypeScreen()),
+    ),
+    GoRoute(
+      path: '/bookSeatSlot',
+      builder: (context, state) {
+        final args = state.extra as ScreenArguments?;
+        return AuthGuard(
+          child:
+              args == null
+                  ? const Scaffold(body: Center(child: Text("Invalid arguments")))
+                  : BookSeatSlotScreen(args: args),
         );
-
-      case ALL_MOVIES:
-        return MaterialPageRoute(builder: (_) => AllMoviesScreen());
-
-      case BOOK_SEAT_TYPE:
-        return MaterialPageRoute(builder: (_) => BookSeatTypeScreen());
-
-      case BOOK_SEAT_SLOT:
-        final args = settings.arguments as ScreenArguments;
-        return MaterialPageRoute(
-          builder: (_) => BookSeatSlotScreen(args: args),
+      },
+    ),
+    GoRoute(
+      path: '/bookTimeSlot',
+      builder: (context, state) {
+        final movie = state.extra as MovieEntity?;
+        return AuthGuard(
+          child:
+              movie == null
+                  ? const Scaffold(body: Center(child: Text("Invalid movie data")))
+                  : BookTimeSlotScreen(movie: movie),
         );
-
-      case LIST_TICKETS:
-        return MaterialPageRoute(builder: (_) => ListTicketsScreen());
-
-      default:
-        return MaterialPageRoute(
-          builder:
-              (_) => Scaffold(
-                body: Center(
-                  child: Text('No route defined for ${settings.name}'),
-                ),
-              ),
+      },
+    ),
+    GoRoute(
+      path: '/movie',
+      builder: (context, state) {
+        final movieDetail = state.extra as MovieDetailEntity?;
+        return AuthGuard(
+          child:
+              movieDetail == null
+                  ? const Scaffold(body: Center(child: Text("Invalid movie data")))
+                  : MovieInfoScreen(movie: movieDetail),
         );
-    }
-  }
-}
+      },
+    ),
+  ],
+);

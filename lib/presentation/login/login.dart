@@ -8,8 +8,10 @@ import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
 import 'package:cinema_booking/common/widgets/texts/gradient_text.dart';
 import 'package:cinema_booking/core/configs/assets/app_images.dart';
 import 'package:cinema_booking/core/configs/assets/app_vectors.dart';
+import 'package:cinema_booking/core/configs/theme/app_color.dart';
 
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
+import 'package:cinema_booking/core/constants/responsive_breakpoints.dart';
 import 'package:cinema_booking/presentation/login/bloc/login_bloc.dart';
 import 'package:cinema_booking/presentation/login/widgets/bottom_signup.dart';
 import 'package:cinema_booking/presentation/login/widgets/signin_form.dart';
@@ -22,19 +24,17 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.black.withValues(alpha: .5),
+        backgroundColor: AppColors.darkBackground,
         body: BlocProvider(
           create: (context) => LoginBloc(),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Stack(
               children: [
-                Align(
-                  alignment: Alignment.topRight,
-                  child: SvgPicture.asset(AppVectors.unionTop),
-                ),
+                Align(alignment: Alignment.topRight, child: SvgPicture.asset(AppVectors.unionTop)),
                 Align(
                   alignment: Alignment.bottomRight,
                   child: SvgPicture.asset(AppVectors.unionBottom),
@@ -49,10 +49,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                Align(
-                  alignment: Alignment.center,
-                  child: Image.asset(AppImages.logo),
-                ),
+                Align(alignment: Alignment.center, child: Image.asset(AppImages.logo)),
                 SingleChildScrollView(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -60,13 +57,19 @@ class LoginScreen extends StatelessWidget {
                     children: [
                       WidgetSpacer(height: 100),
                       Padding(
-                        padding: const EdgeInsets.only(right: 40),
+                        padding:
+                            screenWidth > kTabletBreakpoint
+                                ? EdgeInsets.only(bottom: 40)
+                                : EdgeInsets.only(right: 40),
                         child: Align(
-                          alignment: Alignment.centerRight,
+                          alignment:
+                              screenWidth > kTabletBreakpoint
+                                  ? Alignment.center
+                                  : Alignment.centerRight,
                           child: GradientText(
                             text: "SIGN IN",
                             textStyle: AppFont.semibold_white_30.copyWith(
-                              fontSize: 45,
+                              fontSize: screenWidth > kTabletBreakpoint ? 70 : 45,
                               fontFamily: 'Oswald',
                             ),
                           ),

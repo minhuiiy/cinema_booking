@@ -13,6 +13,7 @@ import 'package:cinema_booking/presentation/all_movies/widgets/widget_all_movies
 import 'package:cinema_booking/presentation/all_movies/widgets/widget_movie_gallery.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class AllMoviesScreen extends StatefulWidget {
   const AllMoviesScreen({super.key});
@@ -29,10 +30,7 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
         body: BlocProvider<AllMoviesBloc>(
           create: (context) => AllMoviesBloc()..add(OpenScreen()),
           child: Column(
-            children: <Widget>[
-              WidgetAllMoviesToolbar(),
-              Expanded(child: _buildContent()),
-            ],
+            children: <Widget>[WidgetAllMoviesToolbar(), Expanded(child: _buildContent())],
           ),
         ),
       ),
@@ -79,21 +77,14 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
     );
   }
 
-  Future<void> _openSortByOptions(
-    BuildContext context,
-    MovieSoftBy movieSortBy,
-  ) async {
+  Future<void> _openSortByOptions(BuildContext context, MovieSoftBy movieSortBy) async {
     switch (await showDialog<MovieSoftBy>(
       context: context,
       barrierDismissible: true, // Allow tapping outside to close
       builder: (BuildContext context) {
         return Dialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
-          ),
-          backgroundColor: Colors.black.withValues(
-            alpha: 0.8,
-          ), // Cinematic dark theme
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+          backgroundColor: Colors.black.withValues(alpha: 0.8), // Cinematic dark theme
           child: Container(
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
@@ -109,23 +100,10 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(
-                  'Sort by',
-                  style: AppFont.semibold_white.copyWith(fontSize: 22),
-                ),
+                Text('Sort by', style: AppFont.semibold_white.copyWith(fontSize: 22)),
                 const WidgetSpacer(height: 10),
-                _buildSortOption(
-                  context,
-                  '⭐ Rating',
-                  MovieSoftBy.ratting,
-                  movieSortBy,
-                ),
-                _buildSortOption(
-                  context,
-                  '🎬 Name',
-                  MovieSoftBy.name,
-                  movieSortBy,
-                ),
+                _buildSortOption(context, '⭐ Rating', MovieSoftBy.ratting, movieSortBy),
+                _buildSortOption(context, '🎬 Name', MovieSoftBy.name, movieSortBy),
               ],
             ),
           ),
@@ -133,14 +111,10 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
       },
     )) {
       case MovieSoftBy.name:
-        BlocProvider.of<AllMoviesBloc>(
-          context,
-        ).add(SortByChanged(MovieSoftBy.name));
+        BlocProvider.of<AllMoviesBloc>(context).add(SortByChanged(MovieSoftBy.name));
         break;
       case MovieSoftBy.ratting:
-        BlocProvider.of<AllMoviesBloc>(
-          context,
-        ).add(SortByChanged(MovieSoftBy.ratting));
+        BlocProvider.of<AllMoviesBloc>(context).add(SortByChanged(MovieSoftBy.ratting));
         break;
       case null:
     }
@@ -155,17 +129,14 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
   ) {
     bool isSelected = value == groupValue;
     return GestureDetector(
-      onTap: () => Navigator.pop(context, value),
+      onTap: () => context.pop(value),
       child: AnimatedContainer(
         duration: Duration(milliseconds: 300),
         curve: Curves.easeInOut,
         padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
         margin: EdgeInsets.symmetric(vertical: 6),
         decoration: BoxDecoration(
-          color:
-              isSelected
-                  ? AppColors.defaultColor.withValues(alpha: .6)
-                  : Colors.transparent,
+          color: isSelected ? AppColors.defaultColor.withValues(alpha: .6) : Colors.transparent,
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
             color: isSelected ? AppColors.defaultColor : Colors.grey.shade600,
@@ -185,9 +156,7 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
         child: Row(
           children: [
             Icon(
-              isSelected
-                  ? Icons.radio_button_checked
-                  : Icons.radio_button_unchecked,
+              isSelected ? Icons.radio_button_checked : Icons.radio_button_unchecked,
               color: isSelected ? AppColors.defaultColor : Colors.white70,
             ),
             const WidgetSpacer(width: 12),

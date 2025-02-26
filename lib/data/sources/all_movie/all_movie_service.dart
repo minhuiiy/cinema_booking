@@ -4,7 +4,6 @@
  * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
  */
 
-import 'package:cinema_booking/common/helpers/log_helpers.dart';
 import 'package:cinema_booking/core/api/rest_client.dart';
 import 'package:cinema_booking/data/models/response/all_movie_by_type_response.dart';
 import 'package:cinema_booking/service_locator.dart';
@@ -20,21 +19,11 @@ class AllMoviesServiceImpl extends AllMoviesService {
     try {
       final client = RestClient(localDio);
 
-      final AllMoviesModelResponse allMoviesData =
-          await client.getAllMoviesByType();
-
-      // Log the actual response for debugging
-      LogHelper.debug(
-        tag: "AllMovieRepository",
-        message:
-            "Received allMovies data: ${allMoviesData.toEntity().toString()}",
-      );
+      final AllMoviesModelResponse allMoviesData = await client.getAllMoviesByType();
 
       return right(allMoviesData.toEntity());
     } catch (e) {
-      return const Left(
-        "An error occurred in getAllMoviesData, Please try again ",
-      );
+      return const Left("An error occurred in getAllMoviesData, Please try again ");
     }
   }
 }
