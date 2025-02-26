@@ -8,6 +8,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cinema_booking/common/widgets/image/shimmer_image.dart';
 import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
+import 'package:cinema_booking/core/constants/responsive_breakpoints.dart';
 import 'package:cinema_booking/presentation/home/home_banner/bloc/home_banner_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,12 +25,13 @@ class _WidgetHomeBannerState extends State<WidgetHomeBanner> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
     return BlocBuilder<HomeBannerBloc, HomeBannerState>(
       builder: (context, state) {
         if (state is HomeBannerLoaded) {
           return Column(
             children: [
-              _buildCarouselSlider(state),
+              _buildCarouselSlider(state, screenWidth),
               WidgetSpacer(height: 10),
               _buildIndicators(state),
             ],
@@ -41,7 +43,7 @@ class _WidgetHomeBannerState extends State<WidgetHomeBanner> {
     );
   }
 
-  Widget _buildCarouselSlider(HomeBannerLoaded state) {
+  Widget _buildCarouselSlider(HomeBannerLoaded state, double screenWidth) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 12),
       child: CarouselSlider.builder(
@@ -55,7 +57,7 @@ class _WidgetHomeBannerState extends State<WidgetHomeBanner> {
                   url: state.banners[index].url,
                   fit: BoxFit.cover,
                   width: double.infinity,
-                  height: 180,
+                  height: screenWidth > kTabletBreakpoint ? 250 : 180,
                 ),
                 Container(
                   decoration: BoxDecoration(
@@ -74,7 +76,7 @@ class _WidgetHomeBannerState extends State<WidgetHomeBanner> {
           );
         },
         options: CarouselOptions(
-          height: 180,
+          height: screenWidth > kTabletBreakpoint ? 250 : 180,
           viewportFraction: 0.85,
           enlargeCenterPage: true,
           enableInfiniteScroll: true,
@@ -103,9 +105,7 @@ class _WidgetHomeBannerState extends State<WidgetHomeBanner> {
           margin: const EdgeInsets.symmetric(horizontal: 4),
           decoration: BoxDecoration(
             color:
-                currentIndex == index
-                    ? AppColors.white
-                    : AppColors.white.withValues(alpha: 0.30),
+                currentIndex == index ? AppColors.white : AppColors.white.withValues(alpha: 0.30),
             borderRadius: BorderRadius.circular(4),
           ),
         );
