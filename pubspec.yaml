@@ -18,6 +18,7 @@ dependencies:
 
   # for login function
   google_sign_in: ^6.2.2
+  google_sign_in_web: ^0.12.4
   firebase_auth: ^5.4.2
   scrollable_positioned_list: ^0.3.8
 
@@ -53,6 +54,7 @@ dependencies:
 
   # for google map
   google_maps_flutter: ^2.10.0
+  google_maps_flutter_web: ^0.5.10
 
 dev_dependencies:
   flutter_test:
