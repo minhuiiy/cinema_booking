@@ -27,7 +27,10 @@ class RegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(create: (context) => RegisterBloc(), child: const SignupPage());
+    return BlocProvider(
+      create: (context) => RegisterBloc(),
+      child: const SignupPage(),
+    );
   }
 }
 
@@ -98,14 +101,20 @@ class _SignupPageState extends State<SignupPage> {
             onPressed: () => context.pop(),
           ),
           actions: [
-            TextButton(onPressed: () {}, child: Text("Skip", style: AppFont.medium_white_18)),
+            TextButton(
+              onPressed: () {},
+              child: Text("Skip", style: AppFont.medium_white_18),
+            ),
           ],
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30),
           child: Stack(
             children: [
-              Align(alignment: Alignment.topRight, child: SvgPicture.asset(AppVectors.unionTop)),
+              Align(
+                alignment: Alignment.topRight,
+                child: SvgPicture.asset(AppVectors.unionTop),
+              ),
               Align(
                 alignment: Alignment.bottomRight,
                 child: SvgPicture.asset(AppVectors.unionBottom),
@@ -142,7 +151,9 @@ class _SignupPageState extends State<SignupPage> {
                       children: [
                         GradientText(
                           text: "REGISTER ME",
-                          textStyle: AppFont.semibold_white_30.copyWith(fontFamily: 'Oswald'),
+                          textStyle: AppFont.semibold_white_30.copyWith(
+                            fontFamily: 'Oswald',
+                          ),
                         ),
                         WidgetSpacer(width: 10),
                       ],
@@ -215,7 +226,10 @@ class _SignupPageState extends State<SignupPage> {
                   TextSpan(
                     text: selectedGender,
                     style: AppFont.medium_white_22.copyWith(
-                      color: selectedGender == "Male" ? AppColors.blue : AppColors.pink,
+                      color:
+                          selectedGender == "Male"
+                              ? AppColors.blue
+                              : AppColors.pink,
                     ),
                   ),
                 ],
@@ -244,7 +258,10 @@ class _SignupPageState extends State<SignupPage> {
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           border: Border.all(
-            color: selectedGender == gender ? AppColors.defaultColor : Colors.white24,
+            color:
+                selectedGender == gender
+                    ? AppColors.defaultColor
+                    : Colors.white24,
             width: 3,
           ),
         ),
@@ -273,13 +290,19 @@ class _SignupPageState extends State<SignupPage> {
 
   void _onPasswordChanged() {
     context.read<RegisterBloc>().add(
-      PasswordChanged(password: _password.text, confirmPassword: _confirmPassword.text),
+      PasswordChanged(
+        password: _password.text,
+        confirmPassword: _confirmPassword.text,
+      ),
     );
   }
 
   void _onConfirmPasswordChanged() {
     context.read<RegisterBloc>().add(
-      ConfirmPasswordChanged(password: _password.text, confirmPassword: _confirmPassword.text),
+      ConfirmPasswordChanged(
+        password: _password.text,
+        confirmPassword: _confirmPassword.text,
+      ),
     );
   }
 

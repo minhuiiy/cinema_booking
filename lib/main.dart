@@ -30,7 +30,9 @@ Future<void> main() async {
     storageDirectory:
         kIsWeb
             ? HydratedStorageDirectory.web
-            : HydratedStorageDirectory((await getApplicationDocumentsDirectory()).path),
+            : HydratedStorageDirectory(
+              (await getApplicationDocumentsDirectory()).path,
+            ),
   );
 
   // Initialize Firebase
@@ -53,23 +55,26 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => ThemeCubit()),
-        BlocProvider(create: (context) => AuthenticationBloc()..add(AppStarted())),
+        BlocProvider(
+          create: (context) => AuthenticationBloc()..add(AppStarted()),
+        ),
         BlocProvider(create: (context) => HomeBloc()),
       ],
       child: BlocBuilder<ThemeCubit, ThemeMode>(
         builder:
-            (context, mode) => BlocBuilder<AuthenticationBloc, AuthenticationState>(
-              builder: (context, state) {
-                return MaterialApp.router(
-                  debugShowCheckedModeBanner: false,
-                  title: 'Cinema Booking',
-                  theme: AppTheme.lightTheme,
-                  darkTheme: AppTheme.darkTheme,
-                  themeMode: mode,
-                  routerConfig: appRouter,
-                );
-              },
-            ),
+            (context, mode) =>
+                BlocBuilder<AuthenticationBloc, AuthenticationState>(
+                  builder: (context, state) {
+                    return MaterialApp.router(
+                      debugShowCheckedModeBanner: false,
+                      title: 'Cinema Booking',
+                      theme: AppTheme.lightTheme,
+                      darkTheme: AppTheme.darkTheme,
+                      themeMode: mode,
+                      routerConfig: appRouter,
+                    );
+                  },
+                ),
       ),
     );
   }

@@ -28,14 +28,20 @@ class _WidgetHomeGenresState extends State<WidgetHomeGenres> {
     return BlocBuilder<HomeGenresBloc, HomeGenresState>(
       builder: (context, state) {
         if (state is HomeGenresLoaded) {
-          items = state.genres.map((genres) => ItemGenresVM.fromGenres(genres)).toList();
+          items =
+              state.genres
+                  .map((genres) => ItemGenresVM.fromGenres(genres))
+                  .toList();
 
           return Padding(
             padding: const EdgeInsets.only(left: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text('Movie Genres'.toUpperCase(), style: AppFont.medium_white_14),
+                Text(
+                  'Movie Genres'.toUpperCase(),
+                  style: AppFont.medium_white_14,
+                ),
                 WidgetSpacer(height: 14),
                 _buildListgenres(),
               ],

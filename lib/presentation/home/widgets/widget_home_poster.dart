@@ -40,7 +40,9 @@ class _WidgetHomePostersState extends State<WidgetHomePosters> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         _buildHeader(),
-        screenWidth > kTabletBreakpoint ? WidgetSpacer(height: 10) : WidgetSpacer(height: 2),
+        screenWidth > kTabletBreakpoint
+            ? WidgetSpacer(height: 10)
+            : WidgetSpacer(height: 2),
         _buildListPoster(screenWidth),
       ],
     );
@@ -51,13 +53,21 @@ class _WidgetHomePostersState extends State<WidgetHomePosters> {
       padding: const EdgeInsets.only(left: 20),
       child: Row(
         children: [
-          MySvgImage(path: widget.iconPath, width: 20, height: 20, color: AppColors.black),
+          MySvgImage(
+            path: widget.iconPath,
+            width: 20,
+            height: 20,
+            color: AppColors.black,
+          ),
           WidgetSpacer(width: 6),
           Text(widget.label.toUpperCase(), style: AppFont.medium_white_14),
           Spacer(),
           TextButton(
             onPressed: () {},
-            child: Text("View All", style: AppFont.medium_white_12.copyWith(color: AppColors.red)),
+            child: Text(
+              "View All",
+              style: AppFont.medium_white_12.copyWith(color: AppColors.red),
+            ),
           ),
         ],
       ),
@@ -91,14 +101,19 @@ class _WidgetHomePostersState extends State<WidgetHomePosters> {
             left: 0,
             top: 0,
             bottom: 0,
-            width: screenWidth > kTabletBreakpoint ? 150 : 50, // Adjust width as needed
+            width:
+                screenWidth > kTabletBreakpoint
+                    ? 150
+                    : 50, // Adjust width as needed
             child: Container(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
                   colors: [
-                    Colors.black.withValues(alpha: 0.80), // Dark fade on the left
+                    Colors.black.withValues(
+                      alpha: 0.80,
+                    ), // Dark fade on the left
                     Colors.transparent,
                   ],
                 ),
@@ -112,14 +127,19 @@ class _WidgetHomePostersState extends State<WidgetHomePosters> {
             right: 0,
             top: 0,
             bottom: 0,
-            width: screenWidth > kTabletBreakpoint ? 150 : 50, // Adjust width as needed
+            width:
+                screenWidth > kTabletBreakpoint
+                    ? 150
+                    : 50, // Adjust width as needed
             child: Container(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.centerRight,
                   end: Alignment.centerLeft,
                   colors: [
-                    Colors.black.withValues(alpha: 0.80), // Dark fade on the right
+                    Colors.black.withValues(
+                      alpha: 0.80,
+                    ), // Dark fade on the right
                     Colors.transparent,
                   ],
                 ),

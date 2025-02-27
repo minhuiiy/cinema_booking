@@ -54,7 +54,8 @@ class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {
                   child: Icon(
                     Icons.arrow_back_ios_new,
                     size: 20,
-                    color: context.isDarkMode ? AppColors.white : AppColors.black,
+                    color:
+                        context.isDarkMode ? AppColors.white : AppColors.black,
                   ),
                 ),
               ),

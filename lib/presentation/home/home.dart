@@ -67,10 +67,22 @@ class _HomeScreenState extends State<HomeScreen> {
         onTap: _onItemTapped,
         elevation: 0,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home, size: 28), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.search, size: 28), label: "Search"),
-          BottomNavigationBarItem(icon: Icon(Icons.favorite, size: 28), label: "Favorites"),
-          BottomNavigationBarItem(icon: Icon(Icons.account_circle, size: 28), label: "Profile"),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home, size: 28),
+            label: "Home",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search, size: 28),
+            label: "Search",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite, size: 28),
+            label: "Favorites",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_circle, size: 28),
+            label: "Profile",
+          ),
         ],
       ),
     );

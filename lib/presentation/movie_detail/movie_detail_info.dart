@@ -71,7 +71,9 @@ class MovieInfoScreen extends StatelessWidget {
       left: 14,
       child: CinematicBookTicketButton(
         onPressed: () {
-          BlocProvider.of<MovieDetailsBloc>(context).add(ClickBtnBook(movie.detail));
+          BlocProvider.of<MovieDetailsBloc>(
+            context,
+          ).add(ClickBtnBook(movie.detail));
         },
       ),
     );
@@ -147,7 +149,11 @@ class CinematicBookTicketButton extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Icon(Icons.event_seat, color: Colors.white, size: 22), // Sofa Icon
+              Icon(
+                Icons.event_seat,
+                color: Colors.white,
+                size: 22,
+              ), // Sofa Icon
               WidgetSpacer(width: 8),
               Text(
                 'BOOK SEATS',

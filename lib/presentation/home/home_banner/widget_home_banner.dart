@@ -105,7 +105,9 @@ class _WidgetHomeBannerState extends State<WidgetHomeBanner> {
           margin: const EdgeInsets.symmetric(horizontal: 4),
           decoration: BoxDecoration(
             color:
-                currentIndex == index ? AppColors.white : AppColors.white.withValues(alpha: 0.30),
+                currentIndex == index
+                    ? AppColors.white
+                    : AppColors.white.withValues(alpha: 0.30),
             borderRadius: BorderRadius.circular(4),
           ),
         );

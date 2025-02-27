@@ -19,11 +19,14 @@ class AllMoviesServiceImpl extends AllMoviesService {
     try {
       final client = RestClient(localDio);
 
-      final AllMoviesModelResponse allMoviesData = await client.getAllMoviesByType();
+      final AllMoviesModelResponse allMoviesData =
+          await client.getAllMoviesByType();
 
       return right(allMoviesData.toEntity());
     } catch (e) {
-      return const Left("An error occurred in getAllMoviesData, Please try again ");
+      return const Left(
+        "An error occurred in getAllMoviesData, Please try again ",
+      );
     }
   }
 }

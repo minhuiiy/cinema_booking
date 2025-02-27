@@ -19,7 +19,8 @@ class WidgetRecommendedMovies extends StatefulWidget {
   const WidgetRecommendedMovies({super.key});
 
   @override
-  State<WidgetRecommendedMovies> createState() => _WidgetRecommendedMoviesState();
+  State<WidgetRecommendedMovies> createState() =>
+      _WidgetRecommendedMoviesState();
 }
 
 class _WidgetRecommendedMoviesState extends State<WidgetRecommendedMovies> {
@@ -32,7 +33,10 @@ class _WidgetRecommendedMoviesState extends State<WidgetRecommendedMovies> {
     return BlocBuilder<RecommendedMoviesBloc, RecommendedMoviesState>(
       builder: (context, state) {
         if (state is RecommendedMoviesLoaded) {
-          items = state.movies.map((movie) => ItemRecommendedMovieVM.fromMovie(movie)).toList();
+          items =
+              state.movies
+                  .map((movie) => ItemRecommendedMovieVM.fromMovie(movie))
+                  .toList();
 
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,10 +55,16 @@ class _WidgetRecommendedMoviesState extends State<WidgetRecommendedMovies> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text('New theatrical movie'.toUpperCase(), style: AppFont.medium_white_14),
+          Text(
+            'New theatrical movie'.toUpperCase(),
+            style: AppFont.medium_white_14,
+          ),
           TextButton(
             onPressed: () {},
-            child: Text("View All", style: AppFont.medium_white_12.copyWith(color: AppColors.red)),
+            child: Text(
+              "View All",
+              style: AppFont.medium_white_12.copyWith(color: AppColors.red),
+            ),
           ),
         ],
       ),
@@ -147,7 +157,12 @@ class _WidgetItemRecommendedSeat extends StatelessWidget {
           children: <Widget>[
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
-              child: ShimmerImage(url: item.photo, width: 180, height: 120, fit: BoxFit.cover),
+              child: ShimmerImage(
+                url: item.photo,
+                width: 180,
+                height: 120,
+                fit: BoxFit.cover,
+              ),
             ),
             WidgetSpacer(height: 4),
             Text(

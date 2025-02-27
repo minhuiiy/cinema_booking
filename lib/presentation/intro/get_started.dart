@@ -57,13 +57,24 @@ class _GetStartedPageState extends State<GetStartedPage> {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 35.0),
-        child: Stack(children: [_loadingBar(), _logoWidget(), _ourGoal(), _bar(), FooterSection()]),
+        child: Stack(
+          children: [
+            _loadingBar(),
+            _logoWidget(),
+            _ourGoal(),
+            _bar(),
+            FooterSection(),
+          ],
+        ),
       ),
     );
   }
 
   Widget _logoWidget() {
-    return Align(alignment: Alignment(0, -0.6), child: Image.asset(AppImages.logo));
+    return Align(
+      alignment: Alignment(0, -0.6),
+      child: Image.asset(AppImages.logo),
+    );
   }
 
   Widget _ourGoal() {
@@ -77,7 +88,10 @@ class _GetStartedPageState extends State<GetStartedPage> {
             'Cinema Booking',
             style: TextStyle(
               fontWeight: FontWeight.w900,
-              color: context.isDarkMode ? AppColors.white : AppColors.darkBackground,
+              color:
+                  context.isDarkMode
+                      ? AppColors.white
+                      : AppColors.darkBackground,
               fontSize: 32,
             ),
           ),
@@ -87,7 +101,10 @@ class _GetStartedPageState extends State<GetStartedPage> {
             'connecting users with the best options effortlessly.',
             style: TextStyle(
               fontWeight: FontWeight.w500,
-              color: context.isDarkMode ? AppColors.greyDark : AppColors.darkBackground,
+              color:
+                  context.isDarkMode
+                      ? AppColors.greyDark
+                      : AppColors.darkBackground,
               fontSize: 16,
             ),
             textAlign: TextAlign.center,
@@ -103,7 +120,10 @@ class _GetStartedPageState extends State<GetStartedPage> {
       child: Container(
         width: MediaQuery.of(context).size.width * 0.2,
         height: 10,
-        decoration: BoxDecoration(color: Colors.grey[300], borderRadius: BorderRadius.circular(20)),
+        decoration: BoxDecoration(
+          color: Colors.grey[300],
+          borderRadius: BorderRadius.circular(20),
+        ),
         child: Stack(
           children: [
             AnimatedContainer(

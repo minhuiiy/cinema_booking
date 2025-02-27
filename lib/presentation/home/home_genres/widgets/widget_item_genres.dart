@@ -30,7 +30,10 @@ class WidgetItemGenres extends StatelessWidget {
                   child: AnimatedContainer(
                     duration: Duration(milliseconds: 200),
                     padding: EdgeInsets.all(8),
-                    decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.transparent),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.transparent,
+                    ),
                     child: SvgPicture.asset(item.image, width: 36, height: 36),
                   ),
                 ),
@@ -66,7 +69,10 @@ class WidgetItemGenres extends StatelessWidget {
                 ),
               ),
               WidgetSpacer(height: 4),
-              Text(item.title, style: AppFont.regular_gray1_14.copyWith(fontSize: 12)),
+              Text(
+                item.title,
+                style: AppFont.regular_gray1_14.copyWith(fontSize: 12),
+              ),
             ],
           ),
         );
