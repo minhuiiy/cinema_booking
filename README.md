@@ -132,6 +132,7 @@ This piece of work is also part of my technical series [Flutter-Journey](https:/
     <th>Icon</th>
   </tr>
 
+  <!-- Framework -->
   <tr>
     <td>Framework</td>
     <td><a href="https://github.com/flutter/flutter">Flutter</a></td>
@@ -146,6 +147,23 @@ This piece of work is also part of my technical series [Flutter-Journey](https:/
     <td><img src="https://avatars.githubusercontent.com/u/1609975?s=48&v=4" width="48"></td>
   </tr>
 
+  <!-- Authentication -->
+
+   <tr>
+    <td>Authentication</td>
+    <td><a href="https://github.com/firebase/flutterfire">Firebase Auth</a></td>
+    <td>Handles user authentication.</td>
+    <td><img src="https://firebase.google.com/downloads/brand-guidelines/SVG/logo-logomark.svg" width="48"></td>
+  </tr>
+
+  <tr>
+    <td></td>
+    <td><a href="https://github.com/flutter/packages/tree/main/packages/google_sign_in/google_sign_in">Google Sign-In</a></td>
+    <td>Enables login via Google accounts.</td>
+    <td><img src="https://avatars.githubusercontent.com/u/1342004?s=48&v=4" width="48"></td>
+  </tr>
+
+  <!-- State Management -->
   <tr>
     <td>State Management</td>
     <td><a href="https://github.com/felangel/bloc">Flutter BLoC</a></td>
@@ -166,23 +184,32 @@ This piece of work is also part of my technical series [Flutter-Journey](https:/
     <td>Simplifies object comparison.</td>
     <td><img src="https://pub.dev/packages/equatable/versions/2.0.7/gen-res/gen/190x190/equatable_logo.webp" width="48"></td>
   </tr>
+  </tr>
+    <tr>
+    <td>Support State Management</td>
+    <td><a href="https://github.com/spebbe/dartz">dartz</a></td>
+    <td>Dartz is a functional programming (FP) library for Dart, providing immutable data structures, type classes, monads, and tools inspired by Haskell.</td>
+    <td><img src="https://avatars.githubusercontent.com/u/107203?v=4" width="48"></td>
+  </tr>
 
+  <!-- Dependency Injection -->
   <tr>
-    <td>Authentication</td>
-    <td><a href="https://github.com/firebase/flutterfire">Firebase Auth</a></td>
-    <td>Handles user authentication.</td>
+    <td>Dependency Injection</td>
+    <td><a href="https://github.com/fluttercommunity/get_it">Get It</a></td>
+    <td>Simple service locator for Flutter apps.</td>
+    <td><img src="https://avatars.githubusercontent.com/u/35045612?s=48&v=4" width="48"></td>
+  </tr>
+
+  <!-- Database & Storage -->
+  <tr>
+    <td>Database & Storage</td>
+    <td><a href="https://github.com/firebase/flutterfire">Firebase Core</a></td>
+    <td>Handles Firebase initialization.</td>
     <td><img src="https://firebase.google.com/downloads/brand-guidelines/SVG/logo-logomark.svg" width="48"></td>
   </tr>
 
   <tr>
     <td></td>
-    <td><a href="https://github.com/flutter/packages/tree/main/packages/google_sign_in/google_sign_in">Google Sign-In</a></td>
-    <td>Enables login via Google accounts.</td>
-    <td><img src="https://avatars.githubusercontent.com/u/1342004?s=48&v=4" width="48"></td>
-  </tr>
-
-  <tr>
-    <td>Database & Storage</td>
     <td><a href="https://github.com/firebase/flutterfire">Cloud Firestore</a></td>
     <td>Provides a NoSQL real-time database.</td>
     <td><img src="https://firebase.google.com/downloads/brand-guidelines/SVG/logo-logomark.svg" width="48"></td>
@@ -190,7 +217,7 @@ This piece of work is also part of my technical series [Flutter-Journey](https:/
 
   <tr>
     <td></td>
-    <td><a href="https://github.com/flutter/packages/tree/main/packages/shared_preferences/shared_preferences">Shared Preferences</a></td>
+    <td><a href="https://github.com/flutter/plugins/tree/main/packages/shared_preferences/shared_preferences">Shared Preferences</a></td>
     <td>Stores lightweight user preferences.</td>
     <td><img src="https://avatars.githubusercontent.com/u/14101776?s=48&v=4" width="48"></td>
   </tr>
@@ -202,6 +229,7 @@ This piece of work is also part of my technical series [Flutter-Journey](https:/
     <td><img src="https://avatars.githubusercontent.com/u/2605412?s=48&v=4" width="48"></td>
   </tr>
 
+  <!-- Networking & API -->
   <tr>
     <td>Networking & API</td>
     <td><a href="https://github.com/cfug/dio">Dio</a></td>
@@ -216,7 +244,58 @@ This piece of work is also part of my technical series [Flutter-Journey](https:/
     <td><img src="https://avatars.githubusercontent.com/u/121966?v=4" width="48"></td>
   </tr>
 
+  <!-- UI & Effects -->
   <tr>
+    <td>UI & Effects</td>
+    <td><a href="https://github.com/flutter/packages/tree/main/third_party/packages/flutter_svg">Flutter SVG</a></td>
+    <td>Render SVG images in Flutter.</td>
+    <td><img src="https://avatars.githubusercontent.com/u/14101776?s=48&v=4" width="48"></td>
+  </tr>
+
+  <tr>
+    <td></td>
+    <td><a href="https://github.com/hnvn/flutter_shimmer">Shimmer</a></td>
+    <td>Adds skeleton loading effects for better UX.</td>
+    <td><img src="https://avatars.githubusercontent.com/u/5468513?v=4" width="48"></td>
+  </tr>
+
+  <tr>
+    <td></td>
+    <td><a href="https://github.com/serenader2014/flutter_carousel_slider">Carousel Slider</a></td>
+    <td>Creates beautiful image sliders.</td>
+    <td><img src="https://avatars.githubusercontent.com/u/6716522?v=4" width="48"></td>
+  </tr>
+
+  <tr>
+    <td></td>
+    <td><a href="https://github.com/ajilo297/Flutter-Dotted-Border">Dotted Border</a></td>
+    <td>Draws dotted borders in Flutter.</td>
+    <td><img src="https://avatars.githubusercontent.com/u/19208124?v=4" width="48"></td>
+  </tr>
+
+  <!-- Code Generation -->
+  <tr>
+    <td>Code Generation</td>
+    <td><a href="https://github.com/google/json_serializable.dart">Json Serializable</a></td>
+    <td>Automates JSON model generation.</td>
+    <td><img src="https://avatars.githubusercontent.com/u/1342004?s=48&v=4" width="48"></td>
+  </tr>
+
+  <tr>
+    <td></td>
+    <td><a href="https://github.com/rrousselGit/freezed">Freezed</a></td>
+    <td>Code generator for immutable models.</td>
+    <td><img src="https://avatars.githubusercontent.com/u/20165741?v=4" width="48"></td>
+  </tr>
+  </tr>
+    <tr>
+    <td></td>
+    <td><a href="https://github.com/trevorwang/retrofit.dart/">retrofit_generator</a></td>
+    <td>retrofit.dart is an dio client generator using source_gen and inspired by Chopper and Retrofit.</td>
+    <td><img src="https://avatars.githubusercontent.com/u/23740132?s=48&v=4" width="48"></td>
+  </tr>
+  </tr>
+    <tr>
     <td>Navigation</td>
     <td><a href="https://github.com/flutter/packages/tree/main/packages/go_router">Go Router</a></td>
     <td>A declarative, flexible navigation system.</td>
@@ -237,28 +316,15 @@ This piece of work is also part of my technical series [Flutter-Journey](https:/
     <td><img src="https://avatars.githubusercontent.com/u/14101776?s=48&v=4" width="48"></td>
   </tr>
 
-  <tr>
-    <td>JSON Parsing</td>
-    <td><a href="https://github.com/google/json_serializable.dart">Json Serializable</a></td>
-    <td>Automates JSON model generation.</td>
-    <td><img src="https://avatars.githubusercontent.com/u/1342004?s=48&v=4" width="48"></td>
-  </tr>
-
-  <tr>
-    <td>Localization</td>
-    <td><a href="https://github.com/dart-lang/intl">Intl</a></td>
-    <td>Formats dates, numbers, and supports localization.</td>
-    <td><img src="https://pub.dev/static/img/pub-dev-logo.svg" width="48"></td>
-  </tr>
-
+  <!-- App Icons -->
   <tr>
     <td>App Icons</td>
     <td><a href="https://github.com/fluttercommunity/flutter_launcher_icons">Flutter Launcher Icons</a></td>
     <td>Generates and manages app icons.</td>
     <td><img src="https://avatars.githubusercontent.com/u/35045612?s=48&v=4" width="48"></td>
   </tr>
-
 </table>
+
 
 
 This stack ensures **Cinema Booking** is well-optimized for **scalability, seamless API integration, and an excellent user experience.** 🚀🎬
