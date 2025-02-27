@@ -30,40 +30,40 @@ Check out the **live web demo** -> _coming soon_
     <th>Preview</th>
   </tr>
   <tr>
-    <td>Begin Screen</td>
+    <td><strong>Begin Screen</strong></td>
     <td><img src="media/images/begin_screen.png" width="300"></td>
-    <td>Get Start Screen</td>
+    <td><strong>Get Start Screen</strong></td>
     <td><img src="media/images/get_start.jpg" width="300"></td>
   </tr>
   <tr>
-    <td>Home Screen</td>
+    <td><strong>Home Screen</strong></td>
     <td><img src="media/images/home_screen.jpeg" width="300"></td>
-    <td>Movie Screen</td>
+    <td><strong>Movie Screen</strong></td>
     <td><img src="media/images/movie_screen.jpeg" width="300"></td>
   </tr>
   <tr>
-    <td>Login Screen</td>
+    <td><strong>Login Screen</strong></td>
     <td><img src="media/images/login_screen.jpeg" width="300"></td>
-    <td>Register Screen</td>
+    <td><strong>Register Screen</strong></td>
     <td><img src="media/images/register_screen.jpeg" width="300"></td>
   </tr>
   </tr>
     <tr>
-    <td>All Movie Screen</td>
+    <td><strong>All Movie Screen</strong></td>
     <td><img src="media/images/all_movie_screen.jpeg" width="300"></td>
-    <td>About Screen</td>
+    <td><strong>About Screen</strong></td>
     <td><img src="media/images/about_screen.jpeg" width="300"></td>
   </tr>
   <tr>
-    <td>Booking Time</td>
+    <td><strong>Booking Time</strong></td>
     <td><img src="media/images/booking_time.jpeg" width="300"></td>
-    <td>Booking Seat Type</td>
+    <td><strong>Booking Seat Type</strong></td>
     <td><img src="media/images/booking_seat_type.jpeg" width="300"></td>
   </tr>
   <tr>
-    <td>Booking Slot</td>
+    <td><strong>Booking Slot</strong></td>
     <td><img src="media/images/booking_slot.jpg" width="300"></td>
-    <td>Tickets Screen</td>
+    <td><strong>Tickets Screen</strong></td>
     <td><img src="media/images/tickets_screen.jpg" width="300"></td>
   </tr>
 </table>
