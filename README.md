@@ -32,7 +32,8 @@ Check out the **live web demo** -> _coming soon_
   <tr>
     <td>Begin Screen</td>
     <td><img src="media/images/begin_screen.png" width="300"></td>
-
+    <td>Get Start Screen</td>
+    <td><img src="media/images/get_start.jpg" width="300"></td>
   </tr>
   <tr>
     <td>Home Screen</td>
