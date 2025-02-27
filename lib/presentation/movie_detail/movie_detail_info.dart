@@ -13,7 +13,6 @@ import 'package:cinema_booking/presentation/movie_detail/widgets/widget_movie_de
 import 'package:cinema_booking/presentation/movie_detail/widgets/widget_movie_review.dart';
 import 'package:cinema_booking/presentation/movie_detail/widgets/widget_offers.dart';
 import 'package:cinema_booking/presentation/movie_detail/widgets/widget_video_player.dart';
-import 'package:cinema_booking/presentation/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';

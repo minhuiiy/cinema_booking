@@ -12,11 +12,10 @@ import 'package:cinema_booking/presentation/booking/booking_seat_slot/book_seat_
 import 'package:cinema_booking/presentation/booking/booking_seat_type/bloc/book_seat_type_bloc.dart';
 import 'package:cinema_booking/presentation/booking/booking_seat_type/bloc/book_seat_type_state.dart';
 import 'package:cinema_booking/presentation/booking/booking_seat_type/widgets/widget_how_many_seats.dart';
-import 'package:cinema_booking/presentation/booking/model/item_time_slot.dart';
 import 'package:cinema_booking/presentation/booking/booking_time_slot/widgets/widget_cinema_timeslot.dart';
 import 'package:cinema_booking/presentation/booking/booking_time_slot/widgets/widget_empty.dart';
 import 'package:cinema_booking/presentation/booking/booking_time_slot/widgets/widget_toolbar.dart';
-import 'package:cinema_booking/presentation/router.dart';
+import 'package:cinema_booking/presentation/booking/model/item_time_slot.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';

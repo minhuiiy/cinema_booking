@@ -9,10 +9,7 @@ import 'package:cinema_booking/common/bloc/theme/theme_cubit.dart';
 import 'package:cinema_booking/core/configs/theme/app_theme.dart';
 import 'package:cinema_booking/firebase_options.dart';
 import 'package:cinema_booking/presentation/home/bloc/home_bloc.dart';
-import 'package:cinema_booking/presentation/home/home.dart';
-import 'package:cinema_booking/presentation/login/login.dart';
 import 'package:cinema_booking/presentation/router.dart';
-import 'package:cinema_booking/presentation/splash/splash.dart';
 import 'package:cinema_booking/service_locator.dart';
 import 'package:cinema_booking/simple_bloc_observer.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -48,19 +45,6 @@ Future<void> main() async {
   runApp(const MyApp());
 }
 
-// (context, state) {
-//   return BlocBuilder<AuthenticationBloc, AuthenticationState>(
-//     builder: (context, state) {
-//       if (state is Unauthenticated) {
-//         return const LoginScreen();
-//       } else if (state is Authenticated) {
-//         return const HomeScreen();
-//       } else {
-//         return const SplashPage();
-//       }
-//     },
-//   );
-// },
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 

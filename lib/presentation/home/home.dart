@@ -9,7 +9,6 @@ import 'package:cinema_booking/presentation/all_movies/sc_all_movies.dart';
 import 'package:cinema_booking/presentation/all_tickets/screen_all_tickets.dart';
 import 'package:cinema_booking/presentation/home/bloc/home_bloc.dart';
 import 'package:cinema_booking/presentation/home/home_content_main.dart';
-import 'package:cinema_booking/presentation/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';

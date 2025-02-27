@@ -1,4 +1,4 @@
-# A simplified Real Movie Booking App 🎬 🍿 built with Flutter, Clean Template, BLoC, REST API, Firebase Auth, and Unit Tests.
+# A simplified Real Movie Booking App 🎬 🍿, Built with Flutter, Clean Template, BLoC, REST API, Firebase Auth, and Unit-Tests.
 
 > I’ve open-sourced this project to showcase some of my skills and to help early-career Flutter developers grow in their career.
 >
@@ -21,7 +21,6 @@ And what could be better than starting a new project to kick off the year?
 ## 🎬 Working application
 
 Check out the **live web demo** -> _coming soon_ 
-
 
 <table>
   <tr>
@@ -92,6 +91,7 @@ This is the collection of components that I developer for [Cinema Booking](https
 
 #### 🚀 More to come... 
 
+- [ ] Crawl Data from Cinema Web
 - [ ] Theme mode
 - [ ] Unit/Integration tests
 - [ ] Payment Screen
@@ -345,11 +345,11 @@ Since it may be updated less frequently than the Draw.io file, it would be bette
   <img src="draw.io/draw.png" alt="ERD Diagram" width="600">
 </p>
 
-### Application architecture (Flutter Clean Bloc Architecture)
+### 🏗️ Application architecture (Flutter Clean Bloc Architecture)
 
 The project follows a Clean Architecture approach combined with BLoC (Business Logic Component) for efficient state management.
 
-This structure ensures scalability, testability, and maintainability, making it easier to develop and expand the app over time
+This structure ensures scalability, testability, and maintainability, making it easier to develop and expand the app over time 🔄.
 
 ```Console
 
@@ -444,7 +444,7 @@ I really enjoyed working on this project. I hope it will bring a lot of value to
 
 ## Author: Chung Nguyen Thanh ✍️
 
-- young software engineer - hoc căng chơi giỏi. Working with Flutter and Java. Like photography, amateur filmmaker and reading books.
+- Young software engineer - hoc căng chơi giỏi. Working with Flutter and Java. Like photography, amateur filmmaker and reading books.
 - Card visit: https://chunhthanhde.github.io/card 
 - Personal blog: https://chunhthanhde.hashnode.dev/
 - Say hello: chunhthanhde.dev@gmail.comcom
@@ -459,7 +459,7 @@ If you'd like to contribute, please fork the repository and make changes as you'
 
 Inspired by [KhoaSuperman/findseat](https://github.com/KhoaSuperman/findseat)
 
-I have reused part of the code `Bloc` and `Data Mock` from this project.
+I have reused part of the `UI idea` and `Data Mock` from this project.
 
 ## License
 

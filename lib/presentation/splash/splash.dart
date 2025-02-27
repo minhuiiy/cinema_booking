@@ -5,11 +5,11 @@
  */
 
 import 'dart:async';
-import 'package:cinema_booking/core/configs/theme/app_color.dart';
-import 'package:cinema_booking/presentation/intro/get_started.dart';
+
 import 'package:cinema_booking/common/widgets/footer/footer_section.dart';
-import 'package:flutter/material.dart';
 import 'package:cinema_booking/core/configs/assets/app_images.dart';
+import 'package:cinema_booking/core/configs/theme/app_color.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class SplashPage extends StatefulWidget {
