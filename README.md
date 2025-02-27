@@ -1,4 +1,4 @@
-# A simplified Real Movie Booking App 🎬 🍿, Built with Flutter, Clean Template, BLoC, REST API, Firebase Auth, and Unit-Tests.
+# A simplified Real Movie Booking App 🎬 🍿 - Built with Flutter, Clean Template, BLoC, REST API, Firebase Auth, and Unit-Tests.
 
 > I’ve open-sourced this project to showcase some of my skills and to help early-career Flutter developers grow in their career.
 >
@@ -92,6 +92,7 @@ This is the collection of components that I developer for [Cinema Booking](https
 
 #### 🚀 More to come... 
 
+- [ ] CI/CD
 - [ ] Crawl Data from Cinema Web
 - [ ] Theme mode
 - [ ] Unit/Integration tests
