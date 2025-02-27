@@ -136,14 +136,14 @@ This piece of work is also part of my technical series [Flutter-Journey](https:/
   <tr>
     <td>Framework</td>
     <td><a href="https://github.com/flutter/flutter">Flutter</a></td>
-    <td>The UI framework powering the application.</td>
+    <td>Flutter makes it easy and fast to build beautiful apps for mobile and beyond.</td>
     <td><img src="https://avatars.githubusercontent.com/u/14101776?s=48&v=4" width="48"></td>
   </tr>
 
   <tr>
     <td>Language</td>
     <td><a href="https://github.com/dart-lang/sdk">Dart</a></td>
-    <td>The primary language for Flutter development.</td>
+    <td>The Dart SDK, including the VM, JS and Wasm compilers, analysis, core libraries, and more.</td>
     <td><img src="https://avatars.githubusercontent.com/u/1609975?s=48&v=4" width="48"></td>
   </tr>
 
