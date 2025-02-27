@@ -124,35 +124,142 @@ This piece of work is also part of my technical series [Flutter-Journey](https:/
 
 ## Tech stack 📦
 
-| Category | Library | Description | Icon |
-|----------|---------|-------------|------|
-| **Framework** | [Flutter](https://github.com/flutter/flutter) | The UI framework powering the application. | ![Flutter](https://avatars.githubusercontent.com/u/14101776?s=200&v=4) |
-| **Language** | [Dart](https://github.com/dart-lang/sdk) | The primary language for Flutter development. | ![Dart](https://avatars.githubusercontent.com/u/1609975?s=200&v=4) |
-| **State Management** | [Flutter BLoC](https://github.com/felangel/bloc) | Manages state and business logic efficiently. | ![BLoC](https://raw.githubusercontent.com/felangel/bloc/master/docs/assets/logo_full.png) |
-|  | [Hydrated BLoC](https://github.com/felangel/hydrated_bloc) | Supports automatic state persistence. | ![Hydrated BLoC](https://raw.githubusercontent.com/felangel/bloc/master/docs/assets/hydrated_bloc_logo_full.png) |
-|  | [Equatable](https://github.com/felangel/equatable) | Simplifies object comparison. | ![Equatable](https://avatars.githubusercontent.com/u/43749712?s=200&v=4) |
-| **Authentication** | [Firebase Auth](https://github.com/firebase/flutterfire) | Handles user authentication. | ![Firebase](https://firebase.google.com/downloads/brand-guidelines/SVG/logo-logomark.svg) |
-|  | [Google Sign-In](https://github.com/flutter/plugins/tree/main/packages/google_sign_in) | Enables login via Google accounts. | ![Google](https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/200px-Google_%22G%22_Logo.svg.png) |
-| **Database & Storage** | [Cloud Firestore](https://github.com/firebase/flutterfire) | Provides a NoSQL real-time database. | ![Firestore](https://firebase.google.com/downloads/brand-guidelines/SVG/logo-logomark.svg) |
-|  | [Shared Preferences](https://github.com/flutter/plugins/tree/main/packages/shared_preferences) | Stores lightweight user preferences. | ![Shared Preferences](https://upload.wikimedia.org/wikipedia/commons/6/6a/Android_robot.svg) |
-|  | [Sqflite](https://github.com/tekartik/sqflite) | Local SQLite database for persistent data. | ![SQLite](https://upload.wikimedia.org/wikipedia/commons/3/38/SQLite370.svg) |
-| **Networking & API** | [Dio](https://github.com/cfug/dio) | A powerful HTTP client for API requests. | ![Dio](https://raw.githubusercontent.com/flutterchina/dio/master/docs/logo.png) |
-|  | [Retrofit](https://github.com/trevorwang/retrofit.dart) | Simplifies API endpoint definitions with annotations. | ![Retrofit](https://avatars.githubusercontent.com/u/23281642?s=200&v=4) |
-| **Navigation** | [Go Router](https://github.com/flutter/packages/tree/main/packages/go_router) | A declarative, flexible navigation system. | ![Go Router](https://raw.githubusercontent.com/flutter/packages/main/packages/go_router/doc/go_router_logo.png) |
-| **UI Effects** | [Shimmer](https://github.com/hnvn/flutter_shimmer) | Adds skeleton loading effects for better UX. | ![Shimmer](https://pub.dev/static/img/pub-dev-logo.svg) |
-|  | [Carousel Slider](https://github.com/serenader2014/flutter_carousel_slider) | Creates beautiful image sliders. | ![Carousel](https://pub.dev/static/img/pub-dev-logo.svg) |
-|  | [Dotted Border](https://github.com/letsar/flutter_dotted_border) | Enhances UI with dotted borders. | ![Dotted Border](https://pub.dev/static/img/pub-dev-logo.svg) |
-| **Video & Multimedia** | [YouTube Player Flutter](https://github.com/sarbagyastha/youtube_player_flutter) | Embeds and plays YouTube videos (e.g., movie trailers). | ![YouTube](https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg) |
-| **Google Maps** | [Google Maps Flutter](https://github.com/flutter/plugins/tree/main/packages/google_maps_flutter) | Displays cinema locations on maps. | ![Google Maps](https://upload.wikimedia.org/wikipedia/commons/6/69/Google_Maps_icon_%282020%29.svg) |
-| **JSON Parsing** | [Json Serializable](https://github.com/google/json_serializable.dart) | Automates JSON model generation. | ![JSON](https://upload.wikimedia.org/wikipedia/commons/c/c9/JSON_vector_logo.svg) |
-|  | [Build Runner](https://github.com/dart-lang/build) | Generates code for models and API interactions. | ![Build Runner](https://pub.dev/static/img/pub-dev-logo.svg) |
-| **Immutability** | [Freezed](https://github.com/rrousselGit/freezed) | Helps in building immutable models. | ![Freezed](https://pub.dev/static/img/pub-dev-logo.svg) |
-| **Localization** | [Intl](https://github.com/dart-lang/intl) | Formats dates, numbers, and supports localization. | ![Intl](https://pub.dev/static/img/pub-dev-logo.svg) |
-| **SVG Support** | [Flutter SVG](https://github.com/dnfield/flutter_svg) | Enables rendering of vector graphics (SVG). | ![SVG](https://upload.wikimedia.org/wikipedia/commons/4/4b/SVG_Logo.svg) |
-| **File System** | [Path Provider](https://github.com/flutter/plugins/tree/main/packages/path_provider) | Provides system paths for file storage. | ![Path Provider](https://pub.dev/static/img/pub-dev-logo.svg) |
-| **Code Quality** | [Flutter Lints](https://github.com/flutter/packages/tree/main/packages/flutter_lints) | Enforces best practices and coding standards. | ![Lints](https://pub.dev/static/img/pub-dev-logo.svg) |
-| **App Icons** | [Flutter Launcher Icons](https://github.com/fluttercommunity/flutter_launcher_icons) | Generates and manages app icons. | ![Icons](https://pub.dev/static/img/pub-dev-logo.svg) |
-| **API Code Generator** | [Retrofit Generator](https://github.com/trevorwang/retrofit.dart) | Auto-generates API clients for Retrofit. | ![Retrofit](https://avatars.githubusercontent.com/u/23281642?s=200&v=4) |
+<table>
+  <tr>
+    <th>Category</th>
+    <th>Library</th>
+    <th>Description</th>
+    <th>Icon</th>
+  </tr>
+
+  <tr>
+    <td>Framework</td>
+    <td><a href="https://github.com/flutter/flutter">Flutter</a></td>
+    <td>The UI framework powering the application.</td>
+    <td><img src="https://avatars.githubusercontent.com/u/14101776?s=48&v=4" width="24"></td>
+  </tr>
+
+  <tr>
+    <td>Language</td>
+    <td><a href="https://github.com/dart-lang/sdk">Dart</a></td>
+    <td>The primary language for Flutter development.</td>
+    <td><img src="https://avatars.githubusercontent.com/u/1609975?s=48&v=4" width="24"></td>
+  </tr>
+
+  <tr>
+    <td>State Management</td>
+    <td><a href="https://github.com/felangel/bloc">Flutter BLoC</a></td>
+    <td>Manages state and business logic efficiently.</td>
+    <td><img src="https://raw.githubusercontent.com/felangel/bloc/master/docs/assets/logo_full.png" width="24"></td>
+  </tr>
+
+  <tr>
+    <td></td>
+    <td><a href="https://github.com/felangel/hydrated_bloc">Hydrated BLoC</a></td>
+    <td>Supports automatic state persistence.</td>
+    <td><img src="https://raw.githubusercontent.com/felangel/bloc/master/docs/assets/hydrated_bloc_logo_full.png" width="24"></td>
+  </tr>
+
+  <tr>
+    <td></td>
+    <td><a href="https://github.com/felangel/equatable">Equatable</a></td>
+    <td>Simplifies object comparison.</td>
+    <td><img src="https://avatars.githubusercontent.com/u/43749712?s=48&v=4" width="24"></td>
+  </tr>
+
+  <tr>
+    <td>Authentication</td>
+    <td><a href="https://github.com/firebase/flutterfire">Firebase Auth</a></td>
+    <td>Handles user authentication.</td>
+    <td><img src="https://firebase.google.com/downloads/brand-guidelines/SVG/logo-logomark.svg" width="24"></td>
+  </tr>
+
+  <tr>
+    <td></td>
+    <td><a href="https://github.com/flutter/plugins/tree/main/packages/google_sign_in">Google Sign-In</a></td>
+    <td>Enables login via Google accounts.</td>
+    <td><img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" width="24"></td>
+  </tr>
+
+  <tr>
+    <td>Database & Storage</td>
+    <td><a href="https://github.com/firebase/flutterfire">Cloud Firestore</a></td>
+    <td>Provides a NoSQL real-time database.</td>
+    <td><img src="https://firebase.google.com/downloads/brand-guidelines/SVG/logo-logomark.svg" width="24"></td>
+  </tr>
+
+  <tr>
+    <td></td>
+    <td><a href="https://github.com/flutter/plugins/tree/main/packages/shared_preferences">Shared Preferences</a></td>
+    <td>Stores lightweight user preferences.</td>
+    <td><img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Android_robot.svg" width="24"></td>
+  </tr>
+
+  <tr>
+    <td></td>
+    <td><a href="https://github.com/tekartik/sqflite">Sqflite</a></td>
+    <td>Local SQLite database for persistent data.</td>
+    <td><img src="https://upload.wikimedia.org/wikipedia/commons/3/38/SQLite370.svg" width="24"></td>
+  </tr>
+
+  <tr>
+    <td>Networking & API</td>
+    <td><a href="https://github.com/cfug/dio">Dio</a></td>
+    <td>A powerful HTTP client for API requests.</td>
+    <td><img src="https://raw.githubusercontent.com/flutterchina/dio/master/docs/logo.png" width="24"></td>
+  </tr>
+
+  <tr>
+    <td></td>
+    <td><a href="https://github.com/trevorwang/retrofit.dart">Retrofit</a></td>
+    <td>Simplifies API endpoint definitions with annotations.</td>
+    <td><img src="https://avatars.githubusercontent.com/u/23281642?s=48&v=4" width="24"></td>
+  </tr>
+
+  <tr>
+    <td>Navigation</td>
+    <td><a href="https://github.com/flutter/packages/tree/main/packages/go_router">Go Router</a></td>
+    <td>A declarative, flexible navigation system.</td>
+    <td><img src="https://raw.githubusercontent.com/flutter/packages/main/packages/go_router/doc/go_router_logo.png" width="24"></td>
+  </tr>
+
+  <tr>
+    <td>Video & Multimedia</td>
+    <td><a href="https://github.com/sarbagyastha/youtube_player_flutter">YouTube Player Flutter</a></td>
+    <td>Embeds and plays YouTube videos.</td>
+    <td><img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" width="24"></td>
+  </tr>
+
+  <tr>
+    <td>Google Maps</td>
+    <td><a href="https://github.com/flutter/plugins/tree/main/packages/google_maps_flutter">Google Maps Flutter</a></td>
+    <td>Displays cinema locations on maps.</td>
+    <td><img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Google_Maps_icon_%282020%29.svg" width="24"></td>
+  </tr>
+
+  <tr>
+    <td>JSON Parsing</td>
+    <td><a href="https://github.com/google/json_serializable.dart">Json Serializable</a></td>
+    <td>Automates JSON model generation.</td>
+    <td><img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/JSON_vector_logo.svg" width="24"></td>
+  </tr>
+
+  <tr>
+    <td>Localization</td>
+    <td><a href="https://github.com/dart-lang/intl">Intl</a></td>
+    <td>Formats dates, numbers, and supports localization.</td>
+    <td><img src="https://pub.dev/static/img/pub-dev-logo.svg" width="24"></td>
+  </tr>
+
+  <tr>
+    <td>App Icons</td>
+    <td><a href="https://github.com/fluttercommunity/flutter_launcher_icons">Flutter Launcher Icons</a></td>
+    <td>Generates and manages app icons.</td>
+    <td><img src="https://pub.dev/static/img/pub-dev-logo.svg" width="24"></td>
+  </tr>
+
+</table>
+
 
 This stack ensures **Cinema Booking** is well-optimized for **scalability, seamless API integration, and an excellent user experience.** 🚀🎬
 
