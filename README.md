@@ -1,8 +1,8 @@
-# A simplified real-world-project Movie Booking App 🎬 🍿 built with Flutter, Clean Template, BLoC, REST API, Firebase Auth, and Unit Tests (future).
+# A simplified Real Movie Booking App 🎬 🍿 built with Flutter, Clean Template, BLoC, REST API, Firebase Auth, and Unit Tests.
 
 > I’ve open-sourced this project to showcase some of my skills and to help early-career Flutter developers grow in their career.
 >
-> Like ["Nezha: Birth Of The Demon Child"](https://www.youtube.com/watch?v=xdOgym7MLAU), I believe that for those just starting out in Flutter, completing this project might be a challenge. However, once you get through it, you’ll either succeed or grow stronger. (Không thành công cũng thành nhân) (失败也是成功)
+> Like ["Nezha: Birth Of The Demon Child"](https://www.youtube.com/watch?v=xdOgym7MLAU), I believe that for those just starting out in Flutter, completing this project might be a challenge. However, once you get through it, you’ll either succeed and grow stronger. (Không thành công cũng thành nhân) (失败也是成功)
 >
 > I’ll also support so feel free to start with new issue if you have difficulty because I know it’s not as easy for everyone. :muscle:
 
@@ -13,7 +13,12 @@
 
 And what could be better than starting a new project to kick off the year? 
 
-## Working application
+<p align="center">
+  <img src="assets/gif/iam_ready.gif" alt="" width="350">
+</p>
+
+
+## 🎬 Working application
 
 Check out the **live web demo** -> _coming soon_ 
 
@@ -68,9 +73,9 @@ Check out the **live web demo** -> _coming soon_
 
 ### What Cinema Booking ?
 
-Cinema Booking is an application that helps users search for and book movie tickets at cinemas in Hanoi. The app offers a user-friendly and cinematic interface, quick operations, and a convenient ticket-booking experience.
+Cinema Booking is an application that helps users search for and book movie tickets 🎟️ at cinemas in Hanoi. The app offers a user-friendly and cinematic interface, quick operations, and a convenient ticket-booking experience.
 
-It leverages Flutter Clean Architecture and Flutter BLoC, ensuring a well-structured and scalable design that facilitates future growth, comprehensive testing, and efficient QA processes. That also makes it easy to develop hard-to-reach UseCase in the future
+It leverages Flutter Clean Architecture and Flutter BLoC, ensuring a well-structured and scalable design that facilitates future growth, comprehensive testing, and efficient QA processes. That also makes it easy to develop hard-to-reach UseCase in the future.
 
 ### 📌 Cinema Booking Components
 
@@ -116,25 +121,25 @@ Your support means a lot! Thank you for stopping by and contributing to the proj
 
 I have been working with Flutter and Java for about three years. I built cool stuff at VNPT Technology but most of them are system applications based on AOSP source code and are under security contracts, making it difficult to showcase them..
 
-This is a showcase user-facing application that I built in my spare time to expand my experience in application development and explore various technologies and new libraries I wanted to try, such as `Firebase`, `Google Maps`, `Payment`,... and more.
+This is a showcase user-facing application that I built in my spare time ⏳ to expand my experience in application development and explore various technologies and new libraries I wanted to try, such as `Firebase`, `Google Maps`, `Payment`,... and more.
 
-There are many Flutter examples on the web but most of them are way too simple. I like to think that this codebase contains enough complexity to offer valuable insights to **Flutter developers of all skill levels** while still being _relatively_ easy to understand.
+There are many Flutter examples on the web but most of them are way too simple. I like to think that this codebase contains enough complexity 🧩 to offer valuable insights to **Flutter developers of all skill levels** while still being _relatively_ easy to understand.
 
 ---
 
-This piece of work is also part of my technical series [Flutter-Journey](https://github.com/Flutter-Journey), which aims to empower developers to **build and scale their own Flutter applications**. My desire is to advocate and grow the Flutter developer community in Vietnam.
+This piece of work is also part of my technical series [Flutter-Journey](https://github.com/Flutter-Journey) 🎯, which aims to empower developers to **build and scale their own Flutter applications**. My desire is to advocate and grow the Flutter developer community in Vietnam.
 
 
 ## 📦 Tech Stack
 
-Some libraries are used in this project and shout out to them because they are very helpful for the community
+Some libraries are used in this project and shout out to them because they are very helpful for the community.
 
 <table>
   <tr>
     <th>Category</th>
     <th>Library</th>
     <th>Description</th>
-    <th>Icon</th>
+    <th>Logo</th>
   </tr>
 
   <!-- Framework -->
@@ -324,7 +329,7 @@ Some libraries are used in this project and shout out to them because they are v
 </table>
 
 
-This stack ensures **Cinema Booking** is well-optimized for **scalability, seamless API integration, and an excellent user experience.** 🚀🎬
+This stack ensures **Cinema Booking** is well-optimized for **scalability, seamless API integration, and an excellent user experience.**
 
 ## 📐 High Level Design
 
@@ -334,15 +339,17 @@ Following a standard approach to mobile development, I designed a simple high-le
 
 It describes how the data tables in the cinema system are linked together, including entities such as User, Booking, Movies, Cinema, Show Time, Seats and the relationships between them. 
 
-Since it may be updated less frequently than the Draw.io file, it would be better for you to read the drawing file instead. 🥘
+Since it may be updated less frequently than the Draw.io file, it would be better for you to read the drawing file instead. 😊
 
 <p align="center">
-  <img src="draw.io/draw.png" alt="ERD Diagram" width="500">
+  <img src="draw.io/draw.png" alt="ERD Diagram" width="600">
 </p>
 
 ### Application architecture (Flutter Clean Bloc Architecture)
 
-Main Source Code Project
+The project follows a Clean Architecture approach combined with BLoC (Business Logic Component) for efficient state management.
+
+This structure ensures scalability, testability, and maintainability, making it easier to develop and expand the app over time
 
 ```Console
 
