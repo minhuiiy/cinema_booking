@@ -335,11 +335,15 @@ It describes how the data tables in the cinema system are linked together, inclu
 
 Since it may be updated less frequently than the Draw.io file, it would be better for you to read the drawing file instead. 🥘
 
-![](draw.io/draw.png)
+<p align="center">
+  <img src="draw.io/draw.png" alt="ERD Diagram" width="500">
+</p>
 
 ### Application architecture (Flutter Clean Bloc Architecture)
 
 Main Source Code Project
+
+```Console
 
 ├───common                               # Shared utilities and reusable components
 │   ├───bloc                             # Global state management using BLoC
@@ -349,13 +353,8 @@ Main Source Code Project
 │   └───widgets                          # Reusable Custom UI components
 │       ├───appbar         
 │       ├───button         
-│       ├───footer         
-│       ├───image         
-│       ├───paint         
-│       ├───scroll_list    
-│       ├───snackbar      
-│       ├───space          
-│       └───texts          
+│       ├───footer                 
+│       ├─── ...
 ├───core                                 # Core functionality and configurations
 │   ├───api                              # API-related functionalities
 │   ├───configs                          # Application-wide configurations
@@ -371,60 +370,35 @@ Main Source Code Project
 │   │   ├───booking       
 │   │   ├───cast          
 │   │   ├───cinema        
-│   │   ├───genres        
-│   │   ├───movies        
-│   │   ├───offer         
-│   │   ├───response      
-│   │   ├───reviews       
-│   │   ├───seats         
-│   │   ├───show_time     
-│   │   └───ticket        
+│   │   ├─── ...     
 │   ├───repository                       # Repository layer for data fetching
 │   │   ├───all_movie     
 │   │   ├───auth          
 │   │   ├───authentication 
-│   │   ├───booking_time  
-│   │   ├───home          
-│   │   ├───movie       
-│   │   └───tickets       
+│   │   ├─── ...     
 │   └───sources                          # Data sources (API, local storage, etc.)
 │       ├───all_movie   
 │       ├───auth          
 │       ├───authentication 
-│       ├───booking_time  
-│       ├───home          
-│       ├───movie         
-│       └───ticket        
+│       ├─── ...       
 ├───domain                               # Domain layer (business logic, entities, use cases)
 │   ├───entities                         # Core business entities ()
 │   │   ├───auth          
 │   │   ├───booking      
 │   │   ├───cast        
 │   │   ├───cinema        
-│   │   ├───genres        
-│   │   ├───movies        
-│   │   ├───offer         
-│   │   ├───response      
-│   │   ├───reviews       
-│   │   ├───seats         
-│   │   └───show_time     
+│   │   ├─── ...    
 │   ├───repository                       # Abstract repository interfaces
 │   │   ├───all_movie    
 │   │   ├───auth         
 │   │   ├───authentication 
-│   │   ├───booking_time  
-│   │   ├───home        
-│   │   ├───movie         
-│   │   ├───seat_slot     
+│   │   ├─── ...     
 │   │   └───tickets       
 │   └───usecase                          # Business logic use cases
 │       ├───all_movie    
 │       ├───authentication 
 │       ├───booking_time  
-│       ├───home          
-│       ├───movie         
-│       ├───tickets       
-│       └───user          
+│       ├─── ...        
 └───presentation                         # Presentation layer (UI and state management)
     ├───about_page                       # About screen
     │   ├───bloc                         # BLoC for About page
@@ -432,45 +406,20 @@ Main Source Code Project
     ├───all_movies       
     │   ├───bloc         
     │   └───widgets     
-    ├───all_tickets      
-    │   ├───bloc         
-    │   └───widgets      
+    ├───all_tickets          
     ├───booking          
     │   ├───booking_seat_slot 
-    │   │   ├───bloc     
-    │   │   ├───model    
-    │   │   └───widgets  
     │   ├───booking_seat_type 
-    │   │   ├───bloc     
-    │   │   └───widgets  
     │   ├───booking_time_slot 
-    │   │   ├───bloc     
-    │   │   └───widgets  
     │   └───model        
-    ├───home             
-    │   ├───bloc         
-    │   ├───home_banner  
-    │   │   └───bloc     
-    │   ├───home_genres  
-    │   │   ├───bloc     
-    │   │   ├───model    
-    │   │   └───widgets  
-    │   ├───home_movies_genres 
-    │   │   ├───bloc     
-    │   │   └───widgets  
-    │   ├───nearby_cinema 
-    │   │   └───bloc     
-    │   ├───recommended_movies 
-    │   │   ├───bloc    
-    │   │   └───model    
-    │   └───widgets      
+    ├───home                 
     ├───intro            
-    ├───login            
-    │   ├───bloc         
-    │   └───widgets      
+    ├───login                 
     ├───movie_detail     
     ├───register         
-    ├───splash           
+    ├───splash     
+
+```      
 
 ## Time spending
 
