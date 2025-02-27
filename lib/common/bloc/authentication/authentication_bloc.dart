@@ -20,8 +20,7 @@ part "authentication_state.dart";
 //
 // bloc to check if user is authenticated or not
 //
-class AuthenticationBloc
-    extends Bloc<AuthenticationEvent, AuthenticationState> {
+class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
@@ -34,10 +33,7 @@ class AuthenticationBloc
   AuthenticationState get initialState => Uninitialized();
 
   /// Handles the `AppStarted` event, checking if the user is signed in.
-  Future<void> _mapAppStartedToState(
-    AppStarted event,
-    Emitter<AuthenticationState> emit,
-  ) async {
+  Future<void> _mapAppStartedToState(AppStarted event, Emitter<AuthenticationState> emit) async {
     try {
       bool isSignedIn = await sl<IsSignedInUsecase>().call();
 
@@ -47,10 +43,7 @@ class AuthenticationBloc
       // for splash screen loading
       // await Future.delayed(Duration(seconds: 2));
 
-      LogHelper.debug(
-        tag: "AuthenticationBloc",
-        message: "isSignedIn : " + isSignedIn.toString(),
-      );
+      LogHelper.debug(tag: "AuthenticationBloc", message: "isSignedIn : $isSignedIn");
 
       if (isSignedIn) {
         // Emit the `Authenticated` state with the user's name
@@ -65,19 +58,13 @@ class AuthenticationBloc
   }
 
   /// Handles the `LoggedIn` event, fetching and setting the authenticated user state.
-  Future<void> _mapLoggedInToState(
-    LoggedIn event,
-    Emitter<AuthenticationState> emit,
-  ) async {
+  Future<void> _mapLoggedInToState(LoggedIn event, Emitter<AuthenticationState> emit) async {
     final user = await sl<GetUserUseCase>().call();
     emit(Authenticated(user.toString()));
   }
 
   /// Handles the `LoggedOut` event, signing out from Firebase and Google.
-  Future<void> _mapLoggedOutToState(
-    LoggedOut event,
-    Emitter<AuthenticationState> emit,
-  ) async {
+  Future<void> _mapLoggedOutToState(LoggedOut event, Emitter<AuthenticationState> emit) async {
     emit(Unauthenticated());
     // Sign out from both FirebaseAuth and GoogleSignIn asynchronously.
     Future.wait([_firebaseAuth.signOut(), _googleSignIn.signOut()]);
