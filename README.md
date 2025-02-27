@@ -72,22 +72,22 @@ Cinema Booking is an application that helps users search for and book movie tick
 
 It leverages Flutter Clean Architecture and Flutter BLoC, ensuring a well-structured and scalable design that facilitates future growth, comprehensive testing, and efficient QA processes. That also makes it easy to develop hard-to-reach UseCase in the future
 
-### Cinema Booking components
+### 📌 Cinema Booking Components
 
 This is the collection of components that I developer for [Cinema Booking](https://github.com/ChunhThanhDe/cinema-booking), includes:
 
-- ✅ Splash and Get Start (#8 feat screen splash) (#10 feat get-start welcome screen)
-- ✅ Login (#19 feat login screen)
-- ✅ Home Main (#20 feat home screen)
-- ✅ Movie Detail (#25 feat detail movie screen)
-- ✅ Search All Movie (#28 feat all movie screen)
-- ✅ Booking Tickets Movie (#33 feat booking movie tickets screen)
-- ✅ Tickets hold (#38 feat screen tickets hold)
+- ✅ Splash and Get Start ([#8 feat screen splash](https://github.com/ChunhThanhDe/cinema-booking/pull/8)) ([#10 feat get-start welcome screen](https://github.com/ChunhThanhDe/cinema-booking/pull/10))
+- ✅ Login ([#19 feat login screen](https://github.com/ChunhThanhDe/cinema-booking/pull/19))
+- ✅ Home Main ([#20 feat home screen](https://github.com/ChunhThanhDe/cinema-booking/pull/20))
+- ✅ Movie Detail ([#25 feat detail movie screen](https://github.com/ChunhThanhDe/cinema-booking/pull/25))
+- ✅ Search All Movie ([#28 feat all movie screen](https://github.com/ChunhThanhDe/cinema-booking/pull/28))
+- ✅ Booking Tickets Movie ([#33 feat booking movie tickets screen](https://github.com/ChunhThanhDe/cinema-booking/pull/33))
+- ✅ Tickets hold ([#38 feat screen tickets hold](https://github.com/ChunhThanhDe/cinema-booking/pull/38))
 - ✅ Mock API Postman for RestAPI
 
-#### More to come... 
+#### 🚀 More to come... 
 
-- [ ] Them mode
+- [ ] Theme mode
 - [ ] Unit/Integration tests
 - [ ] Payment Screen
 - [ ] Search All Cinema in Hanoi
@@ -95,17 +95,18 @@ This is the collection of components that I developer for [Cinema Booking](https
 - [ ] IOS version
 - [ ] Web version
 
-Check out the **Cinema Booking roadmap** -> [#43](https://github.com/ChunhThanhDe/cinema-booking/issues/43)
+Check out the **Cinema Booking roadmap** -> [#43 Roadmap](https://github.com/ChunhThanhDe/cinema-booking/issues/43)
 
-TODO: Demo
+<!-- TODO: Demo -->
 
 ## Support 💖
 
 If you like my work, feel free to:
 
 - ⭐ Star this repository to show your support! 🚀
-- [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)][tweet] about Cinema Booking
-- <a title="Thanks for your support!" href="https://www.buymeacoffee.com/chunhthanhde" target="_blank"><img src="https://res.cloudinary.com/dvujyxh7e/image/upload/c_thumb,w_140,g_face/v1596378474/default-orange_uthxgz.jpg" alt="Buy Me A Coffee"></a>
+- [Tweet][tweet] about Cinema Booking.
+- If you want to support more, you can check out [my GitHub Sponsor page](https://github.com/sponsors/chunhthanhde) xD.
+
 
 Your support means a lot! Thank you for stopping by and contributing to the project. 🎬🍿
 
@@ -113,7 +114,7 @@ Your support means a lot! Thank you for stopping by and contributing to the proj
 
 ## Who is it for 🤷‍♀️
 
-I have been working with Flutter and Java for about three years. I built cool stuff at [VNPT Technology][zyllem] but most of them are system applications based on AOSP source code and are under security contracts, making it difficult to showcase them..
+I have been working with Flutter and Java for about three years. I built cool stuff at VNPT Technology but most of them are system applications based on AOSP source code and are under security contracts, making it difficult to showcase them..
 
 This is a showcase user-facing application that I built in my spare time to expand my experience in application development and explore various technologies and new libraries I wanted to try, such as `Firebase`, `Google Maps`, `Payment`,... and more.
 
@@ -124,7 +125,7 @@ There are many Flutter examples on the web but most of them are way too simple. 
 This piece of work is also part of my technical series [Flutter-Journey](https://github.com/Flutter-Journey), which aims to empower developers to **build and scale their own Flutter applications**. My desire is to advocate and grow the Flutter developer community in Vietnam.
 
 
-## Tech stack 📦
+## 📦 Tech Stack
 
 Some libraries are used in this project and shout out to them because they are very helpful for the community
 
@@ -325,7 +326,7 @@ Some libraries are used in this project and shout out to them because they are v
 
 This stack ensures **Cinema Booking** is well-optimized for **scalability, seamless API integration, and an excellent user experience.** 🚀🎬
 
-## High level design
+## 📐 High Level Design
 
 Following a standard approach to mobile development, I designed a simple high-level architecture for the application.
 
@@ -421,7 +422,7 @@ Main Source Code Project
 
 ```      
 
-## Time spending
+## ⏳ Time Spending
 
 It is a side project that I only spent time outside of the office hours to work on. also i spent 5 hours on this README :))
 
@@ -441,13 +442,13 @@ I really enjoyed working on this project. I hope it will bring a lot of value to
 - Personal blog: https://chunhthanhde.hashnode.dev/
 - Say hello: chunhthanhde.dev@gmail.comcom
 
-## Contributing
+## 🌍 Contributing
 
 If you have any ideas, just [pen an issue](https://github.com/ChunhThanhDe/cinema-booking/issues) and tell me what you think.
 
 If you'd like to contribute, please fork the repository and make changes as you'd like. [Pull requests](https://github.com/ChunhThanhDe/cinema-booking/pulls) are warmly welcome.
 
-## Credits
+## Credits 🏆
 
 Inspired by [KhoaSuperman/findseat](https://github.com/KhoaSuperman/findseat)
 
