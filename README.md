@@ -445,7 +445,7 @@ I really enjoyed working on this project. I hope it will bring a lot of value to
 
 ## Author: Chung Nguyen Thanh ✍️
 
-- Young software engineer - hoc căng chơi giỏi. Working with Flutter and Java. Like photography, amateur filmmaker and reading books.
+- Young software engineer - học căng chơi giỏi. Working with Flutter and Java. Like photography, amateur filmmaker and reading books.
 - Card visit: https://chunhthanhde.github.io/card 
 - Personal blog: https://chunhthanhde.hashnode.dev/
 - Say hello: chunhthanhde.dev@gmail.comcom

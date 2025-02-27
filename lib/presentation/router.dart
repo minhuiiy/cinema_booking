@@ -18,19 +18,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-/// **GoRouter**
 final GoRouter appRouter = GoRouter(
   routerNeglect: false,
-  initialLocation: '/home',
+  initialLocation: '/splash',
   routes: [
     GoRoute(path: '/splash', builder: (context, state) => const SplashPage()),
     GoRoute(path: '/get-started', builder: (context, state) => const GetStartedPage()),
     GoRoute(path: '/login', builder: (context, state) => const LoginScreen()),
     GoRoute(path: '/register', builder: (context, state) => const RegisterScreen()),
 
-    // **Bọc màn hình cần bảo vệ trong AuthGuard**
     GoRoute(
-      path: '/home',
+      path: '/',
       builder: (context, state) {
         return BlocBuilder<AuthenticationBloc, AuthenticationState>(
           builder: (context, state) {
