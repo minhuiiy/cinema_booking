@@ -6,11 +6,14 @@
 
 import 'dart:async';
 
+import 'package:cinema_booking/common/bloc/authentication/authentication_bloc.dart';
 import 'package:cinema_booking/common/widgets/footer/footer_section.dart';
 import 'package:flutter/material.dart';
 import 'package:cinema_booking/common/helpers/is_dark_mode.dart';
 import 'package:cinema_booking/core/configs/assets/app_images.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class GetStartedPage extends StatefulWidget {
   const GetStartedPage({super.key});
@@ -21,6 +24,7 @@ class GetStartedPage extends StatefulWidget {
 
 class _GetStartedPageState extends State<GetStartedPage> {
   double _progress = 0;
+  late bool isGoHome;
 
   @override
   void initState() {
@@ -35,13 +39,12 @@ class _GetStartedPageState extends State<GetStartedPage> {
           _progress += 0.1;
           if (_progress >= 2 && mounted) {
             timer.cancel();
-            // TODO: need change to Router
-            // Navigator.pushReplacement(
-            //   context,
-            //   MaterialPageRoute(
-            //     builder: (BuildContext context) => const GetStartedPage(),
-            //   ),
-            // );
+
+            if (isGoHome) {
+              context.go('/');
+            } else {
+              context.go('/login');
+            }
           }
         });
       }
@@ -50,27 +53,17 @@ class _GetStartedPageState extends State<GetStartedPage> {
 
   @override
   Widget build(BuildContext context) {
+    isGoHome = context.read<AuthenticationBloc>().state is Authenticated;
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 35.0),
-        child: Stack(
-          children: [
-            _loadingBar(),
-            _logoWidget(),
-            _ourGoal(),
-            _bar(),
-            FooterSection(),
-          ],
-        ),
+        child: Stack(children: [_loadingBar(), _logoWidget(), _ourGoal(), _bar(), FooterSection()]),
       ),
     );
   }
 
   Widget _logoWidget() {
-    return Align(
-      alignment: Alignment(0, -0.6),
-      child: Image.asset(AppImages.logo),
-    );
+    return Align(alignment: Alignment(0, -0.6), child: Image.asset(AppImages.logo));
   }
 
   Widget _ourGoal() {
@@ -84,10 +77,7 @@ class _GetStartedPageState extends State<GetStartedPage> {
             'Cinema Booking',
             style: TextStyle(
               fontWeight: FontWeight.w900,
-              color:
-                  context.isDarkMode
-                      ? AppColors.white
-                      : AppColors.darkBackground,
+              color: context.isDarkMode ? AppColors.white : AppColors.darkBackground,
               fontSize: 32,
             ),
           ),
@@ -97,10 +87,7 @@ class _GetStartedPageState extends State<GetStartedPage> {
             'connecting users with the best options effortlessly.',
             style: TextStyle(
               fontWeight: FontWeight.w500,
-              color:
-                  context.isDarkMode
-                      ? AppColors.greyDark
-                      : AppColors.darkBackground,
+              color: context.isDarkMode ? AppColors.greyDark : AppColors.darkBackground,
               fontSize: 16,
             ),
             textAlign: TextAlign.center,
@@ -116,10 +103,7 @@ class _GetStartedPageState extends State<GetStartedPage> {
       child: Container(
         width: MediaQuery.of(context).size.width * 0.2,
         height: 10,
-        decoration: BoxDecoration(
-          color: Colors.grey[300],
-          borderRadius: BorderRadius.circular(20),
-        ),
+        decoration: BoxDecoration(color: Colors.grey[300], borderRadius: BorderRadius.circular(20)),
         child: Stack(
           children: [
             AnimatedContainer(

@@ -15,7 +15,6 @@ import 'package:cinema_booking/presentation/movie_detail/movie_detail_info.dart'
 import 'package:cinema_booking/presentation/register/register.dart';
 import 'package:cinema_booking/presentation/splash/splash.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 final GoRouter appRouter = GoRouter(
@@ -27,22 +26,7 @@ final GoRouter appRouter = GoRouter(
     GoRoute(path: '/login', builder: (context, state) => const LoginScreen()),
     GoRoute(path: '/register', builder: (context, state) => const RegisterScreen()),
 
-    GoRoute(
-      path: '/',
-      builder: (context, state) {
-        return BlocBuilder<AuthenticationBloc, AuthenticationState>(
-          builder: (context, state) {
-            if (state is Unauthenticated) {
-              return const LoginScreen();
-            } else if (state is Authenticated) {
-              return const HomeScreen();
-            } else {
-              return const SplashPage();
-            }
-          },
-        );
-      },
-    ),
+    GoRoute(path: '/', builder: (context, state) => const AuthGuard(child: HomeScreen())),
     GoRoute(path: '/user', builder: (context, state) => const AuthGuard(child: UserInfoScreen())),
     GoRoute(
       path: '/allMovies',
