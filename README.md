@@ -76,22 +76,24 @@ It leverages Flutter Clean Architecture and Flutter BLoC, ensuring a well-struct
 
 This is the collection of components that I developer for [Cinema Booking](https://github.com/ChunhThanhDe/cinema-booking), includes:
 
-- [x] Splash and Get Start (#8 feat screen splash) (#10 feat get-start welcome screen)
-- [x] Login (#19 feat login screen)
-- [x] Home Main (#20 feat home screen)
-- [x] Movie Detail (#25 feat detail movie screen)
-- [x] Search All Movie (#28 feat all movie screen)
-- [x] Booking Tickets Movie (#33 feat booking movie tickets screen)
-- [x] Tickets hold (#38 feat screen tickets hold)
-- [x] Mock API Postman for RestAPI
+- ✅ Splash and Get Start (#8 feat screen splash) (#10 feat get-start welcome screen)
+- ✅ Login (#19 feat login screen)
+- ✅ Home Main (#20 feat home screen)
+- ✅ Movie Detail (#25 feat detail movie screen)
+- ✅ Search All Movie (#28 feat all movie screen)
+- ✅ Booking Tickets Movie (#33 feat booking movie tickets screen)
+- ✅ Tickets hold (#38 feat screen tickets hold)
+- ✅ Mock API Postman for RestAPI
 
 #### More to come... 
 
+- [ ] Them mode
+- [ ] Unit/Integration tests
 - [ ] Payment Screen
 - [ ] Search All Cinema in Hanoi
 - [ ] Crawl data from Cinema Website
 - [ ] IOS version
-- { } Web version
+- [ ] Web version
 
 Check out the **Cinema Booking roadmap** -> [#43](https://github.com/ChunhThanhDe/cinema-booking/issues/43)
 
@@ -123,6 +125,8 @@ This piece of work is also part of my technical series [Flutter-Journey](https:/
 
 
 ## Tech stack 📦
+
+Some libraries are used in this project and shout out to them because they are very helpful for the community
 
 <table>
   <tr>
@@ -285,7 +289,7 @@ This piece of work is also part of my technical series [Flutter-Journey](https:/
     <td></td>
     <td><a href="https://github.com/trevorwang/retrofit.dart/">retrofit_generator</a></td>
     <td>retrofit.dart is an dio client generator using source_gen and inspired by Chopper and Retrofit.</td>
-    <td><img src="https://avatars.githubusercontent.com/u/23740132?s=48&v=4" width="48"></td>
+    <td><img src="https://avatars.githubusercontent.com/u/121966?v=4" width="48"></td>
   </tr>
   </tr>
     <tr>
@@ -319,9 +323,187 @@ This piece of work is also part of my technical series [Flutter-Journey](https:/
 </table>
 
 
-
 This stack ensures **Cinema Booking** is well-optimized for **scalability, seamless API integration, and an excellent user experience.** 🚀🎬
-
 
 ## High level design
 
+Following a standard approach to mobile development, I designed a simple high-level architecture for the application.
+
+### ERD (Entity-Relationship Diagram) 
+
+It describes how the data tables in the cinema system are linked together, including entities such as User, Booking, Movies, Cinema, Show Time, Seats and the relationships between them. 
+
+Since it may be updated less frequently than the Draw.io file, it would be better for you to read the drawing file instead. 🥘
+
+![](draw.io/draw.png)
+
+### Application architecture (Flutter Clean Bloc Architecture)
+
+Main Source Code Project
+
+├───common                               # Shared utilities and reusable components
+│   ├───bloc                             # Global state management using BLoC
+│   │   ├───authentication               # Authentication BLoC (for Know has login before)
+│   │   └───theme                        # Theme management BLoC
+│   ├───helpers                          # Helper functions and utilities
+│   └───widgets                          # Reusable Custom UI components
+│       ├───appbar         
+│       ├───button         
+│       ├───footer         
+│       ├───image         
+│       ├───paint         
+│       ├───scroll_list    
+│       ├───snackbar      
+│       ├───space          
+│       └───texts          
+├───core                                 # Core functionality and configurations
+│   ├───api                              # API-related functionalities
+│   ├───configs                          # Application-wide configurations
+│   │   ├───assets                       # Asset management
+│   │   └───theme                        # Theme settings (Color font)
+│   ├───constants                        # Constant values
+│   ├───enum                             # Enum definitions
+│   ├───local                            # Local storage management
+│   └───usecase           
+├───data                                 # Data layer (models, repositories, data sources)
+│   ├───models                           # Data models (DTO)
+│   │   ├───auth          
+│   │   ├───booking       
+│   │   ├───cast          
+│   │   ├───cinema        
+│   │   ├───genres        
+│   │   ├───movies        
+│   │   ├───offer         
+│   │   ├───response      
+│   │   ├───reviews       
+│   │   ├───seats         
+│   │   ├───show_time     
+│   │   └───ticket        
+│   ├───repository                       # Repository layer for data fetching
+│   │   ├───all_movie     
+│   │   ├───auth          
+│   │   ├───authentication 
+│   │   ├───booking_time  
+│   │   ├───home          
+│   │   ├───movie       
+│   │   └───tickets       
+│   └───sources                          # Data sources (API, local storage, etc.)
+│       ├───all_movie   
+│       ├───auth          
+│       ├───authentication 
+│       ├───booking_time  
+│       ├───home          
+│       ├───movie         
+│       └───ticket        
+├───domain                               # Domain layer (business logic, entities, use cases)
+│   ├───entities                         # Core business entities ()
+│   │   ├───auth          
+│   │   ├───booking      
+│   │   ├───cast        
+│   │   ├───cinema        
+│   │   ├───genres        
+│   │   ├───movies        
+│   │   ├───offer         
+│   │   ├───response      
+│   │   ├───reviews       
+│   │   ├───seats         
+│   │   └───show_time     
+│   ├───repository                       # Abstract repository interfaces
+│   │   ├───all_movie    
+│   │   ├───auth         
+│   │   ├───authentication 
+│   │   ├───booking_time  
+│   │   ├───home        
+│   │   ├───movie         
+│   │   ├───seat_slot     
+│   │   └───tickets       
+│   └───usecase                          # Business logic use cases
+│       ├───all_movie    
+│       ├───authentication 
+│       ├───booking_time  
+│       ├───home          
+│       ├───movie         
+│       ├───tickets       
+│       └───user          
+└───presentation                         # Presentation layer (UI and state management)
+    ├───about_page                       # About screen
+    │   ├───bloc                         # BLoC for About page
+    │   └───widgets                      # UI components
+    ├───all_movies       
+    │   ├───bloc         
+    │   └───widgets     
+    ├───all_tickets      
+    │   ├───bloc         
+    │   └───widgets      
+    ├───booking          
+    │   ├───booking_seat_slot 
+    │   │   ├───bloc     
+    │   │   ├───model    
+    │   │   └───widgets  
+    │   ├───booking_seat_type 
+    │   │   ├───bloc     
+    │   │   └───widgets  
+    │   ├───booking_time_slot 
+    │   │   ├───bloc     
+    │   │   └───widgets  
+    │   └───model        
+    ├───home             
+    │   ├───bloc         
+    │   ├───home_banner  
+    │   │   └───bloc     
+    │   ├───home_genres  
+    │   │   ├───bloc     
+    │   │   ├───model    
+    │   │   └───widgets  
+    │   ├───home_movies_genres 
+    │   │   ├───bloc     
+    │   │   └───widgets  
+    │   ├───nearby_cinema 
+    │   │   └───bloc     
+    │   ├───recommended_movies 
+    │   │   ├───bloc    
+    │   │   └───model    
+    │   └───widgets      
+    ├───intro            
+    ├───login            
+    │   ├───bloc         
+    │   └───widgets      
+    ├───movie_detail     
+    ├───register         
+    ├───splash           
+
+## Time spending
+
+It is a side project that I only spent time outside of the office hours to work on. also i spent 5 hours on this README :))
+
+According to the WakaTime report, I've spent at least 120 hours on this project. That's equivalent to binge-watching an entire season of a TV show... or staring at the screen, debugging, and wondering why it works on my machine but not theirs. 😂
+
+I really enjoyed working on this project. I hope it will bring a lot of value to early Flutter Developers.
+
+| on Window Machine | On Macbook Machine | 
+|---|---|
+|![](media/waka/image1.png) | ![](media/waka/image2.png)
+
+
+## Author: Chung Nguyen Thanh ✍️
+
+- young software engineer - hoc căng chơi giỏi. Working with Flutter and Java. Like photography, amateur filmmaker and reading books.
+- Card visit: https://chunhthanhde.github.io/card 
+- Personal blog: https://chunhthanhde.hashnode.dev/
+- Say hello: chunhthanhde.dev@gmail.comcom
+
+## Contributing
+
+If you have any ideas, just [pen an issue](https://github.com/ChunhThanhDe/cinema-booking/issues) and tell me what you think.
+
+If you'd like to contribute, please fork the repository and make changes as you'd like. [Pull requests](https://github.com/ChunhThanhDe/cinema-booking/pulls) are warmly welcome.
+
+## Credits
+
+Inspired by [KhoaSuperman/findseat](https://github.com/KhoaSuperman/findseat)
+
+I have reused part of the code `Bloc` and `Data Mock` from this project.
+
+## License
+
+Feel free to use my code on your project. It would be great if you put a reference to this repository.
