@@ -21,12 +21,24 @@ final GoRouter appRouter = GoRouter(
   initialLocation: '/splash',
   routes: [
     GoRoute(path: '/splash', builder: (context, state) => const SplashPage()),
-    GoRoute(path: '/get-started', builder: (context, state) => const GetStartedPage()),
+    GoRoute(
+      path: '/get-started',
+      builder: (context, state) => const GetStartedPage(),
+    ),
     GoRoute(path: '/login', builder: (context, state) => const LoginScreen()),
-    GoRoute(path: '/register', builder: (context, state) => const RegisterScreen()),
+    GoRoute(
+      path: '/register',
+      builder: (context, state) => const RegisterScreen(),
+    ),
 
-    GoRoute(path: '/', builder: (context, state) => const AuthGuard(child: HomeScreen())),
-    GoRoute(path: '/user', builder: (context, state) => const AuthGuard(child: UserInfoScreen())),
+    GoRoute(
+      path: '/',
+      builder: (context, state) => const AuthGuard(child: HomeScreen()),
+    ),
+    GoRoute(
+      path: '/user',
+      builder: (context, state) => const AuthGuard(child: UserInfoScreen()),
+    ),
     GoRoute(
       path: '/allMovies',
       builder: (context, state) => const AuthGuard(child: AllMoviesScreen()),
@@ -46,7 +58,9 @@ final GoRouter appRouter = GoRouter(
         return AuthGuard(
           child:
               args == null
-                  ? const Scaffold(body: Center(child: Text("Invalid arguments")))
+                  ? const Scaffold(
+                    body: Center(child: Text("Invalid arguments")),
+                  )
                   : BookSeatSlotScreen(args: args),
         );
       },
@@ -58,7 +72,9 @@ final GoRouter appRouter = GoRouter(
         return AuthGuard(
           child:
               movie == null
-                  ? const Scaffold(body: Center(child: Text("Invalid movie data")))
+                  ? const Scaffold(
+                    body: Center(child: Text("Invalid movie data")),
+                  )
                   : BookTimeSlotScreen(movie: movie),
         );
       },
@@ -70,7 +86,9 @@ final GoRouter appRouter = GoRouter(
         return AuthGuard(
           child:
               movieDetail == null
-                  ? const Scaffold(body: Center(child: Text("Invalid movie data")))
+                  ? const Scaffold(
+                    body: Center(child: Text("Invalid movie data")),
+                  )
                   : MovieInfoScreen(movie: movieDetail),
         );
       },
