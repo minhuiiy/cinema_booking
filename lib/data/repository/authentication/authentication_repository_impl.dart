@@ -4,8 +4,8 @@
  * @ Message: 🎯 Happy coding and Have a nice day! 🌤️
  */
 
-import 'package:cinema_booking/data/sources/Authentication/Authentication_service.dart';
-import 'package:cinema_booking/domain/repository/Authentication/Authentication.dart';
+import 'package:cinema_booking/data/sources/authentication/authentication_service.dart';
+import 'package:cinema_booking/domain/repository/authentication/authentication.dart';
 import 'package:cinema_booking/service_locator.dart';
 
 class AuthenticationRepositoryImpl extends AuthenticationRepository {

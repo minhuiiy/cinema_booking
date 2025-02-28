@@ -5,7 +5,7 @@
  */
 
 import 'package:cinema_booking/core/usecase/usecase.dart';
-import 'package:cinema_booking/domain/repository/Authentication/Authentication.dart';
+import 'package:cinema_booking/domain/repository/authentication/authentication.dart';
 import 'package:cinema_booking/service_locator.dart';
 
 ///
