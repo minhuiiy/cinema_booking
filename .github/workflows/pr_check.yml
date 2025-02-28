@@ -46,9 +46,7 @@ jobs:
       run: flutter doctor
     - name: Format code
       run: |
-        dart format lib/*/ --fix --set-exit-if-changed
-        dart format lib/main.dart --fix --set-exit-if-changed
-        dart format test --fix --set-exit-if-changed
+        dart format --set-exit-if-changed 
     - name: analyse code
       run: |
         flutter pub get
