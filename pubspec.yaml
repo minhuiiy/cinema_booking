@@ -26,7 +26,7 @@ dependencies:
 
   # suitable with bloc
   # equatable for compares objects (with the same data are considered equal automatically)
-  flutter_bloc: ^9.0.0
+  flutter_bloc: ^9.1.0
   hydrated_bloc: ^10.0.0
   equatable: ^2.0.7
 
