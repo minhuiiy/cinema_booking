@@ -51,4 +51,9 @@ app.*.map.json
 /ios/Runner/GoogleService-Info.plist
 /lib/firebase_options.dart
 /firebase.json
-"server/serviceAccount.json" 
+
+# secrets
+server/serviceAccount.json
+server/.env
+.env
+*.env
