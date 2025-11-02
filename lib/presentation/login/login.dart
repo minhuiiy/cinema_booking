@@ -73,7 +73,7 @@ class LoginScreen extends StatelessWidget {
                                   ? Alignment.center
                                   : Alignment.centerRight,
                           child: GradientText(
-                            text: "SIGN IN",
+                            text: "ĐĂNG NHẬP",
                             textStyle: AppFont.semibold_white_30.copyWith(
                               fontSize:
                                   screenWidth > kTabletBreakpoint ? 70 : 45,

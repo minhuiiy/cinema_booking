@@ -15,6 +15,7 @@ import 'package:cinema_booking/presentation/home/nearby_cinema/bloc/nearby_cinem
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:flutter/foundation.dart';
 
 class WidgetNearbyCine extends StatefulWidget {
   const WidgetNearbyCine({super.key});
@@ -54,14 +55,14 @@ class _WidgetNearbyCineState extends State<WidgetNearbyCine> {
       padding: const EdgeInsets.only(left: 20),
       child: Row(
         children: [
-          Text("Nearby Cinemas".toUpperCase(), style: AppFont.medium_white_14),
+          Text("Rạp gần bạn".toUpperCase(), style: AppFont.medium_white_14),
           Spacer(),
           TextButton(
             onPressed: () {
               _openAllCine();
             },
             child: Text(
-              "View All",
+              "Xem tất cả",
               style: AppFont.medium_white_12.copyWith(color: AppColors.red),
             ),
           ),
@@ -79,11 +80,32 @@ class _WidgetNearbyCineState extends State<WidgetNearbyCine> {
   Map<MarkerId, Marker> markers = <MarkerId, Marker>{};
 
   static final CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(21.013298, 105.827523),
-    zoom: 14.4746,
+    // Trung tâm Quận 1, TP.HCM
+    target: LatLng(10.776605, 106.700000),
+    zoom: 14.0,
   );
 
   _buildGoogleMap() {
+    // Avoid crashes/asserts on web when Google Maps JS API isn't configured
+    if (kIsWeb) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: Container(
+            height: 200,
+            color: AppColors.darkBackground,
+            alignment: Alignment.center,
+            child: Text(
+              'Bản đồ tạm ẩn trên web (chưa cấu hình Google Maps)',
+              style: AppFont.medium_white_12,
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ),
+      );
+    }
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: ClipRRect(
@@ -97,8 +119,9 @@ class _WidgetNearbyCineState extends State<WidgetNearbyCine> {
             onMapCreated: (GoogleMapController controller) {
               _controller.complete(controller);
 
-              LatLng southwest = LatLng(20.994607, 105.786714);
-              LatLng northeast = LatLng(21.047550, 105.840251);
+              // Phạm vi hiển thị khu vực trung tâm TP.HCM
+              LatLng southwest = LatLng(10.735000, 106.635000);
+              LatLng northeast = LatLng(10.815000, 106.750000);
 
               Future.delayed(Duration(seconds: 1), () {
                 controller.animateCamera(
@@ -134,7 +157,7 @@ class _WidgetNearbyCineState extends State<WidgetNearbyCine> {
         markerId: markerId,
         icon: icon,
         position: latLng,
-        infoWindow: InfoWindow(title: markerIdVal, snippet: '*'),
+        infoWindow: InfoWindow(title: cine.name, snippet: cine.address),
         onTap: () {},
       );
 

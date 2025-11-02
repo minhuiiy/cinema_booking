@@ -24,7 +24,12 @@ class BasicBackButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.pop();
+        final router = GoRouter.of(context);
+        if (router.canPop()) {
+          context.pop();
+        } else {
+          context.go('/');
+        }
       },
       child: Padding(
         padding: padding,

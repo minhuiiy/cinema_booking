@@ -5,6 +5,7 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:shimmer/shimmer.dart';
 
 /// A widget that displays an image with a shimmer loading effect.
@@ -61,10 +62,24 @@ class ShimmerImage extends StatelessWidget {
         /// otherwise it follows `width` and `height`.
         aspectRatio != 0
             ? AspectRatio(
-              aspectRatio: aspectRatio,
-              child: Image.network(url, fit: fit),
-            )
-            : Image.network(url, width: width, height: height, fit: fit),
+                aspectRatio: aspectRatio,
+                child: Image.network(
+                  _corsSafeUrl(url),
+                  fit: fit,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Container(color: Colors.grey[200], child: _buildIcon());
+                  },
+                ),
+              )
+            : Image.network(
+                _corsSafeUrl(url),
+                width: width,
+                height: height,
+                fit: fit,
+                errorBuilder: (context, error, stackTrace) {
+                  return Container(color: Colors.grey[200], child: _buildIcon());
+                },
+              ),
       ],
     );
   }
@@ -73,5 +88,17 @@ class ShimmerImage extends StatelessWidget {
     return Center(
       child: Icon(Icons.crop_original, color: Colors.red, size: iconHolderSize),
     );
+  }
+
+  String _corsSafeUrl(String original) {
+    if (!kIsWeb) return original;
+    final uri = Uri.tryParse(original);
+    if (uri == null) return original;
+    final isHttp = uri.scheme == 'http' || uri.scheme == 'https';
+    if (!isHttp) return original;
+    // Always proxy external http/https images on web to avoid CORS/SSL issues.
+    // The local dev server exposes /img to fetch and stream the image with permissive CORS.
+    final encoded = Uri.encodeComponent(original);
+    return 'http://localhost:3000/img?url=$encoded';
   }
 }

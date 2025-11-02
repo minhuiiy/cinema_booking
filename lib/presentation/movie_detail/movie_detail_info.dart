@@ -156,7 +156,7 @@ class CinematicBookTicketButton extends StatelessWidget {
               ), // Sofa Icon
               WidgetSpacer(width: 8),
               Text(
-                'BOOK SEATS',
+                'ĐẶT GHẾ',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 18,

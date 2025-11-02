@@ -44,7 +44,12 @@ class WidgetToolbar extends StatelessWidget {
         children: <Widget>[
           GestureDetector(
             onTap: () {
-              context.pop();
+              final router = GoRouter.of(context);
+              if (router.canPop()) {
+                context.pop();
+              } else {
+                context.go('/');
+              }
             },
             child: Padding(
               padding: const EdgeInsets.only(left: 12, right: 10),

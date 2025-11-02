@@ -62,6 +62,17 @@ class _UserInfoPageState extends State<UserInfoPage> {
     });
   }
 
+  String _genderText(String gender) {
+    switch (gender) {
+      case 'Male':
+        return 'Nam';
+      case 'Female':
+        return 'Nữ';
+      default:
+        return gender;
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -73,11 +84,11 @@ class _UserInfoPageState extends State<UserInfoPage> {
       listener: (context, state) {
         if (state is UserInfoEdit) {
           if (state.isSuccess) {
-            CustomSnackBar.success(context, msg: "UserInfo update success");
+            CustomSnackBar.success(context, msg: "Cập nhật thông tin thành công");
           }
 
           if (state.isFailure) {
-            CustomSnackBar.failure(context, msg: "UserInfo update Failure");
+            CustomSnackBar.failure(context, msg: "Cập nhật thông tin thất bại");
           }
         }
       },
@@ -94,12 +105,19 @@ class _UserInfoPageState extends State<UserInfoPage> {
                 backgroundColor: AppColors.darkBackground,
                 leading: IconButton(
                   icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
-                  onPressed: () => context.pop(),
+                  onPressed: () {
+                    final router = GoRouter.of(context);
+                    if (router.canPop()) {
+                      context.pop();
+                    } else {
+                      context.go('/');
+                    }
+                  },
                 ),
                 actions: [
                   TextButton(
                     onPressed: () {},
-                    child: Text("Skip", style: AppFont.medium_white_18),
+                    child: Text("Bỏ qua", style: AppFont.medium_white_18),
                   ),
                 ],
               ),
@@ -146,7 +164,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               GradientText(
-                                text: "ABOUT ME",
+                                text: "THÔNG TIN CÁ NHÂN",
                                 textStyle: AppFont.semibold_white_30.copyWith(
                                   fontFamily: 'Oswald',
                                 ),
@@ -158,17 +176,17 @@ class _UserInfoPageState extends State<UserInfoPage> {
                           _textField("Email", _email, state.userInfo.email),
                           const WidgetSpacer(height: 20),
                           _textField(
-                            "Full Name",
+                            "Họ và tên",
                             _fullName,
                             state.userInfo.fullName,
                           ),
                           const WidgetSpacer(height: 20),
-                          _textField("Password", _password, "Password"),
+                          _textField("Mật khẩu", _password, "Mật khẩu"),
                           const WidgetSpacer(height: 20),
                           _textField(
-                            "Confirm Password",
+                            "Xác nhận mật khẩu",
                             _confirmPassword,
-                            "Confirm Password",
+                            "Xác nhận mật khẩu",
                           ),
                           const WidgetSpacer(height: 30),
                           _genderSelection(state),
@@ -181,7 +199,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
                               onPressed: () async {
                                 _onFormSubmitted(state);
                               },
-                              title: "Update Info",
+                              title: "Cập nhật thông tin",
                               textSize: 22,
                               weight: FontWeight.w500,
                             ),
@@ -235,9 +253,9 @@ class _UserInfoPageState extends State<UserInfoPage> {
               text: TextSpan(
                 style: AppFont.medium_white_18,
                 children: [
-                  TextSpan(text: "Gender:    ", style: AppFont.medium_white_22),
+                  TextSpan(text: "Giới tính:    ", style: AppFont.medium_white_22),
                   TextSpan(
-                    text: selectedGender,
+                    text: selectedGender == "" ? _genderText(state.userInfo.gender) : _genderText(selectedGender),
                     style: AppFont.medium_white_22.copyWith(
                       color:
                           selectedGender == ""
@@ -298,7 +316,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
   Widget _ageSelection(int age) {
     return Column(
       children: [
-        Row(children: [Text("Age:", style: AppFont.medium_white_22)]),
+        Row(children: [Text("Tuổi:", style: AppFont.medium_white_22)]),
         const WidgetSpacer(height: 15),
         AgeSelector(onAgeSelected: updateAge, age: age),
       ],

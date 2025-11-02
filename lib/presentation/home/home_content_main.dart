@@ -94,9 +94,9 @@ class _HomeContentScreenState extends State<HomeContentScreen> {
     } else if (state is HomeLoading) {
       return Expanded(child: Center(child: CircularProgressIndicator()));
     } else if (state is HomeNotLoaded) {
-      return Expanded(child: Center(child: Text('Cannot load data')));
+      return Expanded(child: Center(child: Text('Không thể tải dữ liệu')));
     } else {
-      return Expanded(child: Center(child: Text('Unknown state')));
+      return Expanded(child: Center(child: Text('Trạng thái không xác định')));
     }
   }
 }

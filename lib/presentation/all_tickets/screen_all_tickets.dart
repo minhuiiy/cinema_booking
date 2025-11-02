@@ -36,7 +36,7 @@ class ListTicketsScreen extends StatelessWidget {
               return Column(
                 children: [
                   WidgetToolbar(
-                    title: 'My Tickets',
+                    title: 'Vé của tôi',
                     actions: MySvgImage.toolbarIcon(AppVectors.iconMore),
                   ),
                   _buildHeader(),
@@ -59,7 +59,7 @@ class ListTicketsScreen extends StatelessWidget {
           Image.asset(AppImages.ticket, height: 200),
           WidgetSpacer(height: 8),
           Text(
-            'Save 30% off'.toUpperCase(),
+            'GIẢM 30%',
             style: AppFont.oswald_regular.copyWith(
               fontSize: 28,
               color: AppColors.defaultColor,
@@ -67,7 +67,7 @@ class ListTicketsScreen extends StatelessWidget {
           ),
           WidgetSpacer(height: 4),
           Text(
-            'On April 22, buy a movie ticket at BETA and wear a red shirt to get a free soft drink! 🥤🔥 Grab your friends and enjoy the show!',
+            'Ngày 22/4, mua vé xem phim tại BETA và mặc áo đỏ để được tặng miễn phí một thức uống! 🥤🔥 Rủ bạn bè cùng thưởng thức bộ phim nhé!',
             style: AppFont.medium_gray4.copyWith(fontSize: 12),
             textAlign: TextAlign.center,
           ),

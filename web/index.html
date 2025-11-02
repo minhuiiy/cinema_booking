@@ -23,6 +23,8 @@
 
   <!-- iOS meta tags & icons -->
   <meta name="apple-mobile-web-app-capable" content="yes">
+  <!-- Recommended modern meta for PWA capability -->
+  <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="cinema_booking">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
@@ -36,7 +38,25 @@
   <meta name="google-signin-client_id"
     content="889070575238-ib38fniej5s040764d425g5ujffph6kv.apps.googleusercontent.com">
 
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik"></script>
+  <!-- Load optional environment file that defines window.__GMAPS_API_KEY -->
+  <script src="env.js" defer></script>
+
+  <!-- Dynamically inject Google Maps JS API script. Replace the env value with your real key. -->
+  <script>
+    (function () {
+      // Only load Google Maps if a valid key is present.
+      var key = window.__GMAPS_API_KEY;
+      if (!key || typeof key !== 'string' || !key.trim()) {
+        console.warn('[Google Maps] API key is missing. Set window.__GMAPS_API_KEY in web/env.js');
+        return; // Skip loading the Maps script to avoid console errors.
+      }
+      var script = document.createElement('script');
+      script.src = 'https://maps.googleapis.com/maps/api/js?key=' + encodeURIComponent(key) + '&loading=async';
+      script.async = true;
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  </script>
 </head>
 
 <body>

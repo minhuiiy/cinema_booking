@@ -9,7 +9,7 @@ plugins {
 }
 
 android {
-    namespace = "com.chunhthanhde.cinema_booking"
+    namespace = "com.minhhuy.cinema_booking"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -24,10 +24,10 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.chunhthanhde.cinema_booking"
+        applicationId = "com.minhhuy.cinema_booking"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = 23
+        minSdkVersion = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
@@ -53,7 +53,7 @@ android {
 
     buildTypes {
         debug {
-            signingConfig null 
+            // Use the default debug keystore provided by the Android Gradle Plugin
         }
         release {
             signingConfig signingConfigs.release

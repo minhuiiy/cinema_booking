@@ -46,10 +46,7 @@ class _WidgetHowManySeatsState extends State<WidgetHowManySeats> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
           WidgetSpacer(height: 34),
-          Text(
-            'How many seats?',
-            style: AppFont.medium_white_22.copyWith(letterSpacing: 1.2),
-          ),
+          Text('Chọn số lượng ghế', style: AppFont.medium_white_22.copyWith(letterSpacing: 1.2)),
           WidgetSpacer(height: 37),
 
           Image.asset(_selectedSeatTypeImage, height: 100.57),
@@ -89,9 +86,7 @@ class _WidgetSeatTypePickerState extends State<WidgetSeatTypePicker> {
         crossAxisSpacing: 14,
         mainAxisSpacing: 14,
         childAspectRatio: 3 / 4,
-        children: <Widget>[
-          for (final seatType in widget.seatTypes) _buildItemSeatType(seatType),
-        ],
+        children: <Widget>[for (final seatType in widget.seatTypes) _buildItemSeatType(seatType)],
       ),
     );
   }
@@ -109,29 +104,19 @@ class _WidgetSeatTypePickerState extends State<WidgetSeatTypePicker> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: isSelected ? AppColors.green : Colors.black54,
-          border: Border.all(
-            color: isSelected ? Colors.greenAccent : Colors.grey.shade700,
-          ),
-          boxShadow:
-              isSelected
-                  ? [BoxShadow(color: Colors.greenAccent, blurRadius: 10)]
-                  : [],
+          border: Border.all(color: isSelected ? Colors.greenAccent : Colors.grey.shade700),
+          boxShadow: isSelected ? [BoxShadow(color: Colors.greenAccent, blurRadius: 10)] : [],
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(seatType.name, style: AppFont.medium_white_14),
             Text(
-              '\$${seatType.price}',
-              style: AppFont.semibold_white_16.copyWith(
-                color: Colors.yellowAccent,
-              ),
+              '${seatType.price.toStringAsFixed(0)} VNĐ',
+              style: AppFont.semibold_white_16.copyWith(color: Colors.yellowAccent),
             ),
             WidgetSpacer(height: 10),
-            Text(
-              index == 0 ? 'Filling fast' : 'Available',
-              style: AppFont.regular_white_12,
-            ),
+            Text(index == 0 ? 'Ghế VIP' : 'Ghế thường', style: AppFont.regular_white_12),
           ],
         ),
       ),
@@ -205,11 +190,7 @@ class _WidgetNumberSeatPickerState extends State<WidgetNumberSeatPicker> {
                   color: boxColor,
                   borderRadius: BorderRadius.circular(6),
                   boxShadow:
-                      isSelected
-                          ? [
-                            BoxShadow(color: Colors.greenAccent, blurRadius: 8),
-                          ]
-                          : [],
+                      isSelected ? [BoxShadow(color: Colors.greenAccent, blurRadius: 8)] : [],
                 ),
                 child: Center(
                   child: Text(
@@ -231,8 +212,6 @@ class _WidgetNumberSeatPickerState extends State<WidgetNumberSeatPicker> {
       _selectedIndex = index;
     });
 
-    BlocProvider.of<BookSeatTypeBloc>(
-      context,
-    ).add(ClickHowManySeat(seatCount: index + 1));
+    BlocProvider.of<BookSeatTypeBloc>(context).add(ClickHowManySeat(seatCount: index + 1));
   }
 }

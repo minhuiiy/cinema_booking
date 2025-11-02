@@ -5,10 +5,12 @@
  */
 
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
+import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:cinema_booking/presentation/all_movies/sc_all_movies.dart';
 import 'package:cinema_booking/presentation/all_tickets/screen_all_tickets.dart';
 import 'package:cinema_booking/presentation/home/bloc/home_bloc.dart';
 import 'package:cinema_booking/presentation/home/home_content_main.dart';
+import 'package:cinema_booking/presentation/chat_ai/chat_ai_floating.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -92,8 +94,19 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: _pages[_selectedIndex], // Dynamically switch screens
+        body: Stack(
+          children: [
+            _pages[_selectedIndex],
+            if (_selectedIndex == 0)
+              Positioned(
+                right: 16,
+                bottom: 16,
+                child: ChatAiFloating(),
+              ),
+          ],
+        ), // overlay chat on Home
         bottomNavigationBar: _buildBottomNavigationBar(),
+        // Remove navigating FAB, chat is now embedded on Home
       ),
     );
   }

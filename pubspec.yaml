@@ -45,6 +45,7 @@ dependencies:
 
   # for function watch trailer from youtube
   youtube_player_flutter: ^9.1.1
+  youtube_player_iframe: ^5.2.2
 
   # I use dio, because i like dio's api implementation
   # Retrofit It allows define API endpoints using annotations,

@@ -23,6 +23,9 @@ import 'package:cinema_booking/presentation/booking/booking_time_slot/widgets/wi
 import 'package:cinema_booking/presentation/booking/booking_time_slot/widgets/widget_toolbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../payment/payment_method_screen.dart';
 
 class ScreenArguments {
   int seatCount;
@@ -78,16 +81,13 @@ class _BookSeatSlotScreenState extends State<BookSeatSlotScreen> {
                   state.bookTimeSlot != null &&
                   state.itemGridSeatSlotVMs.isNotEmpty) {
                 BookTimeSlotEntity bookTimeSlot = state.bookTimeSlot!;
-                int selectedIndex = bookTimeSlot.timeSlots.indexOf(
-                  state.selectedTimeSlot!,
-                );
+                int selectedIndex = bookTimeSlot.timeSlots.indexOf(state.selectedTimeSlot!);
                 String movieName = state.movie!.name;
 
-                _itemCineTimeSlot = ItemCineTimeSlot.fromBookTimeSlot(
-                  bookTimeSlot: bookTimeSlot,
-                );
+                _itemCineTimeSlot = ItemCineTimeSlot.fromBookTimeSlot(bookTimeSlot: bookTimeSlot);
 
-                String textSeat = '${state.selectedSeatIds.length} seats';
+                String textSeat =
+                    '${state.selectedSeatIds.length} ghế ${widget.args.seatType.toText()}';
 
                 return Stack(
                   fit: StackFit.expand,
@@ -97,10 +97,7 @@ class _BookSeatSlotScreenState extends State<BookSeatSlotScreen> {
                       children: <Widget>[
                         WidgetToolbar(
                           title: movieName,
-                          actions: Text(
-                            textSeat,
-                            style: AppFont.medium_white_14,
-                          ),
+                          actions: Text(textSeat, style: AppFont.medium_white_14),
                         ),
                         Expanded(
                           child: SingleChildScrollView(
@@ -149,9 +146,7 @@ class _BookSeatSlotScreenState extends State<BookSeatSlotScreen> {
     List<Widget> widgets = [];
 
     for (var itemGridSeatSlotVM in state.itemGridSeatSlotVMs) {
-      widgets.add(
-        WidgetItemGridSeatSlot(itemGridSeatSlotVM: itemGridSeatSlotVM),
-      );
+      widgets.add(WidgetItemGridSeatSlot(itemGridSeatSlotVM: itemGridSeatSlotVM));
       widgets.add(WidgetSpacer(height: 14));
     }
 
@@ -177,17 +172,13 @@ class _BookSeatSlotScreenState extends State<BookSeatSlotScreen> {
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
               padding: EdgeInsets.symmetric(vertical: 14),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30),
-              ),
-              backgroundColor:
-                  Colors
-                      .transparent, // Set transparent so container's gradient shows
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+              backgroundColor: Colors.transparent, // Set transparent so container's gradient shows
               shadowColor: Colors.transparent,
               elevation: 0, // Removes shadow effect from the button itself
             ),
             child: Text(
-              'Pay ${state.totalPrice > 0 ? "\$${state.totalPrice}" : ""}',
+              'Thanh toán ${state.totalPrice > 0 ? "${state.totalPrice.toStringAsFixed(0)} VNĐ" : ""}',
               style: AppFont.semibold_white_18,
             ),
             onPressed: () {
@@ -199,35 +190,35 @@ class _BookSeatSlotScreenState extends State<BookSeatSlotScreen> {
     );
   }
 
-  Future<void> _handleBlocListener(
-    BuildContext context,
-    BookSeatSlotState state,
-  ) async {
+  Future<void> _handleBlocListener(BuildContext context, BookSeatSlotState state) async {
     if (state.isReachedLimitSeatSlot) {
       CustomSnackBar.failure(
         context,
-        msg: "You reached ${widget.args.seatCount} seats",
+        msg: "Bạn đã chọn ${widget.args.seatCount} ghế ${widget.args.seatType.toText()}",
       );
       bloc.add(DismissMessageReachedLimitSeatSlot());
     }
 
     if (state.isSelectWrongSeatType) {
-      CustomSnackBar.failure(
-        context,
-        msg: "Please select seat ${widget.args.seatType.toText()}",
-      );
+      CustomSnackBar.failure(context, msg: "Hãy lựa chọn ghế ${widget.args.seatType.toText()}");
       bloc.add(DismissMessageWrongSeatType());
     }
 
     if (state.isOpenPaymentMethod) {
       bloc.add(OpenedPaymentMethodScreen());
 
-      CustomSnackBar.success(
-        context,
-        msg: "Pay success with \$${state.totalPrice}",
+      final args = PaymentArguments(
+        amount: state.totalPrice,
+        movieName: state.movie?.name ?? '',
+        cineName: state.bookTimeSlot?.cine.name ?? '',
+        seatIds: state.selectedSeatIds,
+        timeSlot: state.selectedTimeSlot?.time ?? '',
+        email: null, // Sẽ nhập ở màn thanh toán nếu chưa có
       );
 
-      // TODO: create PaymentMethodScreen
+      if (context.mounted) {
+        context.push('/paymentMethod', extra: args);
+      }
     }
   }
 }

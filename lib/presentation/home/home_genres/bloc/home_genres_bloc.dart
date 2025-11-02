@@ -15,7 +15,7 @@ part 'home_genres_state.dart';
 
 class HomeGenresBloc extends Bloc<HomeGenresEvent, HomeGenresState> {
   final HomeBloc homeBloc;
-  late final StreamSubscription _subscription;
+  StreamSubscription? _subscription;
 
   HomeGenresBloc({required this.homeBloc}) : super(HomeGenresNotLoaded()) {
     on<DisplayHomeGenres>(_onDisplayHomeGenres);
@@ -44,7 +44,7 @@ class HomeGenresBloc extends Bloc<HomeGenresEvent, HomeGenresState> {
 
   @override
   Future<void> close() async {
-    await _subscription.cancel();
+    await _subscription?.cancel();
     return super.close();
   }
 }

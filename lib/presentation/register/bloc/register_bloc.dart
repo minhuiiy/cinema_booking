@@ -5,6 +5,7 @@
  */
 
 import 'package:cinema_booking/common/helpers/is_valid.dart';
+import 'package:cinema_booking/common/helpers/log_helpers.dart';
 import 'package:cinema_booking/data/models/auth/create_user_req.dart';
 import 'package:cinema_booking/domain/usecase/user/signup.dart';
 import 'package:cinema_booking/service_locator.dart';
@@ -80,6 +81,11 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     Submitted event,
     Emitter<RegisterState> emit,
   ) async {
+    LogHelper.debug(
+      tag: "RegisterBloc",
+      message:
+          "Submitting signup for email=${event.email}, name=${event.displayName}",
+    );
     // Validate form inputs
     final isValidEmail = Validators.isValidEmail(event.email);
     final isValidName = Validators.isValidName(event.displayName);
@@ -111,6 +117,10 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
 
       result.fold(
         (l) {
+          LogHelper.error(
+            tag: "RegisterBloc",
+            message: "Signup failed: $l",
+          );
           emit(RegisterState.failure());
         },
         (r) {

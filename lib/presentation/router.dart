@@ -15,6 +15,10 @@ import 'package:cinema_booking/presentation/register/register.dart';
 import 'package:cinema_booking/presentation/splash/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:cinema_booking/presentation/payment/payment_method_screen.dart';
+import 'package:cinema_booking/presentation/payment/ticket_success_screen.dart';
+import 'package:cinema_booking/presentation/all_tickets/ticket_qr_screen.dart';
+import 'package:cinema_booking/presentation/chat_ai/ai_chat_screen.dart';
 
 final GoRouter appRouter = GoRouter(
   routerNeglect: false,
@@ -59,7 +63,7 @@ final GoRouter appRouter = GoRouter(
           child:
               args == null
                   ? const Scaffold(
-                    body: Center(child: Text("Invalid arguments")),
+                    body: Center(child: Text("Tham số không hợp lệ")),
                   )
                   : BookSeatSlotScreen(args: args),
         );
@@ -73,7 +77,7 @@ final GoRouter appRouter = GoRouter(
           child:
               movie == null
                   ? const Scaffold(
-                    body: Center(child: Text("Invalid movie data")),
+                    body: Center(child: Text("Dữ liệu phim không hợp lệ")),
                   )
                   : BookTimeSlotScreen(movie: movie),
         );
@@ -87,11 +91,57 @@ final GoRouter appRouter = GoRouter(
           child:
               movieDetail == null
                   ? const Scaffold(
-                    body: Center(child: Text("Invalid movie data")),
+                    body: Center(child: Text("Dữ liệu phim không hợp lệ")),
                   )
                   : MovieInfoScreen(movie: movieDetail),
         );
       },
+    ),
+    GoRoute(
+      path: '/paymentMethod',
+      builder: (context, state) {
+        final args = state.extra as PaymentArguments?;
+        return AuthGuard(
+          child:
+              args == null
+                  ? const Scaffold(
+                    body: Center(child: Text("Thiếu tham số thanh toán")),
+                  )
+                  : PaymentMethodScreen(args: args),
+        );
+      },
+    ),
+    GoRoute(
+      path: '/ticketSuccess',
+      builder: (context, state) {
+        final args = state.extra as TicketSuccessArguments?;
+        return AuthGuard(
+          child:
+              args == null
+                  ? const Scaffold(
+                    body: Center(child: Text("Thiếu dữ liệu vé")),
+                  )
+                  : TicketSuccessScreen(args: args),
+        );
+      },
+    ),
+    GoRoute(
+      path: '/ticketQr',
+      builder: (context, state) {
+        final args = state.extra as TicketQrArguments?;
+        return AuthGuard(
+          child:
+              args == null
+                  ? const Scaffold(
+                    body: Center(child: Text("Thiếu dữ liệu vé")),
+                  )
+                  : TicketQrScreen(args: args),
+        );
+      },
+    ),
+    GoRoute(
+      path: '/aiChat',
+      builder: (context, state) => const AuthGuard(child: AiChatScreen()),
     ),
   ],
 );

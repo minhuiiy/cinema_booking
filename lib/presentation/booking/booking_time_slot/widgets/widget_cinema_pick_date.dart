@@ -25,11 +25,7 @@ class CinematicBottomBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      bottom: 0,
-      right: 0,
-      left: 0,
-      child: Container(
+    return Container(
         height: 70,
         // padding: EdgeInsets.symmetric(horizontal: 20),
         decoration: BoxDecoration(
@@ -75,8 +71,7 @@ class CinematicBottomBar extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    );
+      );
   }
 
   Widget _buildSelectionButton({

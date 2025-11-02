@@ -32,7 +32,20 @@ class UserInfoBloc extends Bloc<UserInfoEvent, UserInfoState> {
 
     response.fold(
       (l) {
-        emit(UserInfoLoadingFail());
+        // If user info cannot be loaded (not signed in or document missing),
+        // show the edit form with sensible defaults instead of a blank screen.
+        emit(
+          UserInfoEdit(
+            userInfo: UserEntity(
+              email: "",
+              fullName: "",
+              age: 18,
+              gender: "Male",
+            ),
+            isFailure: false,
+            isSuccess: false,
+          ),
+        );
       },
       (r) {
         emit(UserInfoEdit(userInfo: r, isFailure: false, isSuccess: false));

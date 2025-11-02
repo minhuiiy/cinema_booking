@@ -41,8 +41,26 @@ class AuthServiceImpl extends AuthService {
         password: signinUserReq.password,
       );
       return const Right('Signin was Successful');
+    } on FirebaseAuthException catch (e) {
+      // Provide clearer error messages for common Firebase auth failures
+      switch (e.code) {
+        case 'invalid-api-key':
+          return Left('Invalid Firebase API key: check firebase_options.dart');
+        case 'invalid-email':
+          return Left('Invalid email format');
+        case 'user-disabled':
+          return Left('This account has been disabled');
+        case 'user-not-found':
+          return Left('No account found for this email');
+        case 'wrong-password':
+          return Left('Incorrect password');
+        case 'too-many-requests':
+          return Left('Too many attempts. Try again later');
+        default:
+          return Left('Error signing in: ${e.message ?? e.code}');
+      }
     } catch (e) {
-      return Left('Error signing in');
+      return Left('Error signing in: ${e.toString()}');
     }
   }
 
@@ -69,8 +87,35 @@ class AuthServiceImpl extends AuthService {
       });
 
       return const Right('Signup was Successful');
+    } on FirebaseAuthException catch (e) {
+      // Map common Firebase signup errors to helpful messages
+      switch (e.code) {
+        case 'invalid-api-key':
+          return Left('Invalid Firebase API key: check firebase_options.dart');
+        case 'email-already-in-use':
+          return Left('Email already in use');
+        case 'invalid-email':
+          return Left('Invalid email format');
+        case 'operation-not-allowed':
+          return Left('Email/password accounts are not enabled');
+        case 'weak-password':
+          return Left('Weak password');
+        default:
+          return Left('Error signing up: ${e.message ?? e.code}');
+      }
+    } on FirebaseException catch (e) {
+      // Firestore-specific errors (e.g., permission-denied)
+      final code = e.code;
+      switch (code) {
+        case 'permission-denied':
+          return Left('Firestore permission denied: check rules for /users/{uid}');
+        case 'unavailable':
+          return Left('Firestore unavailable: please try again');
+        default:
+          return Left('Firestore error: ${e.message ?? code}');
+      }
     } catch (e) {
-      return Left('Error signing up');
+      return Left('Error signing up: ${e.toString()}');
     }
   }
 

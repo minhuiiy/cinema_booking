@@ -39,7 +39,7 @@ class _WidgetHomeGenresState extends State<WidgetHomeGenres> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  'Movie Genres'.toUpperCase(),
+                  'THỂ LOẠI PHIM',
                   style: AppFont.medium_white_14,
                 ),
                 WidgetSpacer(height: 14),

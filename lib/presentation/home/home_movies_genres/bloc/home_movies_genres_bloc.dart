@@ -18,7 +18,7 @@ part 'home_movies_genres_state.dart';
 class HomeMoviesGenresBloc
     extends Bloc<HomeMoviesGenresEvent, HomeMoviesGenresState> {
   final HomeBloc homeBloc;
-  late StreamSubscription subscription;
+  StreamSubscription? subscription;
 
   HomeMoviesGenresBloc({required this.homeBloc})
     : super(MoviesByGenresNotLoaded()) {
@@ -55,8 +55,8 @@ class HomeMoviesGenresBloc
   }
 
   @override
-  Future<void> close() {
-    subscription.cancel();
+  Future<void> close() async {
+    await subscription?.cancel();
     return super.close();
   }
 }

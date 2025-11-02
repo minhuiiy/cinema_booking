@@ -11,6 +11,7 @@ import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:cinema_booking/domain/entities/cast/movie_cast.dart';
+import 'package:cinema_booking/common/widgets/image/shimmer_image.dart';
 
 class WidgetMovieCasts extends StatelessWidget {
   final List<MovieCastEntity> casts;
@@ -116,7 +117,12 @@ class WidgetItemCast extends StatelessWidget {
             clipBehavior: Clip.antiAlias,
             child: AspectRatio(
               aspectRatio: 85 / 117,
-              child: Image.network(item.photo, fit: BoxFit.cover),
+              child: ShimmerImage(
+                url: item.photo,
+                fit: BoxFit.cover,
+                aspectRatio: 85 / 117,
+                iconHolderSize: 24,
+              ),
             ),
           ),
         ),

@@ -16,7 +16,7 @@ part 'home_banner_state.dart';
 
 class HomeBannerBloc extends Bloc<HomeBannerEvent, HomeBannerState> {
   final HomeBloc homeBloc;
-  late StreamSubscription _subscription;
+  StreamSubscription? _subscription;
 
   HomeBannerBloc({required this.homeBloc}) : super(HomeBannerNotLoaded()) {
     on<DisplayHomeBanner>(_onDisplayHomeBanner);
@@ -42,7 +42,7 @@ class HomeBannerBloc extends Bloc<HomeBannerEvent, HomeBannerState> {
 
   @override
   Future<void> close() async {
-    await _subscription.cancel();
+    await _subscription?.cancel();
     return super.close();
   }
 }

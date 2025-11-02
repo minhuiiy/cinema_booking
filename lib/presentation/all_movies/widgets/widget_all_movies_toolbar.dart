@@ -79,7 +79,14 @@ class _WidgetAllMoviesToolbarState extends State<WidgetAllMoviesToolbar> {
             child: Row(
               children: <Widget>[
                 InkWell(
-                  onTap: () => context.pop(),
+                  onTap: () {
+                    final router = GoRouter.of(context);
+                    if (router.canPop()) {
+                      context.pop();
+                    } else {
+                      context.go('/');
+                    }
+                  },
                   borderRadius: BorderRadius.circular(12),
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10),
@@ -183,7 +190,7 @@ class _WidgetAllMoviesToolbarState extends State<WidgetAllMoviesToolbar> {
                   fontWeight: FontWeight.w500,
                 ),
                 decoration: InputDecoration(
-                  hintText: 'Search movies...',
+                  hintText: 'Tìm phim...',
                   hintStyle: TextStyle(
                     color: Colors.white70,
                     fontSize: 14,
@@ -193,7 +200,7 @@ class _WidgetAllMoviesToolbarState extends State<WidgetAllMoviesToolbar> {
                   contentPadding: EdgeInsets.symmetric(vertical: 12),
                 ),
               )
-              : Text('Movies in coimbatore', style: AppFont.semibold_white_18),
+              : Text('Phim ở Coimbatore', style: AppFont.semibold_white_18),
     );
   }
 

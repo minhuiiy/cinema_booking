@@ -1,5 +1,6 @@
 import 'package:cinema_booking/core/configs/assets/app_vectors.dart';
 import 'package:cinema_booking/domain/entities/genres/genres.dart';
+import 'package:cinema_booking/presentation/home/home_genres/helpers/genres_translator.dart';
 
 class ItemGenresVM {
   GenresEntity genres;
@@ -8,6 +9,6 @@ class ItemGenresVM {
 
   ItemGenresVM.fromGenres(this.genres) {
     image = AppVectors.basePath + genres.icon.toString();
-    title = genres.name;
+    title = trGenres(genres.name);
   }
 }

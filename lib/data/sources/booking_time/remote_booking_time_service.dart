@@ -5,6 +5,7 @@
  */
 
 import 'package:cinema_booking/core/api/rest_client.dart';
+import 'package:cinema_booking/data/models/cinema/cinema.dart';
 import 'package:cinema_booking/data/models/response/booking_time_slot_by_cinema_response.dart';
 import 'package:cinema_booking/service_locator.dart';
 import 'package:dartz/dartz.dart';
@@ -22,6 +23,12 @@ class RemoteBookTimeSlotServiceImpl implements RemoteBookTimeSlotService {
       final client = RestClient(localDio);
       // Gọi API lấy dữ liệu
       final response = await client.getBookingTimeSlotByCine();
+
+      // Ghi đè thông tin rạp theo mock TP.HCM (giữ nguyên timeSlots và tami)
+      final hcmCines = CinemaModel.mockData;
+      for (int i = 0; i < response.length && i < hcmCines.length; i++) {
+        response[i].cine = hcmCines[i];
+      }
 
       // Xử lý ánh xạ từ JSON sang danh sách các model
       return Right(response);

@@ -21,7 +21,7 @@ class AuthGuard extends StatelessWidget {
           return child;
         }
 
-        return const Center(child: Text('Unhandled Authentication State'));
+        return const Center(child: Text('Trạng thái xác thực không được xử lý'));
       },
     );
   }

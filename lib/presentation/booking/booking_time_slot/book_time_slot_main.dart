@@ -35,12 +35,7 @@ class BookTimeSlotScreen extends StatelessWidget {
             children: <Widget>[
               WidgetSearchSortToolbar(title: movie.name),
               Expanded(
-                child: Stack(
-                  children: <Widget>[
-                    _buildListCineTimeSlot(),
-                    _buildBtnToday(),
-                  ],
-                ),
+                child: Stack(children: <Widget>[_buildListCineTimeSlot(), _buildBtnToday()]),
               ),
             ],
           ),
@@ -99,8 +94,8 @@ class BookTimeSlotScreen extends StatelessWidget {
       right: 0,
       left: 0,
       child: CinematicBottomBar(
-        dateText: "Today, 22 Apr",
-        formatText: "Hanoi, 3D",
+        dateText: "Hôm nay, 3 tháng 11",
+        formatText: "Thủ Đức, 3D",
         onDateTap: () {
           //TODO: openCineDatePicker();
         },

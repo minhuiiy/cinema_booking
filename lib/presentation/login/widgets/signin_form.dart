@@ -49,11 +49,11 @@ class _WidgetSignInFormState extends State<WidgetSignInForm> {
         }
 
         if (state.isFailure) {
-          CustomSnackBar.failure(context, msg: "Login Failed!");
+          CustomSnackBar.failure(context, msg: "Đăng nhập thất bại!");
         }
 
         if (state.isSubmitting) {
-          CustomSnackBar.showLoading(context, msg: "Processing...");
+          CustomSnackBar.showLoading(context, msg: "Đang xử lý...");
         }
       },
       child: BlocBuilder<LoginBloc, LoginState>(
@@ -81,7 +81,7 @@ class _WidgetSignInFormState extends State<WidgetSignInForm> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     WidgetSpacer(height: 14),
-                    _buildTextDash("Form"),
+                    _buildTextDash("Biểu mẫu"),
                     WidgetSpacer(height: 20),
                     _buildTextField(
                       "Email",
@@ -91,7 +91,7 @@ class _WidgetSignInFormState extends State<WidgetSignInForm> {
                     ),
                     WidgetSpacer(height: 14),
                     _buildTextField(
-                      "Password",
+                      "Mật khẩu",
                       _passwordController,
                       Icons.lock,
                       isPassword: true,
@@ -100,7 +100,7 @@ class _WidgetSignInFormState extends State<WidgetSignInForm> {
                     Align(
                       alignment: Alignment.centerRight,
                       child: Text(
-                        "Forgot password?",
+                        "Quên mật khẩu?",
                         style: AppFont.regular_gray1_14.copyWith(
                           color: Colors.orangeAccent,
                         ),
@@ -109,7 +109,7 @@ class _WidgetSignInFormState extends State<WidgetSignInForm> {
                     WidgetSpacer(height: 30),
                     _buildButtonLogin(state),
                     WidgetSpacer(height: 20),
-                    _buildTextDash("Or"),
+                    _buildTextDash("Hoặc"),
                     WidgetSpacer(height: 20),
                     _buildSocialLogin(),
                   ],
@@ -167,10 +167,10 @@ class _WidgetSignInFormState extends State<WidgetSignInForm> {
         validator: (_) {
           return isPassword
               ? !_loginBloc.state.isPasswordValid
-                  ? 'Invalid Password'
+                  ? 'Mật khẩu không hợp lệ'
                   : null
               : !_loginBloc.state.isEmailValid
-              ? 'Invalid Email'
+              ? 'Email không hợp lệ'
               : null;
         },
         maxLines: 1,
@@ -213,7 +213,7 @@ class _WidgetSignInFormState extends State<WidgetSignInForm> {
               ),
             );
           } else {
-            CustomSnackBar.failure(context, msg: "Invalid Form");
+            CustomSnackBar.failure(context, msg: "Biểu mẫu không hợp lệ");
           }
         },
         child: Container(
@@ -227,7 +227,7 @@ class _WidgetSignInFormState extends State<WidgetSignInForm> {
           ),
           alignment: Alignment.center,
           child: Text(
-            "LOGIN",
+            "ĐĂNG NHẬP",
             style: AppFont.semibold_white_18.copyWith(fontSize: 18),
           ),
         ),

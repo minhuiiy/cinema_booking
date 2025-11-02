@@ -174,17 +174,7 @@ class BookSeatSlotBloc extends Bloc<BookSeatSlotEvent, BookSeatSlotState> {
     ClickButtonPay event,
     Emitter<BookSeatSlotState> emit,
   ) {
-    final ticket = Ticket(
-      DateTime.now().millisecondsSinceEpoch,
-      state.movie!.name,
-      state.movie!.thumb,
-      state.selectedTimeSlot!.time,
-      DateTime.now().millisecondsSinceEpoch,
-      state.bookTimeSlot!.cine.name,
-      state.selectedSeatIds.join(";"),
-    );
-
-    sl<CreateTicketUseCase>().call(params: ticket);
+    // Mở màn hình phương thức thanh toán; việc tạo vé sẽ được thực hiện sau khi thanh toán thành công.
     emit(state.copyWith(isOpenPaymentMethod: true));
   }
 
@@ -226,7 +216,7 @@ class BookSeatSlotBloc extends Bloc<BookSeatSlotEvent, BookSeatSlotState> {
   ) {
     return seatSlotByTypes.map((seatSlotType) {
       final seatTypeName =
-          '\$ ${seatSlotType.price} ${seatSlotType.type.toText().toUpperCase()}';
+          '${seatSlotType.price?.toStringAsFixed(0)} VNĐ ${seatSlotType.type.toText().toUpperCase()}';
       final maxColumn = seatSlotType.seatRows![0].count + 1;
 
       LogHelper.info(

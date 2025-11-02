@@ -16,7 +16,7 @@ part 'recommended_movies_state.dart';
 class RecommendedMoviesBloc
     extends Bloc<RecommendedMoviesEvent, RecommendedMoviesState> {
   final HomeBloc homeBloc;
-  late StreamSubscription subscription;
+  StreamSubscription? subscription;
 
   RecommendedMoviesBloc({required this.homeBloc})
     : super(RecommendedMoviesNotLoaded()) {
@@ -41,8 +41,8 @@ class RecommendedMoviesBloc
   }
 
   @override
-  Future<void> close() {
-    subscription.cancel();
+  Future<void> close() async {
+    await subscription?.cancel();
     return super.close();
   }
 }

@@ -78,7 +78,14 @@ class _WidgetSearchSortToolbarState extends State<WidgetSearchSortToolbar> {
           child: Row(
             children: <Widget>[
               InkWell(
-                onTap: () => context.pop(),
+                onTap: () {
+                  final router = GoRouter.of(context);
+                  if (router.canPop()) {
+                    context.pop();
+                  } else {
+                    context.go('/');
+                  }
+                },
                 borderRadius: BorderRadius.circular(12),
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10),
@@ -141,7 +148,7 @@ class _WidgetSearchSortToolbarState extends State<WidgetSearchSortToolbar> {
                   fontWeight: FontWeight.w500,
                 ),
                 decoration: InputDecoration(
-                  hintText: 'Search movies...',
+                  hintText: 'Tìm phim...',
                   hintStyle: TextStyle(
                     color: Colors.white70,
                     fontSize: 14,

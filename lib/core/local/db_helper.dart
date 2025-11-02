@@ -7,6 +7,7 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:cinema_booking/common/helpers/log_helpers.dart';
+import 'package:flutter/foundation.dart';
 import 'package:sqflite/sqflite.dart';
 
 ///
@@ -43,6 +44,12 @@ class DbHelper {
   /// This function opens the database file named 'cinemabooking.db' and sets up the database schema.
   /// If the database does not exist, the [_onCreate] callback is triggered to create the necessary tables.
   static Future init() async {
+    // Skip SQLite initialization on web; sqflite is not supported there.
+    if (kIsWeb) {
+      LogHelper.debug(tag: "DbHelper", message: 'Skip SQLite init on web');
+      return;
+    }
+
     _db = await openDatabase(
       'cinemabooking.db',
       version: 1,

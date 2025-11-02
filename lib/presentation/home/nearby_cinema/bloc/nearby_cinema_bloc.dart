@@ -16,7 +16,7 @@ part 'nearby_cinema_state.dart';
 
 class NearbyCineBloc extends Bloc<NearbyCineEvent, NearbyCineState> {
   final HomeBloc homeBloc;
-  late StreamSubscription subscription;
+  StreamSubscription? subscription;
 
   NearbyCineBloc({required this.homeBloc}) : super(NearbyCineNotLoaded()) {
     on<DisplayNearbyCine>(_onDisplayNearbyCine);
@@ -41,8 +41,8 @@ class NearbyCineBloc extends Bloc<NearbyCineEvent, NearbyCineState> {
   }
 
   @override
-  Future<void> close() {
-    subscription.cancel();
+  Future<void> close() async {
+    await subscription?.cancel();
     return super.close();
   }
 }

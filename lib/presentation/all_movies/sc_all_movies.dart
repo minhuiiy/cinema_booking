@@ -111,19 +111,19 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  'Sort by',
+                  'Sắp xếp',
                   style: AppFont.semibold_white.copyWith(fontSize: 22),
                 ),
                 const WidgetSpacer(height: 10),
                 _buildSortOption(
                   context,
-                  '⭐ Rating',
+                  '⭐ Đánh giá',
                   MovieSoftBy.ratting,
                   movieSortBy,
                 ),
                 _buildSortOption(
                   context,
-                  '🎬 Name',
+                  '🎬 Tên',
                   MovieSoftBy.name,
                   movieSortBy,
                 ),
@@ -156,7 +156,7 @@ class _AllMoviesScreenState extends State<AllMoviesScreen> {
   ) {
     bool isSelected = value == groupValue;
     return GestureDetector(
-      onTap: () => context.pop(value),
+      onTap: () => Navigator.of(context).pop(value),
       child: AnimatedContainer(
         duration: Duration(milliseconds: 300),
         curve: Curves.easeInOut,

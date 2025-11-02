@@ -66,6 +66,17 @@ class _SignupPageState extends State<SignupPage> {
     });
   }
 
+  String _genderText(String gender) {
+    switch (gender) {
+      case 'Male':
+        return 'Nam';
+      case 'Female':
+        return 'Nữ';
+      default:
+        return gender;
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -80,16 +91,16 @@ class _SignupPageState extends State<SignupPage> {
     return BlocListener<RegisterBloc, RegisterState>(
       listener: (context, state) {
         if (state.isSubmitting) {
-          CustomSnackBar.showLoading(context, msg: "Registering ...");
+          CustomSnackBar.showLoading(context, msg: "Đang đăng ký ...");
         }
 
         if (state.isSuccess) {
           BlocProvider.of<AuthenticationBloc>(context).add(LoggedIn());
-          context.pop();
+          context.go('/');
         }
 
         if (state.isFailure) {
-          CustomSnackBar.failure(context, msg: "Registering Failure");
+          CustomSnackBar.failure(context, msg: "Đăng ký thất bại");
         }
       },
       child: Scaffold(
@@ -98,12 +109,19 @@ class _SignupPageState extends State<SignupPage> {
           backgroundColor: AppColors.darkBackground,
           leading: IconButton(
             icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
-            onPressed: () => context.pop(),
+            onPressed: () {
+              final router = GoRouter.of(context);
+              if (router.canPop()) {
+                context.pop();
+              } else {
+                context.go('/login');
+              }
+            },
           ),
           actions: [
             TextButton(
               onPressed: () {},
-              child: Text("Skip", style: AppFont.medium_white_18),
+              child: Text("Bỏ qua", style: AppFont.medium_white_18),
             ),
           ],
         ),
@@ -150,7 +168,7 @@ class _SignupPageState extends State<SignupPage> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         GradientText(
-                          text: "REGISTER ME",
+                          text: "ĐĂNG KÝ TÀI KHOẢN",
                           textStyle: AppFont.semibold_white_30.copyWith(
                             fontFamily: 'Oswald',
                           ),
@@ -161,11 +179,11 @@ class _SignupPageState extends State<SignupPage> {
                     const WidgetSpacer(height: 25),
                     _textField("Email", _email),
                     const WidgetSpacer(height: 20),
-                    _textField("Full Name", _fullName),
+                    _textField("Họ và tên", _fullName),
                     const WidgetSpacer(height: 20),
-                    _textField("Password", _password),
+                    _textField("Mật khẩu", _password),
                     const WidgetSpacer(height: 20),
-                    _textField("Conirm Password", _confirmPassword),
+                    _textField("Xác nhận mật khẩu", _confirmPassword),
                     const WidgetSpacer(height: 30),
                     _genderSelection(),
                     const WidgetSpacer(height: 20),
@@ -177,7 +195,7 @@ class _SignupPageState extends State<SignupPage> {
                         onPressed: () async {
                           _onFormSubmitted();
                         },
-                        title: "Sign up",
+                        title: "Đăng ký",
                         textSize: 22,
                         weight: FontWeight.w500,
                       ),
@@ -222,9 +240,9 @@ class _SignupPageState extends State<SignupPage> {
               text: TextSpan(
                 style: AppFont.medium_white_18,
                 children: [
-                  TextSpan(text: "Gender:    ", style: AppFont.medium_white_22),
+                  TextSpan(text: "Giới tính:    ", style: AppFont.medium_white_22),
                   TextSpan(
-                    text: selectedGender,
+                    text: _genderText(selectedGender),
                     style: AppFont.medium_white_22.copyWith(
                       color:
                           selectedGender == "Male"
@@ -277,7 +295,7 @@ class _SignupPageState extends State<SignupPage> {
   Widget _ageSelection() {
     return Column(
       children: [
-        Row(children: [Text("Age:", style: AppFont.medium_white_22)]),
+        Row(children: [Text("Tuổi:", style: AppFont.medium_white_22)]),
         const WidgetSpacer(height: 15),
         AgeSelector(onAgeSelected: updateAge),
       ],

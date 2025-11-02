@@ -5,7 +5,11 @@
  */
 
 import 'package:cinema_booking/core/api/rest_client.dart';
+import 'package:cinema_booking/data/models/cinema/cinema.dart';
 import 'package:cinema_booking/data/models/response/home_response.dart';
+import 'package:cinema_booking/data/models/response/movie_by_genres_response.dart';
+import 'package:cinema_booking/data/models/response/movie_detail_response.dart';
+import 'package:cinema_booking/domain/entities/response/home.dart';
 import 'package:cinema_booking/service_locator.dart';
 import 'package:dartz/dartz.dart';
 
@@ -20,7 +24,23 @@ class HomeServiceImpl extends HomeService {
       final client = RestClient(localDio);
       final HomeModelResponse homeData = await client.getHomeData();
 
-      return right(homeData.toEntity());
+      // Ghi đè nearby_cinemas bằng mock TP.HCM
+      final HomeEntity home = HomeEntity(
+        banners: homeData.toBannersEntity(),
+        genres: homeData.toGenresEntity(),
+        recommendedMovies: homeData.recommendedMovies
+                ?.map((movieModel) => movieModel.toEntity())
+                .toList() ??
+            [],
+        nearbyCinemas: CinemaModel.mockData.toEntities(),
+        movieByGenres:
+            homeData.movieByGenres
+                    ?.map((MovieByGenresResponse r) => r.toEntity())
+                    .toList() ??
+            [],
+      );
+
+      return right(home);
     } catch (e) {
       return const Left('An error occurred in getHomeData, Please try again.');
     }

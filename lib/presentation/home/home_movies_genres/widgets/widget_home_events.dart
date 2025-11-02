@@ -9,6 +9,7 @@ import 'package:cinema_booking/domain/entities/genres/genres.dart';
 import 'package:cinema_booking/domain/entities/response/home.dart';
 import 'package:cinema_booking/presentation/home/widgets/widget_home_poster.dart';
 import 'package:flutter/material.dart';
+import 'package:cinema_booking/presentation/home/home_genres/helpers/genres_translator.dart';
 
 class WidgetHomeEvents extends StatelessWidget {
   final GenresEntity genres;
@@ -24,7 +25,7 @@ class WidgetHomeEvents extends StatelessWidget {
   Widget build(BuildContext context) {
     return WidgetHomePosters(
       items: movies.map((movie) => ItemPosterVM.fromMovie(movie)).toList(),
-      label: genres.name,
+      label: trGenres(genres.name),
       iconPath: AppVectors.basePath + genres.icon.toString(),
     );
   }

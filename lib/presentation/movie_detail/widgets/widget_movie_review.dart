@@ -10,6 +10,7 @@ import 'package:cinema_booking/common/widgets/space/widget_spacer.dart';
 import 'package:cinema_booking/core/configs/theme/app_color.dart';
 import 'package:cinema_booking/core/configs/theme/app_font.dart';
 import 'package:cinema_booking/domain/entities/response/home.dart';
+import 'package:cinema_booking/common/widgets/image/shimmer_image.dart';
 
 class WidgetMovieReview extends StatelessWidget {
   final MovieDetailEntity movie;
@@ -94,15 +95,16 @@ class WidgetMovieReview extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(50),
-                  child: Image.network(
-                    authorAvatar,
-                    width: 36,
-                    height: 36,
-                    fit: BoxFit.cover,
-                  ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(50),
+                child: ShimmerImage(
+                  url: authorAvatar,
+                  width: 36,
+                  height: 36,
+                  fit: BoxFit.cover,
+                  iconHolderSize: 20,
                 ),
+              ),
               ),
               WidgetSpacer(width: 12),
 

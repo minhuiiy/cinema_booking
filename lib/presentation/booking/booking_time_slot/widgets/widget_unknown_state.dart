@@ -15,7 +15,7 @@ class WidgetUnknownState extends StatelessWidget {
     return Center(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 32),
-        child: Text('Unknown state', style: AppFont.regular_gray4_14),
+        child: Text('Trạng thái không xác định', style: AppFont.regular_gray4_14),
       ),
     );
   }

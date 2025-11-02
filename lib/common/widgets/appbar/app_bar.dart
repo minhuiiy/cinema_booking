@@ -39,7 +39,12 @@ class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {
               ? null
               : IconButton(
                 onPressed: () {
-                  context.pop();
+                  final router = GoRouter.of(context);
+                  if (router.canPop()) {
+                    context.pop();
+                  } else {
+                    context.go('/');
+                  }
                 },
                 icon: Container(
                   height: 50,

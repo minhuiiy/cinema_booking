@@ -22,6 +22,7 @@ import 'package:cinema_booking/data/sources/booking_time/session_service.dart';
 import 'package:cinema_booking/data/sources/home/home_service.dart';
 import 'package:cinema_booking/data/sources/movie/movie_info_service.dart';
 import 'package:cinema_booking/data/sources/ticket/ticket_service.dart';
+import 'package:cinema_booking/data/sources/ticket/ticket_service_firebase.dart';
 import 'package:cinema_booking/domain/repository/authentication/authentication.dart';
 import 'package:cinema_booking/domain/repository/all_movie/all_movie.dart';
 import 'package:cinema_booking/domain/repository/auth/auth.dart';
@@ -106,7 +107,7 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<GetAllMoviesDataUseCase>(GetAllMoviesDataUseCase());
 
   // tickets
-  sl.registerSingleton<AllTicketsService>(AllTicketsServiceImpl());
+  sl.registerSingleton<AllTicketsService>(AllTicketsServiceFirebaseImpl());
   sl.registerSingleton<AllTicketsRepository>(AllTicketsRepositoryImpl());
   sl.registerSingleton<GetAllTicketsDataUseCase>(GetAllTicketsDataUseCase());
   sl.registerSingleton<CreateTicketUseCase>(CreateTicketUseCase());

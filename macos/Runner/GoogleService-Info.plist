@@ -3,23 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>889070575238-r065krng929mg93ueei70ff93sar70kp.apps.googleusercontent.com</string>
+	<string>YOUR_MACOS_CLIENT_ID.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.889070575238-r065krng929mg93ueei70ff93sar70kp</string>
+	<string>com.googleusercontent.apps.YOUR_MACOS_CLIENT_ID</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>889070575238-258doqno2qlhq3amos85h3sov6cv2bpt.apps.googleusercontent.com</string>
+	<string>YOUR_ANDROID_CLIENT_ID.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyB37s39jfL_Jk42szP4FH6lapB9qWG1bEM</string>
+	<string>YOUR_MACOS_API_KEY</string>
 	<key>GCM_SENDER_ID</key>
-	<string>889070575238</string>
+	<string>YOUR_MACOS_MESSAGING_SENDER_ID</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.chunhthanhde.cinemaBooking</string>
 	<key>PROJECT_ID</key>
-	<string>find-f9360</string>
+	<string>cinemaBooking</string>
 	<key>STORAGE_BUCKET</key>
-	<string>find-f9360.firebasestorage.app</string>
+	<string>cinemabooking.firebasestorage.app</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -31,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:889070575238:ios:32a6b65ff6350c01d2bb07</string>
+	<string>YOUR_MACOS_APP_ID</string>
 </dict>
 </plist>

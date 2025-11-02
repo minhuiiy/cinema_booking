@@ -56,13 +56,13 @@ class _WidgetRecommendedMoviesState extends State<WidgetRecommendedMovies> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            'New theatrical movie'.toUpperCase(),
+            'PHIM CHIẾU RẠP MỚI',
             style: AppFont.medium_white_14,
           ),
           TextButton(
             onPressed: () {},
             child: Text(
-              "View All",
+              "Xem tất cả",
               style: AppFont.medium_white_12.copyWith(color: AppColors.red),
             ),
           ),

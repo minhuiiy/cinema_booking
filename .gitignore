@@ -31,6 +31,9 @@ migrate_working_dir/
 .pub/
 /build/
 
+# Local web env config (do not commit secrets)
+web/env.js
+
 # Symbolication related
 app.*.symbols
 

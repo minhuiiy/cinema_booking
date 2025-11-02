@@ -41,7 +41,7 @@ class _WidgetHomeToolbarState extends State<WidgetHomeToolbar>
 
   void _initTextWidgets() {
     _textWidgets.add(_buildUserInfo());
-    _textWidgets.add(_buildAlternateText("Hello Have a nice day"));
+    _textWidgets.add(_buildAlternateText("Xin chào, chúc bạn một ngày tốt lành"));
     _textWidgets.add(_buildAlternateText("Cinema booking yêu bạn"));
   }
 
@@ -152,33 +152,41 @@ class _WidgetHomeToolbarState extends State<WidgetHomeToolbar>
   }
 
   Widget _buildUserInfo() {
-    return Column(
-      key: const ValueKey("UserInfo"),
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Text(
-          'Chung Nguyen Thanh',
-          style: AppFont.medium_white_16.copyWith(fontSize: 15),
-        ),
-        GestureDetector(
-          onTap: () {
-            _clickSignOut();
-          },
-          child: Opacity(
-            opacity: 0.5,
-            child: Row(
-              children: <Widget>[
-                Text(
-                  'Vietnam',
-                  style: AppFont.medium_white_16.copyWith(fontSize: 14),
-                ),
-                const Icon(Icons.keyboard_arrow_down, color: Colors.white),
-              ],
+    return BlocBuilder<AuthenticationBloc, AuthenticationState>(
+      builder: (context, state) {
+        final displayName =
+            state is Authenticated && state.displayName.isNotEmpty
+                ? state.displayName
+                : 'David';
+        return Column(
+          key: const ValueKey("UserInfo"),
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              displayName,
+              style: AppFont.medium_white_16.copyWith(fontSize: 15),
             ),
-          ),
-        ),
-      ],
+            GestureDetector(
+              onTap: () {
+                _clickSignOut();
+              },
+              child: Opacity(
+                opacity: 0.5,
+                child: Row(
+                  children: <Widget>[
+                    Text(
+                      'Vietnam',
+                      style: AppFont.medium_white_16.copyWith(fontSize: 14),
+                    ),
+                    const Icon(Icons.keyboard_arrow_down, color: Colors.white),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 

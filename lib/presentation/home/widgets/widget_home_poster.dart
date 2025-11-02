@@ -65,7 +65,7 @@ class _WidgetHomePostersState extends State<WidgetHomePosters> {
           TextButton(
             onPressed: () {},
             child: Text(
-              "View All",
+              "Xem tất cả",
               style: AppFont.medium_white_12.copyWith(color: AppColors.red),
             ),
           ),
