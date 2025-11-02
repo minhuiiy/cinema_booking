@@ -16,6 +16,7 @@ import 'package:cinema_booking/domain/usecase/tickets/create_ticket.dart';
 import 'package:cinema_booking/core/local/pref.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:cinema_booking/core/api/api_config.dart';
 // import removed: dartz
 import 'package:go_router/go_router.dart';
 import 'package:cinema_booking/presentation/payment/ticket_success_screen.dart';
@@ -82,7 +83,7 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
     if (!_formKey.currentState!.validate()) return;
     setState(() => _submitting = true);
     try {
-      final dio = Dio(BaseOptions(baseUrl: 'http://localhost:3000'));
+      final dio = Dio(BaseOptions(baseUrl: ApiConfig.baseUrl));
       final payload = {
         'cardNumber': _cardNumberCtrl.text.trim(),
         'expMonth': int.tryParse(_expMonthCtrl.text.trim()),

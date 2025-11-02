@@ -6,5 +6,6 @@
     "appbar",
     "Satoshi",
     "singin"
-  ]
+  ],
+  "java.configuration.updateBuildConfiguration": "interactive"
 }
