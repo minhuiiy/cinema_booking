@@ -14,6 +14,7 @@ import 'package:cinema_booking/presentation/chat_ai/chat_ai_floating.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -24,6 +25,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
+  bool? _isAdmin;
 
   /// List of screens for navigation
   final List<Widget> _pages = [
@@ -47,6 +49,23 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     BlocProvider.of<HomeBloc>(context).add(LoadHome());
+    _checkAdminClaims();
+  }
+
+  Future<void> _checkAdminClaims() async {
+    try {
+      final user = FirebaseAuth.instance.currentUser;
+      if (user == null) {
+        setState(() => _isAdmin = false);
+        return;
+      }
+      final token = await user.getIdTokenResult(true);
+      final claims = token.claims ?? {};
+      final isAdmin = claims['admin'] == true || claims['role'] == 'admin';
+      if (mounted) setState(() => _isAdmin = isAdmin);
+    } catch (_) {
+      if (mounted) setState(() => _isAdmin = false);
+    }
   }
 
   Widget _buildBottomNavigationBar() {
@@ -102,6 +121,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 right: 16,
                 bottom: 16,
                 child: ChatAiFloating(),
+              ),
+            if (_selectedIndex == 0 && (_isAdmin == true))
+              Positioned(
+                right: 16,
+                bottom: 86,
+                child: FloatingActionButton(
+                  tooltip: 'Mở Admin Dashboard',
+                  onPressed: () => context.go('/admin'),
+                  child: const Icon(Icons.admin_panel_settings),
+                ),
               ),
           ],
         ), // overlay chat on Home

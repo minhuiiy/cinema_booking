@@ -19,6 +19,7 @@ import 'package:cinema_booking/presentation/payment/payment_method_screen.dart';
 import 'package:cinema_booking/presentation/payment/ticket_success_screen.dart';
 import 'package:cinema_booking/presentation/all_tickets/ticket_qr_screen.dart';
 import 'package:cinema_booking/presentation/chat_ai/ai_chat_screen.dart';
+import 'package:cinema_booking/presentation/admin/admin_dashboard.dart';
 
 final GoRouter appRouter = GoRouter(
   routerNeglect: false,
@@ -142,6 +143,10 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: '/aiChat',
       builder: (context, state) => const AuthGuard(child: AiChatScreen()),
+    ),
+    GoRoute(
+      path: '/admin',
+      builder: (context, state) => const AuthGuard(child: AdminDashboardScreen()),
     ),
   ],
 );

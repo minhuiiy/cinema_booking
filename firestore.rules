@@ -1,19 +1,40 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Cho phép người dùng đã đăng nhập đọc/ghi tài liệu của chính họ
-    match /users/{userId} {
-      allow read, write: if request.auth != null && request.auth.uid == userId;
+    function isSignedIn() { return request.auth != null; }
+    function isOwner(userId) { return isSignedIn() && request.auth.uid == userId; }
+    function isAdmin() {
+      // Hỗ trợ 2 kiểu claim: {admin: true} hoặc {role: 'admin'}
+      return isSignedIn() && (
+        (request.auth.token.admin == true) ||
+        (request.auth.token.role == 'admin')
+      );
+    }
 
-      // Cho phép đọc/ghi vé của chính người dùng trong subcollection tickets
+    // Tài liệu user và vé: chủ sở hữu hoặc admin được phép
+    match /users/{userId} {
+      allow read, write: if isOwner(userId) || isAdmin();
+
       match /tickets/{ticketId} {
-        allow read, write: if request.auth != null && request.auth.uid == userId;
+        allow read, write: if isOwner(userId) || isAdmin();
       }
     }
 
-    // Từ chối mọi truy cập khác ngoài /users/{uid} của chính người dùng
+    // Quản lý phim: admin có thể tạo/sửa/xóa, người dùng có thể đọc
+    match /movies/{movieId} {
+      allow read: if true; // Cho phép đọc công khai (tuỳ nhu cầu, có thể đổi thành isSignedIn())
+      allow write: if isAdmin();
+    }
+
+    // Quản lý suất chiếu: admin có thể tạo/sửa/xóa, người dùng có thể đọc
+    match /showtimes/{showtimeId} {
+      allow read: if true; // hoặc isSignedIn()
+      allow write: if isAdmin();
+    }
+
+    // Fallback: admin có toàn quyền trên các tài liệu còn lại
     match /{document=**} {
-      allow read, write: if false;
+      allow read, write: if isAdmin();
     }
   }
 }
